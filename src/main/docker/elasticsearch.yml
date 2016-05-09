@@ -1,0 +1,10 @@
+version: '2'
+services:
+    adap_gateway-elasticsearch:
+        container_name: adap_gateway-elasticsearch
+        image: elasticsearch:1.7.5
+        # volumes:
+        #     - ~/volumes/jhipster/adap_gateway/elasticsearch/:/usr/share/elasticsearch/data/
+        ports:
+            - 9200:9200
+            - 9300:9300
