@@ -17,6 +17,7 @@
                 "title": "Reportparameter"
             },
             "label": "Label",
+            "lastmodifiedby": "Lastmodifiedby",
             "report": "Report"
         }
     }

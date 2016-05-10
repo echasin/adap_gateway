@@ -92,6 +92,7 @@
                         entity: function () {
                             return {
                                 label: null,
+                                lastmodifiedby: null,
                                 id: null
                             };
                         }

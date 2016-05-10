@@ -37,6 +37,7 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="label"><span translate="adapGatewayApp.reportparameter.label">Label</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span translate="adapGatewayApp.reportparameter.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="report.name"><span translate="adapGatewayApp.reportparameter.report">Report</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -45,6 +46,7 @@
                 <tr ng-repeat="reportparameter in vm.reportparameters track by reportparameter.id">
                     <td><a ui-sref="reportparameter-detail({id:reportparameter.id})">{{reportparameter.id}}</a></td>
                     <td>{{reportparameter.label}}</td>
+                    <td>{{reportparameter.lastmodifiedby}}</td>
                     <td>
                         <a ui-sref="report-detail({id:reportparameter.report.id})">{{reportparameter.report.name}}</a>
                     </td>
