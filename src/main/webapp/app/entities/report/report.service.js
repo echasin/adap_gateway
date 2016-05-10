@@ -1,0 +1,24 @@
+(function() {
+    'use strict';
+    angular
+        .module('adapGatewayApp')
+        .factory('Report', Report);
+
+    Report.$inject = ['$resource'];
+
+    function Report ($resource) {
+        var resourceUrl =  'adap_report/' + 'api/reports/:id';
+
+        return $resource(resourceUrl, {}, {
+            'query': { method: 'GET', isArray: true},
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            },
+            'update': { method:'PUT' }
+        });
+    }
+})();

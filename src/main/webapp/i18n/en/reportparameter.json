@@ -1,0 +1,23 @@
+{
+    "adapGatewayApp": {
+        "reportparameter" : {
+            "home": {
+                "title": "Reportparameters",
+                "createLabel": "Create a new Reportparameter",
+                "createOrEditLabel": "Create or edit a Reportparameter",
+                "search": "Search for Reportparameter"
+            },
+            "created": "A new Reportparameter is created with identifier {{ param }}",
+            "updated": "A Reportparameter is updated with identifier {{ param }}",
+            "deleted": "A Reportparameter is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Reportparameter {{ id }}?"
+            },
+            "detail": {
+                "title": "Reportparameter"
+            },
+            "label": "Label",
+            "report": "Report"
+        }
+    }
+}
