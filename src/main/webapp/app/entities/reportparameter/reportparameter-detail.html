@@ -11,6 +11,10 @@
         <dd>
             <span>{{vm.reportparameter.lastmodifiedby}}</span>
         </dd>
+        <dt><span translate="adapGatewayApp.reportparameter.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.reportparameter.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
         <dt><span translate="adapGatewayApp.reportparameter.report">Report</span></dt>
         <dd>
             <a ui-sref="report-detail({id:vm.reportparameter.report.id})">{{vm.reportparameter.report.name}}</a>
