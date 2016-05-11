@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('adapGatewayApp')
-        .factory('Reportparameter', Reportparameter);
+        .factory('Asset', Asset);
 
-    Reportparameter.$inject = ['$resource', 'DateUtils'];
+    Asset.$inject = ['$resource'];
 
-    function Reportparameter ($resource, DateUtils) {
-        var resourceUrl =  'adap_report/' + 'api/reportparameters/:id';
+    function Asset ($resource) {
+        var resourceUrl =  'adap_core/' + 'api/assets/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -15,7 +15,6 @@
                 method: 'GET',
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
-                    data.lastmodifieddatetime = DateUtils.convertDateTimeFromServer(data.lastmodifieddatetime);
                     return data;
                 }
             },

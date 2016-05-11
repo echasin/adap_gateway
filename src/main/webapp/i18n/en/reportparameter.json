@@ -18,6 +18,7 @@
             },
             "label": "Label",
             "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
             "report": "Report"
         }
     }
