@@ -17,6 +17,7 @@
                 "title": "Report"
             },
             "name": "Name",
+            "reporttemplatename": "Reporttemplatename",
             "reportparameter": "Reportparameter"
         }
     }

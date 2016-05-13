@@ -29,6 +29,22 @@
                 </p>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.report.reporttemplatename" for="field_reporttemplatename">Reporttemplatename</label>
+            <input type="text" class="form-control" name="reporttemplatename" id="field_reporttemplatename"
+                    ng-model="vm.report.reporttemplatename"
+                    required ng-maxlength="50" />
+            <div ng-show="editForm.reporttemplatename.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.reporttemplatename.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.reporttemplatename.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
 
     </div>
     <div class="modal-footer">

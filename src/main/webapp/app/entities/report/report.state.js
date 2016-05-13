@@ -92,6 +92,7 @@
                         entity: function () {
                             return {
                                 name: null,
+                                reporttemplatename: null,
                                 id: null
                             };
                         }
