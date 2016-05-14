@@ -1,6 +1,6 @@
 {
   "generator-jhipster": {
-    "jhipsterVersion": "3.2.0",
+    "jhipsterVersion": "3.3.0",
     "baseName": "adap_gateway",
     "packageName": "com.innvo",
     "packageFolder": "com/innvo",
@@ -27,6 +27,7 @@
     "nativeLanguage": "en",
     "languages": [
       "en"
-    ]
+    ],
+    "enableSocialSignIn": false
   }
 }

@@ -38,6 +38,11 @@
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span translate="adapGatewayApp.report.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="reporttemplatename"><span translate="adapGatewayApp.report.reporttemplatename">Reporttemplatename</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="reportoutputtypecode"><span translate="adapGatewayApp.report.reportoutputtypecode">Reportoutputtypecode</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span translate="adapGatewayApp.report.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span translate="adapGatewayApp.report.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifieddatetime"><span translate="adapGatewayApp.report.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span translate="adapGatewayApp.report.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -46,6 +51,11 @@
                     <td><a ui-sref="report-detail({id:report.id})">{{report.id}}</a></td>
                     <td>{{report.name}}</td>
                     <td>{{report.reporttemplatename}}</td>
+                    <td>{{report.reportoutputtypecode}}</td>
+                    <td>{{report.status}}</td>
+                    <td>{{report.lastmodifiedby}}</td>
+                    <td>{{report.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{report.domain}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

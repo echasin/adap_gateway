@@ -17,15 +17,15 @@
             <label class="control-label" translate="adapGatewayApp.report.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                     ng-model="vm.report.name"
-                    required ng-maxlength="50" />
+                    required ng-maxlength="100" />
             <div ng-show="editForm.name.$invalid">
                 <p class="help-block"
                     ng-show="editForm.name.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.name.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
-                    This field cannot be longer than 50 characters.
+                    ng-show="editForm.name.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
                 </p>
             </div>
         </div>
@@ -33,15 +33,99 @@
             <label class="control-label" translate="adapGatewayApp.report.reporttemplatename" for="field_reporttemplatename">Reporttemplatename</label>
             <input type="text" class="form-control" name="reporttemplatename" id="field_reporttemplatename"
                     ng-model="vm.report.reporttemplatename"
-                    required ng-maxlength="50" />
+                    required ng-maxlength="100" />
             <div ng-show="editForm.reporttemplatename.$invalid">
                 <p class="help-block"
                     ng-show="editForm.reporttemplatename.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.reporttemplatename.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
+                    ng-show="editForm.reporttemplatename.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.report.reportoutputtypecode" for="field_reportoutputtypecode">Reportoutputtypecode</label>
+            <input type="text" class="form-control" name="reportoutputtypecode" id="field_reportoutputtypecode"
+                    ng-model="vm.report.reportoutputtypecode"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.reportoutputtypecode.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.reportoutputtypecode.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.reportoutputtypecode.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.report.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                    ng-model="vm.report.status"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.status.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.status.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.status.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.report.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
+                    ng-model="vm.report.lastmodifiedby"
+                    required ng-maxlength="50" />
+            <div ng-show="editForm.lastmodifiedby.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
                     This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.report.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+                <div class="input-group">
+                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.report.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastmodifieddatetime')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.lastmodifieddatetime.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.ZonedDateTimelocal" translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.report.domain" for="field_domain">Domain</label>
+            <input type="text" class="form-control" name="domain" id="field_domain"
+                    ng-model="vm.report.domain"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.domain.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
                 </p>
             </div>
         </div>

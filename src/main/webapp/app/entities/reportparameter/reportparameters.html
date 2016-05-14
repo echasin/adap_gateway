@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="reportparameter.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="hidden-xs"  translate="adapGatewayApp.reportparameter.home.createLabel">
-                        Create new Report Parameter for Robert
+                        Create new Reportparameter
                     </span>
                 </button>
             </div>
@@ -37,8 +37,12 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="label"><span translate="adapGatewayApp.reportparameter.label">Label</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="instructions"><span translate="adapGatewayApp.reportparameter.instructions">Instructions</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="datatype"><span translate="adapGatewayApp.reportparameter.datatype">Datatype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span translate="adapGatewayApp.reportparameter.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifiedby"><span translate="adapGatewayApp.reportparameter.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifieddatetime"><span translate="adapGatewayApp.reportparameter.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span translate="adapGatewayApp.reportparameter.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="report.name"><span translate="adapGatewayApp.reportparameter.report">Report</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -47,8 +51,12 @@
                 <tr ng-repeat="reportparameter in vm.reportparameters track by reportparameter.id">
                     <td><a ui-sref="reportparameter-detail({id:reportparameter.id})">{{reportparameter.id}}</a></td>
                     <td>{{reportparameter.label}}</td>
+                    <td>{{reportparameter.instructions}}</td>
+                    <td>{{reportparameter.datatype}}</td>
+                    <td>{{reportparameter.status}}</td>
                     <td>{{reportparameter.lastmodifiedby}}</td>
                     <td>{{reportparameter.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{reportparameter.domain}}</td>
                     <td>
                         <a ui-sref="report-detail({id:reportparameter.report.id})">{{reportparameter.report.name}}</a>
                     </td>

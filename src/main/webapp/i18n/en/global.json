@@ -9,7 +9,6 @@
                 "main": "Entities",
                 "report": "Report",
                 "reportparameter": "Reportparameter",
-                "asset": "Asset",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -116,6 +115,7 @@
     },
     "error": {
         "server.not.reachable": "Server not reachable",
+        "url.not.found": "Not found",
         "NotNull": "Field {{ fieldName }} cannot be empty!",
         "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
         "userexists": "Login name already used!",

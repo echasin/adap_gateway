@@ -93,6 +93,11 @@
                             return {
                                 name: null,
                                 reporttemplatename: null,
+                                reportoutputtypecode: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
                                 id: null
                             };
                         }

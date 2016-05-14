@@ -23,6 +23,8 @@ services:
             - adap_gateway-cassandra
         environment:
             - CASSANDRA_CONTACT_POINT=adap_gateway-cassandra
+            - USER=docker-cassandra-migration
+            # - DEBUG_LOG=1 ## uncomment to show debug logs in the migration
         build:
             context: .
             dockerfile: cassandra/Cassandra.Dockerfile

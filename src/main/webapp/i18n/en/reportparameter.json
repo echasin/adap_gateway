@@ -17,8 +17,12 @@
                 "title": "Reportparameter"
             },
             "label": "Label",
+            "instructions": "Instructions",
+            "datatype": "Datatype",
+            "status": "Status",
             "lastmodifiedby": "Lastmodifiedby",
             "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
             "report": "Report"
         }
     }

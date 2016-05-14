@@ -18,6 +18,11 @@
             },
             "name": "Name",
             "reporttemplatename": "Reporttemplatename",
+            "reportoutputtypecode": "Reportoutputtypecode",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
             "reportparameter": "Reportparameter"
         }
     }

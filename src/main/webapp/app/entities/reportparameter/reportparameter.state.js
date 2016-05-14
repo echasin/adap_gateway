@@ -92,8 +92,12 @@
                         entity: function () {
                             return {
                                 label: null,
+                                instructions: null,
+                                datatype: null,
+                                status: null,
                                 lastmodifiedby: null,
                                 lastmodifieddatetime: null,
+                                domain: null,
                                 id: null
                             };
                         }

@@ -4,9 +4,9 @@
         .module('adapGatewayApp')
         .factory('Report', Report);
 
-    Report.$inject = ['$resource'];
+    Report.$inject = ['$resource', 'DateUtils'];
 
-    function Report ($resource) {
+    function Report ($resource, DateUtils) {
         var resourceUrl =  'adap_report/' + 'api/reports/:id';
 
         return $resource(resourceUrl, {}, {
@@ -14,7 +14,10 @@
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
-                    data = angular.fromJson(data);
+                    if (data) {
+                        data = angular.fromJson(data);
+                        data.lastmodifieddatetime = DateUtils.convertDateTimeFromServer(data.lastmodifieddatetime);
+                    }
                     return data;
                 }
             },

@@ -2,10 +2,23 @@
 <div>
     <h2><span translate="adapGatewayApp.reportparameter.detail.title">Reportparameter</span> {{vm.reportparameter.id}}</h2>
     <hr>
+    <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span translate="adapGatewayApp.reportparameter.label">Label</span></dt>
         <dd>
             <span>{{vm.reportparameter.label}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.reportparameter.instructions">Instructions</span></dt>
+        <dd>
+            <span>{{vm.reportparameter.instructions}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.reportparameter.datatype">Datatype</span></dt>
+        <dd>
+            <span>{{vm.reportparameter.datatype}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.reportparameter.status">Status</span></dt>
+        <dd>
+            <span>{{vm.reportparameter.status}}</span>
         </dd>
         <dt><span translate="adapGatewayApp.reportparameter.lastmodifiedby">Lastmodifiedby</span></dt>
         <dd>
@@ -14,6 +27,10 @@
         <dt><span translate="adapGatewayApp.reportparameter.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
         <dd>
             <span>{{vm.reportparameter.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.reportparameter.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.reportparameter.domain}}</span>
         </dd>
         <dt><span translate="adapGatewayApp.reportparameter.report">Report</span></dt>
         <dd>
