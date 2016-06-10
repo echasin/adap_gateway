@@ -16,7 +16,14 @@
             "detail": {
                 "title": "Asset"
             },
-            "name": "Name"
+            "name": "Name",
+            "recordtype": "Recordtype",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "location": "Location",
+            "score": "Score"
         }
     }
 }

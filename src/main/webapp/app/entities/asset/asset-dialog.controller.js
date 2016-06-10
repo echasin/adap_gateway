@@ -5,11 +5,13 @@
         .module('adapGatewayApp')
         .controller('AssetDialogController', AssetDialogController);
 
-    AssetDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Asset'];
+    AssetDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Asset', 'Location', 'Score'];
 
-    function AssetDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Asset) {
+    function AssetDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Asset, Location, Score) {
         var vm = this;
         vm.asset = entity;
+        vm.locations = Location.query();
+        vm.scores = Score.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -36,6 +38,13 @@
 
         vm.clear = function() {
             $uibModalInstance.dismiss('cancel');
+        };
+
+        vm.datePickerOpenStatus = {};
+        vm.datePickerOpenStatus.lastmodifieddatetime = false;
+
+        vm.openCalendar = function(date) {
+            vm.datePickerOpenStatus[date] = true;
         };
     }
 })();

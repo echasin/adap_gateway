@@ -9,6 +9,9 @@
                 "main": "Entities",
                 "report": "Report",
                 "reportparameter": "Reportparameter",
+                "asset": "Asset",
+                "location": "Location",
+                "score": "Score",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
