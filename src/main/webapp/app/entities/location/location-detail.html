@@ -1,0 +1,50 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.location.detail.title">Location</span> {{vm.location.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.location.recordtype">Recordtype</span></dt>
+        <dd>
+            <span>{{vm.location.recordtype}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.location.addressline1">Addressline 1</span></dt>
+        <dd>
+            <span>{{vm.location.addressline1}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.location.addressline2">Addressline 2</span></dt>
+        <dd>
+            <span>{{vm.location.addressline2}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.location.statecode">Statecode</span></dt>
+        <dd>
+            <span>{{vm.location.statecode}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.location.status">Status</span></dt>
+        <dd>
+            <span>{{vm.location.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.location.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.location.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.location.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.location.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.location.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.location.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.location.asset">Asset</span></dt>
+        <dd>
+            <a ui-sref="asset-detail({id:vm.location.asset.id})">{{vm.location.asset.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
