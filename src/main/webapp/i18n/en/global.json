@@ -12,6 +12,7 @@
                 "asset": "Asset",
                 "location": "Location",
                 "score": "Score",
+                "strategy": "Strategy",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
