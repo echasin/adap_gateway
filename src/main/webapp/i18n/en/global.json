@@ -13,6 +13,7 @@
                 "location": "Location",
                 "score": "Score",
                 "strategy": "Strategy",
+                "strategymbr": "Strategymbr",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

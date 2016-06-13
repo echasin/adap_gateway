@@ -1,0 +1,29 @@
+{
+    "adapGatewayApp": {
+        "strategymbr" : {
+            "home": {
+                "title": "Strategymbrs",
+                "createLabel": "Create a new Strategymbr",
+                "createOrEditLabel": "Create or edit a Strategymbr",
+                "search": "Search for Strategymbr"
+            },
+            "created": "A new Strategymbr is created with identifier {{ param }}",
+            "updated": "A Strategymbr is updated with identifier {{ param }}",
+            "deleted": "A Strategymbr is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Strategymbr {{ id }}?"
+            },
+            "detail": {
+                "title": "Strategymbr"
+            },
+            "name": "Name",
+            "description": "Description",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "strategylhs": "Strategylhs",
+            "strategyrhs": "Strategyrhs"
+        }
+    }
+}

@@ -1,0 +1,46 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.strategymbr.detail.title">Strategymbr</span> {{vm.strategymbr.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.strategymbr.name">Name</span></dt>
+        <dd>
+            <span>{{vm.strategymbr.name}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.strategymbr.description">Description</span></dt>
+        <dd>
+            <span>{{vm.strategymbr.description}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.strategymbr.status">Status</span></dt>
+        <dd>
+            <span>{{vm.strategymbr.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.strategymbr.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.strategymbr.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.strategymbr.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.strategymbr.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.strategymbr.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.strategymbr.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.strategymbr.strategylhs">Strategylhs</span></dt>
+        <dd>
+            <a ui-sref="strategy-detail({id:vm.strategymbr.strategylhs.id})">{{vm.strategymbr.strategylhs.name}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.strategymbr.strategyrhs">Strategyrhs</span></dt>
+        <dd>
+            <a ui-sref="strategy-detail({id:vm.strategymbr.strategyrhs.id})">{{vm.strategymbr.strategyrhs.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
