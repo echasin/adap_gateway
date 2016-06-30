@@ -10,6 +10,8 @@
         var resourceUrl =  'adap_core/' + 'api/assets/:id';
 
         return $resource(resourceUrl, {}, {
+        	'assets': { method: 'GET', isArray: true,url: 'adap_core/' + 'api/assets/'},
+        	'fireWorkflows': {method: 'GET',params: {assetId: '@assetId',assetRecordType: '@assetRecordType'}, url: 'adap_workflow/' + 'api/workFlow/:assetId/:assetRecordType'},
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

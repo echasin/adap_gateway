@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ScoreController', ScoreController);
 
-    ScoreController.$inject = ['$scope', '$state', 'Score', 'ScoreSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    ScoreController.$inject = ['$scope', '$state', 'Score', 'ScoreSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants','Asset'];
 
-    function ScoreController ($scope, $state, Score, ScoreSearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function ScoreController ($scope, $state, Score, ScoreSearch, ParseLinks, AlertService, pagingParams, paginationConstants,Asset) {
         var vm = this;
         vm.loadAll = loadAll;
         vm.loadPage = loadPage;
@@ -88,5 +88,25 @@
             vm.transition();
         }
 
+        $scope.loadFilters = function() {
+        	Asset.assets(
+				function(data) {
+				$scope.filters = data;
+			});
+		}
+		$scope.loadFilters();
+		
+		$scope.fireWorkflows = function() {
+			Asset
+					.fireWorkflows(
+							{
+								assetId : $scope.assetId,
+								assetRecordType : $scope.assetRecordType
+							},
+							function(result) {
+								$scope.workflow = result;
+								console.log(result);
+							});
+		};
     }
 })();

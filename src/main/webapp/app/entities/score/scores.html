@@ -1,3 +1,20 @@
+ <div>
+        <div>
+            <label for="field_filter">AssetID</label>
+            <select class="form-control input-sm" placeholder="Select a Filter" ng-model="assetId" ng-options="filter.id as filter.id for filter in filters"  ng-change="executefilter(filter.id)" style="width:50%;">
+            <option value="">Select AssetID</option>
+            </select>
+		</div>
+    
+        <div style="width: 50%;">
+            <label for="field_rules">AssetRecordType</label>
+            <select class="form-control" name="rules" ng-model="assetRecordType" id="field_rules"  ng-options="filter.recordtype as filter.recordtype for filter in filters" >
+               <option value="">Select AssetRecordType</option>
+            </select>
+        </div>
+
+        <button id="fireRule" ng-click="fireWorkflows()">Fire Workflow</button>
+    </div>
 <div>
     <h2 translate="adapGatewayApp.score.home.title">Scores</h2>
     <jhi-alert></jhi-alert>
