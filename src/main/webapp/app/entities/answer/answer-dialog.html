@@ -1,0 +1,148 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myAnswerLabel" translate="adapGatewayApp.answer.home.createOrEditLabel">Create or edit a Answer</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.answer.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.answer.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.answer.code" for="field_code">Code</label>
+            <input type="text" class="form-control" name="code" id="field_code"
+                    ng-model="vm.answer.code"
+                    required ng-maxlength="50" />
+            <div ng-show="editForm.code.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.code.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.code.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.answer.answeroption" for="field_answeroption">Answeroption</label>
+            <input type="text" class="form-control" name="answeroption" id="field_answeroption"
+                    ng-model="vm.answer.answeroption"
+                    required ng-maxlength="100" />
+            <div ng-show="editForm.answeroption.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.answeroption.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.answeroption.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.answer.position" for="field_position">Position</label>
+            <input type="number" class="form-control" name="position" id="field_position"
+                    ng-model="vm.answer.position"
+                    required />
+            <div ng-show="editForm.position.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.position.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.position.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.answer.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                    ng-model="vm.answer.status"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.status.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.status.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.status.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.answer.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
+                    ng-model="vm.answer.lastmodifiedby"
+                    required ng-maxlength="50" />
+            <div ng-show="editForm.lastmodifiedby.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.answer.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+                <div class="input-group">
+                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.answer.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastmodifieddatetime')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.lastmodifieddatetime.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.ZonedDateTimelocal" translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.answer.domain" for="field_domain">Domain</label>
+            <input type="text" class="form-control" name="domain" id="field_domain"
+                    ng-model="vm.answer.domain"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.domain.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label translate="adapGatewayApp.answer.question" for="field_question">Question</label>
+            <select class="form-control" id="field_question" name="question" ng-model="vm.answer.question" ng-options="question as question.question for question in vm.questions track by question.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

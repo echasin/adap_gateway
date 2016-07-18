@@ -1,0 +1,38 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.response.detail.title">Response</span> {{vm.response.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.response.details">Details</span></dt>
+        <dd>
+            <span>{{vm.response.details}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.response.status">Status</span></dt>
+        <dd>
+            <span>{{vm.response.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.response.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.response.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.response.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.response.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.response.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.response.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.response.questionnaire">Questionnaire</span></dt>
+        <dd>
+            <a ui-sref="questionnaire-detail({id:vm.response.questionnaire.id})">{{vm.response.questionnaire.title}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
