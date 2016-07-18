@@ -1,0 +1,46 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.questiongroup.detail.title">Questiongroup</span> {{vm.questiongroup.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.questiongroup.title">Title</span></dt>
+        <dd>
+            <span>{{vm.questiongroup.title}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questiongroup.description">Description</span></dt>
+        <dd>
+            <span>{{vm.questiongroup.description}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questiongroup.position">Position</span></dt>
+        <dd>
+            <span>{{vm.questiongroup.position}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questiongroup.status">Status</span></dt>
+        <dd>
+            <span>{{vm.questiongroup.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questiongroup.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.questiongroup.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questiongroup.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.questiongroup.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questiongroup.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.questiongroup.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questiongroup.questionnaire">Questionnaire</span></dt>
+        <dd>
+            <a ui-sref="questionnaire-detail({id:vm.questiongroup.questionnaire.id})">{{vm.questiongroup.questionnaire.title}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

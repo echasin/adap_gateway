@@ -13,6 +13,13 @@
                 "location": "Location",
                 "score": "Score",
                 "strategy": "Strategy",
+                "questionaire": "Questionaire",
+                "questiongroup": "Questiongroup",
+                "question": "Question",
+                "questionnaire": "Questionnaire",
+                "answer": "Answer",
+                "response": "Response",
+                "subquestion": "Subquestion",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
