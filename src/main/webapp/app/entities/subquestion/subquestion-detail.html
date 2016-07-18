@@ -1,0 +1,46 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.subquestion.detail.title">Subquestion</span> {{vm.subquestion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.subquestion.subquestion">Subquestion</span></dt>
+        <dd>
+            <span>{{vm.subquestion.subquestion}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.subquestion.code">Code</span></dt>
+        <dd>
+            <span>{{vm.subquestion.code}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.subquestion.position">Position</span></dt>
+        <dd>
+            <span>{{vm.subquestion.position}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.subquestion.status">Status</span></dt>
+        <dd>
+            <span>{{vm.subquestion.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.subquestion.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.subquestion.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.subquestion.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.subquestion.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.subquestion.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.subquestion.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.subquestion.question">Question</span></dt>
+        <dd>
+            <a ui-sref="question-detail({id:vm.subquestion.question.id})">{{vm.subquestion.question.question}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

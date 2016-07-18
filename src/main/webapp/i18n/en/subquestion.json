@@ -1,0 +1,29 @@
+{
+    "adapGatewayApp": {
+        "subquestion" : {
+            "home": {
+                "title": "Subquestions",
+                "createLabel": "Create a new Subquestion",
+                "createOrEditLabel": "Create or edit a Subquestion",
+                "search": "Search for Subquestion"
+            },
+            "created": "A new Subquestion is created with identifier {{ param }}",
+            "updated": "A Subquestion is updated with identifier {{ param }}",
+            "deleted": "A Subquestion is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Subquestion {{ id }}?"
+            },
+            "detail": {
+                "title": "Subquestion"
+            },
+            "subquestion": "Subquestion",
+            "code": "Code",
+            "position": "Position",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "question": "Question"
+        }
+    }
+}
