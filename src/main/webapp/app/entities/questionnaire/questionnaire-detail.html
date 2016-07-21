@@ -1,0 +1,34 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.questionnaire.detail.title">Questionnaire</span> {{vm.questionnaire.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.questionnaire.title">Title</span></dt>
+        <dd>
+            <span>{{vm.questionnaire.title}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questionnaire.status">Status</span></dt>
+        <dd>
+            <span>{{vm.questionnaire.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questionnaire.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.questionnaire.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questionnaire.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.questionnaire.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questionnaire.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.questionnaire.domain}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

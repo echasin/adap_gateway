@@ -1,0 +1,27 @@
+{
+    "adapGatewayApp": {
+        "response" : {
+            "home": {
+                "title": "Responses",
+                "createLabel": "Create a new Response",
+                "createOrEditLabel": "Create or edit a Response",
+                "search": "Search for Response"
+            },
+            "created": "A new Response is created with identifier {{ param }}",
+            "updated": "A Response is updated with identifier {{ param }}",
+            "deleted": "A Response is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Response {{ id }}?"
+            },
+            "detail": {
+                "title": "Response"
+            },
+            "details": "Details",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "questionnaire": "Questionnaire"
+        }
+    }
+}
