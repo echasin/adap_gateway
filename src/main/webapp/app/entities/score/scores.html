@@ -5,14 +5,20 @@
             <option value="">Select AssetID</option>
             </select>
 		</div>
-    
-        <div style="width: 50%;">
-            <label for="field_rules">AssetRecordType</label>
-            <select class="form-control" name="rules" ng-model="assetRecordType" id="field_rules"  ng-options="filter.recordtype as filter.recordtype for filter in filters" >
-               <option value="">Select AssetRecordType</option>
-            </select>
-        </div>
+        
+         <div style="width: 50%;">
+            <label for="field_workflow">Workflow File</label>
+            <select class="form-control" name="workflows" ng-model="fileName" id="field_worflows"  ng-options="item for item in  workFlowsName" required>
+               <option value="">Select Workflow</option>
+     		</select>
+     	</div>
 
+        <div style="width: 50%;">
+            <label for="field_rule">Rule File</label>
+            <select class="form-control" name="rulefile" ng-model="ruleFile" id="field_rule"  ng-options="item for item in  ruleFlowsName" required>
+               <option value="">Select Rulefile</option>
+     		</select>
+     	</div>
         <button id="fireRule" ng-click="fireWorkflows()">Fire Workflow</button>
     </div>
 <div>

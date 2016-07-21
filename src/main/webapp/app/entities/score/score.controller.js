@@ -20,6 +20,8 @@
         vm.currentSearch = pagingParams.search;
         vm.loadAll();
 
+        $scope.workFlowsName = Score.getWorkFlows(); 
+        $scope.ruleFlowsName = Score.getRuleFiles();
         function loadAll () {
             if (pagingParams.search) {
                 ScoreSearch.query({
@@ -101,7 +103,8 @@
 					.fireWorkflows(
 							{
 								assetId : $scope.assetId,
-								assetRecordType : $scope.assetRecordType
+								fileName : $scope.fileName,
+								ruleFile : $scope.ruleFile
 							},
 							function(result) {
 								$scope.workflow = result;

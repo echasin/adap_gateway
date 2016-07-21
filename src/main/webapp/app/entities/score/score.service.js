@@ -11,6 +11,8 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'getWorkFlows': {method: 'GET',isArray: true, url: 'adap_workflow/' + 'api/getWorkFlows'},
+            'getRuleFiles': {method: 'GET',isArray: true, url: 'adap_workflow/' + 'api/getRuleFiles'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
