@@ -20,6 +20,9 @@
                 "answer": "Answer",
                 "response": "Response",
                 "subquestion": "Subquestion",
+                "alert": "Alert",
+                "event": "Event",
+                "identifier": "Identifier",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
