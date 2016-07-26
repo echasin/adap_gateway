@@ -1,0 +1,95 @@
+<div>
+    <h2 translate="adapGatewayApp.identifier.home.title">Identifiers</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="identifier.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs"  translate="adapGatewayApp.identifier.home.createLabel">
+                        Create new Identifier
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.identifier.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="type"><span translate="adapGatewayApp.identifier.type">Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="value"><span translate="adapGatewayApp.identifier.value">Value</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span translate="adapGatewayApp.identifier.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span translate="adapGatewayApp.identifier.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifieddatetime"><span translate="adapGatewayApp.identifier.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span translate="adapGatewayApp.identifier.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="alert.id"><span translate="adapGatewayApp.identifier.alert">Alert</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="event.id"><span translate="adapGatewayApp.identifier.event">Event</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="identifier in vm.identifiers track by identifier.id">
+                    <td><a ui-sref="identifier-detail({id:identifier.id})">{{identifier.id}}</a></td>
+                    <td>{{identifier.type}}</td>
+                    <td>{{identifier.value}}</td>
+                    <td>{{identifier.status}}</td>
+                    <td>{{identifier.lastmodifiedby}}</td>
+                    <td>{{identifier.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{identifier.domain}}</td>
+                    <td>
+                        <a ui-sref="alert-detail({id:identifier.alert.id})">{{identifier.alert.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="event-detail({id:identifier.event.id})">{{identifier.event.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="identifier-detail({id:identifier.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="identifier.edit({id:identifier.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="identifier.delete({id:identifier.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>
