@@ -16,16 +16,29 @@
         <dd>
             <span>{{vm.questionnaire.lastmodifiedby}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.questionnaire.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
-        <dd>
-            <span>{{vm.questionnaire.lastmodifieddatetime | date:'medium'}}</span>
-        </dd>
-        <dt><span translate="adapGatewayApp.questionnaire.domain">Domain</span></dt>
-        <dd>
-            <span>{{vm.questionnaire.domain}}</span>
-        </dd>
     </dl>
 
+ <div ng-repeat="questiongroup in vm.questiongroups track by questiongroup.id">
+      <label>{{questiongroup.title}}</label>
+      <div ng-repeat="question in vm.question">
+      *{{question.question}}
+             <div ng-if="question.type=='5 Point Choice'">
+               <div choice></div>
+                 <hr>
+             </div>
+            
+             <div ng-if="question.type=='Array'">
+               <div array></div>
+               <hr>
+             </div>
+      </div>       
+ </div>
+ 
+      
+      <button type="submit"  ng-click="vm.saveAnswer()" class="btn btn-success pull-right">Save Answers</button>
+ 
+            
+    
     <button type="submit"
             onclick="window.history.back()"
             class="btn btn-info">

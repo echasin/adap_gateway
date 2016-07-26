@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'subquestionsByQuestion': {method: 'GET',isArray: true, url: 'adap_assessment/api/subquestionsByQuestion/:id'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
