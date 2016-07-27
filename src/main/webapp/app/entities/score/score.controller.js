@@ -107,6 +107,7 @@
 								ruleFile : $scope.ruleFile
 							},
 							function(result) {
+								loadAll();
 								$scope.workflow = result;
 								console.log(result);
 							});
