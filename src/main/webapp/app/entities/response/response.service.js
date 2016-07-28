@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'saveResponse': {method: 'PUT', url: 'adap_assessment/api/saveResponse/:id/:details'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
