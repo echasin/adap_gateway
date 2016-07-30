@@ -20,7 +20,7 @@
 
  <div ng-repeat="questiongroup in vm.questiongroups track by questiongroup.id">
       <label>{{questiongroup.title}}</label>
-      <div ng-repeat="question in vm.question">
+      <div ng-repeat="question in vm.questions">
       *{{question.question}}
              <div ng-if="question.type=='5 Point Choice'">
                <div choice></div>

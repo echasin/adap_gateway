@@ -19,9 +19,9 @@
         }).directive('array', function(Questiongroup,Question,Subquestion) {
         	return {
                 template:    '<table class="jh-table table table-striped">'+
-                             '<tr><th></th><th ng-repeat="answer in vm.answers">{{answer.answeroption}}</th></tr>'+
-                             '<tr ng-repeat="subquestion in vm.subquestions"><td>{{subquestion.subquestion}}</td>'+
-                             '<td ng-repeat="answer in vm.answers"><input type="radio" value="{{answer.code}}" ng-change="vm.getGridAnswer(questiongroup.id,question.id,subquestion.id,answer.code)" ng-model="$parent.selectedanswer"></td></tr>'+
+                             '<tr><th></th><th ng-repeat="answer in question.answer">{{answer.answeroption}}</th></tr>'+
+                             '<tr ng-repeat="subquestion in question.subquestion"><td>{{subquestion.subquestion}}</td>'+
+                             '<td ng-repeat="answer in question.answer"><input type="radio" value="{{answer.code}}" ng-change="vm.getGridAnswer(questiongroup.id,question.id,subquestion.id,answer.code)" ng-model="$parent.selectedanswer"></td></tr>'+
                              '</table>{{selectedanswer}}'
             };
         });

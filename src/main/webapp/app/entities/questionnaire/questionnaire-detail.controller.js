@@ -19,28 +19,30 @@
        
         vm.loadAllQuestionGroup();
         
-        vm.subquestions=[];
-
+        var questions=[];
+        vm.questions=[];
+        
         function loadAllQuestionGroup () {
         Questiongroup.query({}).$promise.then(function(group){
         	vm.questiongroups = group;
             for(var i=0;i<group.length;i++){
       		   var grouptitle=group[i].title
              	Question.questionsByQuestionGroup({id:group[i].id}).$promise.then(function(question){
-             		vm.question = question;             		
-             	   for(var j=0;j<question.length;j++){ 
-             		  (function(index) {
+                  questions.push.apply(questions,question);
+             	    for(var j=0;j<question.length;j++){ 
+             		   (function(index) {
              			    setTimeout(function() {
-             			      console.log(index)
+             			  //    if(question[index].type=="Array"){
                      		  Subquestion.subquestionsByQuestion({id:question[index].id}).$promise.then(function(subquestion){
-                     			  vm.subquestions=subquestion;
-                     			 for(var k=0;k<question.length;k++){
-                              	   Answer.answersByQuestion({id:question[k].id}).$promise.then(function(answer){
-                              		   vm.answers=answer;
-                                 		console.log(vm.answers)
+                     			   question[index].subquestion=subquestion; 
+                              	   Answer.answersByQuestion({id:question[index].id}).$promise.then(function(answer){
+                              		   question[index].answer=answer;
+                              		   vm.questions.push(question[index]);
+                              		   console.log(vm.questions);
                                      });
-                                 }
-                         	}); 
+                                 
+                         	     }); 
+             			        //}
              			    });
              			  })(j); 
              	  }
