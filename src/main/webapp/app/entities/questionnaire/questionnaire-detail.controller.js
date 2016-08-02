@@ -30,10 +30,7 @@
      			    setTimeout(function() {
       		        var grouptitle=group[item].title
                 	Question.questionsByQuestionGroup({id:group[item].id}).$promise.then(function(question){
-             		//console.log(item)	
-                    group[item].question=question;
-             		//console.log(group);
-             		
+                    group[item].question=question;             		
              	    for(var j=0;j<question.length;j++){ 
              		   (function(index) {
              			    setTimeout(function() {
@@ -41,8 +38,7 @@
                      			   question[index].subquestion=subquestion; 
                               	   Answer.answersByQuestion({id:question[index].id}).$promise.then(function(answer){
                               		   question[index].answer=answer;
-                              		//   vm.questiongroup.push(group[item]);
-                              		 //  console.log(vm.questiongroup);
+
                                      });
                                  
                          	     }); 
@@ -178,6 +174,25 @@
         });
         	vm.selectedAnswer=[]
        }
+        
+        
+        vm.getmultiselect=function(group,question,subquestion){
+        	console.log(group);
+        	console.log(question);
+        	console.log(subquestion);
+        }
+        
+        vm.getmultiselecttext=function(group,question,subquestion){
+        	console.log(group);
+        	console.log(question);
+        	console.log(subquestion);
+        	console.log(vm.text);
+        	
+        }
+        
+        vm.getLargeText=function(){
+        	console.log(vm.largeText)
+        }
         
 
     }

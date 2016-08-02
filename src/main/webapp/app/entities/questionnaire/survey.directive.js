@@ -24,6 +24,18 @@
                              '<td ng-repeat="answer in question.answer"><input type="radio" value="{{answer.code}}" ng-change="vm.getGridAnswer(questiongroup.id,question.id,subquestion.id,answer.code)" ng-model="$parent.selectedanswer"></td></tr>'+
                              '</table>{{selectedanswer}}'
             };
+        }).directive('multiblechoice', function(Questiongroup,Question,Subquestion) {
+        	return {
+                template:    '<table class="jh-table table table-striped">'+
+                             '<tr ng-repeat="subquestion in question.subquestion">'+
+                             '<td><input type="checkbox" ng-change="vm.getmultiselect(questiongroup.id,question.id,subquestion.id)" ng-model="$parent.selectedanswer">{{subquestion.subquestion}}</td>'+
+                             '<td><input type="text" ng-change="vm.getmultiselecttext(questiongroup.id,question.id,subquestion.id)" ng-model="vm.text"></td></tr>'+
+                             '</table>'
+            };
+        }).directive('text', function(Questiongroup,Question,Subquestion) {
+        	return {
+                template:    '<textarea ng-model="vm.largeText" ng-change="vm.getLargeText()" cols="50" rows="6"></textarea>'
+            };
         });
 
 })();

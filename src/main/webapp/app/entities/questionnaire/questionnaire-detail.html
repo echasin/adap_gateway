@@ -21,16 +21,29 @@
  <div ng-repeat="questiongroup in vm.questiongroup track by questiongroup.id">
       <label style="color:red;font-size: 20px;">{{questiongroup.title}}</label>
       <div ng-repeat="question in questiongroup.question">
-      *{{question.question}}
+      <label style="color:#F87217;font-size: 15px;">*{{question.question}}</label>
              <div ng-if="question.type=='5 Point Choice'">
                <div choice></div>
                  <hr>
              </div>
             
-             <div ng-if="question.type=='Array'">
+            <div ng-if="question.type=='Array'">
                <div array></div>
                <hr>
              </div>
+             
+            <div ng-if="question.type=='Choice with Comments'">
+               <div multiblechoice></div>
+                 <hr>
+             </div>
+             
+             <div ng-if="question.type=='Text'">
+               <div text></div>
+               <hr>
+             </div>
+                         
+             
+             
       </div>       
  </div>
 
