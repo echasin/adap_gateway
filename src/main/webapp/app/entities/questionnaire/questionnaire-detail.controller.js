@@ -19,67 +19,183 @@
        
         vm.loadAllQuestionGroup();
         
-        vm.subquestions=[];
-
+        var questiongroup=[];
+        vm.questiongroup=[];
         function loadAllQuestionGroup () {
-        Questiongroup.query({}).$promise.then(function(group){
-        	vm.questiongroups = group;
+            Questiongroup.query({}).$promise.then(function(group){
+           	  Response.get({id:100000}).$promise.then(function(response){
+           		var ali=JSON.parse(response.details);
+      		   console.log(ali)
+      		   console.log(ali.questiongroups)
+           	questiongroup.push.apply(questiongroup,group);
+               for(var i=0;i<group.length;i++){
+               	(function(item) {
+        			    setTimeout(function() {
+         		        var grouptitle=group[item].title
+                   	Question.questionsByQuestionGroup({id:group[item].id}).$promise.then(function(question){
+                       group[item].question=question;             		
+                	    for(var j=0;j<question.length;j++){ 
+                		   (function(index) {
+                			    setTimeout(function() {
+                        		  Subquestion.subquestionsByQuestion({id:question[index].id}).$promise.then(function(subquestion){
+                        			   question[index].subquestion=subquestion; 
+                                 	   Answer.answersByQuestion({id:question[index].id}).$promise.then(function(answer){
+                                 		   question[index].answer=answer;
+                                        });                           
+                            	     }); 
+                			    });
+                			  })(j); 
+                	  }
+                	   vm.questiongroup=group;
+                	   console.log(vm.questiongroup)            	    
+                });
+        			   });
+      			  })(i);
+               }
+             });
+            });
+           }
+        /**
+        function loadAllQuestionGroup () {
+         Questiongroup.query({}).$promise.then(function(group){
+        	questiongroup.push.apply(questiongroup,group);
             for(var i=0;i<group.length;i++){
-      		   var grouptitle=group[i].title
-             	Question.questionsByQuestionGroup({id:group[i].id}).$promise.then(function(question){
-             		vm.question = question;             		
-             	   for(var j=0;j<question.length;j++){ 
-             		  (function(index) {
+            	(function(item) {
+     			    setTimeout(function() {
+      		        var grouptitle=group[item].title
+                	Question.questionsByQuestionGroup({id:group[item].id}).$promise.then(function(question){
+                    group[item].question=question;             		
+             	    for(var j=0;j<question.length;j++){ 
+             		   (function(index) {
              			    setTimeout(function() {
-             			      console.log(index)
                      		  Subquestion.subquestionsByQuestion({id:question[index].id}).$promise.then(function(subquestion){
-                     			  vm.subquestions=subquestion;
-                     			 for(var k=0;k<question.length;k++){
-                              	   Answer.answersByQuestion({id:question[k].id}).$promise.then(function(answer){
-                              		   vm.answers=answer;
-                                 		console.log(vm.answers)
+                     			   question[index].subquestion=subquestion; 
+                              	   Answer.answersByQuestion({id:question[index].id}).$promise.then(function(answer){
+                              		   question[index].answer=answer;
                                      });
-                                 }
-                         	}); 
+                                 
+                         	     }); 
              			    });
              			  })(j); 
              	  }
+             	   vm.questiongroup=group;
+             	   console.log(vm.questiongroup)            	    
              });
+     			   });
+   			  })(i);
             }
           });
         }
+*/
+        vm.result=[];
         
-        vm.selectedAnswer=[];
-        
-        vm.getChoiceAnswer = function(group,question,answer){
-        	console.log("---------------------------------");
-        	console.log("question group : "+group);
-        	console.log("question : "+question)
-        	console.log("answer : "+answer);
-        	console.log("---------------------------------");
-        	vm.choiceAnswer={"questiongroup":group,"question":question,"answer":answer}
+        vm.getChoiceAnswer = function(group,question,response){
+        	function findquestion(item) { 
+                return item.question === question;
+            }
+            if(vm.result.find(findquestion)!=null){
+    			$.each(vm.result, function() {
+    				if (this.question == question) {
+    			        this.response = response;
+    				 }
+    				});
+    		}else{
+    			vm.result.push({"questiongroup":group,"question":question,"response":response})	
+    		}           
+            console.log(vm.result)
+            console.log(JSON.stringify(vm.result))
         }
         
-        vm.gridAnswer=[]; 
-        vm.getGridAnswer = function(group,question,subquestion,answer) {
-        	console.log("---------------------------------");
-        	console.log("question group : "+group);
-        	console.log("question : "+question);
-        	console.log("subquestion : "+subquestion);
-        	console.log("answer : "+answer);
-        	console.log("---------------------------------");
-        	var answers={"questiongroup":group,"question":question,"subquestion":subquestion,"answer":answer}
-        	vm.gridAnswer.push(answers);
-       }
+        vm.getGridAnswer = function(group,question,subquestion,response) {
+        	function findsubquestion(item) { 
+                return item.subquestion === subquestion;
+            }
+            if(vm.result.find(findsubquestion)!=null){
+    			$.each(vm.result, function() {
+    						if(this.subquestion==subquestion){
+    							this.response=response
+    						}
+    						
+    				});
+    		}else{
+    			vm.result.push({"questiongroup":group,"question":question,"subquestion":subquestion,"response":response});	
+    		} 
+         }
+              
+        vm.getmultiselect=function(group,question,subquestion,subquestioncode){
+        	console.log(group);
+        	console.log(question);
+        	console.log(subquestion);
+        	console.log(subquestioncode);
+        	if(subquestioncode==true){
+        		vm.result.push({"questiongroup":group,"question":question,"subquestion":subquestion,"response":vm.text});	       	
+        	}else{
+        		function findsubquestion(item) { 
+                    return item.subquestion === subquestion;
+                }
+                if(vm.result.find(findsubquestion)!=null){
+        			$.each(vm.result, function() {
+        				if(this.subquestion==subquestion){
+        				vm.result.splice(vm.result.indexOf(this), 1 );
+        				}
+        				});
+          }
+        }
+        	console.log(JSON.stringify(vm.result))
+        }
         
-        vm.saveAnswer=function(){
-        	var questionnaire=$stateParams.id
-            vm.selectedAnswer.push(vm.choiceAnswer);
-            vm.selectedAnswer.push(vm.gridAnswer);
-        	console.log(vm.selectedAnswer)
-        	var result=JSON.stringify(vm.selectedAnswer);
-        	console.log(result);
+        vm.getmultiselecttext=function(group,question,subquestion){
+        	console.log(group);
+        	console.log(question);
+        	console.log(subquestion);
+        	console.log(vm.text);
         	
+        }
+        
+        vm.getLargeText=function(group,question){
+        	function findquestion(item) { 
+                return item.question === question;
+            }
+            if(vm.result.find(findquestion)!=null){
+    			$.each(vm.result, function() {
+    				if (this.question == question) {
+    			        this.response = vm.largeText;
+    				 }
+    				});
+    		}else{
+    			vm.result.push({"questiongroup":group,"question":question,"response":vm.largeText})	
+    		}           
+         }
+        
+        
+        vm.saveAnswer=function(){        	
+        	var questionnaire=$stateParams.id  
+        	console.log(vm.result)
+        	var questiongroups = vm.result.reduce(function(groups, question){
+           	var group = groups[question.questiongroup] || [];
+           	  group.push({
+           	    question: question.question,
+           	    subquestion: question.subquestion,
+           	    response: question.response
+           	  });
+
+           	  groups[question.questiongroup] = group;
+           	  
+           	  return groups;
+           	}, {});
+
+           	questiongroups = Object.keys(questiongroups).map(function (key)
+           	  {
+
+           		return {questiongroup: key, questions: questiongroups[key]}});
+
+           	var object = {
+           	  questiongroups: questiongroups
+           	};
+
+           	var result=JSON.stringify(object);
+           	console.log(result);
+           	
         	$http.get('/adap_assessment/api/saveResponse/'+questionnaire+'/'+result)
         	.success(function (data) {
 
@@ -87,6 +203,5 @@
         	vm.selectedAnswer=[]
        }
         
-
     }
 })();

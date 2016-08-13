@@ -1,4 +1,3 @@
-
 <div>
     <h2><span translate="adapGatewayApp.questionnaire.detail.title">Questionnaire</span> {{vm.questionnaire.id}}</h2>
     <hr>
@@ -18,19 +17,32 @@
         </dd>
     </dl>
 
- <div ng-repeat="questiongroup in vm.questiongroups track by questiongroup.id">
-      <label>{{questiongroup.title}}</label>
-      <div ng-repeat="question in vm.question">
-      *{{question.question}}
+ <div ng-repeat="questiongroup in vm.questiongroup track by questiongroup.id">
+      <label style="color:red;font-size: 20px;">{{questiongroup.title}}</label>
+      <div ng-repeat="question in questiongroup.question">
+      <label style="color:#F87217;font-size: 15px;">*{{question.question}}</label>
              <div ng-if="question.type=='5 Point Choice'">
                <div choice></div>
                  <hr>
              </div>
             
-             <div ng-if="question.type=='Array'">
+            <div ng-if="question.type=='Array'">
                <div array></div>
                <hr>
              </div>
+             
+            <div ng-if="question.type=='Choice with Comments'">
+               <div multiblechoice></div>
+                 <hr>
+             </div>
+             
+             <div ng-if="question.type=='Text'">
+               <div text></div>
+               <hr>
+             </div>
+                         
+             
+             
       </div>       
  </div>
 
@@ -38,7 +50,8 @@
       
       <button type="submit"  ng-click="vm.saveAnswer()" class="btn btn-success pull-right">Save Answers</button>
  
-            
+
+			
     
     <button type="submit"
             onclick="window.history.back()"
