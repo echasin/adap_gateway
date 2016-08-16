@@ -11,7 +11,10 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'responseByUserAndDate': {method: 'GET', url: 'adap_assessment/api/responseByUserAndDate'},
+            'responseByUserAndQuestionnaire': {method: 'GET', isArray: true, url: 'adap_assessment/api/responseByUserAndQuestionnaire/:id'},
             'saveResponse': {method: 'PUT', url: 'adap_assessment/api/saveResponse/:id/:details'},
+            'updateResponse': {method: 'PUT', url: 'adap_assessment/api/updateResponse/:id/:details'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

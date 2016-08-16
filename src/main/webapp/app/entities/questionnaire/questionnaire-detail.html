@@ -1,7 +1,6 @@
 <div>
     <h2><span translate="adapGatewayApp.questionnaire.detail.title">Questionnaire</span> {{vm.questionnaire.id}}</h2>
     <hr>
-    <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span translate="adapGatewayApp.questionnaire.title">Title</span></dt>
         <dd>
@@ -17,8 +16,9 @@
         </dd>
     </dl>
 
- <div ng-repeat="questiongroup in vm.questiongroup track by questiongroup.id">
-      <label style="color:red;font-size: 20px;">{{questiongroup.title}}</label>
+<uib-tabset>
+ 
+ <uib-tab  ng-repeat="questiongroup in vm.questiongroup track by questiongroup.id" heading={{questiongroup.title}}>
       <div ng-repeat="question in questiongroup.question">
       <label style="color:#F87217;font-size: 15px;">*{{question.question}}</label>
              <div ng-if="question.type=='5 Point Choice'">
@@ -40,16 +40,14 @@
                <div text></div>
                <hr>
              </div>
-                         
-             
-             
-      </div>       
- </div>
-
+    
+        </div>       
+      </uib-tab>
+  </uib-tabset>
  
       
-      <button type="submit"  ng-click="vm.saveAnswer()" class="btn btn-success pull-right">Save Answers</button>
- 
+      <button type="submit"  ng-click="vm.saveAnswer('save')" class="btn btn-success pull-right">Save New Answers</button>
+      <button type="submit"  ng-click="vm.saveAnswer('update')" ng-hide="vm.showUpdate" class="btn btn-primary pull-right">Update Current Answers</button> 
 
 			
     
@@ -58,4 +56,6 @@
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
     </button>
+    
+   
 </div>
