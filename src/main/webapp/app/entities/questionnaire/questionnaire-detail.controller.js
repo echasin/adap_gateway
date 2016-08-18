@@ -58,7 +58,6 @@
                 			  })(j); 
                 	  }
                 	   vm.questiongroup=group;
-                	   console.log(vm.questiongroup);
                 });
         			   });
       			  })(i);
@@ -68,61 +67,69 @@
            }
         
         
-        vm.result=[];
+        var userResponse=[];
+
+        function getOldResponse(){
+        	 Response.responseByUserAndDate().$promise.then(function(response){
+         		var response=JSON.parse(response.details);
+         		console.log(response)
+         	    
+         		for(var i=0;i<response.questiongroups.length;i++){
+        			 for(var j=0;j<response.questiongroups[i].questions.length;j++){
+        				 userResponse.push({"questiongroup":response.questiongroups[i].questiongroup,"question":response.questiongroups[i].questions[j].question,"subquestion":response.questiongroups[i].questions[j].subquestion,"response":response.questiongroups[i].questions[j].response})
+        		     }        				      
+        		   } 
+         	  });
+        }
+        getOldResponse();
         
         vm.getChoiceAnswer = function(group,question,response){
         	function findquestion(item) { 
                 return item.question === question;
             }
-            if(vm.result.find(findquestion)!=null){
-    			$.each(vm.result, function() {
+            if(userResponse.find(findquestion)!=null){
+    			$.each(userResponse, function() {
     				if (this.question == question) {
     			        this.response = response;
     				 }
     				});
     		}else{
-    			vm.result.push({"questiongroup":group,"question":question,"response":response})	
+    			userResponse.push({"questiongroup":group,"question":question,"response":response})	
     		}           
-            console.log(vm.result)
-            console.log(JSON.stringify(vm.result))
+
         }
         
         vm.getGridAnswer = function(group,question,subquestion,response) {
         	function findsubquestion(item) { 
                 return item.subquestion === subquestion;
             }
-            if(vm.result.find(findsubquestion)!=null){
-    			$.each(vm.result, function() {
-    						if(this.subquestion==subquestion){
-    							this.response=response
-    						}
-    						
-    				});
-    		}else{
-    			vm.result.push({"questiongroup":group,"question":question,"subquestion":subquestion,"response":response});	
+             if(userResponse.find(findsubquestion)!=null){
+    			$.each(userResponse, function() {
+					if(this.subquestion==subquestion){
+						this.response=response
+					}
+					
+			});
+	        }else{
+	        	userResponse.push({"questiongroup":group,"question":question,"subquestion":subquestion,"response":response});	
     		} 
          }
               
         vm.getmultiselect=function(group,question,subquestion,subquestioncode){
-        	console.log(group);
-        	console.log(question);
-        	console.log(subquestion);
-        	console.log(subquestioncode);
         	if(subquestioncode==true){
-        		vm.result.push({"questiongroup":group,"question":question,"subquestion":subquestion,"response":vm.text});	       	
+        		userResponse.push({"questiongroup":group,"question":question,"subquestion":subquestion,"response":vm.text});	       	
         	}else{
         		function findsubquestion(item) { 
                     return item.subquestion === subquestion;
                 }
-                if(vm.result.find(findsubquestion)!=null){
-        			$.each(vm.result, function() {
+                if(userResponse.find(findsubquestion)!=null){
+        			$.each(userResponse, function() {
         				if(this.subquestion==subquestion){
-        				vm.result.splice(vm.result.indexOf(this), 1 );
+        					userResponse.splice(userResponse.indexOf(this), 1 );
         				}
         				});
           }
         }
-        	console.log(JSON.stringify(vm.result))
         }
         
         vm.getmultiselecttext=function(group,question,subquestion){
@@ -137,43 +144,21 @@
         	function findquestion(item) { 
                 return item.question === question;
             }
-            if(vm.result.find(findquestion)!=null){
-    			$.each(vm.result, function() {
+            if(userResponse.find(findquestion)!=null){
+    			$.each(userResponse, function() {
     				if (this.question == question) {
     			        this.response = vm.largeText;
     				 }
     				});
     		}else{
-    			vm.result.push({"questiongroup":group,"question":question,"response":vm.largeText})	
+    			userResponse.push({"questiongroup":group,"question":question,"response":vm.largeText})	
     		}           
          }
 
-        //development progress
-        function xxx(){
-        	 Response.responseByUserAndDate().$promise.then(function(response){
-         		var response=JSON.parse(response.details);
-         		console.log(response)
-         		var array=[];
-         		for(var i=0;i<response.questiongroups.length;i++){
-        			 for(var j=0;j<response.questiongroups[i].questions.length;j++){     
-        					}        				      
-        		   } 
-         	  });
-        }
-        
-        xxx();
         
         vm.saveAnswer=function(action){  
-      	   Response.responseByUserAndDate().$promise.then(function(response){
-        		var response=JSON.parse(response.details);
-        		
-        	  });
-      	   
-        	console.log(action)
-        	var questionnaire=$stateParams.id  
-        	console.log(vm.result)
-        	
-        	var questiongroups = vm.result.reduce(function(groups, question){
+        	var questionnaire=$stateParams.id          	
+        	var questiongroups = userResponse.reduce(function(groups, question){
            	var group = groups[question.questiongroup] || [];
            	  group.push({
            	    question: question.question,
@@ -195,7 +180,6 @@
            	};
 
            	var result=JSON.stringify(object);
-           	console.log(result);
            	
            	if(action==='save'){
         	$http.get('/adap_assessment/api/saveResponse/'+questionnaire+'/'+result)
@@ -209,13 +193,17 @@
        }
         
        
-      //to hide and show update button
       Response.responseByUserAndQuestionnaire({id:$stateParams.id}).$promise.then(function(data) { 
-        }, function(error) {
-        	vm.showUpdate=true;
-        	console.log("not found")
-        });
-
+         console.log(data.length)
+    	  if(data.length>0){
+      	   vm.showUpdate=false;
+         }else{
+      	   vm.showUpdate=true;
+         }  
+       }, function(error) {
+       	console.log("not found")
+      });
+      
       
     }
 })();
