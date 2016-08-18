@@ -16,14 +16,7 @@
         <div class="form-group">
             <label class="control-label" translate="adapGatewayApp.response.details" for="field_details">Details</label>
             <input type="text" class="form-control" name="details" id="field_details"
-                    ng-model="vm.response.details"
-                    required />
-            <div ng-show="editForm.details.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.details.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
+                    ng-model="vm.response.details"/>
         </div>
         <div class="form-group">
             <label class="control-label" translate="adapGatewayApp.response.status" for="field_status">Status</label>
