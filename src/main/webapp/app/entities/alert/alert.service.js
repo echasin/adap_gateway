@@ -10,6 +10,7 @@
         var resourceUrl =  'adap_event/' + 'api/alerts/:id';
 
         return $resource(resourceUrl, {}, {
+        	'sendAlert': {method: 'POST', url: 'adap_event/' + 'api/alerttojms'},
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

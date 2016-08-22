@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('AlertDetailController', AlertDetailController);
 
-    AlertDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Alert', 'Identifier'];
+    AlertDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Alert', 'Identifier','$http'];
 
-    function AlertDetailController($scope, $rootScope, $stateParams, entity, Alert, Identifier) {
+    function AlertDetailController($scope, $rootScope, $stateParams, entity, Alert, Identifier,$http) {
         var vm = this;
         vm.alert = entity;
         
@@ -15,6 +15,13 @@
             vm.alert = result;
         });
         $scope.$on('$destroy', unsubscribe);
+
+        $scope.addAlert = function() {
+    		return $http.post('adap_event/' + 'api/alerttojms', vm.alert).success(authenticateSuccess);
+    		function authenticateSuccess (result) {
+    			console.log(result);
+            }
+    		};
 
     }
 })();
