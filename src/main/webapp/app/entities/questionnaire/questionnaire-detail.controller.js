@@ -22,7 +22,7 @@
         var questiongroup=[];
         vm.questiongroup=[];
         function loadAllQuestionGroup () {
-            Questiongroup.query({}).$promise.then(function(group){
+            Questiongroup.questiongroupsByQuestionnaire({id:$stateParams.id}).$promise.then(function(group){
            	questiongroup.push.apply(questiongroup,group);
                for(var i=0;i<group.length;i++){
                	(function(item) {
