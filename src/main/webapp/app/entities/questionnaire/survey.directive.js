@@ -29,12 +29,12 @@
                 template:    '<table class="jh-table table table-striped">'+
                              '<tr ng-repeat="subquestion in question.subquestion">'+
                              '<td><input type="checkbox" ng-change="vm.getmultiselect(questiongroup.id,question.id,subquestion.id,subquestion.code)" ng-model="subquestion.code">{{subquestion.subquestion}}</td>'+
-                             '<td><input type="text" ng-change="vm.getmultiselecttext(questiongroup.id,question.id,subquestion.id)" ng-model="vm.text"></td></tr>'+
+                             '<td><input type="text" ng-change="vm.getmultiselecttext(questiongroup.id,question.id,subquestion.id,subquestion.response)" ng-model="subquestion.response"></td></tr>'+
                              '</table>'
             };
         }).directive('text', function(Questiongroup,Question,Subquestion) {
         	return {
-                template:    '<textarea ng-model="question.response" ng-change="vm.getLargeText(questiongroup.id,question.id);vm.largeText=question.response" cols="50" rows="6"></textarea>'
+                template:    '<textarea ng-model="question.response" ng-change="vm.getLargeText(questiongroup.id,question.id,question.response)" cols="50" rows="6"></textarea>'
             };
         });
 

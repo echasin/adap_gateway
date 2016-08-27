@@ -38,14 +38,16 @@
                                  	   Answer.answersByQuestion({id:question[index].id}).$promise.then(function(answer){
                                  		   question[index].answer=answer;
                                         });
-                                 	   Response.responseByUserAndDate().$promise.then(function(response){
-                                     		var response=JSON.parse(response.details);
+                                 	   Response.responseByUserAndDateAndQuestionnaire({id:$stateParams.id}).$promise.then(function(data){
+                                     		var response=JSON.parse(data.details);
+                                     		vm.response=data.id;
                                 		    for(var i=0;i<response.questiongroups.length;i++){
                                      			 for(var j=0;j<response.questiongroups[i].questions.length;j++){                                     				 
                                      				if(response.questiongroups[i].questions[j].question==question[index].id){
                                      					for(var w=0;w<question[index].subquestion.length;w++){
                                      						if(response.questiongroups[i].questions[j].subquestion==question[index].subquestion[w].id){
                                      						question[index].subquestion[w].response=response.questiongroups[i].questions[j].response;
+                                     						
                                      						}
                                      					}
                                      					question[index].response=response.questiongroups[i].questions[j].response;
@@ -70,7 +72,7 @@
         var userResponse=[];
 
         function getOldResponse(){
-        	 Response.responseByUserAndDate().$promise.then(function(response){
+        	 Response.responseByUserAndDateAndQuestionnaire({id:$stateParams.id}).$promise.then(function(response){
          		var response=JSON.parse(response.details);
          		console.log(response)
          	    
@@ -130,29 +132,35 @@
         				});
           }
         }
+       }
+        
+        vm.getmultiselecttext=function(group,question,subquestion,text){
+        	function findsubquestion(item) { 
+                return item.subquestion === subquestion;
+            }
+             if(userResponse.find(findsubquestion)!=null){
+    			$.each(userResponse, function() {
+					if(this.subquestion==subquestion){
+						this.response=text
+					}
+					
+			});
+	        }
         }
         
-        vm.getmultiselecttext=function(group,question,subquestion){
-        	console.log(group);
-        	console.log(question);
-        	console.log(subquestion);
-        	console.log(vm.text);
-        	
-        }
-        
-        vm.getLargeText=function(group,question){
+        vm.getLargeText=function(group,question,largeText){
         	function findquestion(item) { 
                 return item.question === question;
             }
             if(userResponse.find(findquestion)!=null){
     			$.each(userResponse, function() {
     				if (this.question == question) {
-    			        this.response = vm.largeText;
+    			        this.response = largeText;
     				 }
     				});
     		}else{
-    			userResponse.push({"questiongroup":group,"question":question,"response":vm.largeText})	
-    		}           
+    			userResponse.push({"questiongroup":group,"question":question,"response":largeText})	
+    		} 
          }
 
         
