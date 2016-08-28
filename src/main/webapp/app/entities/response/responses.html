@@ -40,7 +40,7 @@
                     <th jh-sort-by="status"><span translate="adapGatewayApp.response.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifiedby"><span translate="adapGatewayApp.response.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifieddatetime"><span translate="adapGatewayApp.response.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="domain">Domain<span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain">User<span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="questionnaire.title"><span translate="adapGatewayApp.response.questionnaire">Questionnaire</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -52,7 +52,7 @@
                     <td>{{response.status}}</td>
                     <td>{{response.lastmodifiedby}}</td>
                     <td>{{response.lastmodifieddatetime | date:'medium'}}</td>
-                    <td>{{response.domain}}</td>
+                    <td>{{response.username}}</td>
                     <td>
                         <a ui-sref="questionnaire-detail({id:response.questionnaire.id})">{{response.questionnaire.title}}</a>
                     </td>
