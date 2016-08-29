@@ -12,6 +12,7 @@
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
             'responseByUserAndDateAndQuestionnaire': {method: 'GET', url: 'adap_assessment/api/responseByUserAndDateAndQuestionnaire/:id'},
+            'responseByQuestionnaire': {method: 'GET', url: 'adap_assessment/api/responseByQuestionnaire/:id'},            
             'responseByUserAndQuestionnaire': {method: 'GET', isArray: true, url: 'adap_assessment/api/responseByUserAndQuestionnaire/:id'},
             'saveResponse': {method: 'PUT', url: 'adap_assessment/api/saveResponse/:id/:details'},
             'updateResponse': {method: 'PUT', url: 'adap_assessment/api/updateResponse/:id/:details'},

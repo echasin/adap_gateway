@@ -38,7 +38,7 @@
                                  	   Answer.answersByQuestion({id:question[index].id}).$promise.then(function(answer){
                                  		   question[index].answer=answer;
                                         });
-                                 	   Response.responseByUserAndDateAndQuestionnaire({id:$stateParams.id}).$promise.then(function(data){
+                                 	   Response.responseByQuestionnaire({id:$stateParams.id}).$promise.then(function(data){
                                      		var response=JSON.parse(data.details);
                                      		vm.response=data.id;
                                 		    for(var i=0;i<response.questiongroups.length;i++){
@@ -72,7 +72,7 @@
         var userResponse=[];
 
         function getOldResponse(){
-        	 Response.responseByUserAndDateAndQuestionnaire({id:$stateParams.id}).$promise.then(function(response){
+        	 Response.responseByQuestionnaire({id:$stateParams.id}).$promise.then(function(response){
          		var response=JSON.parse(response.details);
          		console.log(response)
          	    
@@ -164,7 +164,7 @@
          }
 
         
-        vm.saveAnswer=function(action){  
+        vm.saveAnswer=function(){  
         	var questionnaire=$stateParams.id          	
         	var questiongroups = userResponse.reduce(function(groups, question){
            	var group = groups[question.questiongroup] || [];
@@ -189,15 +189,10 @@
 
            	var result=JSON.stringify(object);
            	
-           	if(action==='save'){
         	$http.get('/adap_assessment/api/saveResponse/'+questionnaire+'/'+result)
         	.success(function (data) {
-              });
-           	}else if(action==='update'){
-           		$http.get('/adap_assessment/api/updateResponse/'+questionnaire+'/'+result)
-            	.success(function (data) {
               });	
-           	}
+           	
        }
         
        
