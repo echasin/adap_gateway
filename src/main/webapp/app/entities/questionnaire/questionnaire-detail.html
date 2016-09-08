@@ -47,9 +47,9 @@
   </uib-tabset>
  
       
-      <button type="submit"  ng-click="vm.saveAnswer()" class="btn btn-success pull-right">Save New Answers</button>
-
-			
+      <button type="submit"  ng-click="vm.saveAnswer('save')" class="btn btn-success pull-right">Save New Answers</button>
+      <button type="submit"  ng-click="vm.saveAnswer('update')" ng-hide="vm.showUpdate" class="btn btn-primary pull-right">Update Current Answers</button> 
+	
     
     <button type="submit"
             onclick="window.history.back()"

@@ -1,0 +1,34 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.conditions.detail.title">Conditions</span> {{vm.conditions.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.conditions.action">Action</span></dt>
+        <dd>
+            <span>{{vm.conditions.action}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.conditions.operator">Operator</span></dt>
+        <dd>
+            <span>{{vm.conditions.operator}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.conditions.response">Response</span></dt>
+        <dd>
+            <span>{{vm.conditions.response}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.conditions.displayedquestion">Displayedquestion</span></dt>
+        <dd>
+            <a ui-sref="question-detail({id:vm.conditions.displayedquestion.id})">{{vm.conditions.displayedquestion.question}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.conditions.question">Question</span></dt>
+        <dd>
+            <a ui-sref="question-detail({id:vm.conditions.question.id})">{{vm.conditions.question.question}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
