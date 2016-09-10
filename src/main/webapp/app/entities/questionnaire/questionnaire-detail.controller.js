@@ -101,13 +101,25 @@
     			userResponse.push({"questiongroup":group,"question":question,"response":response})	
     		}           
             Question.updateQuestion({id:question});
-            Conditions.conditionByQuestion({id:question}).$promise.then(function(condition){
-            	if(response>condition.response){
+            Conditions.conditionByQuestion({id:question}).$promise.then(function(condition){	
+                       
+            if(condition.operator == '>') {
+        	    if(response  > condition.response){
             		loadQuestionById(group,condition.displayedquestion.id);	
-            	}
+            	}     	    
+        	} else if(condition.operator == '<'){
+        		 if(response  < condition.response){
+        			 console.log("Other")
+        		 } 
+        	} 
+            
+            
             });
             
         }
+        
+        
+       
         
         vm.getGridAnswer = function(group,question,subquestion,response) {
         	function findsubquestion(item) { 
@@ -240,7 +252,7 @@
                               		    for(var i=0;i<response.questiongroups.length;i++){
                                    			 for(var j=0;j<response.questiongroups[i].questions.length;j++){                                     				 
                                    				if(response.questiongroups[i].questions[j].question==question.id){
-                                   					for(var w=0;w<question[index].subquestion.length;w++){
+                                   					for(var w=0;w<question.subquestion.length;w++){
                                    						if(response.questiongroups[i].questions[j].subquestion==question.subquestion[w].id){
                                    						question.subquestion[w].response=response.questiongroups[i].questions[j].response;
                                    						}
