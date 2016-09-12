@@ -1,3 +1,4 @@
+
 (function() {
     'use strict';
     angular
@@ -12,6 +13,7 @@
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
             'questionsByQuestionGroup': {method: 'GET',isArray: true, url: 'adap_assessment/api/questionsByQuestionGroup/:id'},
+            'updateQuestion': {method: 'GET', url: 'adap_assessment/api/updateQuestion/:id'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

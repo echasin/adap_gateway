@@ -1,0 +1,26 @@
+{
+    "adapGatewayApp": {
+        "conditions" : {
+            "home": {
+                "title": "Conditions",
+                "createLabel": "Create a new Conditions",
+                "createOrEditLabel": "Create or edit a Conditions",
+                "search": "Search for Conditions"
+            },
+            "created": "A new Conditions is created with identifier {{ param }}",
+            "updated": "A Conditions is updated with identifier {{ param }}",
+            "deleted": "A Conditions is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Conditions {{ id }}?"
+            },
+            "detail": {
+                "title": "Conditions"
+            },
+            "action": "Action",
+            "operator": "Operator",
+            "response": "Response",
+            "displayedquestion": "Displayedquestion",
+            "question": "Question"
+        }
+    }
+}

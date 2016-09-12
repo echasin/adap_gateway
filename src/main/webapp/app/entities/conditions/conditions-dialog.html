@@ -1,0 +1,80 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myConditionsLabel" translate="adapGatewayApp.conditions.home.createOrEditLabel">Create or edit a Conditions</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.conditions.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.conditions.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.conditions.action" for="field_action">Action</label>
+            <input type="text" class="form-control" name="action" id="field_action"
+                    ng-model="vm.conditions.action"
+                    required />
+            <div ng-show="editForm.action.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.action.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.conditions.operator" for="field_operator">Operator</label>
+            <input type="text" class="form-control" name="operator" id="field_operator"
+                    ng-model="vm.conditions.operator"
+                    required />
+            <div ng-show="editForm.operator.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.operator.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.conditions.response" for="field_response">Response</label>
+            <input type="text" class="form-control" name="response" id="field_response"
+                    ng-model="vm.conditions.response"
+                    required />
+            <div ng-show="editForm.response.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.response.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label translate="adapGatewayApp.conditions.displayedquestion" for="field_displayedquestion">Displayedquestion</label>
+            <select class="form-control" id="field_displayedquestion" name="displayedquestion" ng-model="vm.conditions.displayedquestion" ng-options="question as question.question for question in vm.questions track by question.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.displayedquestion.$invalid">
+            <p class="help-block"
+                ng-show="editForm.displayedquestion.$error.required" translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label translate="adapGatewayApp.conditions.question" for="field_question">Question</label>
+            <select class="form-control" id="field_question" name="question" ng-model="vm.conditions.question" ng-options="question as question.question for question in vm.questions | orderBy:'id' track by question.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

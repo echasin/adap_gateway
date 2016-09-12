@@ -2,21 +2,21 @@
     'use strict';
     angular
         .module('adapGatewayApp')
-        .factory('Asset', Asset);
+        .factory('Conditions', Conditions);
 
-    Asset.$inject = ['$resource', 'DateUtils'];
+    Conditions.$inject = ['$resource'];
 
-    function Asset ($resource, DateUtils) {
-        var resourceUrl =  'adap_core/' + 'api/assets/:id';
+    function Conditions ($resource) {
+        var resourceUrl =  'adap_assessment/' + 'api/conditions/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'conditionByQuestion': {method: 'GET', url: 'adap_assessment/api/conditionByQuestion/:id'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.lastmodifieddatetime = DateUtils.convertDateTimeFromServer(data.lastmodifieddatetime);
                     }
                     return data;
                 }

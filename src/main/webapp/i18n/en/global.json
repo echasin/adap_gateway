@@ -20,6 +20,7 @@
                 "answer": "Answer",
                 "response": "Response",
                 "subquestion": "Subquestion",
+                "conditions": "Conditions",
                 "alert": "Alert",
                 "event": "Event",
                 "identifier": "Identifier",

@@ -3,35 +3,38 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('ScoreController', ScoreController);
+        .controller('ConditionsController', ConditionsController);
 
-    ScoreController.$inject = ['$scope', '$state', 'Score', 'ScoreSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    ConditionsController.$inject = ['$scope', '$state', 'Conditions', 'ConditionsSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function ScoreController ($scope, $state, Score, ScoreSearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function ConditionsController ($scope, $state, Conditions, ConditionsSearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
-        vm.loadAll = loadAll;
+        
         vm.loadPage = loadPage;
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
+        vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.clear = clear;
         vm.search = search;
+        vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
-        vm.loadAll();
+
+        loadAll();
 
         function loadAll () {
             if (pagingParams.search) {
-                ScoreSearch.query({
+                ConditionsSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
-                    size: paginationConstants.itemsPerPage,
+                    size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Score.query({
+                Conditions.query({
                     page: pagingParams.page - 1,
-                    size: paginationConstants.itemsPerPage,
+                    size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             }
@@ -46,7 +49,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.scores = data;
+                vm.conditions = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {
@@ -87,6 +90,5 @@
             vm.currentSearch = null;
             vm.transition();
         }
-
     }
 })();
