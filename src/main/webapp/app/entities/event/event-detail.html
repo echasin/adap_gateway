@@ -1,0 +1,62 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.event.detail.title">Event</span> {{vm.event.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.event.name">Name</span></dt>
+        <dd>
+            <span>{{vm.event.name}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.description">Description</span></dt>
+        <dd>
+            <span>{{vm.event.description}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.category">Category</span></dt>
+        <dd>
+            <span>{{vm.event.category}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.subcategory">Subcategory</span></dt>
+        <dd>
+            <span>{{vm.event.subcategory}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.subtype">Subtype</span></dt>
+        <dd>
+            <span>{{vm.event.subtype}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.type">Type</span></dt>
+        <dd>
+            <span>{{vm.event.type}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.startdatetime">Startdatetime</span></dt>
+        <dd>
+            <span>{{vm.event.startdatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.enddatetime">Enddatetime</span></dt>
+        <dd>
+            <span>{{vm.event.enddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.status">Status</span></dt>
+        <dd>
+            <span>{{vm.event.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.event.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.event.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.event.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.event.domain}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

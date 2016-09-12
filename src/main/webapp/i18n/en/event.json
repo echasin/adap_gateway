@@ -1,0 +1,34 @@
+{
+    "adapGatewayApp": {
+        "event" : {
+            "home": {
+                "title": "Events",
+                "createLabel": "Create a new Event",
+                "createOrEditLabel": "Create or edit a Event",
+                "search": "Search for Event"
+            },
+            "created": "A new Event is created with identifier {{ param }}",
+            "updated": "A Event is updated with identifier {{ param }}",
+            "deleted": "A Event is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Event {{ id }}?"
+            },
+            "detail": {
+                "title": "Event"
+            },
+            "name": "Name",
+            "description": "Description",
+            "category": "Category",
+            "subcategory": "Subcategory",
+            "subtype": "Subtype",
+            "type": "Type",
+            "startdatetime": "Startdatetime",
+            "enddatetime": "Enddatetime",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "identifier": "Identifier"
+        }
+    }
+}

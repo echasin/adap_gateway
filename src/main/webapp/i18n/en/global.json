@@ -21,6 +21,9 @@
                 "response": "Response",
                 "subquestion": "Subquestion",
                 "conditions": "Conditions",
+                "alert": "Alert",
+                "event": "Event",
+                "identifier": "Identifier",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
