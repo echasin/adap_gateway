@@ -29,7 +29,7 @@
         			    setTimeout(function() {
          		        var grouptitle=group[item].title
                    	Question.questionsByQuestionGroup({id:group[item].id}).$promise.then(function(question){
-                       group[item].question=question;             		
+                   	   group[item].question=question;             		
                 	    for(var j=0;j<question.length;j++){ 
                 		   (function(index) {
                 			    setTimeout(function() {
@@ -77,12 +77,13 @@
         	 Response.responseByQuestionnaire({id:$stateParams.id}).$promise.then(function(response){
          		var response=JSON.parse(response.details);
          		console.log(response)
-         	    
+         	    if(response!=null){
          		for(var i=0;i<response.questiongroups.length;i++){
         			 for(var j=0;j<response.questiongroups[i].questions.length;j++){
         				 userResponse.push({"questiongroup":response.questiongroups[i].questiongroup,"question":response.questiongroups[i].questions[j].question,"subquestion":response.questiongroups[i].questions[j].subquestion,"response":response.questiongroups[i].questions[j].response})
         		     }        				      
         		   } 
+         	    }
          	  });
         }
         getOldResponse();
@@ -226,7 +227,7 @@
       }
 
         
-       
+       /**
       Response.responseByUserAndQuestionnaire({id:$stateParams.id}).$promise.then(function(data) { 
          console.log(data.length)
     	  if(data.length>0){
@@ -237,7 +238,7 @@
        }, function(error) {
        	console.log("not found")
       });
-      
+      */
       
       function loadQuestionById(groupId,questionId) {
                  	Question.get({id:questionId}).$promise.then(function(question){
