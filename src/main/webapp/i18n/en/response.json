@@ -21,7 +21,8 @@
             "lastmodifiedby": "Lastmodifiedby",
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
-            "questionnaire": "Questionnaire"
+            "questionnaire": "Questionnaire",
+            "questionnaireid": "Questionnaire:ID"
         }
     }
 }
