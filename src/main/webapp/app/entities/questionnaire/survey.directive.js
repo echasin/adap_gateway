@@ -19,8 +19,8 @@
         }).directive('array', function(Questiongroup,Question,Subquestion) {
         	return {
                 template:    '<table class="jh-table table table-striped">'+
-                             '<tr><th></th><th ng-repeat="answer in question.answer">{{answer.answeroption}}</th></tr>'+
-                             '<tr ng-repeat="subquestion in question.subquestion"><td>{{subquestion.subquestion}}</td>'+
+                             '<tr><th></th><th ng-repeat="answer in question.answer">Answer:id {{answer.id}} *{{answer.answeroption}}</th></tr>'+
+                             '<tr ng-repeat="subquestion in question.subquestion"><td>Subquestion.id: {{subquestion.id}} *{{subquestion.subquestion}}</td>'+
                              '<td ng-repeat="answer in question.answer"><input type="radio" value="{{answer.code}}" ng-change="vm.getGridAnswer(questiongroup.id,question.id,subquestion.id,answer.code)" ng-model="subquestion.response"></td></tr>'+
                              '</table>{{selectedanswer}}'
             };
