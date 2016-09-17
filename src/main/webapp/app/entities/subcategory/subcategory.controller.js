@@ -3,11 +3,11 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('AssetController', AssetController);
+        .controller('SubcategoryController', SubcategoryController);
 
-    AssetController.$inject = ['$scope', '$state', 'Asset', 'AssetSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    SubcategoryController.$inject = ['$scope', '$state', 'Subcategory', 'SubcategorySearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function AssetController ($scope, $state, Asset, AssetSearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function SubcategoryController ($scope, $state, Subcategory, SubcategorySearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
         
         vm.loadPage = loadPage;
@@ -25,14 +25,14 @@
 
         function loadAll () {
             if (pagingParams.search) {
-                AssetSearch.query({
+                SubcategorySearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Asset.query({
+                Subcategory.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
@@ -49,7 +49,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.assets = data;
+                vm.subcategories = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {

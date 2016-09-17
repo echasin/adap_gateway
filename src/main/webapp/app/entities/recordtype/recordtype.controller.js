@@ -3,11 +3,11 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('AssetController', AssetController);
+        .controller('RecordtypeController', RecordtypeController);
 
-    AssetController.$inject = ['$scope', '$state', 'Asset', 'AssetSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    RecordtypeController.$inject = ['$scope', '$state', 'Recordtype', 'RecordtypeSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function AssetController ($scope, $state, Asset, AssetSearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function RecordtypeController ($scope, $state, Recordtype, RecordtypeSearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
         
         vm.loadPage = loadPage;
@@ -25,14 +25,14 @@
 
         function loadAll () {
             if (pagingParams.search) {
-                AssetSearch.query({
+                RecordtypeSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Asset.query({
+                Recordtype.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
@@ -49,7 +49,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.assets = data;
+                vm.recordtypes = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {

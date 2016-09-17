@@ -2,9 +2,9 @@
 
 describe('Controller Tests', function() {
 
-    describe('Asset Management Detail Controller', function() {
+    describe('Subcategory Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockAsset, MockLocation, MockScore, MockCategory, MockSubcategory;
+        var MockEntity, MockPreviousState, MockSubcategory, MockCategory, MockAsset;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -12,11 +12,9 @@ describe('Controller Tests', function() {
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
-            MockAsset = jasmine.createSpy('MockAsset');
-            MockLocation = jasmine.createSpy('MockLocation');
-            MockScore = jasmine.createSpy('MockScore');
-            MockCategory = jasmine.createSpy('MockCategory');
             MockSubcategory = jasmine.createSpy('MockSubcategory');
+            MockCategory = jasmine.createSpy('MockCategory');
+            MockAsset = jasmine.createSpy('MockAsset');
             
 
             var locals = {
@@ -24,21 +22,19 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'Asset': MockAsset,
-                'Location': MockLocation,
-                'Score': MockScore,
+                'Subcategory': MockSubcategory,
                 'Category': MockCategory,
-                'Subcategory': MockSubcategory
+                'Asset': MockAsset
             };
             createController = function() {
-                $injector.get('$controller')("AssetDetailController", locals);
+                $injector.get('$controller')("SubcategoryDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'adapGatewayApp:assetUpdate';
+                var eventType = 'adapGatewayApp:subcategoryUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);

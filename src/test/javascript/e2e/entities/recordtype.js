@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Asset e2e test', function () {
+describe('Recordtype e2e test', function () {
 
     var username = element(by.id('username'));
     var password = element(by.id('password'));
@@ -20,19 +20,19 @@ describe('Asset e2e test', function () {
         element(by.css('button[type=submit]')).click();
     });
 
-    it('should load Assets', function () {
+    it('should load Recordtypes', function () {
         entityMenu.click();
-        element.all(by.css('[ui-sref="asset"]')).first().click().then(function() {
+        element.all(by.css('[ui-sref="recordtype"]')).first().click().then(function() {
             element.all(by.css('h2')).first().getAttribute('data-translate').then(function (value) {
-                expect(value).toMatch(/adapGatewayApp.asset.home.title/);
+                expect(value).toMatch(/adapGatewayApp.recordtype.home.title/);
             });
         });
     });
 
-    it('should load create Asset dialog', function () {
-        element(by.css('[ui-sref="asset.new"]')).click().then(function() {
+    it('should load create Recordtype dialog', function () {
+        element(by.css('[ui-sref="recordtype.new"]')).click().then(function() {
             element(by.css('h4.modal-title')).getAttribute('data-translate').then(function (value) {
-                expect(value).toMatch(/adapGatewayApp.asset.home.createOrEditLabel/);
+                expect(value).toMatch(/adapGatewayApp.recordtype.home.createOrEditLabel/);
             });
             element(by.css('button.close')).click();
         });

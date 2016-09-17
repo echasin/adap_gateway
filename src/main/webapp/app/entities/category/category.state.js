@@ -9,17 +9,17 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('asset', {
+        .state('category', {
             parent: 'entity',
-            url: '/asset?page&sort&search',
+            url: '/category?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.asset.home.title'
+                pageTitle: 'adapGatewayApp.category.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/asset/assets.html',
-                    controller: 'AssetController',
+                    templateUrl: 'app/entities/category/categories.html',
+                    controller: 'CategoryController',
                     controllerAs: 'vm'
                 }
             },
@@ -45,37 +45,37 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('asset');
+                    $translatePartialLoader.addPart('category');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('asset-detail', {
+        .state('category-detail', {
             parent: 'entity',
-            url: '/asset/{id}',
+            url: '/category/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.asset.detail.title'
+                pageTitle: 'adapGatewayApp.category.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/asset/asset-detail.html',
-                    controller: 'AssetDetailController',
+                    templateUrl: 'app/entities/category/category-detail.html',
+                    controller: 'CategoryDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('asset');
+                    $translatePartialLoader.addPart('category');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Asset', function($stateParams, Asset) {
-                    return Asset.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Category', function($stateParams, Category) {
+                    return Category.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'asset',
+                        name: $state.current.name || 'category',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -83,22 +83,22 @@
                 }]
             }
         })
-        .state('asset-detail.edit', {
-            parent: 'asset-detail',
+        .state('category-detail.edit', {
+            parent: 'category-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-dialog.html',
-                    controller: 'AssetDialogController',
+                    templateUrl: 'app/entities/category/category-dialog.html',
+                    controller: 'CategoryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        entity: ['Category', function(Category) {
+                            return Category.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -108,16 +108,16 @@
                 });
             }]
         })
-        .state('asset.new', {
-            parent: 'asset',
+        .state('category.new', {
+            parent: 'category',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-dialog.html',
-                    controller: 'AssetDialogController',
+                    templateUrl: 'app/entities/category/category-dialog.html',
+                    controller: 'CategoryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
@@ -125,7 +125,7 @@
                         entity: function () {
                             return {
                                 name: null,
-                                recordtype: null,
+                                description: null,
                                 status: null,
                                 lastmodifiedby: null,
                                 lastmodifieddatetime: null,
@@ -135,56 +135,56 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: 'asset' });
+                    $state.go('category', null, { reload: 'category' });
                 }, function() {
-                    $state.go('asset');
+                    $state.go('category');
                 });
             }]
         })
-        .state('asset.edit', {
-            parent: 'asset',
+        .state('category.edit', {
+            parent: 'category',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-dialog.html',
-                    controller: 'AssetDialogController',
+                    templateUrl: 'app/entities/category/category-dialog.html',
+                    controller: 'CategoryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        entity: ['Category', function(Category) {
+                            return Category.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: 'asset' });
+                    $state.go('category', null, { reload: 'category' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('asset.delete', {
-            parent: 'asset',
+        .state('category.delete', {
+            parent: 'category',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-delete-dialog.html',
-                    controller: 'AssetDeleteController',
+                    templateUrl: 'app/entities/category/category-delete-dialog.html',
+                    controller: 'CategoryDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        entity: ['Category', function(Category) {
+                            return Category.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: 'asset' });
+                    $state.go('category', null, { reload: 'category' });
                 }, function() {
                     $state.go('^');
                 });

@@ -4,19 +4,19 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myAssetLabel" data-translate="adapGatewayApp.asset.home.createOrEditLabel">Create or edit a Asset</h4>
+        <h4 class="modal-title" id="myCategoryLabel" data-translate="adapGatewayApp.category.home.createOrEditLabel">Create or edit a Category</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.asset.id">
+        <div class="form-group" ng-show="vm.category.id">
             <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.asset.id" readonly />
+                    ng-model="vm.category.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.asset.name" for="field_name">Name</label>
+            <label class="control-label" data-translate="adapGatewayApp.category.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="vm.asset.name"
+                    ng-model="vm.category.name"
                     required ng-maxlength="50" />
             <div ng-show="editForm.name.$invalid">
                 <p class="help-block"
@@ -30,25 +30,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.asset.recordtype" for="field_recordtype">Recordtype</label>
-            <input type="text" class="form-control" name="recordtype" id="field_recordtype"
-                    ng-model="vm.asset.recordtype"
-                    required ng-maxlength="50" />
-            <div ng-show="editForm.recordtype.$invalid">
+            <label class="control-label" data-translate="adapGatewayApp.category.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="vm.category.description"
+                    ng-maxlength="255" />
+            <div ng-show="editForm.description.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.recordtype.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.recordtype.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="50">
-                    This field cannot be longer than 50 characters.
+                    ng-show="editForm.description.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
                 </p>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.asset.status" for="field_status">Status</label>
+            <label class="control-label" data-translate="adapGatewayApp.category.status" for="field_status">Status</label>
             <input type="text" class="form-control" name="status" id="field_status"
-                    ng-model="vm.asset.status"
+                    ng-model="vm.category.status"
                     required ng-maxlength="25" />
             <div ng-show="editForm.status.$invalid">
                 <p class="help-block"
@@ -62,9 +58,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.asset.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <label class="control-label" data-translate="adapGatewayApp.category.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
             <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
-                    ng-model="vm.asset.lastmodifiedby"
+                    ng-model="vm.category.lastmodifiedby"
                     required ng-maxlength="50" />
             <div ng-show="editForm.lastmodifiedby.$invalid">
                 <p class="help-block"
@@ -78,9 +74,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.asset.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+            <label class="control-label" data-translate="adapGatewayApp.category.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
                 <div class="input-group">
-                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.asset.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
+                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.category.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
                     required  />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastmodifieddatetime')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -98,9 +94,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.asset.domain" for="field_domain">Domain</label>
+            <label class="control-label" data-translate="adapGatewayApp.category.domain" for="field_domain">Domain</label>
             <input type="text" class="form-control" name="domain" id="field_domain"
-                    ng-model="vm.asset.domain"
+                    ng-model="vm.category.domain"
                     required ng-maxlength="25" />
             <div ng-show="editForm.domain.$invalid">
                 <p class="help-block"
@@ -115,12 +111,16 @@
         </div>
 
         <div class="form-group">
-            <label data-translate="adapGatewayApp.asset.category" for="field_category">Category</label>
-            <select class="form-control" id="field_category" multiple name="category" ng-model="vm.asset.categories" ng-options="category as category.name for category in vm.categories track by category.id"></select>
+            <label data-translate="adapGatewayApp.category.recordtype" for="field_recordtype">Recordtype</label>
+            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.category.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id" required>
+                <option value=""></option>
+            </select>
         </div>
-        <div class="form-group">
-            <label data-translate="adapGatewayApp.asset.subcategory" for="field_subcategory">Subcategory</label>
-            <select class="form-control" id="field_subcategory" multiple name="subcategory" ng-model="vm.asset.subcategories" ng-options="subcategory as subcategory.name for subcategory in vm.subcategories track by subcategory.id"></select>
+        <div ng-show="editForm.recordtype.$invalid">
+            <p class="help-block"
+                ng-show="editForm.recordtype.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
         </div>
     </div>
     <div class="modal-footer">

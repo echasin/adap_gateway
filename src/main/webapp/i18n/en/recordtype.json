@@ -1,0 +1,29 @@
+{
+    "adapGatewayApp": {
+        "recordtype" : {
+            "home": {
+                "title": "Recordtypes",
+                "createLabel": "Create a new Recordtype",
+                "createOrEditLabel": "Create or edit a Recordtype",
+                "search": "Search for Recordtype"
+            },
+            "created": "A new Recordtype is created with identifier {{ param }}",
+            "updated": "A Recordtype is updated with identifier {{ param }}",
+            "deleted": "A Recordtype is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Recordtype {{ id }}?"
+            },
+            "detail": {
+                "title": "Recordtype"
+            },
+            "objecttype": "Objecttype",
+            "name": "Name",
+            "description": "Description",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "category": "Category"
+        }
+    }
+}

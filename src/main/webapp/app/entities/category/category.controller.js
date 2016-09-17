@@ -3,11 +3,11 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('AssetController', AssetController);
+        .controller('CategoryController', CategoryController);
 
-    AssetController.$inject = ['$scope', '$state', 'Asset', 'AssetSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    CategoryController.$inject = ['$scope', '$state', 'Category', 'CategorySearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function AssetController ($scope, $state, Asset, AssetSearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function CategoryController ($scope, $state, Category, CategorySearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
         
         vm.loadPage = loadPage;
@@ -25,14 +25,14 @@
 
         function loadAll () {
             if (pagingParams.search) {
-                AssetSearch.query({
+                CategorySearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Asset.query({
+                Category.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
@@ -49,7 +49,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.assets = data;
+                vm.categories = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {

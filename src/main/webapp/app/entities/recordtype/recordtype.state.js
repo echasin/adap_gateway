@@ -9,17 +9,17 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('asset', {
+        .state('recordtype', {
             parent: 'entity',
-            url: '/asset?page&sort&search',
+            url: '/recordtype?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.asset.home.title'
+                pageTitle: 'adapGatewayApp.recordtype.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/asset/assets.html',
-                    controller: 'AssetController',
+                    templateUrl: 'app/entities/recordtype/recordtypes.html',
+                    controller: 'RecordtypeController',
                     controllerAs: 'vm'
                 }
             },
@@ -45,37 +45,39 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('asset');
+                    $translatePartialLoader.addPart('recordtype');
+                    $translatePartialLoader.addPart('objecttype');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('asset-detail', {
+        .state('recordtype-detail', {
             parent: 'entity',
-            url: '/asset/{id}',
+            url: '/recordtype/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.asset.detail.title'
+                pageTitle: 'adapGatewayApp.recordtype.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/asset/asset-detail.html',
-                    controller: 'AssetDetailController',
+                    templateUrl: 'app/entities/recordtype/recordtype-detail.html',
+                    controller: 'RecordtypeDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('asset');
+                    $translatePartialLoader.addPart('recordtype');
+                    $translatePartialLoader.addPart('objecttype');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Asset', function($stateParams, Asset) {
-                    return Asset.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Recordtype', function($stateParams, Recordtype) {
+                    return Recordtype.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'asset',
+                        name: $state.current.name || 'recordtype',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -83,22 +85,22 @@
                 }]
             }
         })
-        .state('asset-detail.edit', {
-            parent: 'asset-detail',
+        .state('recordtype-detail.edit', {
+            parent: 'recordtype-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-dialog.html',
-                    controller: 'AssetDialogController',
+                    templateUrl: 'app/entities/recordtype/recordtype-dialog.html',
+                    controller: 'RecordtypeDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        entity: ['Recordtype', function(Recordtype) {
+                            return Recordtype.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -108,24 +110,25 @@
                 });
             }]
         })
-        .state('asset.new', {
-            parent: 'asset',
+        .state('recordtype.new', {
+            parent: 'recordtype',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-dialog.html',
-                    controller: 'AssetDialogController',
+                    templateUrl: 'app/entities/recordtype/recordtype-dialog.html',
+                    controller: 'RecordtypeDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
+                                objecttype: null,
                                 name: null,
-                                recordtype: null,
+                                description: null,
                                 status: null,
                                 lastmodifiedby: null,
                                 lastmodifieddatetime: null,
@@ -135,56 +138,56 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: 'asset' });
+                    $state.go('recordtype', null, { reload: 'recordtype' });
                 }, function() {
-                    $state.go('asset');
+                    $state.go('recordtype');
                 });
             }]
         })
-        .state('asset.edit', {
-            parent: 'asset',
+        .state('recordtype.edit', {
+            parent: 'recordtype',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-dialog.html',
-                    controller: 'AssetDialogController',
+                    templateUrl: 'app/entities/recordtype/recordtype-dialog.html',
+                    controller: 'RecordtypeDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        entity: ['Recordtype', function(Recordtype) {
+                            return Recordtype.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: 'asset' });
+                    $state.go('recordtype', null, { reload: 'recordtype' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('asset.delete', {
-            parent: 'asset',
+        .state('recordtype.delete', {
+            parent: 'recordtype',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-delete-dialog.html',
-                    controller: 'AssetDeleteController',
+                    templateUrl: 'app/entities/recordtype/recordtype-delete-dialog.html',
+                    controller: 'RecordtypeDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        entity: ['Recordtype', function(Recordtype) {
+                            return Recordtype.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: 'asset' });
+                    $state.go('recordtype', null, { reload: 'recordtype' });
                 }, function() {
                     $state.go('^');
                 });

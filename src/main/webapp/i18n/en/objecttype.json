@@ -1,0 +1,11 @@
+{
+    "adapGatewayApp": {
+        "Objecttype" : {
+            "null": "",
+            "Asset": "Asset",
+            "Organization": "Organization",
+            "Person": "Person",
+            "Location": "Location"
+        }
+    }
+}

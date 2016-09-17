@@ -3,22 +3,20 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('AssetDialogController', AssetDialogController);
+        .controller('SubcategoryDialogController', SubcategoryDialogController);
 
-    AssetDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Asset', 'Location', 'Score', 'Category', 'Subcategory'];
+    SubcategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Subcategory', 'Category', 'Asset'];
 
-    function AssetDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Asset, Location, Score, Category, Subcategory) {
+    function SubcategoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Subcategory, Category, Asset) {
         var vm = this;
 
-        vm.asset = entity;
+        vm.subcategory = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.locations = Location.query();
-        vm.scores = Score.query();
         vm.categories = Category.query();
-        vm.subcategories = Subcategory.query();
+        vm.assets = Asset.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -30,15 +28,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.asset.id !== null) {
-                Asset.update(vm.asset, onSaveSuccess, onSaveError);
+            if (vm.subcategory.id !== null) {
+                Subcategory.update(vm.subcategory, onSaveSuccess, onSaveError);
             } else {
-                Asset.save(vm.asset, onSaveSuccess, onSaveError);
+                Subcategory.save(vm.subcategory, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('adapGatewayApp:assetUpdate', result);
+            $scope.$emit('adapGatewayApp:subcategoryUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

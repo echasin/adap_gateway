@@ -2,9 +2,9 @@
 
 describe('Controller Tests', function() {
 
-    describe('Asset Management Detail Controller', function() {
+    describe('Category Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockAsset, MockLocation, MockScore, MockCategory, MockSubcategory;
+        var MockEntity, MockPreviousState, MockCategory, MockRecordtype, MockSubcategory, MockAsset;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -12,11 +12,10 @@ describe('Controller Tests', function() {
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
-            MockAsset = jasmine.createSpy('MockAsset');
-            MockLocation = jasmine.createSpy('MockLocation');
-            MockScore = jasmine.createSpy('MockScore');
             MockCategory = jasmine.createSpy('MockCategory');
+            MockRecordtype = jasmine.createSpy('MockRecordtype');
             MockSubcategory = jasmine.createSpy('MockSubcategory');
+            MockAsset = jasmine.createSpy('MockAsset');
             
 
             var locals = {
@@ -24,21 +23,20 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'Asset': MockAsset,
-                'Location': MockLocation,
-                'Score': MockScore,
                 'Category': MockCategory,
-                'Subcategory': MockSubcategory
+                'Recordtype': MockRecordtype,
+                'Subcategory': MockSubcategory,
+                'Asset': MockAsset
             };
             createController = function() {
-                $injector.get('$controller')("AssetDetailController", locals);
+                $injector.get('$controller')("CategoryDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'adapGatewayApp:assetUpdate';
+                var eventType = 'adapGatewayApp:categoryUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);

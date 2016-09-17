@@ -5,16 +5,17 @@
         .module('adapGatewayApp')
         .controller('AssetDetailController', AssetDetailController);
 
-    AssetDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Asset', 'Location', 'Score'];
+    AssetDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Asset', 'Location', 'Score', 'Category', 'Subcategory'];
 
-    function AssetDetailController($scope, $rootScope, $stateParams, entity, Asset, Location, Score) {
+    function AssetDetailController($scope, $rootScope, $stateParams, previousState, entity, Asset, Location, Score, Category, Subcategory) {
         var vm = this;
+
         vm.asset = entity;
-        
+        vm.previousState = previousState.name;
+
         var unsubscribe = $rootScope.$on('adapGatewayApp:assetUpdate', function(event, result) {
             vm.asset = result;
         });
         $scope.$on('$destroy', unsubscribe);
-
     }
 })();

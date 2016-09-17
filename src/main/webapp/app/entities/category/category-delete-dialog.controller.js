@@ -3,14 +3,14 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('AssetDeleteController',AssetDeleteController);
+        .controller('CategoryDeleteController',CategoryDeleteController);
 
-    AssetDeleteController.$inject = ['$uibModalInstance', 'entity', 'Asset'];
+    CategoryDeleteController.$inject = ['$uibModalInstance', 'entity', 'Category'];
 
-    function AssetDeleteController($uibModalInstance, entity, Asset) {
+    function CategoryDeleteController($uibModalInstance, entity, Category) {
         var vm = this;
 
-        vm.asset = entity;
+        vm.category = entity;
         vm.clear = clear;
         vm.confirmDelete = confirmDelete;
         
@@ -19,7 +19,7 @@
         }
 
         function confirmDelete (id) {
-            Asset.delete({id: id},
+            Category.delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

@@ -23,7 +23,9 @@
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
             "location": "Location",
-            "score": "Score"
+            "score": "Score",
+            "category": "Category",
+            "subcategory": "Subcategory"
         }
     }
 }

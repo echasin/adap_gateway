@@ -101,26 +101,33 @@
     		}else{
     			userResponse.push({"questiongroup":group,"question":question,"response":response})	
     		}           
-            Question.updateQuestion({id:question});
-            Conditions.conditionByQuestion({id:question}).$promise.then(function(condition){	
-                       
-            if(condition.operator == '>') {
+          //  Question.updateQuestion({id:question});
+            Conditions.conditionByQuestion({id:question}).$promise.then(function(condition){
+             if(condition!=null){
+              if(condition.operator == '>') {
         	    if(response  > condition.response){
             		loadQuestionById(group,condition.displayedquestion.id);	
+            	}else if(response  <= condition.response){
+                		 for(var x=0;x<vm.questiongroup.length;x++){
+                			 if(vm.questiongroup[x].id=group){
+                					 
+                					 for(var y=0;y<vm.questiongroup[x].question.length;y++){
+                						 if(vm.questiongroup[x].question[y].id==condition.displayedquestion.id){
+                							 vm.questiongroup[x].question.splice(y,1)
+                						 }
+                					 }
+                			 }
+                		 }
             	}     	    
         	} else if(condition.operator == '<'){
-        		 if(response  < condition.response){
+        		 if(response  < condition.response){ 
         			 console.log("Other")
         		 } 
-        	} 
-            
-            
+        	  } 
+             }
             });
             
         }
-        
-        
-       
         
         vm.getGridAnswer = function(group,question,subquestion,response) {
         	function findsubquestion(item) { 
@@ -249,7 +256,6 @@
                                       });
                                	   Response.responseByQuestionnaire({id:$stateParams.id}).$promise.then(function(data){
                                    		var response=JSON.parse(data.details);
-                                   		vm.response=data.id;
                               		    for(var i=0;i<response.questiongroups.length;i++){
                                    			 for(var j=0;j<response.questiongroups[i].questions.length;j++){                                     				 
                                    				if(response.questiongroups[i].questions[j].question==question.id){

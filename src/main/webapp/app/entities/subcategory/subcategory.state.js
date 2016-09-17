@@ -9,17 +9,17 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('asset', {
+        .state('subcategory', {
             parent: 'entity',
-            url: '/asset?page&sort&search',
+            url: '/subcategory?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.asset.home.title'
+                pageTitle: 'adapGatewayApp.subcategory.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/asset/assets.html',
-                    controller: 'AssetController',
+                    templateUrl: 'app/entities/subcategory/subcategories.html',
+                    controller: 'SubcategoryController',
                     controllerAs: 'vm'
                 }
             },
@@ -45,37 +45,37 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('asset');
+                    $translatePartialLoader.addPart('subcategory');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('asset-detail', {
+        .state('subcategory-detail', {
             parent: 'entity',
-            url: '/asset/{id}',
+            url: '/subcategory/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.asset.detail.title'
+                pageTitle: 'adapGatewayApp.subcategory.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/asset/asset-detail.html',
-                    controller: 'AssetDetailController',
+                    templateUrl: 'app/entities/subcategory/subcategory-detail.html',
+                    controller: 'SubcategoryDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('asset');
+                    $translatePartialLoader.addPart('subcategory');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Asset', function($stateParams, Asset) {
-                    return Asset.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Subcategory', function($stateParams, Subcategory) {
+                    return Subcategory.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'asset',
+                        name: $state.current.name || 'subcategory',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -83,22 +83,22 @@
                 }]
             }
         })
-        .state('asset-detail.edit', {
-            parent: 'asset-detail',
+        .state('subcategory-detail.edit', {
+            parent: 'subcategory-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-dialog.html',
-                    controller: 'AssetDialogController',
+                    templateUrl: 'app/entities/subcategory/subcategory-dialog.html',
+                    controller: 'SubcategoryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        entity: ['Subcategory', function(Subcategory) {
+                            return Subcategory.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -108,16 +108,16 @@
                 });
             }]
         })
-        .state('asset.new', {
-            parent: 'asset',
+        .state('subcategory.new', {
+            parent: 'subcategory',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-dialog.html',
-                    controller: 'AssetDialogController',
+                    templateUrl: 'app/entities/subcategory/subcategory-dialog.html',
+                    controller: 'SubcategoryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
@@ -125,7 +125,7 @@
                         entity: function () {
                             return {
                                 name: null,
-                                recordtype: null,
+                                description: null,
                                 status: null,
                                 lastmodifiedby: null,
                                 lastmodifieddatetime: null,
@@ -135,56 +135,56 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: 'asset' });
+                    $state.go('subcategory', null, { reload: 'subcategory' });
                 }, function() {
-                    $state.go('asset');
+                    $state.go('subcategory');
                 });
             }]
         })
-        .state('asset.edit', {
-            parent: 'asset',
+        .state('subcategory.edit', {
+            parent: 'subcategory',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-dialog.html',
-                    controller: 'AssetDialogController',
+                    templateUrl: 'app/entities/subcategory/subcategory-dialog.html',
+                    controller: 'SubcategoryDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        entity: ['Subcategory', function(Subcategory) {
+                            return Subcategory.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: 'asset' });
+                    $state.go('subcategory', null, { reload: 'subcategory' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('asset.delete', {
-            parent: 'asset',
+        .state('subcategory.delete', {
+            parent: 'subcategory',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/asset/asset-delete-dialog.html',
-                    controller: 'AssetDeleteController',
+                    templateUrl: 'app/entities/subcategory/subcategory-delete-dialog.html',
+                    controller: 'SubcategoryDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        entity: ['Subcategory', function(Subcategory) {
+                            return Subcategory.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: 'asset' });
+                    $state.go('subcategory', null, { reload: 'subcategory' });
                 }, function() {
                     $state.go('^');
                 });

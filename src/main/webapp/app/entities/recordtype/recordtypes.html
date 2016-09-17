@@ -1,20 +1,20 @@
 <div>
-    <h2 data-translate="adapGatewayApp.asset.home.title">Assets</h2>
+    <h2 data-translate="adapGatewayApp.recordtype.home.title">Recordtypes</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="asset.new" >
+                <button class="btn btn-primary" ui-sref="recordtype.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs"  data-translate="adapGatewayApp.asset.home.createLabel">
-                        Create new Asset
+                    <span class="hidden-xs"  data-translate="adapGatewayApp.recordtype.home.createLabel">
+                        Create new Recordtype
                     </span>
                 </button>
             </div>
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.asset.home.search' | translate }}">
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.recordtype.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -36,40 +36,42 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="name"><span data-translate="adapGatewayApp.asset.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="recordtype"><span data-translate="adapGatewayApp.asset.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.asset.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.asset.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.asset.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.asset.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="objecttype"><span data-translate="adapGatewayApp.recordtype.objecttype">Objecttype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span data-translate="adapGatewayApp.recordtype.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span data-translate="adapGatewayApp.recordtype.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.recordtype.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.recordtype.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.recordtype.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.recordtype.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="asset in vm.assets track by asset.id">
-                    <td><a ui-sref="asset-detail({id:asset.id})">{{asset.id}}</a></td>
-                    <td>{{asset.name}}</td>
-                    <td>{{asset.recordtype}}</td>
-                    <td>{{asset.status}}</td>
-                    <td>{{asset.lastmodifiedby}}</td>
-                    <td>{{asset.lastmodifieddatetime | date:'medium'}}</td>
-                    <td>{{asset.domain}}</td>
+                <tr ng-repeat="recordtype in vm.recordtypes track by recordtype.id">
+                    <td><a ui-sref="recordtype-detail({id:recordtype.id})">{{recordtype.id}}</a></td>
+                    <td data-translate="{{'adapGatewayApp.Objecttype.' + recordtype.objecttype}}">{{recordtype.objecttype}}</td>
+                    <td>{{recordtype.name}}</td>
+                    <td>{{recordtype.description}}</td>
+                    <td>{{recordtype.status}}</td>
+                    <td>{{recordtype.lastmodifiedby}}</td>
+                    <td>{{recordtype.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{recordtype.domain}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="asset-detail({id:asset.id})"
+                                    ui-sref="recordtype-detail({id:recordtype.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="asset.edit({id:asset.id})"
+                                    ui-sref="recordtype.edit({id:recordtype.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="asset.delete({id:asset.id})"
+                                    ui-sref="recordtype.delete({id:recordtype.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
