@@ -71,9 +71,42 @@
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'Asset', function($stateParams, Asset) {
-                    return Asset.get({id : $stateParams.id});
+                    return Asset.get({id : $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'asset',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
                 }]
             }
+        })
+        .state('asset-detail.edit', {
+            parent: 'asset-detail',
+            url: '/detail/edit',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/asset/asset-dialog.html',
+                    controller: 'AssetDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['Asset', function(Asset) {
+                            return Asset.get({id : $stateParams.id}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('^', {}, { reload: false });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
         })
         .state('asset.new', {
             parent: 'asset',
@@ -102,7 +135,7 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: true });
+                    $state.go('asset', null, { reload: 'asset' });
                 }, function() {
                     $state.go('asset');
                 });
@@ -123,11 +156,11 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id});
+                            return Asset.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: true });
+                    $state.go('asset', null, { reload: 'asset' });
                 }, function() {
                     $state.go('^');
                 });
@@ -147,11 +180,11 @@
                     size: 'md',
                     resolve: {
                         entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id});
+                            return Asset.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('asset', null, { reload: true });
+                    $state.go('asset', null, { reload: 'asset' });
                 }, function() {
                     $state.go('^');
                 });

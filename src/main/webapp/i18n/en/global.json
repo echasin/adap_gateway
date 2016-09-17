@@ -24,6 +24,9 @@
                 "alert": "Alert",
                 "event": "Event",
                 "identifier": "Identifier",
+                "recordtype": "Recordtype",
+                "category": "Category",
+                "subcategory": "Subcategory",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

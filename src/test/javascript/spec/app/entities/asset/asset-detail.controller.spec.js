@@ -4,25 +4,31 @@ describe('Controller Tests', function() {
 
     describe('Asset Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockAsset, MockLocation, MockScore;
+        var MockEntity, MockPreviousState, MockAsset, MockLocation, MockScore, MockCategory, MockSubcategory;
         var createController;
 
         beforeEach(inject(function($injector) {
             $rootScope = $injector.get('$rootScope');
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
+            MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockAsset = jasmine.createSpy('MockAsset');
             MockLocation = jasmine.createSpy('MockLocation');
             MockScore = jasmine.createSpy('MockScore');
+            MockCategory = jasmine.createSpy('MockCategory');
+            MockSubcategory = jasmine.createSpy('MockSubcategory');
             
 
             var locals = {
                 '$scope': $scope,
                 '$rootScope': $rootScope,
-                'entity': MockEntity ,
+                'entity': MockEntity,
+                'previousState': MockPreviousState,
                 'Asset': MockAsset,
                 'Location': MockLocation,
-                'Score': MockScore
+                'Score': MockScore,
+                'Category': MockCategory,
+                'Subcategory': MockSubcategory
             };
             createController = function() {
                 $injector.get('$controller')("AssetDetailController", locals);
