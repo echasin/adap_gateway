@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.category.detail.title">Category</span> {{vm.category.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.category.name">Name</span></dt>
+        <dd>
+            <span>{{vm.category.name}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.category.description">Description</span></dt>
+        <dd>
+            <span>{{vm.category.description}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.category.status">Status</span></dt>
+        <dd>
+            <span>{{vm.category.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.category.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.category.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.category.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.category.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.category.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.category.domain}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.category.recordtype">Recordtype</span></dt>
+        <dd>
+            <a ui-sref="recordtype-detail({id:vm.category.recordtype.id})">{{vm.category.recordtype.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="category-detail.edit({id:vm.category.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

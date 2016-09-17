@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.recordtype.detail.title">Recordtype</span> {{vm.recordtype.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.recordtype.objecttype">Objecttype</span></dt>
+        <dd>
+            <span data-translate="{{'adapGatewayApp.Objecttype.' + vm.recordtype.objecttype}}">{{vm.recordtype.objecttype}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.recordtype.name">Name</span></dt>
+        <dd>
+            <span>{{vm.recordtype.name}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.recordtype.description">Description</span></dt>
+        <dd>
+            <span>{{vm.recordtype.description}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.recordtype.status">Status</span></dt>
+        <dd>
+            <span>{{vm.recordtype.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.recordtype.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.recordtype.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.recordtype.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.recordtype.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.recordtype.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.recordtype.domain}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="recordtype-detail.edit({id:vm.recordtype.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
