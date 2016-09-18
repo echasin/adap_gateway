@@ -37,11 +37,11 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span data-translate="adapGatewayApp.asset.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="recordtype"><span data-translate="adapGatewayApp.asset.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="status"><span data-translate="adapGatewayApp.asset.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.asset.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.asset.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="domain"><span data-translate="adapGatewayApp.asset.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="recordtype.name"><span data-translate="adapGatewayApp.asset.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -49,11 +49,13 @@
                 <tr ng-repeat="asset in vm.assets track by asset.id">
                     <td><a ui-sref="asset-detail({id:asset.id})">{{asset.id}}</a></td>
                     <td>{{asset.name}}</td>
-                    <td>{{asset.recordtype}}</td>
                     <td>{{asset.status}}</td>
                     <td>{{asset.lastmodifiedby}}</td>
                     <td>{{asset.lastmodifieddatetime | date:'medium'}}</td>
                     <td>{{asset.domain}}</td>
+                    <td>
+                        <a ui-sref="recordtype-detail({id:asset.recordtype.id})">{{asset.recordtype.name}}</a>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

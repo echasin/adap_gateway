@@ -23,7 +23,8 @@
             "lastmodifiedby": "Lastmodifiedby",
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
-            "category": "Category"
+            "category": "Category",
+            "asset": "Asset"
         }
     }
 }

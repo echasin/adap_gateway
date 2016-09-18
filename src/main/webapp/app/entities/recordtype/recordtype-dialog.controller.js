@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('RecordtypeDialogController', RecordtypeDialogController);
 
-    RecordtypeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Recordtype', 'Category'];
+    RecordtypeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Recordtype', 'Category', 'Asset'];
 
-    function RecordtypeDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Recordtype, Category) {
+    function RecordtypeDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Recordtype, Category, Asset) {
         var vm = this;
 
         vm.recordtype = entity;
@@ -16,6 +16,7 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.categories = Category.query();
+        vm.assets = Asset.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

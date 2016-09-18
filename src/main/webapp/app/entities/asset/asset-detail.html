@@ -36,6 +36,10 @@
                 <a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
+        <dt><span data-translate="adapGatewayApp.asset.recordtype">Recordtype</span></dt>
+        <dd>
+            <a ui-sref="recordtype-detail({id:vm.asset.recordtype.id})">{{vm.asset.recordtype.name}}</a>
+        </dd>
     </dl>
 
     <button type="submit"
