@@ -3,12 +3,13 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('QuestionnaireDetailController', QuestionnaireDetailController);
+        .controller('QuestionnaireResponseController', QuestionnaireDetailController);
 
     QuestionnaireDetailController.$inject = ['$http','$scope','$timeout','$rootScope', '$stateParams', 'entity', 'Questionnaire', 'Questiongroup','Question','Subquestion','Answer','Response','Conditions'];
 
     function QuestionnaireDetailController($http,$scope,$timeout,$rootScope, $stateParams, entity, Questionnaire, Questiongroup, Question,Subquestion,Answer,Response,Conditions) {
         var vm = this;
+        vm.response=$stateParams.rId;
         vm.questionnaire = entity;
         vm.loadAllQuestionGroup = loadAllQuestionGroup;
         
@@ -38,17 +39,15 @@
                                  	   Answer.answersByQuestion({id:question[index].id}).$promise.then(function(answer){
                                  		   question[index].answer=answer;
                                         });
-                                 	   Response.responseByQuestionnaire({id:$stateParams.id}).$promise.then(function(data){
-                                     		var response=JSON.parse(data.details);
-                                     		vm.response=data.id;
+                                 	   Response.get({id:$stateParams.rId}).$promise.then(function(data){
+                                     		var response=JSON.parse(data.details);                                     		
                                 		    for(var i=0;i<response.questiongroups.length;i++){
                                      			 for(var j=0;j<response.questiongroups[i].questions.length;j++){                                     				 
                                      				if(response.questiongroups[i].questions[j].question==question[index].id){
                                      					for(var w=0;w<question[index].subquestion.length;w++){
                                      						if(response.questiongroups[i].questions[j].subquestion==question[index].subquestion[w].id){
                                      						question[index].subquestion[w].response=response.questiongroups[i].questions[j].response;
-                                     						
-                                     						}
+                                     					  }
                                      					}
                                      					question[index].response=response.questiongroups[i].questions[j].response;
                                      				}      
@@ -74,7 +73,7 @@
         var userResponse=[];
 
         function getOldResponse(){
-        	 Response.responseByQuestionnaire({id:$stateParams.id}).$promise.then(function(response){
+        	 Response.get({id:$stateParams.rId}).$promise.then(function(response){
          		var response=JSON.parse(response.details);
          		console.log(response)
          	    if(response!=null){
