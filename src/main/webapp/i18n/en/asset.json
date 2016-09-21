@@ -17,7 +17,6 @@
                 "title": "Asset"
             },
             "name": "Name",
-            "recordtype": "Recordtype",
             "status": "Status",
             "lastmodifiedby": "Lastmodifiedby",
             "lastmodifieddatetime": "Lastmodifieddatetime",
@@ -25,7 +24,8 @@
             "location": "Location",
             "score": "Score",
             "category": "Category",
-            "subcategory": "Subcategory"
+            "subcategory": "Subcategory",
+            "recordtype": "Recordtype"
         }
     }
 }

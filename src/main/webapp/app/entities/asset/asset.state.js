@@ -125,7 +125,6 @@
                         entity: function () {
                             return {
                                 name: null,
-                                recordtype: null,
                                 status: null,
                                 lastmodifiedby: null,
                                 lastmodifieddatetime: null,

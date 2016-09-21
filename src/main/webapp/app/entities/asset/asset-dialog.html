@@ -30,22 +30,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.asset.recordtype" for="field_recordtype">Recordtype</label>
-            <input type="text" class="form-control" name="recordtype" id="field_recordtype"
-                    ng-model="vm.asset.recordtype"
-                    required ng-maxlength="50" />
-            <div ng-show="editForm.recordtype.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.recordtype.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.recordtype.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="50">
-                    This field cannot be longer than 50 characters.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="adapGatewayApp.asset.status" for="field_status">Status</label>
             <input type="text" class="form-control" name="status" id="field_status"
                     ng-model="vm.asset.status"
@@ -121,6 +105,12 @@
         <div class="form-group">
             <label data-translate="adapGatewayApp.asset.subcategory" for="field_subcategory">Subcategory</label>
             <select class="form-control" id="field_subcategory" multiple name="subcategory" ng-model="vm.asset.subcategories" ng-options="subcategory as subcategory.name for subcategory in vm.subcategories track by subcategory.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="adapGatewayApp.asset.recordtype" for="field_recordtype">Recordtype</label>
+            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.asset.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id">
+                <option value=""></option>
+            </select>
         </div>
     </div>
     <div class="modal-footer">
