@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.assetassetmbr.detail.title">Assetassetmbr</span> {{vm.assetassetmbr.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.assetassetmbr.description">Description</span></dt>
+        <dd>
+            <span>{{vm.assetassetmbr.description}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.assetassetmbr.status">Status</span></dt>
+        <dd>
+            <span>{{vm.assetassetmbr.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.assetassetmbr.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.assetassetmbr.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.assetassetmbr.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.assetassetmbr.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.assetassetmbr.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.assetassetmbr.domain}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.assetassetmbr.assetparent">Assetparent</span></dt>
+        <dd>
+            <a ui-sref="asset-detail({id:vm.assetassetmbr.assetparent.id})">{{vm.assetassetmbr.assetparent.name}}</a>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.assetassetmbr.assetchild">Assetchild</span></dt>
+        <dd>
+            <a ui-sref="asset-detail({id:vm.assetassetmbr.assetchild.id})">{{vm.assetassetmbr.assetchild.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="assetassetmbr-detail.edit({id:vm.assetassetmbr.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

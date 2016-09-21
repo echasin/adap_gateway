@@ -1,0 +1,28 @@
+{
+    "adapGatewayApp": {
+        "assetassetmbr" : {
+            "home": {
+                "title": "Assetassetmbrs",
+                "createLabel": "Create a new Assetassetmbr",
+                "createOrEditLabel": "Create or edit a Assetassetmbr",
+                "search": "Search for Assetassetmbr"
+            },
+            "created": "A new Assetassetmbr is created with identifier {{ param }}",
+            "updated": "A Assetassetmbr is updated with identifier {{ param }}",
+            "deleted": "A Assetassetmbr is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Assetassetmbr {{ id }}?"
+            },
+            "detail": {
+                "title": "Assetassetmbr"
+            },
+            "description": "Description",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "assetparent": "Assetparent",
+            "assetchild": "Assetchild"
+        }
+    }
+}
