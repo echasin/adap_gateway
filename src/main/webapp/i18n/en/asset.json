@@ -25,7 +25,9 @@
             "score": "Score",
             "category": "Category",
             "subcategory": "Subcategory",
-            "recordtype": "Recordtype"
+            "recordtype": "Recordtype",
+            "assetparent": "Assetparent",
+            "assetassetmbrchild": "Assetassetmbrchild"
         }
     }
 }
