@@ -1,0 +1,10 @@
+{
+    "adapGatewayApp": {
+        "Sourcetype" : {
+            "null": "",
+            "Custom": "Custom",
+            "Anywhere": "Anywhere",
+            "My_IP": "My_IP"
+        }
+    }
+}

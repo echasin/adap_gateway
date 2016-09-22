@@ -28,6 +28,8 @@
                 "category": "Category",
                 "subcategory": "Subcategory",
                 "assetassetmbr": "Assetassetmbr",
+                "securitygroup": "Securitygroup",
+                "securitygrouprule": "Securitygrouprule",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

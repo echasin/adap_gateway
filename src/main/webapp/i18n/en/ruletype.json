@@ -1,0 +1,9 @@
+{
+    "adapGatewayApp": {
+        "Ruletype" : {
+            "null": "",
+            "Inbound": "Inbound",
+            "Outbound": "Outbound"
+        }
+    }
+}
