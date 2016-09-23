@@ -1,0 +1,31 @@
+{
+    "adapGatewayApp": {
+        "securitygroup" : {
+            "home": {
+                "title": "Securitygroups",
+                "createLabel": "Create a new Securitygroup",
+                "createOrEditLabel": "Create or edit a Securitygroup",
+                "search": "Search for Securitygroup"
+            },
+            "created": "A new Securitygroup is created with identifier {{ param }}",
+            "updated": "A Securitygroup is updated with identifier {{ param }}",
+            "deleted": "A Securitygroup is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Securitygroup {{ id }}?"
+            },
+            "detail": {
+                "title": "Securitygroup"
+            },
+            "name": "Name",
+            "description": "Description",
+            "groupid": "Groupid",
+            "vpcid": "Vpcid",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "securitygrouprule": "Securitygrouprule",
+            "asset": "Asset"
+        }
+    }
+}

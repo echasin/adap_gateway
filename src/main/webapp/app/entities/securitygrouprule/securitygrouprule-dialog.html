@@ -1,0 +1,166 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="mySecuritygroupruleLabel" data-translate="adapGatewayApp.securitygrouprule.home.createOrEditLabel">Create or edit a Securitygrouprule</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.securitygrouprule.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.securitygrouprule.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.ruledirectiontype" for="field_ruledirectiontype">Ruledirectiontype</label>
+            <select class="form-control" name="ruledirectiontype" ng-model="vm.securitygrouprule.ruledirectiontype" id="field_ruledirectiontype" required>
+                <option value="Inbound" data-translate="adapGatewayApp.Ruledirectiontype.Inbound">Inbound</option>
+                <option value="Outbound" data-translate="adapGatewayApp.Ruledirectiontype.Outbound">Outbound</option>
+            </select>
+            <div ng-show="editForm.ruledirectiontype.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ruledirectiontype.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.ruletype" for="field_ruletype">Ruletype</label>
+            <select class="form-control" name="ruletype" ng-model="vm.securitygrouprule.ruletype" id="field_ruletype" required>
+                <option value="Custom_TCP_Rule" data-translate="adapGatewayApp.Ruletype.Custom_TCP_Rule">Custom_TCP_Rule</option>
+                <option value="Custom_UDP_Custom" data-translate="adapGatewayApp.Ruletype.Custom_UDP_Custom">Custom_UDP_Custom</option>
+                <option value="HTTP" data-translate="adapGatewayApp.Ruletype.HTTP">HTTP</option>
+                <option value="HTTPS" data-translate="adapGatewayApp.Ruletype.HTTPS">HTTPS</option>
+            </select>
+            <div ng-show="editForm.ruletype.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ruletype.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.protocol" for="field_protocol">Protocol</label>
+            <select class="form-control" name="protocol" ng-model="vm.securitygrouprule.protocol" id="field_protocol" required>
+                <option value="TCP" data-translate="adapGatewayApp.Protocol.TCP">TCP</option>
+                <option value="SSH" data-translate="adapGatewayApp.Protocol.SSH">SSH</option>
+                <option value="UDP" data-translate="adapGatewayApp.Protocol.UDP">UDP</option>
+            </select>
+            <div ng-show="editForm.protocol.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.protocol.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.iprange" for="field_iprange">Iprange</label>
+            <input type="text" class="form-control" name="iprange" id="field_iprange"
+                    ng-model="vm.securitygrouprule.iprange"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.fromport" for="field_fromport">Fromport</label>
+            <input type="number" class="form-control" name="fromport" id="field_fromport"
+                    ng-model="vm.securitygrouprule.fromport"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.toport" for="field_toport">Toport</label>
+            <input type="number" class="form-control" name="toport" id="field_toport"
+                    ng-model="vm.securitygrouprule.toport"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                    ng-model="vm.securitygrouprule.status"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.status.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.status.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.status.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
+                    ng-model="vm.securitygrouprule.lastmodifiedby"
+                    required ng-maxlength="50" />
+            <div ng-show="editForm.lastmodifiedby.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+                <div class="input-group">
+                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.securitygrouprule.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastmodifieddatetime')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.lastmodifieddatetime.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.domain" for="field_domain">Domain</label>
+            <input type="text" class="form-control" name="domain" id="field_domain"
+                    ng-model="vm.securitygrouprule.domain"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.domain.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="adapGatewayApp.securitygrouprule.securitygroup" for="field_securitygroup">Securitygroup</label>
+            <select class="form-control" id="field_securitygroup" name="securitygroup" ng-model="vm.securitygrouprule.securitygroup" ng-options="securitygroup as securitygroup.name for securitygroup in vm.securitygroups track by securitygroup.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.securitygroup.$invalid">
+            <p class="help-block"
+                ng-show="editForm.securitygroup.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -27,7 +27,8 @@
             "subcategory": "Subcategory",
             "recordtype": "Recordtype",
             "assetparent": "Assetparent",
-            "assetassetmbrchild": "Assetassetmbrchild"
+            "assetassetmbrchild": "Assetassetmbrchild",
+            "securitygroup": "Securitygroup"
         }
     }
 }

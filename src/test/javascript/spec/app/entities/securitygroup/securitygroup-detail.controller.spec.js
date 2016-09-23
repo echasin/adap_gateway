@@ -2,9 +2,9 @@
 
 describe('Controller Tests', function() {
 
-    describe('Asset Management Detail Controller', function() {
+    describe('Securitygroup Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockAsset, MockLocation, MockScore, MockCategory, MockSubcategory, MockRecordtype, MockAssetassetmbr, MockSecuritygroup;
+        var MockEntity, MockPreviousState, MockSecuritygroup, MockSecuritygrouprule, MockAsset;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -12,14 +12,9 @@ describe('Controller Tests', function() {
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
-            MockAsset = jasmine.createSpy('MockAsset');
-            MockLocation = jasmine.createSpy('MockLocation');
-            MockScore = jasmine.createSpy('MockScore');
-            MockCategory = jasmine.createSpy('MockCategory');
-            MockSubcategory = jasmine.createSpy('MockSubcategory');
-            MockRecordtype = jasmine.createSpy('MockRecordtype');
-            MockAssetassetmbr = jasmine.createSpy('MockAssetassetmbr');
             MockSecuritygroup = jasmine.createSpy('MockSecuritygroup');
+            MockSecuritygrouprule = jasmine.createSpy('MockSecuritygrouprule');
+            MockAsset = jasmine.createSpy('MockAsset');
             
 
             var locals = {
@@ -27,24 +22,19 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'Asset': MockAsset,
-                'Location': MockLocation,
-                'Score': MockScore,
-                'Category': MockCategory,
-                'Subcategory': MockSubcategory,
-                'Recordtype': MockRecordtype,
-                'Assetassetmbr': MockAssetassetmbr,
-                'Securitygroup': MockSecuritygroup
+                'Securitygroup': MockSecuritygroup,
+                'Securitygrouprule': MockSecuritygrouprule,
+                'Asset': MockAsset
             };
             createController = function() {
-                $injector.get('$controller')("AssetDetailController", locals);
+                $injector.get('$controller')("SecuritygroupDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'adapGatewayApp:assetUpdate';
+                var eventType = 'adapGatewayApp:securitygroupUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);

@@ -1,20 +1,20 @@
 <div>
-    <h2 data-translate="adapGatewayApp.asset.home.title">Assets</h2>
+    <h2 data-translate="adapGatewayApp.securitygroup.home.title">Securitygroups</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="asset.new" >
+                <button class="btn btn-primary" ui-sref="securitygroup.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs"  data-translate="adapGatewayApp.asset.home.createLabel">
-                        Create new Asset
+                    <span class="hidden-xs"  data-translate="adapGatewayApp.securitygroup.home.createLabel">
+                        Create new Securitygroup
                     </span>
                 </button>
             </div>
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.asset.home.search' | translate }}">
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.securitygroup.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -36,46 +36,44 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="name"><span data-translate="adapGatewayApp.asset.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.asset.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.asset.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.asset.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.asset.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="recordtype.name"><span data-translate="adapGatewayApp.asset.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="securitygroup.name"><span data-translate="adapGatewayApp.asset.securitygroup">Securitygroup</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span data-translate="adapGatewayApp.securitygroup.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span data-translate="adapGatewayApp.securitygroup.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="groupid"><span data-translate="adapGatewayApp.securitygroup.groupid">Groupid</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="vpcid"><span data-translate="adapGatewayApp.securitygroup.vpcid">Vpcid</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.securitygroup.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.securitygroup.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.securitygroup.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.securitygroup.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="asset in vm.assets track by asset.id">
-                    <td><a ui-sref="asset-detail({id:asset.id})">{{asset.id}}</a></td>
-                    <td>{{asset.name}}</td>
-                    <td>{{asset.status}}</td>
-                    <td>{{asset.lastmodifiedby}}</td>
-                    <td>{{asset.lastmodifieddatetime | date:'medium'}}</td>
-                    <td>{{asset.domain}}</td>
-                    <td>
-                        <a ui-sref="recordtype-detail({id:asset.recordtype.id})">{{asset.recordtype.name}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="securitygroup-detail({id:asset.securitygroup.id})">{{asset.securitygroup.name}}</a>
-                    </td>
+                <tr ng-repeat="securitygroup in vm.securitygroups track by securitygroup.id">
+                    <td><a ui-sref="securitygroup-detail({id:securitygroup.id})">{{securitygroup.id}}</a></td>
+                    <td>{{securitygroup.name}}</td>
+                    <td>{{securitygroup.description}}</td>
+                    <td>{{securitygroup.groupid}}</td>
+                    <td>{{securitygroup.vpcid}}</td>
+                    <td>{{securitygroup.status}}</td>
+                    <td>{{securitygroup.lastmodifiedby}}</td>
+                    <td>{{securitygroup.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{securitygroup.domain}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="asset-detail({id:asset.id})"
+                                    ui-sref="securitygroup-detail({id:securitygroup.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="asset.edit({id:asset.id})"
+                                    ui-sref="securitygroup.edit({id:securitygroup.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="asset.delete({id:asset.id})"
+                                    ui-sref="securitygroup.delete({id:securitygroup.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>

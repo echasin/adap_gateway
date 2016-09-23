@@ -1,0 +1,9 @@
+{
+    "adapGatewayApp": {
+        "Protocoltype" : {
+            "null": "",
+            "Custom_TCP": "Custom_TCP",
+            "All_TCP": "All_TCP"
+        }
+    }
+}

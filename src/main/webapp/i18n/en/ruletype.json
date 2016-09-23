@@ -1,0 +1,11 @@
+{
+    "adapGatewayApp": {
+        "Ruletype" : {
+            "null": "",
+            "Custom_TCP_Rule": "Custom_TCP_Rule",
+            "Custom_UDP_Custom": "Custom_UDP_Custom",
+            "HTTP": "HTTP",
+            "HTTPS": "HTTPS"
+        }
+    }
+}

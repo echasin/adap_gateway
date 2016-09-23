@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('AssetDialogController', AssetDialogController);
 
-    AssetDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Asset', 'Location', 'Score', 'Category', 'Subcategory', 'Recordtype', 'Assetassetmbr'];
+    AssetDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Asset', 'Location', 'Score', 'Category', 'Subcategory', 'Recordtype', 'Assetassetmbr', 'Securitygroup'];
 
-    function AssetDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Asset, Location, Score, Category, Subcategory, Recordtype, Assetassetmbr) {
+    function AssetDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Asset, Location, Score, Category, Subcategory, Recordtype, Assetassetmbr, Securitygroup) {
         var vm = this;
 
         vm.asset = entity;
@@ -21,6 +21,7 @@
         vm.subcategories = Subcategory.query();
         vm.recordtypes = Recordtype.query();
         vm.assetassetmbrs = Assetassetmbr.query();
+        vm.securitygroups = Securitygroup.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

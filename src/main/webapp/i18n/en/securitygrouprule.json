@@ -1,0 +1,32 @@
+{
+    "adapGatewayApp": {
+        "securitygrouprule" : {
+            "home": {
+                "title": "Securitygrouprules",
+                "createLabel": "Create a new Securitygrouprule",
+                "createOrEditLabel": "Create or edit a Securitygrouprule",
+                "search": "Search for Securitygrouprule"
+            },
+            "created": "A new Securitygrouprule is created with identifier {{ param }}",
+            "updated": "A Securitygrouprule is updated with identifier {{ param }}",
+            "deleted": "A Securitygrouprule is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Securitygrouprule {{ id }}?"
+            },
+            "detail": {
+                "title": "Securitygrouprule"
+            },
+            "ruledirectiontype": "Ruledirectiontype",
+            "ruletype": "Ruletype",
+            "protocol": "Protocol",
+            "iprange": "Iprange",
+            "fromport": "Fromport",
+            "toport": "Toport",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "securitygroup": "Securitygroup"
+        }
+    }
+}
