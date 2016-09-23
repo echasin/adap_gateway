@@ -14,10 +14,25 @@
                     ng-model="vm.securitygrouprule.id" readonly />
         </div>
         <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.ruledirectiontype" for="field_ruledirectiontype">Ruledirectiontype</label>
+            <select class="form-control" name="ruledirectiontype" ng-model="vm.securitygrouprule.ruledirectiontype" id="field_ruledirectiontype" required>
+                <option value="Inbound" data-translate="adapGatewayApp.Ruledirectiontype.Inbound">Inbound</option>
+                <option value="Outbound" data-translate="adapGatewayApp.Ruledirectiontype.Outbound">Outbound</option>
+            </select>
+            <div ng-show="editForm.ruledirectiontype.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ruledirectiontype.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.ruletype" for="field_ruletype">Ruletype</label>
             <select class="form-control" name="ruletype" ng-model="vm.securitygrouprule.ruletype" id="field_ruletype" required>
-                <option value="Inbound" data-translate="adapGatewayApp.Ruletype.Inbound">Inbound</option>
-                <option value="Outbound" data-translate="adapGatewayApp.Ruletype.Outbound">Outbound</option>
+                <option value="Custom_TCP_Rule" data-translate="adapGatewayApp.Ruletype.Custom_TCP_Rule">Custom_TCP_Rule</option>
+                <option value="Custom_UDP_Custom" data-translate="adapGatewayApp.Ruletype.Custom_UDP_Custom">Custom_UDP_Custom</option>
+                <option value="HTTP" data-translate="adapGatewayApp.Ruletype.HTTP">HTTP</option>
+                <option value="HTTPS" data-translate="adapGatewayApp.Ruletype.HTTPS">HTTPS</option>
             </select>
             <div ng-show="editForm.ruletype.$invalid">
                 <p class="help-block"
@@ -57,6 +72,74 @@
             <input type="number" class="form-control" name="toport" id="field_toport"
                     ng-model="vm.securitygrouprule.toport"
                      />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                    ng-model="vm.securitygrouprule.status"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.status.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.status.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.status.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
+                    ng-model="vm.securitygrouprule.lastmodifiedby"
+                    required ng-maxlength="50" />
+            <div ng-show="editForm.lastmodifiedby.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+                <div class="input-group">
+                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.securitygrouprule.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastmodifieddatetime')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.lastmodifieddatetime.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.securitygrouprule.domain" for="field_domain">Domain</label>
+            <input type="text" class="form-control" name="domain" id="field_domain"
+                    ng-model="vm.securitygrouprule.domain"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.domain.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
         </div>
 
         <div class="form-group">

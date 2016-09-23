@@ -46,6 +46,7 @@
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('securitygrouprule');
+                    $translatePartialLoader.addPart('ruledirectiontype');
                     $translatePartialLoader.addPart('ruletype');
                     $translatePartialLoader.addPart('protocol');
                     $translatePartialLoader.addPart('global');
@@ -70,6 +71,7 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('securitygrouprule');
+                    $translatePartialLoader.addPart('ruledirectiontype');
                     $translatePartialLoader.addPart('ruletype');
                     $translatePartialLoader.addPart('protocol');
                     return $translate.refresh();
@@ -128,11 +130,16 @@
                     resolve: {
                         entity: function () {
                             return {
+                                ruledirectiontype: null,
                                 ruletype: null,
                                 protocol: null,
                                 iprange: null,
                                 fromport: null,
                                 toport: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
                                 id: null
                             };
                         }

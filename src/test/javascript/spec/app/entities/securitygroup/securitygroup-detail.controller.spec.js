@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('Securitygroup Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockSecuritygroup, MockSecuritygrouprule;
+        var MockEntity, MockPreviousState, MockSecuritygroup, MockSecuritygrouprule, MockAsset;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -14,6 +14,7 @@ describe('Controller Tests', function() {
             MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockSecuritygroup = jasmine.createSpy('MockSecuritygroup');
             MockSecuritygrouprule = jasmine.createSpy('MockSecuritygrouprule');
+            MockAsset = jasmine.createSpy('MockAsset');
             
 
             var locals = {
@@ -22,7 +23,8 @@ describe('Controller Tests', function() {
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
                 'Securitygroup': MockSecuritygroup,
-                'Securitygrouprule': MockSecuritygrouprule
+                'Securitygrouprule': MockSecuritygrouprule,
+                'Asset': MockAsset
             };
             createController = function() {
                 $injector.get('$controller')("SecuritygroupDetailController", locals);

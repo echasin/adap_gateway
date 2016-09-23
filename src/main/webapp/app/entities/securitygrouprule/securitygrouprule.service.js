@@ -4,9 +4,9 @@
         .module('adapGatewayApp')
         .factory('Securitygrouprule', Securitygrouprule);
 
-    Securitygrouprule.$inject = ['$resource'];
+    Securitygrouprule.$inject = ['$resource', 'DateUtils'];
 
-    function Securitygrouprule ($resource) {
+    function Securitygrouprule ($resource, DateUtils) {
         var resourceUrl =  'adap_core/' + 'api/securitygrouprules/:id';
 
         return $resource(resourceUrl, {}, {
@@ -16,6 +16,7 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
+                        data.lastmodifieddatetime = DateUtils.convertDateTimeFromServer(data.lastmodifieddatetime);
                     }
                     return data;
                 }

@@ -5,15 +5,18 @@
         .module('adapGatewayApp')
         .controller('SecuritygroupDialogController', SecuritygroupDialogController);
 
-    SecuritygroupDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Securitygroup', 'Securitygrouprule'];
+    SecuritygroupDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Securitygroup', 'Securitygrouprule', 'Asset'];
 
-    function SecuritygroupDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Securitygroup, Securitygrouprule) {
+    function SecuritygroupDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Securitygroup, Securitygrouprule, Asset) {
         var vm = this;
 
         vm.securitygroup = entity;
         vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
         vm.save = save;
         vm.securitygrouprules = Securitygrouprule.query();
+        vm.assets = Asset.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -42,6 +45,10 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.lastmodifieddatetime = false;
 
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
     }
 })();

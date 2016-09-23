@@ -20,7 +20,12 @@
             "description": "Description",
             "groupid": "Groupid",
             "vpcid": "Vpcid",
-            "securitygrouprule": "Securitygrouprule"
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "securitygrouprule": "Securitygrouprule",
+            "asset": "Asset"
         }
     }
 }

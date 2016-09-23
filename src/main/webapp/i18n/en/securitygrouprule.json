@@ -16,11 +16,16 @@
             "detail": {
                 "title": "Securitygrouprule"
             },
+            "ruledirectiontype": "Ruledirectiontype",
             "ruletype": "Ruletype",
             "protocol": "Protocol",
             "iprange": "Iprange",
             "fromport": "Fromport",
             "toport": "Toport",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
             "securitygroup": "Securitygroup"
         }
     }

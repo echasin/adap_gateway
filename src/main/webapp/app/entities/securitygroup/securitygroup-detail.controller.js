@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('SecuritygroupDetailController', SecuritygroupDetailController);
 
-    SecuritygroupDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Securitygroup', 'Securitygrouprule'];
+    SecuritygroupDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Securitygroup', 'Securitygrouprule', 'Asset'];
 
-    function SecuritygroupDetailController($scope, $rootScope, $stateParams, previousState, entity, Securitygroup, Securitygrouprule) {
+    function SecuritygroupDetailController($scope, $rootScope, $stateParams, previousState, entity, Securitygroup, Securitygrouprule, Asset) {
         var vm = this;
 
         vm.securitygroup = entity;

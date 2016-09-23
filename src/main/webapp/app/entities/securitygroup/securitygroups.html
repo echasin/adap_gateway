@@ -40,6 +40,10 @@
                     <th jh-sort-by="description"><span data-translate="adapGatewayApp.securitygroup.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="groupid"><span data-translate="adapGatewayApp.securitygroup.groupid">Groupid</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="vpcid"><span data-translate="adapGatewayApp.securitygroup.vpcid">Vpcid</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.securitygroup.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.securitygroup.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.securitygroup.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.securitygroup.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -50,6 +54,10 @@
                     <td>{{securitygroup.description}}</td>
                     <td>{{securitygroup.groupid}}</td>
                     <td>{{securitygroup.vpcid}}</td>
+                    <td>{{securitygroup.status}}</td>
+                    <td>{{securitygroup.lastmodifiedby}}</td>
+                    <td>{{securitygroup.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{securitygroup.domain}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

@@ -36,11 +36,16 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="ruledirectiontype"><span data-translate="adapGatewayApp.securitygrouprule.ruledirectiontype">Ruledirectiontype</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="ruletype"><span data-translate="adapGatewayApp.securitygrouprule.ruletype">Ruletype</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="protocol"><span data-translate="adapGatewayApp.securitygrouprule.protocol">Protocol</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="iprange"><span data-translate="adapGatewayApp.securitygrouprule.iprange">Iprange</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fromport"><span data-translate="adapGatewayApp.securitygrouprule.fromport">Fromport</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="toport"><span data-translate="adapGatewayApp.securitygrouprule.toport">Toport</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.securitygrouprule.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.securitygrouprule.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.securitygrouprule.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.securitygrouprule.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="securitygroup.name"><span data-translate="adapGatewayApp.securitygrouprule.securitygroup">Securitygroup</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -48,11 +53,16 @@
             <tbody>
                 <tr ng-repeat="securitygrouprule in vm.securitygrouprules track by securitygrouprule.id">
                     <td><a ui-sref="securitygrouprule-detail({id:securitygrouprule.id})">{{securitygrouprule.id}}</a></td>
+                    <td data-translate="{{'adapGatewayApp.Ruledirectiontype.' + securitygrouprule.ruledirectiontype}}">{{securitygrouprule.ruledirectiontype}}</td>
                     <td data-translate="{{'adapGatewayApp.Ruletype.' + securitygrouprule.ruletype}}">{{securitygrouprule.ruletype}}</td>
                     <td data-translate="{{'adapGatewayApp.Protocol.' + securitygrouprule.protocol}}">{{securitygrouprule.protocol}}</td>
                     <td>{{securitygrouprule.iprange}}</td>
                     <td>{{securitygrouprule.fromport}}</td>
                     <td>{{securitygrouprule.toport}}</td>
+                    <td>{{securitygrouprule.status}}</td>
+                    <td>{{securitygrouprule.lastmodifiedby}}</td>
+                    <td>{{securitygrouprule.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{securitygrouprule.domain}}</td>
                     <td>
                         <a ui-sref="securitygroup-detail({id:securitygrouprule.securitygroup.id})">{{securitygrouprule.securitygroup.name}}</a>
                     </td>

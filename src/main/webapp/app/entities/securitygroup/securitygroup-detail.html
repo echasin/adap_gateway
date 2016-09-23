@@ -20,6 +20,22 @@
         <dd>
             <span>{{vm.securitygroup.vpcid}}</span>
         </dd>
+        <dt><span data-translate="adapGatewayApp.securitygroup.status">Status</span></dt>
+        <dd>
+            <span>{{vm.securitygroup.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.securitygroup.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.securitygroup.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.securitygroup.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.securitygroup.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.securitygroup.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.securitygroup.domain}}</span>
+        </dd>
     </dl>
 
     <button type="submit"
