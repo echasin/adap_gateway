@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('IdentifierDialogController', IdentifierDialogController);
 
-    IdentifierDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Identifier', 'Asset'];
+    IdentifierDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Identifier', 'Asset', 'Key'];
 
-    function IdentifierDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Identifier, Asset) {
+    function IdentifierDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Identifier, Asset, Key) {
         var vm = this;
 
         vm.identifier = entity;
@@ -16,6 +16,7 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.assets = Asset.query();
+        vm.keys = Key.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

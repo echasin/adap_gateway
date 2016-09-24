@@ -124,7 +124,6 @@
                     resolve: {
                         entity: function () {
                             return {
-                                type: null,
                                 value: null,
                                 status: null,
                                 lastmodifiedby: null,

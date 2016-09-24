@@ -4,10 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="adapGatewayApp.identifier.type">Type</span></dt>
-        <dd>
-            <span>{{vm.identifier.type}}</span>
-        </dd>
         <dt><span data-translate="adapGatewayApp.identifier.value">Value</span></dt>
         <dd>
             <span>{{vm.identifier.value}}</span>
@@ -31,6 +27,10 @@
         <dt><span data-translate="adapGatewayApp.identifier.asset">Asset</span></dt>
         <dd>
             <a ui-sref="asset-detail({id:vm.identifier.asset.id})">{{vm.identifier.asset.name}}</a>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.identifier.key">Key</span></dt>
+        <dd>
+            <a ui-sref="key-detail({id:vm.identifier.key.id})">{{vm.identifier.key.name}}</a>
         </dd>
     </dl>
 

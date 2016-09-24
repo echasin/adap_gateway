@@ -14,22 +14,6 @@
                     ng-model="vm.identifier.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.identifier.type" for="field_type">Type</label>
-            <input type="text" class="form-control" name="type" id="field_type"
-                    ng-model="vm.identifier.type"
-                    required ng-maxlength="50" />
-            <div ng-show="editForm.type.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.type.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.type.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="50">
-                    This field cannot be longer than 50 characters.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="adapGatewayApp.identifier.value" for="field_value">Value</label>
             <input type="text" class="form-control" name="value" id="field_value"
                     ng-model="vm.identifier.value"
@@ -119,6 +103,18 @@
             <select class="form-control" id="field_asset" name="asset" ng-model="vm.identifier.asset" ng-options="asset as asset.name for asset in vm.assets track by asset.id">
                 <option value=""></option>
             </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="adapGatewayApp.identifier.key" for="field_key">Key</label>
+            <select class="form-control" id="field_key" name="key" ng-model="vm.identifier.key" ng-options="key as key.name for key in vm.keys track by key.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.key.$invalid">
+            <p class="help-block"
+                ng-show="editForm.key.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
         </div>
     </div>
     <div class="modal-footer">

@@ -36,20 +36,19 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="type"><span data-translate="adapGatewayApp.identifier.type">Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="value"><span data-translate="adapGatewayApp.identifier.value">Value</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="status"><span data-translate="adapGatewayApp.identifier.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.identifier.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.identifier.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="domain"><span data-translate="adapGatewayApp.identifier.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="asset.name"><span data-translate="adapGatewayApp.identifier.asset">Asset</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="key.name"><span data-translate="adapGatewayApp.identifier.key">Key</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="identifier in vm.identifiers track by identifier.id">
                     <td><a ui-sref="identifier-detail({id:identifier.id})">{{identifier.id}}</a></td>
-                    <td>{{identifier.type}}</td>
                     <td>{{identifier.value}}</td>
                     <td>{{identifier.status}}</td>
                     <td>{{identifier.lastmodifiedby}}</td>
@@ -57,6 +56,9 @@
                     <td>{{identifier.domain}}</td>
                     <td>
                         <a ui-sref="asset-detail({id:identifier.asset.id})">{{identifier.asset.name}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="key-detail({id:identifier.key.id})">{{identifier.key.name}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

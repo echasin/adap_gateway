@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('IdentifierDetailController', IdentifierDetailController);
 
-    IdentifierDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Identifier', 'Asset'];
+    IdentifierDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Identifier', 'Asset', 'Key'];
 
-    function IdentifierDetailController($scope, $rootScope, $stateParams, previousState, entity, Identifier, Asset) {
+    function IdentifierDetailController($scope, $rootScope, $stateParams, previousState, entity, Identifier, Asset, Key) {
         var vm = this;
 
         vm.identifier = entity;
