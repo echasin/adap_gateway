@@ -16,14 +16,13 @@
             "detail": {
                 "title": "Identifier"
             },
-            "type": "Type",
             "value": "Value",
             "status": "Status",
             "lastmodifiedby": "Lastmodifiedby",
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
-            "alert": "Alert",
-            "event": "Event"
+            "asset": "Asset",
+            "key": "Key"
         }
     }
 }

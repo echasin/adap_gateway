@@ -22,14 +22,18 @@ describe('Identifier e2e test', function () {
 
     it('should load Identifiers', function () {
         entityMenu.click();
-        element(by.css('[ui-sref="identifier"]')).click().then(function() {
-            expect(element.all(by.css('h2')).first().getText()).toMatch(/Identifiers/);
+        element.all(by.css('[ui-sref="identifier"]')).first().click().then(function() {
+            element.all(by.css('h2')).first().getAttribute('data-translate').then(function (value) {
+                expect(value).toMatch(/adapGatewayApp.identifier.home.title/);
+            });
         });
     });
 
     it('should load create Identifier dialog', function () {
         element(by.css('[ui-sref="identifier.new"]')).click().then(function() {
-            expect(element(by.css('h4.modal-title')).getText()).toMatch(/Create or edit a Identifier/);
+            element(by.css('h4.modal-title')).getAttribute('data-translate').then(function (value) {
+                expect(value).toMatch(/adapGatewayApp.identifier.home.createOrEditLabel/);
+            });
             element(by.css('button.close')).click();
         });
     });

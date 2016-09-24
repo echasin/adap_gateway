@@ -1,28 +1,22 @@
 {
     "relationships": [
         {
-            "relationshipName": "alert",
-            "otherEntityName": "alert",
+            "relationshipName": "asset",
+            "otherEntityName": "asset",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         },
-		{
-            "relationshipName": "event",
-            "otherEntityName": "event",
+        {
+            "relationshipName": "key",
+            "otherEntityName": "key",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "name"
         }
     ],
     "fields": [
-        {
-            "fieldName": "type",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "50"
-        },
         {
             "fieldName": "value",
             "fieldType": "String",
@@ -32,7 +26,7 @@
             ],
             "fieldValidateRulesMaxlength": "255"
         },
-		{
+        {
             "fieldName": "status",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -72,6 +66,6 @@
     "service": "no",
     "entityTableName": "identifier",
     "pagination": "pagination",
-    "microserviceName": "adap_event",
+    "microserviceName": "adap_core",
     "searchEngine": "elasticsearch"
 }

@@ -1,0 +1,10 @@
+{
+    "adapGatewayApp": {
+        "Protocol" : {
+            "null": "",
+            "TCP": "TCP",
+            "SSH": "SSH",
+            "UDP": "UDP"
+        }
+    }
+}
