@@ -5,46 +5,49 @@
         .module('adapGatewayApp')
         .controller('IdentifierDialogController', IdentifierDialogController);
 
-    IdentifierDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Identifier', 'Alert', 'Event'];
+    IdentifierDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Identifier', 'Asset'];
 
-    function IdentifierDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Identifier, Alert, Event) {
+    function IdentifierDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Identifier, Asset) {
         var vm = this;
+
         vm.identifier = entity;
-        vm.alerts = Alert.query();
-        vm.events = Event.query();
+        vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
+        vm.save = save;
+        vm.assets = Asset.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
 
-        var onSaveSuccess = function (result) {
-            $scope.$emit('adapGatewayApp:identifierUpdate', result);
-            $uibModalInstance.close(result);
-            vm.isSaving = false;
-        };
+        function clear () {
+            $uibModalInstance.dismiss('cancel');
+        }
 
-        var onSaveError = function () {
-            vm.isSaving = false;
-        };
-
-        vm.save = function () {
+        function save () {
             vm.isSaving = true;
             if (vm.identifier.id !== null) {
                 Identifier.update(vm.identifier, onSaveSuccess, onSaveError);
             } else {
                 Identifier.save(vm.identifier, onSaveSuccess, onSaveError);
             }
-        };
+        }
 
-        vm.clear = function() {
-            $uibModalInstance.dismiss('cancel');
-        };
+        function onSaveSuccess (result) {
+            $scope.$emit('adapGatewayApp:identifierUpdate', result);
+            $uibModalInstance.close(result);
+            vm.isSaving = false;
+        }
 
-        vm.datePickerOpenStatus = {};
+        function onSaveError () {
+            vm.isSaving = false;
+        }
+
         vm.datePickerOpenStatus.lastmodifieddatetime = false;
 
-        vm.openCalendar = function(date) {
+        function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
-        };
+        }
     }
 })();

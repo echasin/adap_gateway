@@ -22,8 +22,7 @@
             "lastmodifiedby": "Lastmodifiedby",
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
-            "alert": "Alert",
-            "event": "Event"
+            "asset": "Asset"
         }
     }
 }

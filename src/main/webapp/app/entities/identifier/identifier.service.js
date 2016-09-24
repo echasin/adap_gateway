@@ -7,7 +7,7 @@
     Identifier.$inject = ['$resource', 'DateUtils'];
 
     function Identifier ($resource, DateUtils) {
-        var resourceUrl =  'adap_event/' + 'api/identifiers/:id';
+        var resourceUrl =  'adap_core/' + 'api/identifiers/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

@@ -1,46 +1,47 @@
 
 <div>
-    <h2><span translate="adapGatewayApp.identifier.detail.title">Identifier</span> {{vm.identifier.id}}</h2>
+    <h2><span data-translate="adapGatewayApp.identifier.detail.title">Identifier</span> {{vm.identifier.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span translate="adapGatewayApp.identifier.type">Type</span></dt>
+        <dt><span data-translate="adapGatewayApp.identifier.type">Type</span></dt>
         <dd>
             <span>{{vm.identifier.type}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.identifier.value">Value</span></dt>
+        <dt><span data-translate="adapGatewayApp.identifier.value">Value</span></dt>
         <dd>
             <span>{{vm.identifier.value}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.identifier.status">Status</span></dt>
+        <dt><span data-translate="adapGatewayApp.identifier.status">Status</span></dt>
         <dd>
             <span>{{vm.identifier.status}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.identifier.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dt><span data-translate="adapGatewayApp.identifier.lastmodifiedby">Lastmodifiedby</span></dt>
         <dd>
             <span>{{vm.identifier.lastmodifiedby}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.identifier.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dt><span data-translate="adapGatewayApp.identifier.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
         <dd>
             <span>{{vm.identifier.lastmodifieddatetime | date:'medium'}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.identifier.domain">Domain</span></dt>
+        <dt><span data-translate="adapGatewayApp.identifier.domain">Domain</span></dt>
         <dd>
             <span>{{vm.identifier.domain}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.identifier.alert">Alert</span></dt>
+        <dt><span data-translate="adapGatewayApp.identifier.asset">Asset</span></dt>
         <dd>
-            <a ui-sref="alert-detail({id:vm.identifier.alert.id})">{{vm.identifier.alert.id}}</a>
-        </dd>
-        <dt><span translate="adapGatewayApp.identifier.event">Event</span></dt>
-        <dd>
-            <a ui-sref="event-detail({id:vm.identifier.event.id})">{{vm.identifier.event.id}}</a>
+            <a ui-sref="asset-detail({id:vm.identifier.asset.id})">{{vm.identifier.asset.name}}</a>
         </dd>
     </dl>
 
     <button type="submit"
-            onclick="window.history.back()"
+            ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="identifier-detail.edit({id:vm.identifier.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
     </button>
 </div>

@@ -28,7 +28,8 @@
             "recordtype": "Recordtype",
             "assetparent": "Assetparent",
             "assetassetmbrchild": "Assetassetmbrchild",
-            "securitygroup": "Securitygroup"
+            "securitygroup": "Securitygroup",
+            "identifier": "Identifier"
         }
     }
 }

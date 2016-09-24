@@ -1,16 +1,10 @@
 {
     "relationships": [
-        {
-            "relationshipName": "alert",
-            "otherEntityName": "alert",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
 		{
-            "relationshipName": "event",
-            "otherEntityName": "event",
+            "relationshipName": "asset",
+            "otherEntityName": "asset",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "fields": [
@@ -55,6 +49,7 @@
             "fieldType": "ZonedDateTime",
             "fieldValidateRules": [
                 "required"
+
             ]
         },
         {
@@ -72,6 +67,6 @@
     "service": "no",
     "entityTableName": "identifier",
     "pagination": "pagination",
-    "microserviceName": "adap_event",
+    "microserviceName": "adap_core",
     "searchEngine": "elasticsearch"
 }

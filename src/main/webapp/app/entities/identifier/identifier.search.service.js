@@ -8,7 +8,7 @@
     IdentifierSearch.$inject = ['$resource'];
 
     function IdentifierSearch($resource) {
-        var resourceUrl =  'adap_event/' + 'api/_search/identifiers/:id';
+        var resourceUrl =  'adap_core/' + 'api/_search/identifiers/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true}
