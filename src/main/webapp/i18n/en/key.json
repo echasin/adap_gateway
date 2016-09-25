@@ -1,0 +1,29 @@
+{
+    "adapGatewayApp": {
+        "key" : {
+            "home": {
+                "title": "Keys",
+                "createLabel": "Create a new Key",
+                "createOrEditLabel": "Create or edit a Key",
+                "search": "Search for Key"
+            },
+            "created": "A new Key is created with identifier {{ param }}",
+            "updated": "A Key is updated with identifier {{ param }}",
+            "deleted": "A Key is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Key {{ id }}?"
+            },
+            "detail": {
+                "title": "Key"
+            },
+            "name": "Name",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "description": "Description",
+            "identifier": "Identifier",
+            "category": "Category"
+        }
+    }
+}

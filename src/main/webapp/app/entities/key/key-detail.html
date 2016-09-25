@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.key.detail.title">Key</span> {{vm.key.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.key.name">Name</span></dt>
+        <dd>
+            <span>{{vm.key.name}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.key.status">Status</span></dt>
+        <dd>
+            <span>{{vm.key.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.key.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.key.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.key.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.key.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.key.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.key.domain}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.key.description">Description</span></dt>
+        <dd>
+            <span>{{vm.key.description}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.key.category">Category</span></dt>
+        <dd>
+            <a ui-sref="category-detail({id:vm.key.category.id})">{{vm.key.category.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="key-detail.edit({id:vm.key.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
