@@ -75,6 +75,30 @@
                 }]
             }
         })
+        .state('questionnaire-response', {
+            parent: 'entity',
+            url: '/questionnaireresponse/{id}/{rId}',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'adapGatewayApp.questionnaire.detail.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/questionnaire/questionnaire-response.html',
+                    controller: 'QuestionnaireResponseController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('questionnaire');
+                    return $translate.refresh();
+                }],
+                entity: ['$stateParams', 'Questionnaire', function($stateParams, Questionnaire) {
+                    return Questionnaire.get({id : $stateParams.id});
+                }]
+            }
+        })
         .state('questionnaire.new', {
             parent: 'questionnaire',
             url: '/new',

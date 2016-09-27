@@ -55,15 +55,15 @@
                     <td>{{response.lastmodifieddatetime | date:'medium'}}</td>
                     <td>{{response.username}}</td>
                     <td>
-                        <a ui-sref="questionnaire-detail({id:response.questionnaire.id})">{{response.questionnaire.id}}</a>
+                        <a ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})">{{response.questionnaire.id}}</a>
                     </td>
                      <td>
-                        <a ui-sref="questionnaire-detail({id:response.questionnaire.id})">{{response.questionnaire.title}}</a>
+                        <a ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})">{{response.questionnaire.title}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="response-detail({id:response.id})"
+                                    ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
