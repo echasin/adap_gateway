@@ -42,7 +42,7 @@
                                  			console.log(vm.questiongroup[x])
                          					console.log(vm.questiongroup[x])
                                  	   Response.get({id:$stateParams.rId}, function (data) {
-                                     		var response=JSON.parse(data.details);                                   	   
+                                     		var response=JSON.parse(data.details); 
                                        		for(var i=0;i<response.questiongroups.length;i++){
                                      			 for(var j=0;j<response.questiongroups[i].questions.length;j++){                                     				 
                                      				if(response.questiongroups[i].questions[j].question==question[index].id){
@@ -263,11 +263,8 @@
 
         
      vm.saveAnswer=function(action){  
-     	   
-       	console.log(action)
-       	var questionnaire=$stateParams.id  
-       	console.log(vm.result)
-       	
+     	
+       	console.log(action)       	
        	var questiongroups = userResponse.reduce(function(groups, question){
           	var group = groups[question.questiongroup] || [];
           	  group.push({
@@ -297,7 +294,7 @@
        	.success(function (data) {
              });
           	}else if(action==='update'){
-          		$http.get('/adap_assessment/api/updateResponse/'+questionnaire+'/'+result)
+          		$http.get('/adap_assessment/api/updateResponse/'+$stateParams.id+'/'+$stateParams.rId+'/'+result)
            	.success(function (data) {
              });	
           	}
