@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('RecordtypeDetailController', RecordtypeDetailController);
 
-    RecordtypeDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Recordtype', 'Category', 'Asset'];
+    RecordtypeDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Recordtype', 'Category', 'Asset', 'Organization'];
 
-    function RecordtypeDetailController($scope, $rootScope, $stateParams, previousState, entity, Recordtype, Category, Asset) {
+    function RecordtypeDetailController($scope, $rootScope, $stateParams, previousState, entity, Recordtype, Category, Asset, Organization) {
         var vm = this;
 
         vm.recordtype = entity;

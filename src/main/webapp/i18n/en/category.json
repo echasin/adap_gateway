@@ -24,7 +24,10 @@
             "domain": "Domain",
             "recordtype": "Recordtype",
             "subcategory": "Subcategory",
-            "asset": "Asset"
+            "asset": "Asset",
+            "organization": "Organization",
+            "organizationorganizationmbr": "Organizationorganizationmbr",
+            "key": "Key"
         }
     }
 }
