@@ -11,6 +11,12 @@
             "otherEntityName": "asset",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "recordtype"
+        },
+        {
+            "relationshipName": "organization",
+            "otherEntityName": "organization",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "recordtype"
         }
     ],
     "fields": [

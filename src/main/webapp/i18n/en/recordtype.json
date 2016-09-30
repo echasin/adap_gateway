@@ -24,7 +24,8 @@
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
             "category": "Category",
-            "asset": "Asset"
+            "asset": "Asset",
+            "organization": "Organization"
         }
     }
 }

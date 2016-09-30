@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('Category Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockCategory, MockRecordtype, MockSubcategory, MockAsset;
+        var MockEntity, MockPreviousState, MockCategory, MockRecordtype, MockSubcategory, MockAsset, MockOrganization, MockOrganizationorganizationmbr, MockKey;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -16,6 +16,9 @@ describe('Controller Tests', function() {
             MockRecordtype = jasmine.createSpy('MockRecordtype');
             MockSubcategory = jasmine.createSpy('MockSubcategory');
             MockAsset = jasmine.createSpy('MockAsset');
+            MockOrganization = jasmine.createSpy('MockOrganization');
+            MockOrganizationorganizationmbr = jasmine.createSpy('MockOrganizationorganizationmbr');
+            MockKey = jasmine.createSpy('MockKey');
             
 
             var locals = {
@@ -26,7 +29,10 @@ describe('Controller Tests', function() {
                 'Category': MockCategory,
                 'Recordtype': MockRecordtype,
                 'Subcategory': MockSubcategory,
-                'Asset': MockAsset
+                'Asset': MockAsset,
+                'Organization': MockOrganization,
+                'Organizationorganizationmbr': MockOrganizationorganizationmbr,
+                'Key': MockKey
             };
             createController = function() {
                 $injector.get('$controller')("CategoryDetailController", locals);

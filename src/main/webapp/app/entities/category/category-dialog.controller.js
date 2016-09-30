@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('CategoryDialogController', CategoryDialogController);
 
-    CategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Category', 'Recordtype', 'Subcategory', 'Asset'];
+    CategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Category', 'Recordtype', 'Subcategory', 'Asset', 'Organization', 'Organizationorganizationmbr', 'Key'];
 
-    function CategoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Category, Recordtype, Subcategory, Asset) {
+    function CategoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Category, Recordtype, Subcategory, Asset, Organization, Organizationorganizationmbr, Key) {
         var vm = this;
 
         vm.category = entity;
@@ -18,6 +18,9 @@
         vm.recordtypes = Recordtype.query();
         vm.subcategories = Subcategory.query();
         vm.assets = Asset.query();
+        vm.organizations = Organization.query();
+        vm.organizationorganizationmbrs = Organizationorganizationmbr.query();
+        vm.keys = Key.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
