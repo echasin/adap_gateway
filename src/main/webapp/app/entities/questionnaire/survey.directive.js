@@ -26,7 +26,7 @@
             };
         }).directive('multiblechoice', function(Questiongroup,Question,Subquestion) {
         	return {
-                template:    '<table class="jh-table table table-striped">'+
+                template:    '========================<table class="jh-table table table-striped">'+
                              '<tr ng-repeat="subquestion in question.subquestion">'+
                              '<td><input type="checkbox" ng-change="vm.getmultiselect(questiongroup.id,question.id,subquestion.id,subquestion.code)" ng-model="subquestion.code">{{subquestion.subquestion}}</td>'+
                              '<td><input type="text" ng-change="vm.getmultiselecttext(questiongroup.id,question.id,subquestion.id,subquestion.response)" ng-model="subquestion.response"></td></tr>'+

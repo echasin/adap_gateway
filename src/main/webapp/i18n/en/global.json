@@ -27,6 +27,7 @@
                 "recordtype": "Recordtype",
                 "category": "Category",
                 "subcategory": "Subcategory",
+                "responsedetail": "Responsedetail",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

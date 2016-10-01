@@ -1,0 +1,87 @@
+<div>
+    <h2 translate="adapGatewayApp.responsedetail.home.title">Responsedetails</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="responsedetail.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs"  translate="adapGatewayApp.responsedetail.home.createLabel">
+                        Create new Responsedetail
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.responsedetail.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="responseId"><span translate="adapGatewayApp.responsedetail.responseId">Response Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="questionnaireId"><span translate="adapGatewayApp.responsedetail.questionnaireId">Questionnaire Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="questiongroupId"><span translate="adapGatewayApp.responsedetail.questiongroupId">Questiongroup Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="questionId"><span translate="adapGatewayApp.responsedetail.questionId">Question Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="subquestionId"><span translate="adapGatewayApp.responsedetail.subquestionId">Subquestion Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="response"><span translate="adapGatewayApp.responsedetail.response">Response</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="responsedetail in vm.responsedetails track by responsedetail.id">
+                    <td><a ui-sref="responsedetail-detail({id:responsedetail.id})">{{responsedetail.id}}</a></td>
+                    <td>{{responsedetail.responseId}}</td>
+                    <td>{{responsedetail.questionnaireId}}</td>
+                    <td>{{responsedetail.questiongroupId}}</td>
+                    <td>{{responsedetail.questionId}}</td>
+                    <td>{{responsedetail.subquestionId}}</td>
+                    <td>{{responsedetail.response}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="responsedetail-detail({id:responsedetail.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="responsedetail.edit({id:responsedetail.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="responsedetail.delete({id:responsedetail.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

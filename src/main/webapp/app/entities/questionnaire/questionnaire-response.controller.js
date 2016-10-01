@@ -38,9 +38,9 @@
                                         });
                                  	   
                                  	  for(var x=0;x<vm.questiongroup.length;x++){
-                                 		 if(vm.questiongroup[x].id=group[item].id){
-                                 			console.log(vm.questiongroup[x])
-                         					console.log(vm.questiongroup[x])
+                                 		 (function(xItem) {
+                             			    setTimeout(function() {
+                                 		 if(vm.questiongroup[xItem].id=group[item].id){
                                  	   Response.get({id:$stateParams.rId}, function (data) {
                                      		var response=JSON.parse(data.details); 
                                        		for(var i=0;i<response.questiongroups.length;i++){
@@ -49,11 +49,9 @@
                                      					function findquestion(que) { 
                                      		                return que.id === question[index].id;
                                      		            }
-                                     					console.log(vm.questiongroup[item])
-                                     					console.log(vm.questiongroup[item])
-                                     		            if(vm.questiongroup[item].question.find(findquestion)!=null){
+                                     		            if(vm.questiongroup[xItem].question.find(findquestion)!=null){
                                      		    		}else{
-                                     		    			vm.questiongroup[item].question.push(question[index])
+                                     		    			vm.questiongroup[xItem].question.push(question[index])
                                      		    		}
                                      					for(var w=0;w<question[index].subquestion.length;w++){
                                      						if(response.questiongroups[i].questions[j].subquestion==question[index].subquestion[w].id){
@@ -66,7 +64,9 @@
                                      		   }
                                  	  });
                                  		 }
-                                }
+                             			   });
+                             			   }); 
+                                 	  }
                             	     }); 
                 			    });
                 			  })(j); 
@@ -170,34 +170,44 @@
     				 }
     				});
     		}else{
-    			userResponse.push({"questiongroup":group,"question":question,"response":response})	
-    		}           
-            Conditions.conditionByQuestion({id:question}).$promise.then(function(condition){
-             if(condition!=null){
-              if(condition.operator == '>') {
-        	    if(response  > condition.response){
-            		loadQuestionById(group,condition.displayedquestion.id);	
-            	}else if(response  <= condition.response){
-                		 for(var x=0;x<vm.questiongroup.length;x++){
-                			 if(vm.questiongroup[x].id=group){
-                					 
-                					 for(var y=0;y<vm.questiongroup[x].question.length;y++){
-                						 if(vm.questiongroup[x].question[y].id==condition.displayedquestion.id){
-                							 vm.questiongroup[x].question.splice(y,1)
-                						 }
-                					 }
-                			 }
-                		 }
-            	}     	    
-        	} else if(condition.operator == '<'){
-        		 if(response  < condition.response){ 
-        			 console.log("Other")
-        		 } 
-        	  } 
-             }
-            });
-            
+    			userResponse.push({"questiongroup":group,"question":question,"response":response})
+    			console.log(group)
+    		}    
+            console.log(group)
+            xxx(response,group,question);               
         }
+        
+        
+        
+        
+        function xxx(response,group,question) {
+     	   Conditions.conditionByQuestion({id:question})
+     	   .$promise.then(
+     	      function(condition){
+     	    	  
+     	    	 if(condition.operator == '>') {
+               	    if(response  > condition.response){
+                   		loadQuestionById(group,condition.displayedquestion.id);	
+                   	}else if(response  <= condition.response){
+                       		 for(var x=0;x<vm.questiongroup.length;x++){
+                       			 if(vm.questiongroup[x].id=group){	 
+                       					 for(var y=0;y<vm.questiongroup[x].question.length;y++){
+                       						 if(vm.questiongroup[x].question[y].id==condition.displayedquestion.id){
+                       							 vm.questiongroup[x].question.splice(y,1)
+                       						 }} } }}     	    
+               	} else if(condition.operator == '<'){
+               		 if(response  < condition.response){ 
+               			 console.log("Other")
+       }
+            }
+     	    	  
+     	      },
+     	      function( error ){
+     	    	  console.log("///////////*******////////////")
+     	      }
+     	   )     	    
+        }
+        
         
         vm.getGridAnswer = function(group,question,subquestion,response) {
         	function findsubquestion(item) { 
@@ -262,9 +272,9 @@
          }
 
         
-     vm.saveAnswer=function(action){  
-     	
-       	console.log(action)       	
+     vm.saveAnswer=function(action){     	
+       	console.log(action); 
+       	console.log(userResponse);
        	var questiongroups = userResponse.reduce(function(groups, question){
           	var group = groups[question.questiongroup] || [];
           	  group.push({
