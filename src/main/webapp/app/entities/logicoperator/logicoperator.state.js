@@ -9,17 +9,17 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('questionnaire', {
+        .state('logicoperator', {
             parent: 'entity',
-            url: '/questionnaire?page&sort&search',
+            url: '/logicoperator?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.questionnaire.home.title'
+                pageTitle: 'adapGatewayApp.logicoperator.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/questionnaire/questionnaires.html',
-                    controller: 'QuestionnaireController',
+                    templateUrl: 'app/entities/logicoperator/logicoperators.html',
+                    controller: 'LogicoperatorController',
                     controllerAs: 'vm'
                 }
             },
@@ -45,136 +45,108 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('questionnaire');
+                    $translatePartialLoader.addPart('logicoperator');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('questionnaire-detail', {
+        .state('logicoperator-detail', {
             parent: 'entity',
-            url: '/questionnaire/{id}',
+            url: '/logicoperator/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.questionnaire.detail.title'
+                pageTitle: 'adapGatewayApp.logicoperator.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/questionnaire/questionnaire-detail.html',
-                    controller: 'QuestionnaireDetailController',
+                    templateUrl: 'app/entities/logicoperator/logicoperator-detail.html',
+                    controller: 'LogicoperatorDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('questionnaire');
+                    $translatePartialLoader.addPart('logicoperator');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Questionnaire', function($stateParams, Questionnaire) {
-                    return Questionnaire.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Logicoperator', function($stateParams, Logicoperator) {
+                    return Logicoperator.get({id : $stateParams.id}).$promise;
                 }]
             }
         })
-        .state('questionnaire-response', {
-            parent: 'entity',
-            url: '/questionnaireresponse/{id}/{rId}',
-            data: {
-                authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.questionnaire.detail.title'
-            },
-            views: {
-                'content@': {
-                    templateUrl: 'app/entities/questionnaire/questionnaire-response.html',
-                    controller: 'QuestionnaireResponseController',
-                    controllerAs: 'vm'
-                }
-            },
-            resolve: {
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('questionnaire');
-                    return $translate.refresh();
-                }],
-                entity: ['$stateParams', 'Questionnaire', function($stateParams, Questionnaire) {
-                    return Questionnaire.get({id : $stateParams.id});
-                }]
-            }
-})
-        .state('questionnaire.new', {
-            parent: 'questionnaire',
+        .state('logicoperator.new', {
+            parent: 'logicoperator',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/questionnaire/questionnaire-dialog.html',
-                    controller: 'QuestionnaireDialogController',
+                    templateUrl: 'app/entities/logicoperator/logicoperator-dialog.html',
+                    controller: 'LogicoperatorDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
-                                title: null,
-                                status: null,
-                                lastmodifiedby: null,
-                                lastmodifieddatetime: null,
-                                domain: null,
+                                operator: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('questionnaire', null, { reload: true });
+                    $state.go('logicoperator', null, { reload: true });
                 }, function() {
-                    $state.go('questionnaire');
+                    $state.go('logicoperator');
                 });
             }]
         })
-        .state('questionnaire.edit', {
-            parent: 'questionnaire',
+        .state('logicoperator.edit', {
+            parent: 'logicoperator',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/questionnaire/questionnaire-dialog.html',
-                    controller: 'QuestionnaireDialogController',
+                    templateUrl: 'app/entities/logicoperator/logicoperator-dialog.html',
+                    controller: 'LogicoperatorDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Questionnaire', function(Questionnaire) {
-                            return Questionnaire.get({id : $stateParams.id}).$promise;
+                        entity: ['Logicoperator', function(Logicoperator) {
+                            return Logicoperator.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('questionnaire', null, { reload: true });
+                    $state.go('logicoperator', null, { reload: true });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('questionnaire.delete', {
-            parent: 'questionnaire',
+        .state('logicoperator.delete', {
+            parent: 'logicoperator',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/questionnaire/questionnaire-delete-dialog.html',
-                    controller: 'QuestionnaireDeleteController',
+                    templateUrl: 'app/entities/logicoperator/logicoperator-delete-dialog.html',
+                    controller: 'LogicoperatorDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Questionnaire', function(Questionnaire) {
-                            return Questionnaire.get({id : $stateParams.id}).$promise;
+                        entity: ['Logicoperator', function(Logicoperator) {
+                            return Logicoperator.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('questionnaire', null, { reload: true });
+                    $state.go('logicoperator', null, { reload: true });
                 }, function() {
                     $state.go('^');
                 });

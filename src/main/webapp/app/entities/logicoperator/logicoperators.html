@@ -1,20 +1,20 @@
 <div>
-    <h2 translate="adapGatewayApp.questionnaire.home.title">Questionnaires</h2>
+    <h2 translate="adapGatewayApp.logicoperator.home.title">Logicoperators</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="questionnaire.new" >
+                <button class="btn btn-primary" ui-sref="logicoperator.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs"  translate="adapGatewayApp.questionnaire.home.createLabel">
-                        Create new Questionnaire
+                    <span class="hidden-xs"  translate="adapGatewayApp.logicoperator.home.createLabel">
+                        Create new Logicoperator
                     </span>
                 </button>
             </div>
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.questionnaire.home.search' | translate }}">
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.logicoperator.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -36,38 +36,38 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="title"><span translate="adapGatewayApp.questionnaire.title">Title</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="status"><span translate="adapGatewayApp.questionnaire.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifiedby"><span translate="adapGatewayApp.questionnaire.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifieddatetime"><span translate="adapGatewayApp.questionnaire.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="domain"><span translate="adapGatewayApp.questionnaire.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="operator"><span translate="adapGatewayApp.logicoperator.operator">Operator</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="firstquestion.id"><span translate="adapGatewayApp.logicoperator.firstquestion">Firstquestion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="secondquestion.id"><span translate="adapGatewayApp.logicoperator.secondquestion">Secondquestion</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="questionnaire in vm.questionnaires track by questionnaire.id">
-                    <td><a ui-sref="questionnaire-detail({id:questionnaire.id})">{{questionnaire.id}}</a></td>
-                    <td>{{questionnaire.title}}</td>
-                    <td>{{questionnaire.status}}</td>
-                    <td>{{questionnaire.lastmodifiedby}}</td>
-                    <td>{{questionnaire.lastmodifieddatetime | date:'medium'}}</td>
-                    <td>{{questionnaire.domain}}</td>
+                <tr ng-repeat="logicoperator in vm.logicoperators track by logicoperator.id">
+                    <td><a ui-sref="logicoperator-detail({id:logicoperator.id})">{{logicoperator.id}}</a></td>
+                    <td>{{logicoperator.operator}}</td>
+                    <td>
+                        <a ui-sref="question-detail({id:logicoperator.firstquestion.id})">{{logicoperator.firstquestion.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="question-detail({id:logicoperator.secondquestion.id})">{{logicoperator.secondquestion.id}}</a>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="questionnaire-detail({id:questionnaire.id})"
+                                    ui-sref="logicoperator-detail({id:logicoperator.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="questionnaire.edit({id:questionnaire.id})"
+                                    ui-sref="logicoperator.edit({id:logicoperator.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="questionnaire.delete({id:questionnaire.id})"
+                                    ui-sref="logicoperator.delete({id:logicoperator.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>

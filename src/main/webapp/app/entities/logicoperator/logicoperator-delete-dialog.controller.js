@@ -3,14 +3,14 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('QuestionnaireDeleteController',QuestionnaireDeleteController);
+        .controller('LogicoperatorDeleteController',LogicoperatorDeleteController);
 
-    QuestionnaireDeleteController.$inject = ['$uibModalInstance', 'entity', 'Questionnaire'];
+    LogicoperatorDeleteController.$inject = ['$uibModalInstance', 'entity', 'Logicoperator'];
 
-    function QuestionnaireDeleteController($uibModalInstance, entity, Questionnaire) {
+    function LogicoperatorDeleteController($uibModalInstance, entity, Logicoperator) {
         var vm = this;
 
-        vm.questionnaire = entity;
+        vm.logicoperator = entity;
         vm.clear = clear;
         vm.confirmDelete = confirmDelete;
         
@@ -19,7 +19,7 @@
         }
 
         function confirmDelete (id) {
-            Questionnaire.delete({id: id},
+            Logicoperator.delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

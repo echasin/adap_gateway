@@ -3,11 +3,11 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('QuestionnaireController', QuestionnaireController);
+        .controller('LogicoperatorController', LogicoperatorController);
 
-    QuestionnaireController.$inject = ['$scope', '$state', 'Questionnaire', 'QuestionnaireSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    LogicoperatorController.$inject = ['$scope', '$state', 'Logicoperator', 'LogicoperatorSearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function QuestionnaireController ($scope, $state, Questionnaire, QuestionnaireSearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function LogicoperatorController ($scope, $state, Logicoperator, LogicoperatorSearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
         
         vm.loadPage = loadPage;
@@ -25,14 +25,14 @@
 
         function loadAll () {
             if (pagingParams.search) {
-                QuestionnaireSearch.query({
+                LogicoperatorSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Questionnaire.query({
+                Logicoperator.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
@@ -49,7 +49,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.questionnaires = data;
+                vm.logicoperators = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {
