@@ -1,0 +1,29 @@
+{
+    "adapGatewayApp": {
+        "organizationorganizationmbr" : {
+            "home": {
+                "title": "Organizationorganizationmbrs",
+                "createLabel": "Create a new Organizationorganizationmbr",
+                "createOrEditLabel": "Create or edit a Organizationorganizationmbr",
+                "search": "Search for Organizationorganizationmbr"
+            },
+            "created": "A new Organizationorganizationmbr is created with identifier {{ param }}",
+            "updated": "A Organizationorganizationmbr is updated with identifier {{ param }}",
+            "deleted": "A Organizationorganizationmbr is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Organizationorganizationmbr {{ id }}?"
+            },
+            "detail": {
+                "title": "Organizationorganizationmbr"
+            },
+            "comment": "Comment",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "organizationlhs": "Organizationlhs",
+            "organizationrhs": "Organizationrhs",
+            "category": "Category"
+        }
+    }
+}
