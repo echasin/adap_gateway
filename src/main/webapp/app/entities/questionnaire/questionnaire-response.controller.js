@@ -66,6 +66,7 @@
                 	    
                 	   vm.questiongroup=group;
                 	   getOldResponse();
+                	   getRules();
                 });
         	
         			    });  		
@@ -88,7 +89,6 @@
          			
         			 for(var j=0;j<response.questiongroups[i].questions.length;j++){
         				 userResponse.push({"questiongroup":response.questiongroups[i].questiongroup,"question":response.questiongroups[i].questions[j].question,"subquestion":response.questiongroups[i].questions[j].subquestion,"response":response.questiongroups[i].questions[j].response})      		  
-        				 console.log(response.questiongroups[i].questiongroup+"//"+response.questiongroups[i].questions[j].question)
         				 loadQuestionById(response.questiongroups[i].questiongroup,response.questiongroups[i].questions[j].question)
         			 }        				      
         		   } 
@@ -102,7 +102,6 @@
  	   
 
         vm.getChoiceAnswer = function(group,question,response){
-        	console.log(group)
         	function findquestion(item) { 
                 return item.question === question;
             }
@@ -185,12 +184,12 @@
                        	    	if(questionObject.output){
                        	    		loadQuestionById(group,condition.displayedquestion.id);
                        	    	}else{
-                	    			   for(var x=0;x<vm.questiongroup.length;x++){
-                                 			 if(vm.questiongroup[x].id=group){	 
-                                 					 for(var y=0;y<vm.questiongroup[x].question.length;y++){
-                                 						 if(vm.questiongroup[x].question[y].id==condition.displayedquestion.id){
-                                 							 vm.questiongroup[x].question.splice(y,1)
-                                    		 }}}}}
+                       	    		var groupIndex = vm.questiongroup.findIndex(x => x.id==group)
+                       	    		var questionIndex = vm.questiongroup[groupIndex].question.findIndex(x => x.id==condition.displayedquestion.id)
+                               		if(groupIndex != -1 && questionIndex != -1){
+                       	    		vm.questiongroup[groupIndex].question.splice(questionIndex,1)
+                               		 }	   
+                       	    	}
                   	    	  }
                   	      });
            	    	 
@@ -199,12 +198,10 @@
            	    	if(questionObject.output){
            	    		loadQuestionById(group,condition.displayedquestion.id);
            	    	}else{
-    	    			   for(var x=0;x<vm.questiongroup.length;x++){
-                     			 if(vm.questiongroup[x].id=group){	 
-                     					 for(var y=0;y<vm.questiongroup[x].question.length;y++){
-                     						 if(vm.questiongroup[x].question[y].id==condition.displayedquestion.id){
-                     							 vm.questiongroup[x].question.splice(y,1)
-                        		 }}}}}
+           	    		var groupIndex = vm.questiongroup.findIndex(x => x.id==group)
+           	    		var questionIndex = vm.questiongroup[index].question.findIndex(x => x.id==condition.displayedquestion.id)
+                   		 vm.questiongroup[x].question.splice(questionIndex,1)   
+           	    	}
            	      }
            	      }, function(error) {
            	      });
@@ -395,8 +392,8 @@
            		function findquestion(item) { 
    	                return item.id === questionId;
    	            }
-           		console.log(vm.questiongroup)
-           		var index = vm.questiongroup.findIndex(x => x.id==groupId)
+           		
+           		var index = vm.questiongroup.findIndex(x => x.id==question.questiongroup.id)
            		if(vm.questiongroup[index].question.find(findquestion)!=null){
            			
            		}else{
@@ -418,6 +415,7 @@
      
      function logicExcute(logicoperator,group,condition){
     	 var logicData=[];
+    	 console.log(rules)
     	 for(var log=0;log<logicoperator.length;log++){
     		 logicData.push({"logicoperator":logicoperator[log].id,"output":false,"checked":false})	
 	    		 if(logicoperator[log].operator=="AND"){
@@ -445,11 +443,7 @@
 	    	    			        this.output = true;
 	    	    				 }
 	    	    				});		
-	  	    			}else{
-	  	    				
-	  	    			}
-	    				}
-	    				}
+	  	    			}else{}}}
 	    			if(logicoperator[log].firstsubquestion !=null && logicoperator[log].secondsubquestion != null){
 	    				var firstSubquestion = findByKey(rules, 'subquestion', logicoperator[log].firstsubquestion.id);
 		    			var secondSubquestion = findByKey(rules, 'subquestion', logicoperator[log].secondsubquestion.id);
@@ -459,100 +453,93 @@
 	    	    			        this.output = true;
 	    	    				 }
 	    	    				});		
-		  	    		}else{
-		  	    			
-		  	    		}
-		    			}
+		  	    		}else{}}
+	    			checklogic(logicData,group,condition)
 	    		 }
-    		 
-    		 
 	    		       else if(logicoperator[log].operator=="OR"){
 		    			if(logicoperator[log].firstquestion != null && logicoperator[log].secondquestion != null){
 		    				var firstQuestion = findByKey(rules, 'question', logicoperator[log].firstquestion.id);
-			    			var secondQuestion = findByKey(rules, 'question', logicoperator[log].secondquestion.id);
-			    			
+			    			var secondQuestion = findByKey(rules, 'question', logicoperator[log].secondquestion.id);			    			
 			    			if(firstQuestion != null && secondQuestion != null){
+			    				$.each(logicData, function() {
+		    	    				if (this.logicoperator == logicoperator[log].id) {
+		    	    					this.checked = true;
+		    	    				 }
+		    	    			});
 			    				if(firstQuestion.output || secondQuestion.output){	
 			    				  var object = findByKey(logicData, 'logicoperator', logicoperator[log].id);
 			    				   $.each(logicData, function() {
 			    	    				if (this.logicoperator == logicoperator[log].id) {
 			    	    			        this.output = true;
 			    	    				 }
-			    	    				});
-				    			}else{
-				    				
-				    			}
-			    				}
-			    			}
+			    	    				});}else{}}}
 		    			if(logicoperator[log].firstquestion != null && logicoperator[log].secondsubquestion != null){
 		    				var firstQuestion = findByKey(rules, 'question', logicoperator[log].firstquestion.id);
 		    				var secondSubquestion = findByKey(rules, 'subquestion', logicoperator[log].secondsubquestion.id);
 		    				
 		    				if(firstQuestion != null && secondSubquestion != null){
+		    					$.each(logicData, function() {
+		    	    				if (this.logicoperator == logicoperator[log].id) {
+		    	    					this.checked = true;
+		    	    				 }
+		    	    			});
 		    					if(firstQuestion.output || secondSubquestion.output){		    					  
-		    				      var object = findByKey(logicData, 'logicoperator', logicoperator[log].id);
 		    				      $.each(logicData, function() {
 			    	    				if (this.logicoperator == logicoperator[log].id) {
 			    	    					this.output = true;
 			    	    				 }
-			    	    		  });	    					 
-		  	    			}else{
-		  	    				
-		  	    			}
-		    					}
-		    				}
-		    			
+			    	    		  });}else{}}}
 		    			if(logicoperator[log].firstsubquestion != null && logicoperator[log].secondsubquestion != null){
 		    				var firstSubquestion = findByKey(rules, 'subquestion', logicoperator[log].firstsubquestion.id);
 			    			var secondSubquestion = findByKey(rules, 'subquestion', logicoperator[log].secondsubquestion.id);
 			    			if(firstSubquestion != null && secondSubquestion !=null){
-			    			if(firstSubquestion.output || secondSubquestion.output){	
-			    				var object = findByKey(logicData, 'logicoperator', logicoperator[log].id);
+			    				$.each(logicData, function() {
+		    	    				if (this.logicoperator == logicoperator[log].id) {
+		    	    					this.checked = true;
+		    	    				 }
+		    	    			});
+			    				if(firstSubquestion.output || secondSubquestion.output){	
 			    				$.each(logicData, function() {
 		    	    				if (this.logicoperator == logicoperator[log].id) {
 		    	    					this.output = true;
 		    	    				 }
 		    	    			});
-			    				
- 			  	    			 }else{	
-			  	    			}
-			    			}
-			    			}
-		    			}
-    		 checklogic(logicData,group,condition)
+ 			  	    			 }else{}}}
+		    			
+		    			
+	    		       }	
     	 }   
+    	 checkLogic(logicData,group,condition)
       }
      
-     function checkLogic(logicData,group,condition){
-    	 console.log(logicData);
-    	 
-    	 var isTrue = logicData.every(function (e) {
+     function checkLogic(logicData,group,condition){    	 
+    	 var isCheckedTrue = logicData.every(function (e) {
              return e.checked === true;
          });
     	 
-    	 if(isTrue){
-    		 logicData.some(function (a) {
-    	    		 if(a.output==true){
-    	    			 loadQuestionById(group,condition.displayedquestion.id);
-    	    		 }else{
-    	    			 for(var x=0;x<vm.questiongroup.length;x++){
-    	       				 if(vm.questiongroup[x].id=group){	 
-    	       						 for(var y=0;y<vm.questiongroup[x].question.length;y++){
-    	       							 if(vm.questiongroup[x].question[y].id==condition.displayedquestion.id){
-    	       								 vm.questiongroup[x].question.splice(y,1)
-    	       				 }
-    	       							 
-    	   				 }
-    	       			 }
-    	       		}
-    	    		 }    		 
-    	    	 }); 
-            }      
+    	 if(isCheckedTrue){
+    		     		     	    	
+          var isOutputTrue = logicData.some(function (a) {
+        	  return a.output === true;
+          }); 
+          
+          if(isOutputTrue){
+ 			  loadQuestionById(group,condition.displayedquestion.id);
+          }else{
+			 Question.get({id:condition.displayedquestion.id}).$promise.then(function(question){
+    			 var groupIndex = vm.questiongroup.findIndex(x => x.id == question.questiongroup.id)
+        		 var questionIndex = vm.questiongroup[groupIndex].question.findIndex(x => x.id==condition.displayedquestion.id)
+            		
+        		   if(groupIndex != -1 && questionIndex != -1){
+    	    		vm.questiongroup[groupIndex].question.splice(questionIndex,1)
+            		}
+    		 });
+		   } 
+          }      
      }
      
      
      function checklogic(logicData,group,condition){
-    	 console.log(logicData)
     	 var isTrue = logicData.every(function (e) {
              return e.output === true;
          });
@@ -560,16 +547,99 @@
     	 if(isTrue){
     		 loadQuestionById(group,condition.displayedquestion.id);
     	 }else{
-    		 for(var x=0;x<vm.questiongroup.length;x++){
-   				 if(vm.questiongroup[x].id=group){	 
-   						 for(var y=0;y<vm.questiongroup[x].question.length;y++){
-   							 if(vm.questiongroup[x].question[y].id==condition.displayedquestion.id){
-   								 vm.questiongroup[x].question.splice(y,1)
-   				 }
-   							 }
-   						 }
-   				 }
+    		 
+    		 
+    		 Question.get({id:condition.displayedquestion.id}).$promise.then(function(question){
+    			 var groupIndex = vm.questiongroup.findIndex(x => x.id == question.questiongroup.id)
+        		 var questionIndex = vm.questiongroup[groupIndex].question.findIndex(x => x.id==condition.displayedquestion.id)
+            		
+        		   if(groupIndex != -1 && questionIndex != -1){
+    	    		vm.questiongroup[groupIndex].question.splice(questionIndex,1)
+            		}
+    		 });
+    		 
+    		 
     	 }
-     }     
+     }
+     
+
+     
+     function getRules(){
+    	 Response.get({id:$stateParams.rId}).$promise.then(function(response){ 		 
+     		var response=JSON.parse(response.details);
+     	    if(response!=null){
+     		for(var i=0;i<response.questiongroups.length;i++){	
+     			(function(responseItem) {
+    			    setTimeout(function() {
+    			 for(var j=0;j<response.questiongroups[responseItem].questions.length;j++){
+    				 (function(questionItem) {
+    	    			    setTimeout(function() {
+    	    			    	function findquestion(item) { 
+    	    		                 return item.question === response.questiongroups[responseItem].questions[questionItem].question;
+    	    		             }
+    				 Conditions.conditionByQuestion({id:response.questiongroups[responseItem].questions[questionItem].question})
+    		      	   .$promise.then(
+    		      	      function(condition){
+    		      	    	if(condition.operator == '>') {
+    		      	    		console.log(response.questiongroups[responseItem].questions[questionItem].response)
+    		   	             if(response.questiongroups[responseItem].questions[questionItem].response > condition.response){	
+    		   	            	if(rules.find(findquestion)!=null){
+
+		   	   	            	}else{
+	    		   	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":true}) 
+		   	   	            	}    		   	            
+    		   	              }else{  		   	            	
+    		   	             }
+    		   	            }else if(condition.operator == '=') {
+    		   	            	if(response.questiongroups[responseItem].questions[questionItem].response  == condition.response){
+    		   	   	            	if(rules.find(findquestion)!=null){
+
+    		   	   	            	}else{
+    	    		   	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":true}) 
+    		   	   	            	}
+    		   	   	             }else{
+    		   	   	            	if(rules.find(findquestion)!=null){
+    		   	     	          	}else{
+    	    		   	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":false}) 
+    		   	     	           }
+    		   	   	            	
+    		   	   	             }
+    		   	            }
+    		      	    	
+    		      	      });
+    				 if(response.questiongroups[responseItem].questions[questionItem].subquestion!=null){
+    				 Conditions.conditionBySubquestion({id:response.questiongroups[responseItem].questions[questionItem].subquestion})
+    	        	   .$promise.then(
+    	        	      function(condition){
+    	        	    	  function findsubquestion(item) { 
+    	                          return item.subquestion === response.questiongroups[responseItem].questions[questionItem].subquestion;
+    	                      }
+    	        	    	if(condition.operator == '=') {
+    	     	             if(response.questiongroups[responseItem].questions[questionItem].response  == condition.response){
+    	     	            	if(rules.find(findsubquestion)!=null){
+
+    	     	            	}else{
+    	     	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"subquestion":response.questiongroups[responseItem].questions[questionItem].subquestion,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":true}) 
+    	     	            	}
+    	     	             }
+    	     	            }
+    	        	    	console.log(rules)
+    	        	      });
+    				 }
+    	    			    });
+    	     			})(j);
+    			 } 
+    			    });   			    
+     			})(i);
+    		   
+     		}
+     	    }
+     	   
+     	  });
+    }
+     
+     
+     
+     
     }
 })();
