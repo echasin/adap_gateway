@@ -411,8 +411,6 @@
    	    return null;
    	}
      
-     
-     
      function logicExcute(logicoperator,group,condition){
     	 var logicData=[];
     	 console.log(rules)
