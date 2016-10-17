@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.asset.detail.title">Asset</span> {{vm.asset.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.asset.name">Name</span></dt>
+        <dd>
+            <span>{{vm.asset.name}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.asset.status">Status</span></dt>
+        <dd>
+            <span>{{vm.asset.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.asset.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.asset.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.asset.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.asset.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.asset.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.asset.domain}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.asset.category">Category</span></dt>
+        <dd>
+            <span ng-repeat="category in vm.asset.categories">
+                <a ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.asset.subcategory">Subcategory</span></dt>
+        <dd>
+            <span ng-repeat="subcategory in vm.asset.subcategories">
+                <a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.asset.recordtype">Recordtype</span></dt>
+        <dd>
+            <a ui-sref="recordtype-detail({id:vm.asset.recordtype.id})">{{vm.asset.recordtype.name}}</a>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.asset.securitygroup">Securitygroup</span></dt>
+        <dd>
+            <a ui-sref="securitygroup-detail({id:vm.asset.securitygroup.id})">{{vm.asset.securitygroup.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="asset-detail.edit({id:vm.asset.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
