@@ -588,24 +588,21 @@
 		   	   	            	}else{
 	    		   	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":true}) 
 		   	   	            	}    		   	            
-    		   	              }else{  		   	            	
+    		   	              }else{
+    		   	                      rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":false}) 
     		   	             }
     		   	            }else if(condition.operator == '=') {
     		   	            	if(response.questiongroups[responseItem].questions[questionItem].response  == condition.response){
-    		   	   	            	if(rules.find(findquestion)!=null){
-
-    		   	   	            	}else{
-    	    		   	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":true}) 
-    		   	   	            	}
-    		   	   	             }else{
-    		   	   	            	if(rules.find(findquestion)!=null){
-    		   	     	          	}else{
+    		   	            		if(rules.find(findquestion)!=null){
+    		   	     	          	
+    		   	            	    }else{
+	    		   	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":true}) 
+                                   }
+    		   	            	}else{
     	    		   	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":false}) 
     		   	     	           }
     		   	   	            	
     		   	   	             }
-    		   	            }
-    		      	    	
     		      	      });
     				 if(response.questiongroups[responseItem].questions[questionItem].subquestion!=null){
     				 Conditions.conditionBySubquestion({id:response.questiongroups[responseItem].questions[questionItem].subquestion})
@@ -621,9 +618,10 @@
     	     	            	}else{
     	     	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"subquestion":response.questiongroups[responseItem].questions[questionItem].subquestion,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":true}) 
     	     	            	}
+    	     	             }else{
+   	     	                  rules.push({"group":response.questiongroups[responseItem].questiongroup,"question":response.questiongroups[responseItem].questions[questionItem].question,"subquestion":response.questiongroups[responseItem].questions[questionItem].subquestion,"response":response.questiongroups[responseItem].questions[questionItem].response,"output":false})     	     	            	 
     	     	             }
     	     	            }
-    	        	    	console.log(rules)
     	        	      });
     				 }
     	    			    });
