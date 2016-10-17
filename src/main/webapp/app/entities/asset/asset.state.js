@@ -9,6 +9,51 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
+        
+        //CREATED ECHASIN
+        .state('assethome', {
+            parent: 'entity',
+            url: '/asset?page&sort&search',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'adapGatewayApp.asset.home.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/asset/asset-home-it.html',
+                    controller: 'AssetController',
+                    controllerAs: 'vm'
+                }
+            },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'id,asc',
+                    squash: true
+                },
+                search: null
+            },
+            resolve: {
+                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                    return {
+                        page: PaginationUtil.parsePage($stateParams.page),
+                        sort: $stateParams.sort,
+                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                        ascending: PaginationUtil.parseAscending($stateParams.sort),
+                        search: $stateParams.search
+                    };
+                }],
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('asset');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
+        })
+        //END
         .state('asset', {
             parent: 'entity',
             url: '/asset?page&sort&search',
@@ -60,7 +105,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/asset/asset-detail.html',
+                    templateUrl: 'app/entities/asset/asset-detail-it-system.html',
                     controller: 'AssetDetailController',
                     controllerAs: 'vm'
                 }
