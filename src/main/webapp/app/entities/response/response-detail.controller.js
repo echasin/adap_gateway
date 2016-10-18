@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ResponseDetailController', ResponseDetailController);
 
-    ResponseDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Response', 'Questionnaire'];
+    ResponseDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Response', 'Questionnaire','Responsedetail'];
 
-    function ResponseDetailController($scope, $rootScope, $stateParams, entity, Response, Questionnaire) {
+    function ResponseDetailController($scope, $rootScope, $stateParams, entity, Response, Questionnaire,Responsedetail) {
         var vm = this;
         vm.response = entity;
         
@@ -16,5 +16,9 @@
         });
         $scope.$on('$destroy', unsubscribe);
 
+        vm.saveResponseDetail=function(){
+        	Responsedetail.saveResponseDetail({id:$stateParams.id});
+        }
+        
     }
 })();

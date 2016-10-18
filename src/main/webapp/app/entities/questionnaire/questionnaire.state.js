@@ -71,7 +71,7 @@
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'Questionnaire', function($stateParams, Questionnaire) {
-                    return Questionnaire.get({id : $stateParams.id});
+                    return Questionnaire.get({id : $stateParams.id}).$promise;
                 }]
             }
         })
@@ -98,7 +98,7 @@
                     return Questionnaire.get({id : $stateParams.id});
                 }]
             }
-        })
+})
         .state('questionnaire.new', {
             parent: 'questionnaire',
             url: '/new',
@@ -146,7 +146,7 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Questionnaire', function(Questionnaire) {
-                            return Questionnaire.get({id : $stateParams.id});
+                            return Questionnaire.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -170,7 +170,7 @@
                     size: 'md',
                     resolve: {
                         entity: ['Questionnaire', function(Questionnaire) {
-                            return Questionnaire.get({id : $stateParams.id});
+                            return Questionnaire.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {

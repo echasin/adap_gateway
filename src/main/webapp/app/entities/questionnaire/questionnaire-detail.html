@@ -1,7 +1,8 @@
+
 <div>
-    <h2>Response {{vm.response}}</h2>
     <h2><span translate="adapGatewayApp.questionnaire.detail.title">Questionnaire</span> {{vm.questionnaire.id}}</h2>
     <hr>
+    <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span translate="adapGatewayApp.questionnaire.title">Title</span></dt>
         <dd>
@@ -15,47 +16,19 @@
         <dd>
             <span>{{vm.questionnaire.lastmodifiedby}}</span>
         </dd>
+        <dt><span translate="adapGatewayApp.questionnaire.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.questionnaire.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.questionnaire.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.questionnaire.domain}}</span>
+        </dd>
     </dl>
 
-<uib-tabset>
- 
- <uib-tab  ng-repeat="questiongroup in vm.questiongroup track by questiongroup.id" heading={{questiongroup.title}}>
-      <div ng-repeat="question in questiongroup.question">
-      <label style="color:#F87217;font-size: 15px;">Question.id: {{question.id}} *{{question.question}} </label>
-             <div ng-if="question.type=='5 Point Choice'">
-               <div choice></div>
-                 <hr>
-             </div>
-            
-            <div ng-if="question.type=='Array'">
-               <div array></div>
-               <hr>
-             </div>
-             
-            <div ng-if="question.type=='Multiple Choice with Comments'">
-               <div multiblechoice></div>
-                 <hr>
-             </div>
-             
-             <div ng-if="question.type=='Text'">
-               <div text></div>
-               <hr>
-             </div>
-    
-        </div>       
-      </uib-tab>
-  </uib-tabset>
- 
-      
-      <button type="submit"  ng-click="vm.saveAnswer('save')" class="btn btn-success pull-right">Save New Answers</button>
-      <button type="submit"  ng-click="vm.saveAnswer('update')" ng-hide="vm.showUpdate" class="btn btn-primary pull-right">Update Current Answers</button> 
-	
-    
     <button type="submit"
             onclick="window.history.back()"
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
     </button>
-    
-   
 </div>

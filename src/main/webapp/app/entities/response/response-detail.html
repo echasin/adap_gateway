@@ -1,6 +1,8 @@
 
 <div>
     <h2><span translate="adapGatewayApp.response.detail.title">Response</span> {{vm.response.id}}</h2>
+    <button type="submit" ng-click="vm.saveResponseDetail()" class="btn btn-success pull-right">Save Response Detail</button>
+    
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
@@ -29,7 +31,7 @@
             <a ui-sref="questionnaire-detail({id:vm.response.questionnaire.id})">{{vm.response.questionnaire.title}}</a>
         </dd>
     </dl>
-
+    
     <button type="submit"
             onclick="window.history.back()"
             class="btn btn-info">

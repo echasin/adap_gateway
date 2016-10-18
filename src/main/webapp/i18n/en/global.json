@@ -33,6 +33,9 @@
                 "key": "Key",
                 "organization": "Organization",
                 "organizationorganizationmbr": "Organizationorganizationmbr",
+
+                "responsedetail": "Responsedetail",
+                "logicoperator": "Logicoperator",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

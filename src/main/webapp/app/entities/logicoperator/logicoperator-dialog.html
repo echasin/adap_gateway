@@ -1,0 +1,44 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myLogicoperatorLabel" translate="adapGatewayApp.logicoperator.home.createOrEditLabel">Create or edit a Logicoperator</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.logicoperator.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.logicoperator.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.logicoperator.operator" for="field_operator">Operator</label>
+            <input type="text" class="form-control" name="operator" id="field_operator"
+                    ng-model="vm.logicoperator.operator"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="adapGatewayApp.logicoperator.firstquestion" for="field_firstquestion">Firstquestion</label>
+            <select class="form-control" id="field_firstquestion" name="firstquestion" ng-model="vm.logicoperator.firstquestion" ng-options="question as question.id for question in vm.firstquestions | orderBy:'id' track by question.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="adapGatewayApp.logicoperator.secondquestion" for="field_secondquestion">Secondquestion</label>
+            <select class="form-control" id="field_secondquestion" name="secondquestion" ng-model="vm.logicoperator.secondquestion" ng-options="question as question.id for question in vm.secondquestions | orderBy:'id' track by question.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

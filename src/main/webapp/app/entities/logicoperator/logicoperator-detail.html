@@ -1,0 +1,26 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.logicoperator.detail.title">Logicoperator</span> {{vm.logicoperator.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.logicoperator.operator">Operator</span></dt>
+        <dd>
+            <span>{{vm.logicoperator.operator}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.logicoperator.firstquestion">Firstquestion</span></dt>
+        <dd>
+            <a ui-sref="question-detail({id:vm.logicoperator.firstquestion.id})">{{vm.logicoperator.firstquestion.id}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.logicoperator.secondquestion">Secondquestion</span></dt>
+        <dd>
+            <a ui-sref="question-detail({id:vm.logicoperator.secondquestion.id})">{{vm.logicoperator.secondquestion.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
