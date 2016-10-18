@@ -20,8 +20,7 @@
             "operator": "Operator",
             "response": "Response",
             "displayedquestion": "Displayedquestion",
-            "question": "Question",
-            "questionid": "Question:ID"
+            "question": "Question"
         }
     }
 }

@@ -1,0 +1,62 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myResponsedetailLabel" translate="adapGatewayApp.responsedetail.home.createOrEditLabel">Create or edit a Responsedetail</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.responsedetail.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.responsedetail.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.responsedetail.responseId" for="field_responseId">Response Id</label>
+            <input type="number" class="form-control" name="responseId" id="field_responseId"
+                    ng-model="vm.responsedetail.responseId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.responsedetail.questionnaireId" for="field_questionnaireId">Questionnaire Id</label>
+            <input type="number" class="form-control" name="questionnaireId" id="field_questionnaireId"
+                    ng-model="vm.responsedetail.questionnaireId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.responsedetail.questiongroupId" for="field_questiongroupId">Questiongroup Id</label>
+            <input type="number" class="form-control" name="questiongroupId" id="field_questiongroupId"
+                    ng-model="vm.responsedetail.questiongroupId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.responsedetail.questionId" for="field_questionId">Question Id</label>
+            <input type="number" class="form-control" name="questionId" id="field_questionId"
+                    ng-model="vm.responsedetail.questionId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.responsedetail.subquestionId" for="field_subquestionId">Subquestion Id</label>
+            <input type="number" class="form-control" name="subquestionId" id="field_subquestionId"
+                    ng-model="vm.responsedetail.subquestionId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.responsedetail.response" for="field_response">Response</label>
+            <input type="text" class="form-control" name="response" id="field_response"
+                    ng-model="vm.responsedetail.response"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

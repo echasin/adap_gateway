@@ -1,0 +1,27 @@
+{
+    "adapGatewayApp": {
+        "responsedetail" : {
+            "home": {
+                "title": "Responsedetails",
+                "createLabel": "Create a new Responsedetail",
+                "createOrEditLabel": "Create or edit a Responsedetail",
+                "search": "Search for Responsedetail"
+            },
+            "created": "A new Responsedetail is created with identifier {{ param }}",
+            "updated": "A Responsedetail is updated with identifier {{ param }}",
+            "deleted": "A Responsedetail is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Responsedetail {{ id }}?"
+            },
+            "detail": {
+                "title": "Responsedetail"
+            },
+            "responseId": "Response Id",
+            "questionnaireId": "Questionnaire Id",
+            "questiongroupId": "Questiongroup Id",
+            "questionId": "Question Id",
+            "subquestionId": "Subquestion Id",
+            "response": "Response"
+        }
+    }
+}

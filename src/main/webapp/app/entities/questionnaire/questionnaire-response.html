@@ -19,7 +19,7 @@
 
 <uib-tabset>
  
- <uib-tab  ng-repeat="questiongroup in vm.questiongroup track by questiongroup.id" heading={{questiongroup.title}}>
+ <uib-tab  ng-repeat="questiongroup in vm.questiongroup" heading={{questiongroup.title}}>
       <div ng-repeat="question in questiongroup.question">
       <label style="color:#F87217;font-size: 15px;">Question.id: {{question.id}} *{{question.question}} </label>
              <div ng-if="question.type=='5 Point Choice'">
