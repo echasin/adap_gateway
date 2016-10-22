@@ -5,7 +5,7 @@
 			<li><a href="index.html">Home</a></li>
 			<li><a>IT Asset Home</a></li>
 			<li><a>Details</a></li>
-			<li class="active"><strong>Asset Name (Editable)</strong></li>
+			<li class="active"><strong>Asset Name Goes Here</strong></li>
 		</ol>
 	</div>
 	<div class="col-lg-2"></div>
@@ -69,81 +69,87 @@
 								</ul>
 								<div class="tab-content">
 									<div id="tab-1" class="tab-pane active" ng-show="tab == 1">
-										</div>
+									</div>
 									<div id="tab-2" class="tab-pane active" ng-show="tab == 2">
 										TAB2</div>
 									<div id="tab-3" class="tab-pane active" ng-show="tab == 3">
 										TAB3</div>
 									<div id="tab-4" class="tab-pane active" ng-show="tab == 4">
-										<button class="btn btn-primary" ui-sref="assetresponse" >
-                                             <span class="glyphicon glyphicon-plus"></span>
-                                            <span class="hidden-xs">
-                                                  Create new Response
-                                            </span>
-                                        </button>
-										
-										
-										
-										 <div class="table-responsive">
-                                          <table class="jh-table table table-striped">
-                                            <thead>
-                                             <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                                             <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                             <th jh-sort-by="details"><span translate="adapGatewayApp.response.details">Details</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                             <th jh-sort-by="status"><span translate="adapGatewayApp.response.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                             <th jh-sort-by="lastmodifiedby"><span translate="adapGatewayApp.response.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                             <th jh-sort-by="lastmodifieddatetime"><span translate="adapGatewayApp.response.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                             <th jh-sort-by="domain">User<span class="glyphicon glyphicon-sort"></span></th>
-                                             <th jh-sort-by="questionnaire.id"><span translate="adapGatewayApp.response.questionnaireid">Questionnaireid</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                             <th jh-sort-by="questionnaire.title"><span translate="adapGatewayApp.response.questionnaire">Questionnaire</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                             <th></th>
-                                            </tr>
-                                           </thead>
-                                           <tbody>
-                                             <tr ng-repeat="response in vm.responses track by response.id">
-                                             <td><a ui-sref="response-detail({id:response.id})">{{response.id}}</a></td>
-                                             <td>{{response.details}}</td>
-                                             <td>{{response.status}}</td>
-                                             <td>{{response.lastmodifiedby}}</td>
-                                             <td>{{response.lastmodifieddatetime | date:'medium'}}</td>
-                                             <td>{{response.username}}</td>
-                                             <td>
-                                                   <a ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})">{{response.questionnaire.id}}</a>
-                                             </td>
-                                             <td>
-                                                 <a ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})">{{response.questionnaire.title}}</a>
-                                             </td>
-                                             <td class="text-right">
-                                             <div class="btn-group flex-btn-group-container">
-                                              <button type="submit"
-                                               ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})"
-                                                 class="btn btn-info btn-sm">
-                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
-                                              </button>
-                                              <button type="submit"
-                                                    ui-sref="response.edit({id:response.id})"
-                                                 class="btn btn-primary btn-sm">
-                                                 <span class="glyphicon glyphicon-pencil"></span>
-                                                 <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
-                                               </button>
-                                               <button type="submit"
-                                                  ui-sref="response.delete({id:response.id})"
-                                                  class="btn btn-danger btn-sm">
-                                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
-                                               </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-										
-										
-										
-										
+										<br>
+										<button class="btn btn-primary" ui-sref="assetresponse">
+											<span class="glyphicon glyphicon-plus"></span> <span
+												class="hidden-xs"> Create new Response </span>
+										</button>
+
+
+
+										<div class="table-responsive">
+											<table class="jh-table table table-striped">
+												<thead>
+													<tr jh-sort="vm.predicate" ascending="vm.reverse"
+														callback="vm.transition()">
+														<th jh-sort-by="id"><span translate="global.field.id">ID</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="questionnaire.title"><span
+															translate="adapGatewayApp.response.questionnaire">Questionnaire</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="lastmodifiedby"><span
+															translate="adapGatewayApp.response.lastmodifiedby">Lastmodifiedby</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="lastmodifieddatetime"><span
+															translate="adapGatewayApp.response.lastmodifieddatetime">Lastmodifieddatetime</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<!-- Responses are returned by Asset.id using Responsembr  -->
+													<tr
+														ng-repeat="response in vm.responses track by response.id">
+														<td><a ui-sref="response-detail({id:response.id})">{{response.id}}</a></td>
+														<td><a
+															ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})">{{response.questionnaire.title}}</a>
+														</td>
+														<td>{{response.lastmodifiedby}}</td>
+														<td>{{response.lastmodifieddatetime | date:'medium'}}</td>
+														<td class="text-right">
+
+															<div class="btn-group flex-btn-group-container">
+																<button type="submit"
+																	ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})"
+																	class="btn btn-info btn-sm">
+																	<span class="glyphicon glyphicon-eye-open"></span> <span
+																		class="hidden-xs hidden-sm"
+																		translate="entity.action.view"></span>
+																</button>
+																<button type="submit"
+																	ui-sref="response.edit({id:response.id})"
+																	class="btn btn-primary btn-sm">
+																	<span class="glyphicon glyphicon-pencil"></span> <span
+																		class="hidden-xs hidden-sm"
+																		translate="entity.action.edit"></span>
+																</button>
+																<button type="submit"
+																	ui-sref="response.delete({id:response.id})"
+																	class="btn btn-danger btn-sm">
+																	<span class="glyphicon glyphicon-remove-circle"></span>
+																	<span class="hidden-xs hidden-sm"
+																		translate="entity.action.delete"></span>
+																</button>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="text-center">
+												<jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+												<uib-pagination class="pagination-sm"
+													total-items="vm.totalItems" ng-model="vm.page"
+													ng-change="vm.transition()"></uib-pagination>
+											</div>
 										</div>
+									</div>
 								</div>
 							</div>
 						</div>
