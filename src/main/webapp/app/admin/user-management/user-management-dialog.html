@@ -34,26 +34,29 @@
         </div>
         
         <div class="form-group">
-            <label class="control-label" translate="userManagement.domain">Login</label>
+            <label class="control-label" translate="userManagement.domain">Domain</label>
             <input type="text" class="form-control" name="domain"
                    ng-model="vm.user.domain" ng-required="vm.user.id == null" ng-minlength=4 ng-maxlength=25 ng-pattern="/^[_'.@A-Za-z0-9-]*$/">
 
             <div ng-show="editForm.domain.$invalid">
                 <p class="help-block"
-                   ng-show="editForm.domain.$error.required" translate="entity.validation.required">
+                   ng-show="editForm.domain$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
-
                 <p class="help-block"
                    ng-show="editForm.domain.$error.maxlength" translate="entity.validation.maxlength"
                    translate-value-max="25">
                     This field cannot be longer than 25 characters.
                 </p>
+                <p class="help-block"
+                   ng-show="editForm.domain.$error.minlength" translate="entity.validation.minlength"
+                   translate-value-min="4">
+                    This field cannot be less than 4 characters.
+                </p>
             </div>
         </div>
         
-        
-        
+
         <div class="form-group">
             <label class="control-label" translate="userManagement.firstName">First Name</label>
             <input type="text" class="form-control" name="firstName"
