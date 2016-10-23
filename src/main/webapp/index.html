@@ -45,11 +45,12 @@
     <![endif]-->
 	<!-- COMMENTED OUT ECHASIN -->
 	<!-- <page-ribbon></page-ribbon> -->
-	<div ui-view="navbar" ng-cloak></div>
+	<div ui-view="navbar" ></div>
 
 	<!-- MODIFIED ECHASIN -->
 	<!-- Wrapper-->
 	<div id="wrapper">
+
 		<!--INSPINIA:Navigation Left Menu-->
 		<div ng-include="'app/common/navigation.html'"></div>
 		<div id="page-wrapper" class="gray-bg {{$state.current.name}}">
@@ -64,6 +65,7 @@
 			<!-- Footer -->
 			<div ng-include="'app/common/footer.html'"></div>
 		</div>
+		<div ui-view="navbar"></div>
 	</div>
 
 	<!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.

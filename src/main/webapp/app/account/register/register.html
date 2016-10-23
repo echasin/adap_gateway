@@ -49,6 +49,29 @@
                     </p>
                     </div>
                 </div>
+                 <div class="form-group">
+                    <label class="control-label" for="domain" translate="global.form.domain">domain</label>
+                    <input type="text" class="form-control" id="domain" name="domain" placeholder="{{'global.form.domain.placeholder' | translate}}"
+                           ng-model="vm.registerAccount.domain" ng-minlength=1 ng-maxlength=25 ng-pattern="/^[_'.@A-Za-z0-9-]*$/" required>
+                    <div ng-show="form.domain.$dirty && form.domain.$invalid">
+                        <p class="help-block"
+                               ng-show="form.domain.$error.required" translate="register.messages.validate.domain.required">
+                            Domain is required.
+                        </p>
+                        <p class="help-block"
+                               ng-show="form.domain.$error.minlength" translate="register.messages.validate.domain.minlength">
+                            Domain is required to be at least 4 characters.
+                        </p>
+                        <p class="help-block"
+                               ng-show="form.domain.$error.maxlength" translate="register.messages.validate.domain.maxlength">
+                            Domain cannot be longer than 25 characters.
+                        </p>
+                        <p class="help-block"
+                               ng-show="form.domain.$error.pattern" translate="register.messages.validate.domain.pattern">
+                            Domain can only contain lower-case letters and digits.
+                    </p>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="control-label" for="email" translate="global.form.email">E-mail</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
