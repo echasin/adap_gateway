@@ -105,7 +105,8 @@
             }
         },
         "field": {
-            "id": "ID"
+            "id": "ID",
+            "asset_id": "AssetID"
         },
         "ribbon": {
             "dev":"Development"

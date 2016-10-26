@@ -36,6 +36,7 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="asset_id"><span translate="global.field.asset_id">Asset ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span translate="adapGatewayApp.alert.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="description"><span translate="adapGatewayApp.alert.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="category"><span translate="adapGatewayApp.alert.category">Category</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -54,6 +55,7 @@
             <tbody>
                 <tr ng-repeat="alert in vm.alerts track by alert.id">
                     <td><a ui-sref="alert-detail({id:alert.id})">{{alert.id}}</a></td>
+                    <td>{{alert.asset_id}}</td>
                     <td>{{alert.name}}</td>
                     <td>{{alert.description}}</td>
                     <td>{{alert.category}}</td>
