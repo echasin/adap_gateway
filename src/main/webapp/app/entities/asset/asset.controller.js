@@ -90,5 +90,11 @@
             vm.currentSearch = null;
             vm.transition();
         }
+        
+        vm.showDetails=function(id){
+            Asset.get({id:id}).$promise.then(function(result){
+            	vm.asset=result;
+            });
+        }
     }
 })();

@@ -20,6 +20,8 @@
 					<h2>Assets</h2>
 					<p>Information Technology Assests include Systems, Hosts,
 						Networks, Software</p>
+			             
+						
 					<div class="input-group">
 						<input type="text" placeholder="Search Asset "
 							class="input form-control"> <span class="input-group-btn">
@@ -86,9 +88,8 @@
 											<tbody>
 												<tr ng-repeat="asset in vm.assets track by asset.id">
 													<td><a ui-sref="asset-detail({id:asset.id})">{{asset.id}}</a></td>
-													<td>{{asset.name}}</td>
-													<td>{{asset.category}}</td>
-													<td>{{asset.subcategory}}</td>
+				  								    <td><a ng-click="vm.showDetails(asset.id)">{{asset.name}}</a></td>
+													<td> </td>
 													<td>{{asset.status}}</td>
 													<td>{{asset.lastmodifiedby}}</td>
 													<!-- <td>{{asset.lastmodifieddatetime | date:'medium'}}</td>-->
@@ -455,12 +456,11 @@
 
 				<div class="ibox-content">
 					<div class="tab-content">
-						<div id="contact-1" class="tab-pane active" ng-show="client == 1"
-							ng-init="client = 1">
+						<div id="contact-1" class="tab-pane active">
 							<div class="row m-b-lg">
 								<div class="col-lg-4 text-center">
-									<h2>Asset Name Here</h2>
-
+									<h2>{{vm.asset.name}}</h2>
+									
 									<!-- <div class="m-b-sm">
 										<img alt="image" class="img-circle" src="img/a2.jpg"
 											style="width: 62px">
@@ -470,9 +470,7 @@
 								<div class="col-lg-8">
 									<strong> About me </strong>
 
-									<p>Assest Description Goes Here - Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua.</p>
+									<p>description of {{vm.asset.name}}</p>
 									<button type="button" class="btn btn-primary btn-sm btn-block">
 										<i class="fa fa-check-square-o"></i> Create Task
 									</button>
@@ -581,7 +579,7 @@
 									<h2>Edan Randall</h2>
 
 									<div class="m-b-sm">
-										<img alt="image" class="img-circle" src="img/a3.jpg"
+										<img alt="image" class="img-circle" src="content/images/a3.jpg"
 											style="width: 62px">
 									</div>
 								</div>
@@ -685,7 +683,7 @@
 									<h2>Jasper Carson</h2>
 
 									<div class="m-b-sm">
-										<img alt="image" class="img-circle" src="img/a4.jpg"
+										<img alt="image" class="img-circle" src="content/images/a4.jpg"
 											style="width: 62px">
 									</div>
 								</div>
@@ -800,7 +798,7 @@
 									<h2>Reuben Pacheco</h2>
 
 									<div class="m-b-sm">
-										<img alt="image" class="img-circle" src="img/a5.jpg"
+										<img alt="image" class="img-circle" src="content/images/a5.jpg"
 											style="width: 62px">
 									</div>
 								</div>

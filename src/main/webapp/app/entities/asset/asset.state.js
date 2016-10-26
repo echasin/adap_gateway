@@ -233,7 +233,38 @@
                     $state.go('^');
                 });
             }]
+        })
+        .state('assetresponse', {
+            parent: 'asset',
+            url: '/newresponse',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal,$scope) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/asset/response-dialog.html',
+                    controller: 'ResponseAssetDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                details: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $state.go('asset', null, { reload: true });
+                }, function() {
+                    $state.go('asset');
+                });
+            }]
         });
     }
-
 })();
