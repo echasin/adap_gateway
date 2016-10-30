@@ -18,8 +18,9 @@
             'ngSanitize',
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar',
-            // Add INSPINOA modules here
-            //'metisMenu'
+            // Add INSPINIA modules here
+            'oc.lazyLoad',
+            'ngIdle'  
         ])
         .run(run);
 
