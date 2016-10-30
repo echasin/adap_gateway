@@ -45,7 +45,8 @@
     <![endif]-->
 	<!-- COMMENTED OUT ECHASIN -->
 	<!-- <page-ribbon></page-ribbon> -->
-	<div ui-view="navbar" ></div>
+	<!-- COMMENTED OUT ECHASIN -->
+	<!-- <div ui-view="navbar" ></div> -->
 
 	<!-- MODIFIED ECHASIN -->
 	<!-- Wrapper-->
@@ -103,12 +104,29 @@
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="bower_components/ng-idle/angular-idle.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
+    <script src="app/app.state.js"></script>
+    <script src="app/app.state-inspinia.js"></script>
+    <script src="app/app.constants.js"></script>
+    <script src="app/app.controllers.js"></script>
+    <script src="app/app.directives.js"></script>
+    <script src="app/app.translations.js"></script>
+   
+    
+    <!-- MetsiMenu -->
+	<script src="app/plugins/metisMenu/jquery.metisMenu.js"></script>
+    
+    <!-- SlimScroll -->
+    <script src="app/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    
+    
     <script src="app/services/user/user.service.js"></script>
     <script src="app/services/profiles/profile.service.js"></script>
     <script src="app/services/profiles/page-ribbon.directive.js"></script>
@@ -331,9 +349,7 @@
     <script src="app/blocks/config/localstorage.config.js"></script>
     <script src="app/blocks/config/http.config.js"></script>
     <script src="app/blocks/config/compile.config.js"></script>
-    <script src="app/blocks/config/alert.config.js"></script>
-    <script src="app/app.state.js"></script>
-    <script src="app/app.constants.js"></script>
+    <script src="app/blocks/config/alert.config.js"></script>  
     <script src="app/admin/user-management/user-management-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management-detail.controller.js"></script>
     <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
@@ -378,6 +394,9 @@
     <script src="app/account/activate/activate.state.js"></script>
     <script src="app/account/activate/activate.controller.js"></script>
     <script src="app/account/account.state.js"></script>
+    
+
+    
     <!-- endinject -->
     <!-- endbuild -->
 
