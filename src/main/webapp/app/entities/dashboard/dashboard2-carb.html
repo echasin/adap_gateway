@@ -30,16 +30,16 @@
 	<div ng-app="myApp" ng-controller="DashboardControllerCarb">
 		<input type="text" ng-model="metric.name">
 	</div>
-	METRIC
+	METRIC - I WANT TO REPLACE VALUE FOR H5 WITH metric.name from $Scope
 	<br>
 	
-	<div class="col-lg-3">
+	<div class="col-lg-12">
 		<div class="ibox float-e-margins">
 			<div class="ibox-title" >
 				<span class="label label-success pull-right">Monthly</span>
-				<p class="form-control-static" ng-model="metric.name">
+				<h5>{{ metric[0].name }}</h5>
 				
-				<h5><input type="text" ng-model="metric.name"></h5>
+				
 			</div>
 			<div class="ibox-content">
 				<h1 class="no-margins">40 886,200</h1>
@@ -50,5 +50,27 @@
 			</div>
 		</div>
 	</div>
+	<hr>
+	
+	METRIC - I WANT TO REPLACE VALUE FOR H5 WITH metric.name using a filter/where clause
+	<div class="col-lg-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title" >
+				<span class="label label-success pull-right">Monthly</span>
+				<tr ng-repeat="name in metric">
+				<h5> {{name == "NEW EVENTS" ?  "it's true" : "no, it's not" }}</h5>
+				</tr>				
+			</div>
+			<div class="ibox-content">
+				<h1 class="no-margins">40 886,200</h1>
+				<div class="stat-percent font-bold text-success">
+					98% <i class="fa fa-bolt"></i>
+				</div>
+				<small>Total income</small>
+			</div>
+		</div>
+	</div>
+	
+	
 </div>
 

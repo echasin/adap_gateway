@@ -8,7 +8,11 @@
 
 	function DashboardControllerCarb($scope, $state) {
 
-		$scope.metric = {"name" : "NEW MESSAGES"}
+		$scope.metric = [ {
+			"name" : "NEW XXXX MESSAGES"
+		}, {
+			"name" : "NEW EVENTS"
+		} ]
 
 		$scope.names = [ {
 			"Name" : "Max Joe",
