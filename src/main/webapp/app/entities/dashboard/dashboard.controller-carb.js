@@ -27,18 +27,18 @@
 		
 		
 		$scope.projects = [ {
-			"project_name" : "Project A"
+			"project_name" : "Project Alpha"
 		}, {
-			"project_name" : "Project B"
+			"project_name" : "Project Beta"
 		},
 		{
-			"project_name" : "Project C"
+			"project_name" : "Project Gama"
 		},
 		{
-			"project_name" : "Program D"
+			"project_name" : "Program Delta"
 		},
 		{
-			"project_name" : "Program E"
+			"project_name" : "Program Epsilon"
 		}
 		]
      
