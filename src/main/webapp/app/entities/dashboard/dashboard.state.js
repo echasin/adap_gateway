@@ -88,6 +88,25 @@
 						})
 
 				.state(
+						'dashboard.dashboard-program',
+						{
+							parent : 'entity',
+							url : '/dashboard-program',
+							data : {
+								authorities : [ 'ROLE_USER' ],
+								pageTitle : 'adapGatewayApp.dashboard.home.title'
+							},
+							views : {
+								'content@' : {
+									templateUrl : 'app/entities/dashboard/dashboard-program.html',
+									controller : 'DashboardControllerCarb',
+									controllerAs : 'vm'
+								}
+							},
+							resolve : {}
+						})
+
+				.state(
 						'dashboard.dashboard2-carb',
 						{
 							parent : 'entity',
