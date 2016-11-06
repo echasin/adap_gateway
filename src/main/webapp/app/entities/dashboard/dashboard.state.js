@@ -38,6 +38,25 @@
 							}
 						})
 				.state(
+						'dashboard.dashboard-portfolio',
+						{
+							parent : 'entity',
+							url : '/dashboard-portfolio',
+							data : {
+								authorities : [ 'ROLE_USER' ],
+								pageTitle : 'adapGatewayApp.dashboard.home.title'
+							},
+							views : {
+								'content@' : {
+									templateUrl : 'app/entities/dashboard/dashboard-portfolio.html',
+									controller : 'DashboardControllerPortfolio',
+									controllerAs : 'vm'
+								}
+							},
+							resolve : {}
+						})
+
+				.state(
 						'dashboard.dashboard1',
 						{
 							parent : 'entity',
