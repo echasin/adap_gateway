@@ -29,13 +29,9 @@
         vm.saveResponseAndResponsembr = function () {
             vm.isSaving = true;
             if (vm.response.id !== null) {
-                Response.updateResponseAndResponsembr(vm.response, onSaveSuccess, onSaveError);
+                Response.updateResponseAndResponsembr({id:$stateParams.id},vm.response, onSaveSuccess, onSaveError);
             } else {
-            	console.log("777777777777777777777777777777777777777")
-            	console.log("777777777777777777777777777777777777777")
-            	console.log("777777777777777777777777777777777777777")
-            	
-                Response.saveResponseAndResponsembr(vm.response, onSaveSuccess, onSaveError);
+                Response.saveResponseAndResponsembr({id:$stateParams.id},vm.response,onSaveSuccess, onSaveError);
             }
         };
 
@@ -49,5 +45,6 @@
         vm.openCalendar = function(date) {
             vm.datePickerOpenStatus[date] = true;
         };
+        
     }
 })();

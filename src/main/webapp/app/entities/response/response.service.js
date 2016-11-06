@@ -14,9 +14,10 @@
             'responseByUserAndDateAndQuestionnaire': {method: 'GET', url: 'adap_assessment/api/responseByUserAndDateAndQuestionnaire/:id'},
             'responseByQuestionnaire': {method: 'GET', url: 'adap_assessment/api/responseByQuestionnaire/:id'},            
             'responseByUserAndQuestionnaire': {method: 'GET', isArray: true, url: 'adap_assessment/api/responseByUserAndQuestionnaire/:id'},
+            'responseByAsset': {method: 'GET',isArray: true, url: 'adap_assessment/api/responseByAsset/:id'},            
             'saveResponse': {method: 'PUT', url: 'adap_assessment/api/saveResponse/:id/:details'},
-            'saveResponseAndResponsembr': {method: 'POST', url: 'adap_assessment/api/saveResponseAndResponsembr'},
-            'updateResponseAndResponsembr': {method: 'POST', url: 'adap_assessment/api/updateResponseAndResponsembr'},
+            'saveResponseAndResponsembr': {method: 'POST', url: 'adap_assessment/api/saveResponseAndResponsembr/:id'},
+            'updateResponseAndResponsembr': {method: 'POST', url: 'adap_assessment/api/updateResponseAndResponsembr/:id'},
             'updateResponse': {method: 'PUT', url: 'adap_assessment/api/updateResponse/:id/:details'},
             'get': {
                 method: 'GET',
