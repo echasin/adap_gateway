@@ -63,44 +63,42 @@
 	</div>
 	<div class="col-sm-3">
 		<div class="ibox-content">
-			<p>You have two five demands that require your attentions.</p>
-
-			<div class="flot-chart" ng-controller="flotChartCtrl as charts">
-				CHART goes Here</div>
+		<!-- <h4>Programs by Portfolio</h4> -->
+			<div ng-controller="DashboardControllerPortfolio"
+				id="programsbyportfolio" style= max-height: 300px; margin: 0 auto"/>
 		</div>
 	</div>
-</div>
 
 
-<!-- NEW SECTION -->
+	<!-- NEW SECTION -->
 
-<div class="row">
-	<div class="col-lg-12">
-		<div class="wrapper wrapper-content">
-			<div class="row">
-				<div class="col-lg-8">
-					<div class="ibox float-e-margins">
-						<div class="ibox-content">
-							<div class="row">
-								<div class="col-sm-3">
-									<div class="input-group">
-										<input placeholder="Search" class="input-sm form-control"
-											type="text"> <span class="input-group-btn">
-											<button type="button" class="btn btn-sm btn-primary">
-												Go!</button>
-										</span>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="wrapper wrapper-content">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="ibox float-e-margins">
+							<div class="ibox-content">
+								<div class="row">
+									<div class="col-sm-3">
+										<div class="input-group">
+											<input placeholder="Search" class="input-sm form-control"
+												type="text"> <span class="input-group-btn">
+												<button type="button" class="btn btn-sm btn-primary">
+													Go!</button>
+											</span>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="table-responsive">TABLE of Portfolios</div>
+								<div class="table-responsive">TABLE of Portfolios</div>
 
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-lg-4">
-					<div class="ibox float-e-margins">
-						<div class="ibox-title">Your Daily Feeds</div>
-						<div class="ibox-content"></div>
+					<div class="col-lg-4">
+						<div class="ibox float-e-margins">
+							<div class="ibox-title">Your Daily Feeds</div>
+							<div class="ibox-content"></div>
+						</div>
 					</div>
-				</div>
