@@ -5,7 +5,8 @@
             "Asset": "Asset",
             "Organization": "Organization",
             "Person": "Person",
-            "Location": "Location"
+            "Location": "Location",
+            "Event": "Event"
         }
     }
 }

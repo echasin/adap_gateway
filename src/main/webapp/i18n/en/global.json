@@ -37,6 +37,10 @@
                 "responsedetail": "Responsedetail",
                 "logicoperator": "Logicoperator",
                 "dashboard": "Dashboard",
+                "project": "Project",
+                "projectprojectmbr": "Projectprojectmbr",
+                "portfolio": "Portfolio",
+                "portfolioprojectmbr": "Portfolioprojectmbr",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

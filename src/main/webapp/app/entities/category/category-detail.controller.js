@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('CategoryDetailController', CategoryDetailController);
 
-    CategoryDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Category', 'Recordtype', 'Subcategory', 'Asset', 'Organization', 'Organizationorganizationmbr', 'Key'];
+    CategoryDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Category', 'Recordtype', 'Subcategory', 'Asset', 'Organization', 'Organizationorganizationmbr', 'Key', 'Project'];
 
-    function CategoryDetailController($scope, $rootScope, $stateParams, previousState, entity, Category, Recordtype, Subcategory, Asset, Organization, Organizationorganizationmbr, Key) {
+    function CategoryDetailController($scope, $rootScope, $stateParams, previousState, entity, Category, Recordtype, Subcategory, Asset, Organization, Organizationorganizationmbr, Key, Project) {
         var vm = this;
 
         vm.category = entity;

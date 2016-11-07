@@ -27,7 +27,8 @@
             "asset": "Asset",
             "organization": "Organization",
             "organizationorganizationmbr": "Organizationorganizationmbr",
-            "key": "Key"
+            "key": "Key",
+            "project": "Project"
         }
     }
 }
