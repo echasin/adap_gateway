@@ -1,0 +1,280 @@
+<div class="row  border-bottom white-bg dashboard-header">
+	<div class="col-lg-10">
+		<!-- <h2>Assets</h2> -->
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a>IT Asset Home</a></li>
+			<li><a>Details</a></li>
+			<li class="active"><strong>Asset Name Goes Here</strong></li>
+		</ol>
+	</div>
+	<div class="col-lg-2"></div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="col-sm-3">
+				<!-- <h2>ASSET NAME (Editable)</h2> -->
+				<!-- <small>{{ 'MESSAGEINFO' | translate }}</small> -->
+				<ul class="list-group clear-list m-t">
+					<li class="list-group-item fist-item"><span class="pull-right">
+							09:00 pm </span> <span class="label label-success">1</span> Please
+						contact me</li>
+					<li class="list-group-item"><span class="pull-right">
+							10:16 am </span> <span class="label label-info">2</span> Sign a contract</li>
+					<li class="list-group-item"><span class="pull-right">
+							08:22 pm </span> <span class="label label-primary">3</span> Open new
+						shop</li>
+					<li class="list-group-item"><span class="pull-right">
+							11:06 pm </span> <span class="label label-default">4</span> Call back to
+						Sylvia</li>
+					<li class="list-group-item"><span class="pull-right">
+							12:00 am </span> <span class="label label-primary">5</span> Write a
+						letter to Sandra</li>
+				</ul>
+			</div>
+			<div class="col-sm-6">col-sm-6</div>
+			<div class="col-sm-3">col-sm-3</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="wrapper wrapper-content">
+				<div class="col-lg-8">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							<!-- <span class="text-muted small pull-right">Last
+								modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014
+							</span>
+							<h2>Details</h2>
+							-->
+							<div class="input-group">
+								<input type="text" placeholder="Search Asset Details "
+									class="input form-control"> <span
+									class="input-group-btn">
+									<button type="button" class="btn btn btn-primary">
+										<i class="fa fa-search"></i> Search
+									</button>
+								</span>
+							</div>
+							<div class="clients-list">
+								<ul class="nav nav-tabs">
+									<span class="pull-right small text-muted">1406 Elements</span>
+									<li ng-class="{'active' : tab == 1}"><a ng-click="tab = 1"
+										ng-init="tab = 1"><i class="fa fa-user"></i>Hosts</a></li>
+									<li ng-class="{'active' : tab == 2}"><a ng-click="tab = 2"><i
+											class="fa fa-briefcase"></i>Contacts</a></li>
+									<li ng-class="{'active' : tab == 3}"><a ng-click="tab = 3"><i
+											class="fa fa-briefcase"></i>Events</a></li>
+									<li ng-class="{'active' : tab == 4}"><a ng-click="tab = 4"><i
+											class="fa fa-briefcase"></i>Assessment</a></li>
+								</ul>
+								<div class="tab-content">
+									<div id="tab-1" class="tab-pane active" ng-show="tab == 1">
+									</div>
+									<div id="tab-2" class="tab-pane active" ng-show="tab == 2">
+										TAB2</div>
+									<div id="tab-3" class="tab-pane active" ng-show="tab == 3">
+										TAB3</div>
+									<div id="tab-4" class="tab-pane active" ng-show="tab == 4">
+										<br>
+										<button class="btn btn-primary" ui-sref="assetresponse">
+											<span class="glyphicon glyphicon-plus"></span> <span
+												class="hidden-xs"> Create new Response </span>
+										</button>
+
+
+
+										<div class="table-responsive">
+											<table class="jh-table table table-striped">
+												<thead>
+													<tr jh-sort="vm.predicate" ascending="vm.reverse"
+														callback="vm.transition()">
+														<th jh-sort-by="id"><span translate="global.field.id">ID</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="questionnaire.title"><span
+															translate="adapGatewayApp.response.questionnaire">Questionnaire</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="lastmodifiedby"><span
+															translate="adapGatewayApp.response.lastmodifiedby">Lastmodifiedby</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="lastmodifieddatetime"><span
+															translate="adapGatewayApp.response.lastmodifieddatetime">Lastmodifieddatetime</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<!-- Responses are returned by Asset.id using Responsembr  -->
+													<tr
+														ng-repeat="response in vm.responses track by response.id">
+														<td><a ui-sref="response-detail({id:response.id})">{{response.id}}</a></td>
+														<td><a
+															ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})">{{response.questionnaire.title}}</a>
+														</td>
+														<td>{{response.lastmodifiedby}}</td>
+														<td>{{response.lastmodifieddatetime | date:'medium'}}</td>
+														<td class="text-right">
+
+															<div class="btn-group flex-btn-group-container">
+																<button type="submit"
+																	ui-sref="questionnaire-response({id:response.questionnaire.id,rId:response.id})"
+																	class="btn btn-info btn-sm">
+																	<span class="glyphicon glyphicon-eye-open"></span> <span
+																		class="hidden-xs hidden-sm"
+																		translate="entity.action.view"></span>
+																</button>
+																<button type="submit"
+																	ui-sref="response.edit({id:response.id})"
+																	class="btn btn-primary btn-sm">
+																	<span class="glyphicon glyphicon-pencil"></span> <span
+																		class="hidden-xs hidden-sm"
+																		translate="entity.action.edit"></span>
+																</button>
+																<button type="submit"
+																	ui-sref="response.delete({id:response.id})"
+																	class="btn btn-danger btn-sm">
+																	<span class="glyphicon glyphicon-remove-circle"></span>
+																	<span class="hidden-xs hidden-sm"
+																		translate="entity.action.delete"></span>
+																</button>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="text-center">
+												<jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+												<uib-pagination class="pagination-sm"
+													total-items="vm.totalItems" ng-model="vm.page"
+													ng-change="vm.transition()"></uib-pagination>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>Activity Timeline</h5>
+							<div ibox-tools></div>
+						</div>
+						<div class="ibox-content ibox-heading">
+							<h3>You have meeting today!</h3>
+							<small><i class="fa fa-map-marker"></i> Meeting is on
+								6:00am. Check your schedule to see detail.</small>
+						</div>
+						<div class="ibox-content inspinia-timeline">
+
+							<div class="timeline-item">
+								<div class="row">
+									<div class="col-xs-3 date">
+										<i class="fa fa-briefcase"></i> 6:00 am <br /> <small
+											class="text-navy">2 hour ago</small>
+									</div>
+									<div class="col-xs-7 content no-top-border">
+										<p class="m-b-xs">
+											<strong>Meeting</strong>
+										</p>
+
+										<p>Conference on the sales results for the previous year.
+											Monica please examine sales trends in marketing and products.
+											Below please find the current status of the sale.</p>
+
+										<p>
+											<line-chart data="main.LineChart.data"
+												options="main.LineChart.options"></line-chart>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="timeline-item">
+								<div class="row">
+									<div class="col-xs-3 date">
+										<i class="fa fa-file-text"></i> 7:00 am <br /> <small
+											class="text-navy">3 hour ago</small>
+									</div>
+									<div class="col-xs-7 content">
+										<p class="m-b-xs">
+											<strong>Send documents to Mike</strong>
+										</p>
+
+										<p>Lorem Ipsum is simply dummy text of the printing and
+											typesetting industry. Lorem Ipsum has been the industry's
+											standard dummy text ever since.</p>
+									</div>
+								</div>
+							</div>
+							<div class="timeline-item">
+								<div class="row">
+									<div class="col-xs-3 date">
+										<i class="fa fa-coffee"></i> 8:00 am <br />
+									</div>
+									<div class="col-xs-7 content">
+										<p class="m-b-xs">
+											<strong>Coffee Break</strong>
+										</p>
+
+										<p>Go to shop and find some products. Lorem Ipsum is
+											simply dummy text of the printing and typesetting industry.
+											Lorem Ipsum has been the industry's.</p>
+									</div>
+								</div>
+							</div>
+							<div class="timeline-item">
+								<div class="row">
+									<div class="col-xs-3 date">
+										<i class="fa fa-phone"></i> 11:00 am <br /> <small
+											class="text-navy">21 hour ago</small>
+									</div>
+									<div class="col-xs-7 content">
+										<p class="m-b-xs">
+											<strong>Phone with Jeronimo</strong>
+										</p>
+
+										<p>Lorem Ipsum has been the industry's standard dummy text
+											ever since.</p>
+									</div>
+								</div>
+							</div>
+							<div class="timeline-item">
+								<div class="row">
+									<div class="col-xs-3 date">
+										<i class="fa fa-user-md"></i> 09:00 pm <br /> <small>21
+											hour ago</small>
+									</div>
+									<div class="col-xs-7 content">
+										<p class="m-b-xs">
+											<strong>Go to the doctor dr Smith</strong>
+										</p>
+
+										<p>Find some issue and go to doctor.</p>
+									</div>
+								</div>
+							</div>
+							<div class="timeline-item">
+								<div class="row">
+									<div class="col-xs-3 date">
+										<i class="fa fa-comments"></i> 12:50 pm <br /> <small
+											class="text-navy">48 hour ago</small>
+									</div>
+									<div class="col-xs-7 content">
+										<p class="m-b-xs">
+											<strong>Chat with Monica and Sandra</strong>
+										</p>
+
+										<p>Web sites still in their infancy. Various versions have
+											evolved over the years, sometimes by accident, sometimes on
+											purpose (injected humour and the like).</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
