@@ -111,7 +111,7 @@
             }]
         })
         .state('portfolio.new', {
-            parent: 'portfolio',
+            parent: 'portfolio-home',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
@@ -138,9 +138,9 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('portfolio', null, { reload: 'portfolio' });
+                    $state.go('portfolio-home', null, { reload: 'portfolio-home' });
                 }, function() {
-                    $state.go('portfolio');
+                    $state.go('portfolio-home');
                 });
             }]
         })
