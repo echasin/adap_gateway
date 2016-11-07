@@ -41,6 +41,12 @@
             "otherEntityName": "key",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "category"
+        },
+        {
+            "relationshipName": "project",
+            "otherEntityName": "project",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "category"
         }
     ],
     "fields": [

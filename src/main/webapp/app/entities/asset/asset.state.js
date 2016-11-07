@@ -110,28 +110,8 @@
                     controllerAs: 'vm'
                 }
             },
-            params: {
-                page: {
-                    value: '1',
-                    squash: true
-                },
-                sort: {
-                    value: 'id,asc',
-                    squash: true
-                },
-                search: null
-            },
             resolve: {
-            	 pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
-                     return {
-                         page: PaginationUtil.parsePage($stateParams.page),
-                         sort: $stateParams.sort,
-                         predicate: PaginationUtil.parsePredicate($stateParams.sort),
-                         ascending: PaginationUtil.parseAscending($stateParams.sort),
-                         search: $stateParams.search
-                     };
-                 }],
-            	translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('asset');
                     return $translate.refresh();
                 }],
@@ -256,11 +236,11 @@
         })
         .state('assetresponse', {
             parent: 'asset',
-            url: '/{id}/newresponse',
+            url: '/newresponse',
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal','$location', function($stateParams, $state, $uibModal,$location,$scope) {
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal,$scope) {
                 $uibModal.open({
                     templateUrl: 'app/entities/asset/response-dialog.html',
                     controller: 'ResponseAssetDialogController',
@@ -280,9 +260,9 @@
                         }
                     }
                 }).result.then(function() {
-                	$location.path('/asset/'+$stateParams.id);
+                    $state.go('asset', null, { reload: true });
                 }, function() {
-                	$location.path('/asset/'+$stateParams.id);
+                    $state.go('asset');
                 });
             }]
         });

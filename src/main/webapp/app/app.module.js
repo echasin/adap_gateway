@@ -17,7 +17,10 @@
             'infinite-scroll',
             'ngSanitize',
             // jhipster-needle-angularjs-add-module JHipster will add new module here
-            'angular-loading-bar'
+            'angular-loading-bar',
+            // Add INSPINIA modules here
+            'oc.lazyLoad',
+            'ngIdle'  
         ])
         .run(run);
 

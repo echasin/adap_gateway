@@ -1,0 +1,182 @@
+<div class="row  border-bottom white-bg dashboard-header">
+	<div class="col-sm-3">
+		<!-- <h3>Portfolio</h3>-->
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li class="active"><strong>Portfolio</strong></li>
+		</ol>
+		<div class="ibox-content">
+
+			<li class="list-group-item"><span class="pull-right"> </span>
+				<button type="submit" ui-sref="portfolio.new"
+					class="btn btn-success btn-xs">1</button> </span> Create New Portfolio</li>
+
+			<!-- 
+			<li class="list-group-item"><span class="pull-right">
+					10:16 am </span> <span class="label label-info">2</span> Sign a contract</li>
+			<li class="list-group-item"><span class="pull-right">
+					08:22 pm </span> <span class="label label-primary">3</span> Open new shop
+			</li>
+			<li class="list-group-item"><span class="pull-right">
+					11:06 pm </span> <span class="label label-default">4</span> Call back to
+				Sylvia</li>
+			<li class="list-group-item"><span class="pull-right">
+					12:00 am </span> <span class="label label-primary">5</span> Write a letter
+				to Sandra</li>
+		
+			</ul>
+			-->
+			<table class="table small m-t-sm">
+				<tbody>
+					<tr>
+						<td><strong>12</strong> Projects</td>
+						<td><strong>22</strong> Messages</td>
+
+					</tr>
+					<tr>
+						<td><strong>61</strong> Comments</td>
+						<td><strong>54</strong> Articles</td>
+					</tr>
+					<tr>
+						<td><strong>154</strong> Companies</td>
+						<td><strong>32</strong> Clients</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	<div class="col-sm-6">
+
+		<div class="tabs-container">
+			<ul class="nav nav-tabs">
+				<!-- <span class="pull-right small text-muted">1406 Elements</span> -->
+				<li ng-class="{'active' : tab == 1}"><a ng-click="tab = 1"
+					ng-init="tab = 1"><i class="fa fa-user"></i>Program Summary</a></li>
+				<li ng-class="{'active' : tab == 2}"><a ng-click="tab = 2"><i
+						class="fa fa-briefcase"></i>Risk Summary</a></li>
+				<li ng-class="{'active' : tab == 3}"><a ng-click="tab = 3"><i
+						class="fa fa-briefcase"></i>Others</a></li>
+
+			</ul>
+			<div class="tab-content">
+				<div id="tab-1" class="tab-pane active" ng-show="tab == 1">
+					TAB1</div>
+				<div id="tab-2" class="tab-pane active" ng-show="tab == 2">
+					TAB2</div>
+				<div id="tab-3" class="tab-pane active" ng-show="tab == 3">
+					TAB3</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="ibox-content">
+			<!-- <h4>Programs by Portfolio</h4> -->
+			<div ng-controller="DashboardControllerPortfolio"
+				id="programsbyportfolio" style="height: 250px; margin: 0 auto" />
+		</div>
+	</div>
+
+
+	<!-- NEW SECTION -->
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="wrapper wrapper-content">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="ibox float-e-margins">
+							<div class="ibox-content">
+								<div class="row">
+									<div class="col-sm-3">
+										<div class="input-group">
+											<input placeholder="Search" class="input-sm form-control"
+												type="text"> <span class="input-group-btn">
+												<button type="button" class="btn btn-sm btn-primary">
+													Go!</button>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="table-responsive">
+									<table class="jh-table table table-striped">
+										<thead>
+											<tr jh-sort="vm.predicate" ascending="vm.reverse"
+												callback="vm.transition()">
+												<th jh-sort-by="id"><span
+													data-translate="global.field.id">ID</span> <span
+													class="glyphicon glyphicon-sort"></span></th>
+												<th jh-sort-by="name"><span
+													data-translate="adapGatewayApp.portfolio.name">Name</span>
+													<span class="glyphicon glyphicon-sort"></span></th>
+												<th jh-sort-by="nameshort"><span
+													data-translate="adapGatewayApp.portfolio.nameshort">Nameshort</span>
+													<span class="glyphicon glyphicon-sort"></span></th>
+												<th jh-sort-by="description"><span
+													data-translate="adapGatewayApp.portfolio.description">Description</span>
+													<span class="glyphicon glyphicon-sort"></span></th>
+												<th jh-sort-by="status"><span
+													data-translate="adapGatewayApp.portfolio.status">Status</span>
+													<span class="glyphicon glyphicon-sort"></span></th>
+												<th jh-sort-by="lastmodifiedby"><span
+													data-translate="adapGatewayApp.portfolio.lastmodifiedby">Lastmodifiedby</span>
+													<span class="glyphicon glyphicon-sort"></span></th>
+												<th jh-sort-by="lastmodifieddatetime"><span
+													data-translate="adapGatewayApp.portfolio.lastmodifieddatetime">Lastmodifieddatetime</span>
+													<span class="glyphicon glyphicon-sort"></span></th>
+												<th jh-sort-by="domain"><span
+													data-translate="adapGatewayApp.portfolio.domain">Domain</span>
+													<span class="glyphicon glyphicon-sort"></span></th>
+												<th jh-sort-by="recordtype.name"><span
+													data-translate="adapGatewayApp.portfolio.recordtype">Recordtype</span>
+													<span class="glyphicon glyphicon-sort"></span></th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr
+												ng-repeat="portfolio in vm.portfolios track by portfolio.id">
+												<td><a ui-sref="portfolio-detail({id:portfolio.id})">{{portfolio.id}}</a></td>
+												<td>{{portfolio.name}}</td>
+												<td>{{portfolio.nameshort}}</td>
+												<td>{{portfolio.description}}</td>
+												<td>{{portfolio.status}}</td>
+												<td>{{portfolio.lastmodifiedby}}</td>
+												<td>{{portfolio.lastmodifieddatetime | date:'medium'}}</td>
+												<td>{{portfolio.domain}}</td>
+												<td><a
+													ui-sref="recordtype-detail({id:portfolio.recordtype.id})">{{portfolio.recordtype.name}}</a>
+												</td>
+												<td class="text-right">
+													<div class="btn-group flex-btn-group-container">
+														<button type="submit"
+															ui-sref="portfolio-detail({id:portfolio.id})"
+															class="btn btn-info btn-xs">
+															<span class="glyphicon glyphicon-eye-open"></span>
+														</button>
+														<button type="submit"
+															ui-sref="portfolio.edit({id:portfolio.id})"
+															class="btn btn-primary btn-xs">
+															<span class="glyphicon glyphicon-pencil"></span>
+														</button>
+														<button type="submit"
+															ui-sref="portfolio.delete({id:portfolio.id})"
+															class="btn btn-danger btn-xs">
+															<span class="glyphicon glyphicon-remove-circle"></span>
+														</button>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4">
+						<div class="ibox float-e-margins">
+							<div class="ibox-title">Your Daily Feeds</div>
+							<div class="ibox-content"></div>
+						</div>
+					</div>

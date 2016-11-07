@@ -45,11 +45,13 @@
     <![endif]-->
 	<!-- COMMENTED OUT ECHASIN -->
 	<!-- <page-ribbon></page-ribbon> -->
-	<div ui-view="navbar" ng-cloak></div>
+	<!-- COMMENTED OUT ECHASIN -->
+	<!-- <div ui-view="navbar" ></div> -->
 
 	<!-- MODIFIED ECHASIN -->
 	<!-- Wrapper-->
 	<div id="wrapper">
+
 		<!--INSPINIA:Navigation Left Menu-->
 		<div ng-include="'app/common/navigation.html'"></div>
 		<div id="page-wrapper" class="gray-bg {{$state.current.name}}">
@@ -64,6 +66,7 @@
 			<!-- Footer -->
 			<div ng-include="'app/common/footer.html'"></div>
 		</div>
+		<div ui-view="navbar"></div>
 	</div>
 
 	<!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
@@ -78,7 +81,11 @@
     
      <!-- build:js app/vendor.js -->
     <!-- bower:js -->
+    <!-- jQuery and Bootstrap -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="app/plugins/jquery-ui/jquery-ui.js"></script>
+    
+    
     <script src="bower_components/messageformat/messageformat.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/sockjs-client/dist/sockjs.js"></script>
@@ -101,12 +108,35 @@
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="bower_components/ng-idle/angular-idle.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
+    <script src="app/app.state.js"></script>
+    <script src="app/app.state-inspinia.js"></script>
+    <script src="app/app.constants.js"></script>
+    <script src="app/app.controllers.js"></script>
+    <script src="app/app.directives.js"></script>
+    <script src="app/app.translations.js"></script>
+   
+    
+    <!-- MetsiMenu -->
+	<script src="app/plugins/metisMenu/jquery.metisMenu.js"></script>
+    
+    <!-- SlimScroll -->
+    <script src="app/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+	<!-- optional -->
+	<script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
+    
+    
     <script src="app/services/user/user.service.js"></script>
     <script src="app/services/profiles/profile.service.js"></script>
     <script src="app/services/profiles/page-ribbon.directive.js"></script>
@@ -264,6 +294,50 @@
 	<script src="app/entities/assetassetmbr/assetassetmbr.service.js"></script>
 	<script src="app/entities/assetassetmbr/assetassetmbr.search.service.js"></script>
 	<script src="app/entities/assetassetmbr/assetassetmbr.controller.js"></script>
+	
+	<script src="app/entities/dashboard/dashboard-dialog.controller.js"></script>
+    <script src="app/entities/dashboard/dashboard-detail.controller.js"></script>
+    <script src="app/entities/dashboard/dashboard-delete-dialog.controller.js"></script>
+    <script src="app/entities/dashboard/dashboard.state.js"></script>
+    <script src="app/entities/dashboard/dashboard.service.js"></script>
+    <script src="app/entities/dashboard/dashboard.search.service.js"></script>
+    <script src="app/entities/dashboard/dashboard.controller.js"></script>
+    <script src="app/entities/dashboard/dashboard.controller-portfolio.js"></script>
+    <script src="app/entities/dashboard/dashboard.controller-carb.js"></script>
+    
+    <script src="app/entities/portfolio/portfolio-dialog.controller.js"></script>
+    <script src="app/entities/portfolio/portfolio-detail.controller.js"></script>
+    <script src="app/entities/portfolio/portfolio-delete-dialog.controller.js"></script>
+    <script src="app/entities/portfolio/portfolio.state.js"></script>
+    <script src="app/entities/portfolio/portfolio.service.js"></script>
+    <script src="app/entities/portfolio/portfolio.search.service.js"></script>
+    <script src="app/entities/portfolio/portfolio.controller.js"></script>
+    
+    <script src="app/entities/portfolioprojectmbr/portfolioprojectmbr-dialog.controller.js"></script>
+    <script src="app/entities/portfolioprojectmbr/portfolioprojectmbr-detail.controller.js"></script>
+    <script src="app/entities/portfolioprojectmbr/portfolioprojectmbr-delete-dialog.controller.js"></script>
+    <script src="app/entities/portfolioprojectmbr/portfolioprojectmbr.state.js"></script>
+    <script src="app/entities/portfolioprojectmbr/portfolioprojectmbr.service.js"></script>
+    <script src="app/entities/portfolioprojectmbr/portfolioprojectmbr.search.service.js"></script>
+    <script src="app/entities/portfolioprojectmbr/portfolioprojectmbr.controller.js"></script>
+    
+    <script src="app/entities/project/project-dialog.controller.js"></script>
+    <script src="app/entities/project/project-detail.controller.js"></script>
+    <script src="app/entities/project/project-delete-dialog.controller.js"></script>
+    <script src="app/entities/project/project.state.js"></script>
+    <script src="app/entities/project/project.service.js"></script>
+    <script src="app/entities/project/project.search.service.js"></script>
+    <script src="app/entities/project/project.controller.js"></script>
+	
+	 
+	<script src="app/entities/projectprojectmbr/projectprojectmbr-dialog.controller.js"></script>
+    <script src="app/entities/projectprojectmbr/projectprojectmbr-detail.controller.js"></script>
+    <script src="app/entities/projectprojectmbr/projectprojectmbr-delete-dialog.controller.js"></script>
+    <script src="app/entities/projectprojectmbr/projectprojectmbr.state.js"></script>
+    <script src="app/entities/projectprojectmbr/projectprojectmbr.service.js"></script>
+    <script src="app/entities/projectprojectmbr/projectprojectmbr.search.service.js"></script>
+    <script src="app/entities/projectprojectmbr/projectprojectmbr.controller.js"></script>
+	
 	<script src="app/entities/securitygrouprule/securitygrouprule-dialog.controller.js"></script>
 	<script src="app/entities/securitygrouprule/securitygrouprule-detail.controller.js"></script>
 	<script src="app/entities/securitygrouprule/securitygrouprule-delete-dialog.controller.js"></script>
@@ -329,9 +403,7 @@
     <script src="app/blocks/config/localstorage.config.js"></script>
     <script src="app/blocks/config/http.config.js"></script>
     <script src="app/blocks/config/compile.config.js"></script>
-    <script src="app/blocks/config/alert.config.js"></script>
-    <script src="app/app.state.js"></script>
-    <script src="app/app.constants.js"></script>
+    <script src="app/blocks/config/alert.config.js"></script>  
     <script src="app/admin/user-management/user-management-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management-detail.controller.js"></script>
     <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
@@ -376,6 +448,9 @@
     <script src="app/account/activate/activate.state.js"></script>
     <script src="app/account/activate/activate.controller.js"></script>
     <script src="app/account/account.state.js"></script>
+    
+
+    
     <!-- endinject -->
     <!-- endbuild -->
 

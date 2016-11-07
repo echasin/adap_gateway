@@ -25,7 +25,8 @@
             "domain": "Domain",
             "category": "Category",
             "asset": "Asset",
-            "organization": "Organization"
+            "organization": "Organization",
+            "project": "Project"
         }
     }
 }

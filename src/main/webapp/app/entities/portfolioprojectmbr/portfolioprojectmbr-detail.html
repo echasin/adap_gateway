@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.portfolioprojectmbr.detail.title">Portfolioprojectmbr</span> {{vm.portfolioprojectmbr.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.portfolioprojectmbr.comment">Comment</span></dt>
+        <dd>
+            <span>{{vm.portfolioprojectmbr.comment}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.portfolioprojectmbr.status">Status</span></dt>
+        <dd>
+            <span>{{vm.portfolioprojectmbr.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.portfolioprojectmbr.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.portfolioprojectmbr.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.portfolioprojectmbr.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.portfolioprojectmbr.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.portfolioprojectmbr.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.portfolioprojectmbr.domain}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.portfolioprojectmbr.portfoliolhs">Portfoliolhs</span></dt>
+        <dd>
+            <a ui-sref="portfolio-detail({id:vm.portfolioprojectmbr.portfoliolhs.id})">{{vm.portfolioprojectmbr.portfoliolhs.name}}</a>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.portfolioprojectmbr.projectrhs">Projectrhs</span></dt>
+        <dd>
+            <a ui-sref="project-detail({id:vm.portfolioprojectmbr.projectrhs.id})">{{vm.portfolioprojectmbr.projectrhs.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="portfolioprojectmbr-detail.edit({id:vm.portfolioprojectmbr.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -147,6 +147,7 @@ public class AccountResourceIntTest {
         ManagedUserDTO validUser = new ManagedUserDTO(
             null,                   // id
             "joe",                  // login
+            "dev",                  // domain
             "password",             // password
             "Joe",                  // firstName
             "Shmoe",                // lastName
@@ -175,6 +176,7 @@ public class AccountResourceIntTest {
         ManagedUserDTO invalidUser = new ManagedUserDTO(
             null,                   // id
             "funky-log!n",          // login <-- invalid
+            "dev",                  // domain
             "password",             // password
             "Funky",                // firstName
             "One",                  // lastName
@@ -203,6 +205,7 @@ public class AccountResourceIntTest {
         ManagedUserDTO invalidUser = new ManagedUserDTO(
             null,                   // id
             "bob",              // login
+            "dev",                  // domain
             "password",         // password
             "Bob",              // firstName
             "Green",            // lastName
@@ -229,8 +232,9 @@ public class AccountResourceIntTest {
     @Transactional
     public void testRegisterInvalidPassword() throws Exception {
         ManagedUserDTO invalidUser = new ManagedUserDTO(
-            null,                   // id
+            null,               // id
             "bob",              // login
+            "dev",              // domain
             "123",              // password with only 3 digits
             "Bob",              // firstName
             "Green",            // lastName
@@ -260,6 +264,7 @@ public class AccountResourceIntTest {
         ManagedUserDTO validUser = new ManagedUserDTO(
             null,                   // id
             "alice",                // login
+            "dev",                  // domain
             "password",             // password
             "Alice",                // firstName
             "Something",            // lastName
@@ -273,7 +278,7 @@ public class AccountResourceIntTest {
         );
 
         // Duplicate login, different e-mail
-        ManagedUserDTO duplicatedUser = new ManagedUserDTO(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
+        ManagedUserDTO duplicatedUser = new ManagedUserDTO(validUser.getId(), validUser.getLogin(), validUser.getDomain(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
             "alicejr@example.com", true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
 
         // Good user
@@ -301,6 +306,7 @@ public class AccountResourceIntTest {
         ManagedUserDTO validUser = new ManagedUserDTO(
             null,                   // id
             "john",                 // login
+            "dev",                  // domain
             "password",             // password
             "John",                 // firstName
             "Doe",                  // lastName
@@ -314,7 +320,7 @@ public class AccountResourceIntTest {
         );
 
         // Duplicate e-mail, different login
-        ManagedUserDTO duplicatedUser = new ManagedUserDTO(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
+        ManagedUserDTO duplicatedUser = new ManagedUserDTO(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getDomain(), validUser.getLastName(),
             validUser.getEmail(), true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
 
         // Good user
@@ -341,6 +347,7 @@ public class AccountResourceIntTest {
         ManagedUserDTO validUser = new ManagedUserDTO(
             null,                   // id
             "badguy",               // login
+            "dev",                  // Domain
             "password",             // password
             "Bad",                  // firstName
             "Guy",                  // lastName
@@ -370,6 +377,7 @@ public class AccountResourceIntTest {
     public void testSaveInvalidLogin() throws Exception {
         UserDTO invalidUser = new UserDTO(
             "funky-log!n",          // login <-- invalid
+            "dev",                  // Domain
             "Funky",                // firstName
             "One",                  // lastName
             "funky@example.com",    // e-mail
