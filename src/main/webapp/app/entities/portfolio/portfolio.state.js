@@ -33,7 +33,7 @@
         })
          .state('portfolio-home', {
             parent: 'entity',
-            url: '/portfolio',
+            url: '/portfolio-home',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'adapGatewayApp.portfolio.home.title'
