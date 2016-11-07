@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('AssetDetailController', AssetDetailController);
 
-    AssetDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Asset', 'Location', 'Score', 'Category', 'Subcategory', 'Recordtype', 'Assetassetmbr', 'Securitygroup', 'Identifier','Response','ResponseSearch','pagingParams','ParseLinks', 'AlertService','paginationConstants','$state'];
+    AssetDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Asset', 'Location', 'Score', 'Category', 'Subcategory', 'Recordtype', 'Assetassetmbr', 'Securitygroup', 'Identifier','Response','ResponseSearch','pagingParams','ParseLinks', 'AlertService','paginationConstants','$state','Account'];
 
-    function AssetDetailController($scope, $rootScope, $stateParams, previousState, entity, Asset, Location, Score, Category, Subcategory, Recordtype, Assetassetmbr, Securitygroup, Identifier,Response,ResponseSearch,pagingParams,ParseLinks, AlertService,paginationConstants,$state) {
+    function AssetDetailController($scope, $rootScope, $stateParams, previousState, entity, Asset, Location, Score, Category, Subcategory, Recordtype, Assetassetmbr, Securitygroup, Identifier,Response,ResponseSearch,pagingParams,ParseLinks, AlertService,paginationConstants,$state,Account) {
         var vm = this;
 
         vm.asset = entity;

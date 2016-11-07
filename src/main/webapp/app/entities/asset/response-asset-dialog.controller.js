@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ResponseAssetDialogController', ResponseDialogController);
 
-    ResponseDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Response', 'Questionnaire'];
+    ResponseDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Response', 'Questionnaire','Account','User'];
 
-    function ResponseDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Response, Questionnaire) {
+    function ResponseDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Response, Questionnaire,Account,User) {
         var vm = this;
         vm.response = entity;
         vm.questionnaires = Questionnaire.query();
@@ -28,10 +28,19 @@
 
         vm.saveResponseAndResponsembr = function () {
             vm.isSaving = true;
+            Account.get().$promise.then(function(currentUser){
+            	console.log(currentUser.data)
+            	console.log(currentUser.data.login)
+            User.get({login:currentUser.data.login}).$promise.then(function(user){
+                vm.response.lastmodifiedby=user.lastModifiedBy;
+                vm.response.lastmodifieddatetime=user.lastModifiedDate;
+                });
+            });
+            
             if (vm.response.id !== null) {
                 Response.updateResponseAndResponsembr({id:$stateParams.id},vm.response, onSaveSuccess, onSaveError);
             } else {
-                Response.saveResponseAndResponsembr({id:$stateParams.id},vm.response,onSaveSuccess, onSaveError);
+            	Response.saveResponseAndResponsembr({id:$stateParams.id},vm.response,onSaveSuccess, onSaveError);
             }
         };
 
