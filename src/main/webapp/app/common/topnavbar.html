@@ -2,11 +2,16 @@
 	<nav class="navbar navbar-static-top" role="navigation"
 		style="margin-bottom: 0">
 		<div class="navbar-header">
-			<span minimaliza-sidebar></span> <span minimaliza-sidebar="">
+			
+			<!-- COMMENTED OUT ECHASIN -->
+			<!-- <span minimaliza-sidebar></span>-->
+			
+			<span minimaliza-sidebar="">
 				<a class="navbar-minimalize minimalize-styl-2 btn btn-primary "
 				href="" ng-click="minimalize()"> <i class="fa fa-bars"></i>
 			</a>
 			</span>
+			
 			<form role="search" class="navbar-form-custom" method="post"
 				action="views/search_results.html">
 				<div class="form-group">
@@ -21,7 +26,7 @@
 			<li><span class="m-r-sm text-muted welcome-message">Welcome
 					to Agile Decision Analytics Platform (ADAP)</span></li>
 
-			<!-- COMMENTED OUT - ECHASIN
+	
             <li uib-dropdown>
                 <a class="count-info" href uib-dropdown-toggle>
                     Language
@@ -31,7 +36,7 @@
                     <li><a ng-click="changeLanguage('es')">Spanish</a></li>
                 </ul>
             </li>
-            -->
+           
 
 			<li uib-dropdown><a class="count-info" href uib-dropdown-toggle>
 					<i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
@@ -123,9 +128,10 @@
 					</li>
 				</ul></li>
 
-			<li><a ui-sref="login"> <i class="fa fa-sign-out"></i> Log
+			<li><a ui-sref="account"> <i class="fa fa-sign-out"></i> Log
 					out
 			</a></li>
+			  
 
             <li>
                 <a ng-click="$root.rightSidebar = !$root.rightSidebar">

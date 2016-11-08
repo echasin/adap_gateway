@@ -38,8 +38,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Size(min = 1, max = 50)
     @Column(length = 50, unique = true, nullable = false)
     private String login;
-
+    
     @JsonIgnore
+    @NotNull
+    @Size(min = 4, max = 25) 
+    @Column(name = "domain",length = 25)
+    private String domain;
+
+ 	@JsonIgnore
     @NotNull
     @Size(min = 60, max = 60) 
     @Column(name = "password_hash",length = 60)
@@ -104,6 +110,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.login = login.toLowerCase(Locale.ENGLISH);
     }
 
+    public String getDomain() {
+  		return domain;
+  	}
+
+  	public void setDomain(String domain) {
+  		this.domain = domain;
+  	}
+    
     public String getPassword() {
         return password;
     }

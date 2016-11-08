@@ -36,6 +36,11 @@
 
                 "responsedetail": "Responsedetail",
                 "logicoperator": "Logicoperator",
+                "dashboard": "Dashboard",
+                "project": "Project",
+                "projectprojectmbr": "Projectprojectmbr",
+                "portfolio": "Portfolio",
+                "portfolioprojectmbr": "Portfolioprojectmbr",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -44,6 +49,7 @@
                 "password": "Password",
                 "sessions": "Sessions",
                 "login": "Sign in",
+                "domain": "Domain",
                 "logout": "Sign out",
                 "register": "Register"
             },
@@ -66,6 +72,8 @@
         "form": {
             "username": "Username",
             "username.placeholder": "Your username",
+            "domain": "Domain",
+            "domain.placeholder": "Your domain",
             "newpassword": "New password",
             "newpassword.placeholder": "New password",
             "confirmpassword": "New password confirmation",
@@ -102,7 +110,8 @@
             }
         },
         "field": {
-            "id": "ID"
+            "id": "ID",
+            "asset_id": "AssetID"
         },
         "ribbon": {
             "dev":"Development"

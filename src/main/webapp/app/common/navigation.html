@@ -23,41 +23,54 @@
 				<div class="logo-element">IN+</div>
 			</li>
 			
-			
-			<!--  CREATED ECHASIN --> 
-			<li ui-sref-active="active">
-                <a ui-sref="assethome"><i class="fa fa-diamond"></i> <span class="nav-label">{{ 'Asset Home Page' | translate }}</span> </a>
-            </li>
-			
-		   <!--  COMMENTED OUT - ECHASIN 
+		
+		  
 			<li ng-class="{active: $state.includes('dashboards')}">
 			<a
-				href="assets.html"><i class="fa fa-th-large"></i> <span
-					class="nav-label">{{ 'DASHBOARD' | translate }}</span> <span
+				href="dashboards.html"><i class="fa fa-bar-chart"></i>  <span
+					class="nav-label">{{ 'My CARB' | translate }}</span> <span
 					class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse"
 					ng-class="{in: $state.includes('dashboards')}">
 					<li ui-sref-active="active"><a
-						ui-sref="dashboards.dashboard_1">{{ 'DASHBOARD' | translate }}
-							v.1</a></li>
+						ui-sref="dashboard.dashboard-portfolio">{{ 'Portfolio Dashboard' | translate }}
+							</a></li>
 					<li ui-sref-active="active"><a
-						ui-sref="dashboards.dashboard_2">{{ 'DASHBOARD' | translate }}
-							v.2</a></li>
+						ui-sref="dashboard.dashboard-program">{{ 'Program Dashboard' | translate }}
+							</a></li>
 					<li ui-sref-active="active"><a
-						ui-sref="dashboards.dashboard_3">{{ 'DASHBOARD' | translate }}
-							v.3</a></li>
+						ui-sref="dashboards.dashboard-2">{{ 'Risks' | translate }}
+							</a></li>
 					<li ui-sref-active="active"><a
-						ui-sref="dashboards.dashboard_4_1">{{ 'DASHBOARD' | translate
-							}} v.4</a></li>
+						ui-sref="dashboards.dashboard_3">{{ 'Issues' | translate }}
+							</a></li>
 					<li ui-sref-active="active"><a
-						ui-sref="dashboards.dashboard_5">{{ 'DASHBOARD' | translate }}
-							v.5 </a></li>
+						ui-sref="dashboards.dashboard_4_1">{{ 'Action Items' | translate
+							}} </a></li>
+					<li ui-sref-active="active"><a
+						ui-sref="dashboards.dashboard_5">{{ 'Concurrences' | translate }}
+							 </a></li>
 				</ul></li>
-				
+			
+		   <li ui-sref-active="active"><a ui-sref="portfolio-home"><i
+					class="fa fa-briefcase"></i> <span class="nav-label">{{
+						'Portfolios' | translate }}</span> </a></li>	
+			
 			<li ui-sref-active="active"><a ui-sref="layouts"><i
-					class="fa fa-diamond"></i> <span class="nav-label">{{
-						'LAYOUTS' | translate }}</span> </a></li>
- 
+					class="fa fa-cubes"></i> <span class="nav-label">{{
+						'Programs' | translate }}</span> </a></li>
+ 			
+ 			<li ui-sref-active="active"><a ui-sref="layouts"><i
+					class="fa fa-archive"></i> <span class="nav-label">{{
+						'Projects' | translate }}</span> </a></li>
+ 			
+			<li ui-sref-active="active">
+                <a ui-sref="assethome"><i class="fa fa-diamond"></i> <span class="nav-label">{{ 'Assets' | translate }}</span> </a>
+            </li>
+			
+ 			
+ 			<!--
+			
 			<li ng-class="{active: $state.includes('charts')}"><a href=""><i
 					class="fa fa-bar-chart-o"></i> <span class="nav-label">{{
 						'GRAPHS' | translate }}</span><span class="fa arrow"></span></a>
