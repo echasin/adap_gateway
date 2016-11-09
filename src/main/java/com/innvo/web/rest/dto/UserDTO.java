@@ -8,6 +8,9 @@ import com.innvo.domain.User;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.*;
+
+import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 /**
@@ -38,6 +41,10 @@ public class UserDTO {
 
     @Size(min = 2, max = 5)
     private String langKey;
+    
+    private String lastmodifiedby;
+    
+    private ZonedDateTime lastmodifieddate;
 
     private Set<String> authorities;
 
@@ -46,13 +53,13 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this(user.getLogin(), user.getDomain(), user.getFirstName(), user.getLastName(),
-            user.getEmail(), user.getActivated(), user.getLangKey(),
+            user.getEmail(), user.getActivated(), user.getLangKey(),user.getLastmodifiedby(),user.getLastmodifieddate(),
             user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()));
     }
 
     public UserDTO(String login, String domain, String firstName, String lastName,
-        String email, boolean activated, String langKey, Set<String> authorities) {
+        String email, boolean activated, String langKey,String lastmodifiedby,ZonedDateTime lastmodifieddate,Set<String> authorities) {
 
         this.login = login;
         this.domain = domain;
@@ -61,10 +68,17 @@ public class UserDTO {
         this.email = email;
         this.activated = activated;
         this.langKey = langKey;
+        this.lastmodifiedby=lastmodifiedby;
+        this.lastmodifieddate=lastmodifieddate;
         this.authorities = authorities;
     }
 
-    public String getLogin() {
+    public UserDTO(String string, String string2, String string3, String string4, String string5, boolean b,
+			String string6, HashSet hashSet) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getLogin() {
         return login;
     }
     
@@ -96,8 +110,16 @@ public class UserDTO {
     public Set<String> getAuthorities() {
         return authorities;
     }
+    
+    public String getLastmodifiedby() {
+		return lastmodifiedby;
+	}
 
-    @Override
+	public ZonedDateTime getLastmodifieddate() {
+		return lastmodifieddate;
+	}
+
+	@Override
     public String toString() {
         return "UserDTO{" +
             "login='" + login + '\'' +
@@ -105,7 +127,9 @@ public class UserDTO {
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
             ", activated=" + activated +
-            ", langKey='" + langKey + '\'' +
+            ", langKey='" + langKey + '\'' +    
+            ", lastmodifiedby='" + lastmodifiedby + '\'' +
+            ", lastmodifieddate='" + lastmodifieddate + '\'' +
             ", authorities=" + authorities +
             "}";
     }

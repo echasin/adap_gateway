@@ -285,6 +285,30 @@
                 	$location.path('/asset/'+$stateParams.id);
                 });
             }]
+        })
+        .state('deleteresponsembr', {
+            parent: 'asset',
+            url: '/{id}/delete',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','$location', function($stateParams, $state, $uibModal,$location) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/asset/responsembr-delete-dialog.html',
+                    controller: 'ResponsembrAssetDeleteController',
+                    controllerAs: 'vm',
+                    size: 'md',
+                    resolve: {
+                        entity: ['Asset', function(Asset) {
+                            return Asset.get({id : $stateParams.id}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                	$location.path('/asset/'+$stateParams.id);
+                }, function() {
+                	$location.path('/asset/'+$stateParams.id);
+                });
+            }]
         });
     }
 })();

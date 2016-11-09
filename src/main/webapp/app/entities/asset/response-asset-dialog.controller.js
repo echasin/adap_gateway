@@ -27,22 +27,21 @@
         };
 
         vm.saveResponseAndResponsembr = function () {
-            vm.isSaving = true;
-            Account.get().$promise.then(function(currentUser){
-            	console.log(currentUser.data)
-            	console.log(currentUser.data.login)
-            User.get({login:currentUser.data.login}).$promise.then(function(user){
-                vm.response.lastmodifiedby=user.lastModifiedBy;
-                vm.response.lastmodifieddatetime=user.lastModifiedDate;
-                });
-            });
-            
+            vm.isSaving = true; 
             if (vm.response.id !== null) {
                 Response.updateResponseAndResponsembr({id:$stateParams.id},vm.response, onSaveSuccess, onSaveError);
             } else {
-            	Response.saveResponseAndResponsembr({id:$stateParams.id},vm.response,onSaveSuccess, onSaveError);
-            }
-        };
+            	 Account.get().$promise.then(function(currentUser){
+                 	console.log(currentUser.data)
+                 	console.log(currentUser.data.login)    
+                 	vm.response.domain=currentUser.data.domain
+                 	vm.response.lastmodifiedby=currentUser.data.lastmodifiedby;
+                 	vm.response.details="{}";
+                 	vm.response.status="Active";
+            	    Response.saveResponseAndResponsembr({id:$stateParams.id},vm.response,onSaveSuccess, onSaveError);
+            	  });
+            	}
+         };
 
         vm.clear = function() {
             $uibModalInstance.dismiss('cancel');
