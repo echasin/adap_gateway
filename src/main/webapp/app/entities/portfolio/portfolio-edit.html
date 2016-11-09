@@ -66,11 +66,23 @@
 			</ul>
 			<div class="tab-content">
 				<div id="tab-1" class="tab-pane active" ng-show="tab == 1">
-					TAB1</div>
+					<div class="ibox-content">
+						<div style="height: 250px; margin: 0 auto" />
+						TAB1
+					</div>
+				</div>
 				<div id="tab-2" class="tab-pane active" ng-show="tab == 2">
-					TAB2</div>
+					<div class="ibox-content">
+						<div style="height: 250px; margin: 0 auto" />
+						TAB2
+					</div>
+				</div>
 				<div id="tab-3" class="tab-pane active" ng-show="tab == 3">
-					TAB3</div>
+					<div class="ibox-content">
+						<div style="height: 250px; margin: 0 auto" />
+						TAB3
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -134,17 +146,17 @@
 							<br>
 							<div class="tabs-container">
 								<ul class="nav nav-tabs">
-									<!-- <span class="pull-right small text-muted">1406 Elements</span> -->
-									<li ng-class="{'active' : tab == 1}"><a ng-click="tab = 1"
-										ng-init="tab = 1"><i class="fa fa-user"></i>Programs </a></li>
-									<li ng-class="{'active' : tab == 2}"><a ng-click="tab = 2"><i
-											class="fa fa-briefcase"></i>Projects</a></li>
-									<li ng-class="{'active' : tab == 3}"><a ng-click="tab = 3"><i
-											class="fa fa-briefcase"></i>Assets</a></li>
-
+									<li ng-class="{'active' : tab == 11}"><a
+										ng-click="tab = 11" ng-init="tab = 11"><i
+											class="fa fa-user"></i>Programs </a></li>
+									<li ng-class="{'active' : tab == 12}"><a
+										ng-click="tab = 12"><i class="fa fa-briefcase"></i>Projects</a></li>
+									<li ng-class="{'active' : tab == 13}"><a
+										ng-click="tab = 13"><i class="fa fa-briefcase"></i>Assets</a></li>
 								</ul>
 								<div class="tab-content">
-									<div id="tab-1" class="tab-pane active" ng-show="tab == 1">
+									<div id="tab-11" class="tab-pane active" ng-show="tab == 11">
+										TAB 11
 										ANGULAR FILTER TABLE = WHERE RECORDTYPE=PROGRAM
 										<div class="table-responsive">
 											<table class="jh-table table table-striped">
@@ -235,14 +247,102 @@
 										</div>
 
 									</div>
-									<div id="tab-2" class="tab-pane active" ng-show="tab == 2">
-										TAB2</div>
-									<div id="tab-3" class="tab-pane active" ng-show="tab == 3">
-										TAB3</div>
+									<div id="tab-12" class="tab-pane active" ng-show="tab == 12">
+										TAB 12 ANGULAR FILTER TABLE = WHERE RECORDTYPE=PROJECT
+										<div class="table-responsive">
+											<table class="jh-table table table-striped">
+												<thead>
+													<tr jh-sort="vm.predicate" ascending="vm.reverse"
+														callback="vm.transition()">
+														<th jh-sort-by="id"><span
+															data-translate="global.field.id">ID</span> <span
+															class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="comment"><span
+															data-translate="adapGatewayApp.portfolioprojectmbr.comment">Comment</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<!-- <th jh-sort-by="status"><span
+															data-translate="adapGatewayApp.portfolioprojectmbr.status">Status</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="lastmodifiedby"><span
+															data-translate="adapGatewayApp.portfolioprojectmbr.lastmodifiedby">Lastmodifiedby</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="lastmodifieddatetime"><span
+															data-translate="adapGatewayApp.portfolioprojectmbr.lastmodifieddatetime">Lastmodifieddatetime</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="domain"><span
+															data-translate="adapGatewayApp.portfolioprojectmbr.domain">Domain</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th jh-sort-by="portfoliolhs.name"><span
+															data-translate="adapGatewayApp.portfolioprojectmbr.portfoliolhs">Portfoliolhs</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														-->
+														<th jh-sort-by="projectrhs.name"><span
+															data-translate="adapGatewayApp.portfolioprojectmbr.projectrhs">Projectrhs</span>
+															<span class="glyphicon glyphicon-sort"></span></th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr
+														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs track by portfolioprojectmbr.id">
+														<td><a
+															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
+														<td>{{portfolioprojectmbr.comment}}</td>
+														<!-- <td>{{portfolioprojectmbr.status}}</td>
+														<td>{{portfolioprojectmbr.lastmodifiedby}}</td>
+														<td>{{portfolioprojectmbr.lastmodifieddatetime |
+															date:'medium'}}</td>
+														<td>{{portfolioprojectmbr.domain}}</td>
+														<td><a
+															ui-sref="portfolio-detail({id:portfolioprojectmbr.portfoliolhs.id})">{{portfolioprojectmbr.portfoliolhs.name}}</a>
+														</td>
+														-->
+														<td><a
+															ui-sref="project-detail({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
+														</td>
+														<td class="text-right">
+															<div class="btn-group flex-btn-group-container">
+																<button type="submit"
+																	ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})"
+																	class="btn btn-info btn-sm">
+																	<span class="glyphicon glyphicon-eye-open"></span> <span
+																		class="hidden-xs hidden-sm"
+																		data-translate="entity.action.view"></span>
+																</button>
+																<button type="submit"
+																	ui-sref="portfolioprojectmbr.edit({id:portfolioprojectmbr.id})"
+																	class="btn btn-primary btn-sm">
+																	<span class="glyphicon glyphicon-pencil"></span> <span
+																		class="hidden-xs hidden-sm"
+																		data-translate="entity.action.edit"></span>
+																</button>
+																<button type="submit"
+																	ui-sref="portfolioprojectmbr.delete({id:portfolioprojectmbr.id})"
+																	class="btn btn-danger btn-sm">
+																	<span class="glyphicon glyphicon-remove-circle"></span>
+																	<span class="hidden-xs hidden-sm"
+																		data-translate="entity.action.delete"></span>
+																</button>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="text-center">
+											<jhi-item-count page="vm.page" total="vm.queryCount"
+												items-per-page="vm.itemsPerPage"></jhi-item-count>
+											<uib-pagination class="pagination-sm"
+												total-items="vm.totalItems" ng-model="vm.page"
+												ng-change="vm.transition()"></uib-pagination>
+										</div>
+									</div>
+									<div id="tab-13" class="tab-pane active" ng-show="tab == 13">
+										TAB 13</div>
 								</div>
 							</div>
 
-							
+
 						</div>
 					</div>
 				</div>
