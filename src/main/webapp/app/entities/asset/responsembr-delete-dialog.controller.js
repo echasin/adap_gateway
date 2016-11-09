@@ -7,6 +7,7 @@
 
     ResponseDeleteController.$inject = ['$uibModalInstance', 'entity', 'Response'];
 
+    
     function ResponseDeleteController($uibModalInstance, entity, Response) {
         var vm = this;
         vm.response = entity;
