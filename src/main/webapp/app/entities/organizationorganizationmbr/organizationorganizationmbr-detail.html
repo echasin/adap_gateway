@@ -32,12 +32,6 @@
         <dd>
             <a ui-sref="organization-detail({id:vm.organizationorganizationmbr.organizationrhs.id})">{{vm.organizationorganizationmbr.organizationrhs.name}}</a>
         </dd>
-        <dt><span data-translate="adapGatewayApp.organizationorganizationmbr.category">Category</span></dt>
-        <dd>
-            <span ng-repeat="category in vm.organizationorganizationmbr.categories">
-                <a ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last ? '' : ', '}}
-            </span>
-        </dd>
     </dl>
 
     <button type="submit"

@@ -22,8 +22,7 @@
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
             "organizationlhs": "Organizationlhs",
-            "organizationrhs": "Organizationrhs",
-            "category": "Category"
+            "organizationrhs": "Organizationrhs"
         }
     }
 }
