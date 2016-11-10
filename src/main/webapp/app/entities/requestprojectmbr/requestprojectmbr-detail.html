@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.requestprojectmbr.detail.title">Requestprojectmbr</span> {{vm.requestprojectmbr.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.requestprojectmbr.comment">Comment</span></dt>
+        <dd>
+            <span>{{vm.requestprojectmbr.comment}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.requestprojectmbr.status">Status</span></dt>
+        <dd>
+            <span>{{vm.requestprojectmbr.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.requestprojectmbr.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.requestprojectmbr.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.requestprojectmbr.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.requestprojectmbr.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.requestprojectmbr.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.requestprojectmbr.domain}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.requestprojectmbr.requestlhs">Requestlhs</span></dt>
+        <dd>
+            <a ui-sref="request-detail({id:vm.requestprojectmbr.requestlhs.id})">{{vm.requestprojectmbr.requestlhs.name}}</a>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.requestprojectmbr.projectrhs">Projectrhs</span></dt>
+        <dd>
+            <a ui-sref="project-detail({id:vm.requestprojectmbr.projectrhs.id})">{{vm.requestprojectmbr.projectrhs.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="requestprojectmbr-detail.edit({id:vm.requestprojectmbr.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

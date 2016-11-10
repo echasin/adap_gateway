@@ -4,19 +4,19 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myOrganizationorganizationmbrLabel" data-translate="adapGatewayApp.organizationorganizationmbr.home.createOrEditLabel">Create or edit a Organizationorganizationmbr</h4>
+        <h4 class="modal-title" id="myRequestprojectmbrLabel" data-translate="adapGatewayApp.requestprojectmbr.home.createOrEditLabel">Create or edit a Requestprojectmbr</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.organizationorganizationmbr.id">
+        <div class="form-group" ng-show="vm.requestprojectmbr.id">
             <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.organizationorganizationmbr.id" readonly />
+                    ng-model="vm.requestprojectmbr.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.organizationorganizationmbr.comment" for="field_comment">Comment</label>
+            <label class="control-label" data-translate="adapGatewayApp.requestprojectmbr.comment" for="field_comment">Comment</label>
             <input type="text" class="form-control" name="comment" id="field_comment"
-                    ng-model="vm.organizationorganizationmbr.comment"
+                    ng-model="vm.requestprojectmbr.comment"
                     ng-maxlength="255" />
             <div ng-show="editForm.comment.$invalid">
                 <p class="help-block"
@@ -26,9 +26,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.organizationorganizationmbr.status" for="field_status">Status</label>
+            <label class="control-label" data-translate="adapGatewayApp.requestprojectmbr.status" for="field_status">Status</label>
             <input type="text" class="form-control" name="status" id="field_status"
-                    ng-model="vm.organizationorganizationmbr.status"
+                    ng-model="vm.requestprojectmbr.status"
                     required ng-maxlength="25" />
             <div ng-show="editForm.status.$invalid">
                 <p class="help-block"
@@ -42,9 +42,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.organizationorganizationmbr.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <label class="control-label" data-translate="adapGatewayApp.requestprojectmbr.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
             <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
-                    ng-model="vm.organizationorganizationmbr.lastmodifiedby"
+                    ng-model="vm.requestprojectmbr.lastmodifiedby"
                     required ng-maxlength="50" />
             <div ng-show="editForm.lastmodifiedby.$invalid">
                 <p class="help-block"
@@ -58,9 +58,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.organizationorganizationmbr.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+            <label class="control-label" data-translate="adapGatewayApp.requestprojectmbr.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
                 <div class="input-group">
-                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.organizationorganizationmbr.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
+                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.requestprojectmbr.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
                     required  />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastmodifieddatetime')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -78,9 +78,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.organizationorganizationmbr.domain" for="field_domain">Domain</label>
+            <label class="control-label" data-translate="adapGatewayApp.requestprojectmbr.domain" for="field_domain">Domain</label>
             <input type="text" class="form-control" name="domain" id="field_domain"
-                    ng-model="vm.organizationorganizationmbr.domain"
+                    ng-model="vm.requestprojectmbr.domain"
                     required ng-maxlength="25" />
             <div ng-show="editForm.domain.$invalid">
                 <p class="help-block"
@@ -95,26 +95,26 @@
         </div>
 
         <div class="form-group">
-            <label data-translate="adapGatewayApp.organizationorganizationmbr.organizationlhs" for="field_organizationlhs">Organizationlhs</label>
-            <select class="form-control" id="field_organizationlhs" name="organizationlhs" ng-model="vm.organizationorganizationmbr.organizationlhs" ng-options="organization as organization.name for organization in vm.organizations track by organization.id" required>
+            <label data-translate="adapGatewayApp.requestprojectmbr.requestlhs" for="field_requestlhs">Requestlhs</label>
+            <select class="form-control" id="field_requestlhs" name="requestlhs" ng-model="vm.requestprojectmbr.requestlhs" ng-options="request as request.name for request in vm.requests track by request.id" required>
                 <option value=""></option>
             </select>
         </div>
-        <div ng-show="editForm.organizationlhs.$invalid">
+        <div ng-show="editForm.requestlhs.$invalid">
             <p class="help-block"
-                ng-show="editForm.organizationlhs.$error.required" data-translate="entity.validation.required">
+                ng-show="editForm.requestlhs.$error.required" data-translate="entity.validation.required">
                 This field is required.
             </p>
         </div>
         <div class="form-group">
-            <label data-translate="adapGatewayApp.organizationorganizationmbr.organizationrhs" for="field_organizationrhs">Organizationrhs</label>
-            <select class="form-control" id="field_organizationrhs" name="organizationrhs" ng-model="vm.organizationorganizationmbr.organizationrhs" ng-options="organization as organization.name for organization in vm.organizations track by organization.id" required>
+            <label data-translate="adapGatewayApp.requestprojectmbr.projectrhs" for="field_projectrhs">Projectrhs</label>
+            <select class="form-control" id="field_projectrhs" name="projectrhs" ng-model="vm.requestprojectmbr.projectrhs" ng-options="project as project.name for project in vm.projects track by project.id" required>
                 <option value=""></option>
             </select>
         </div>
-        <div ng-show="editForm.organizationrhs.$invalid">
+        <div ng-show="editForm.projectrhs.$invalid">
             <p class="help-block"
-                ng-show="editForm.organizationrhs.$error.required" data-translate="entity.validation.required">
+                ng-show="editForm.projectrhs.$error.required" data-translate="entity.validation.required">
                 This field is required.
             </p>
         </div>
