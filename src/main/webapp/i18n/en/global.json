@@ -41,6 +41,8 @@
                 "projectprojectmbr": "Projectprojectmbr",
                 "portfolio": "Portfolio",
                 "portfolioprojectmbr": "Portfolioprojectmbr",
+                "request": "Request",
+                "requestprojectmbr": "Requestprojectmbr",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
