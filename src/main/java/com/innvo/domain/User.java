@@ -85,6 +85,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private ZonedDateTime resetDate = null;
 
     @JsonIgnore
+    @Column(name = "lastmodifiedby", nullable = true)
+    private String lastmodifiedby;
+    
+    @JsonIgnore
+    @Column(name = "lastmodifieddate", nullable = true)
+    private ZonedDateTime lastmodifieddate;
+    
+    
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "jhi_user_authority",
@@ -189,8 +198,27 @@ public class User extends AbstractAuditingEntity implements Serializable {
     public void setLangKey(String langKey) {
         this.langKey = langKey;
     }
+    
 
-    public Set<Authority> getAuthorities() {
+    
+
+	public String getLastmodifiedby() {
+		return lastmodifiedby;
+	}
+
+	public void setLastmodifiedby(String lastmodifiedby) {
+		this.lastmodifiedby = lastmodifiedby;
+	}
+
+	public ZonedDateTime getLastmodifieddate() {
+		return lastmodifieddate;
+	}
+
+	public void setLastmodifieddate(ZonedDateTime lastmodifieddate) {
+		this.lastmodifieddate = lastmodifieddate;
+	}
+
+	public Set<Authority> getAuthorities() {
         return authorities;
     }
 

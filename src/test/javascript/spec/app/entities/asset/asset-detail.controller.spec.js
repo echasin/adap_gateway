@@ -4,39 +4,25 @@ describe('Controller Tests', function() {
 
     describe('Asset Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockAsset, MockLocation, MockScore, MockCategory, MockSubcategory, MockRecordtype, MockAssetassetmbr, MockSecuritygroup, MockIdentifier;
+        var MockEntity, MockAsset, MockLocation, MockScore;
         var createController;
 
         beforeEach(inject(function($injector) {
             $rootScope = $injector.get('$rootScope');
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
-            MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockAsset = jasmine.createSpy('MockAsset');
             MockLocation = jasmine.createSpy('MockLocation');
             MockScore = jasmine.createSpy('MockScore');
-            MockCategory = jasmine.createSpy('MockCategory');
-            MockSubcategory = jasmine.createSpy('MockSubcategory');
-            MockRecordtype = jasmine.createSpy('MockRecordtype');
-            MockAssetassetmbr = jasmine.createSpy('MockAssetassetmbr');
-            MockSecuritygroup = jasmine.createSpy('MockSecuritygroup');
-            MockIdentifier = jasmine.createSpy('MockIdentifier');
             
 
             var locals = {
                 '$scope': $scope,
                 '$rootScope': $rootScope,
-                'entity': MockEntity,
-                'previousState': MockPreviousState,
+                'entity': MockEntity ,
                 'Asset': MockAsset,
                 'Location': MockLocation,
-                'Score': MockScore,
-                'Category': MockCategory,
-                'Subcategory': MockSubcategory,
-                'Recordtype': MockRecordtype,
-                'Assetassetmbr': MockAssetassetmbr,
-                'Securitygroup': MockSecuritygroup,
-                'Identifier': MockIdentifier
+                'Score': MockScore
             };
             createController = function() {
                 $injector.get('$controller')("AssetDetailController", locals);

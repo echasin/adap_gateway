@@ -85,7 +85,7 @@ public class UserService {
             });
     }
 
-    public User createUserInformation(String login, String domain, String password, String firstName, String lastName, String email,
+    public User createUserInformation(String login, String password, String firstName, String lastName, String email,
         String langKey) {
 
         User newUser = new User();
@@ -93,7 +93,6 @@ public class UserService {
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(login);
-        newUser.setDomain(domain);
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(firstName);

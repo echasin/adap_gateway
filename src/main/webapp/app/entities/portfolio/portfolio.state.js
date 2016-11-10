@@ -85,6 +85,38 @@
                 }]
             }
         })
+         .state('portfolio-edit', {
+            parent: 'entity',
+            url: '/portfolio/edit/{id}',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'adapGatewayApp.portfolio.detail.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/portfolio/portfolio-edit.html',
+                    controller: 'PortfolioDetailController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('portfolio');
+                    return $translate.refresh();
+                }],
+                entity: ['$stateParams', 'Portfolio', function($stateParams, Portfolio) {
+                    return Portfolio.get({id : $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'portfolio',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
+        })
         .state('portfolio-detail.edit', {
             parent: 'portfolio-detail',
             url: '/detail/edit',
@@ -152,7 +184,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/portfolio/portfolio-dialog.html',
+                	templateUrl: 'app/entities/portfolio/portfolio-edit.html',
                     controller: 'PortfolioDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',

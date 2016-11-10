@@ -21,8 +21,8 @@ public interface UserMapper {
     
     @Mapping(target = "createdBy", ignore = true)
     @Mapping(target = "createdDate", ignore = true)
-    @Mapping(target = "lastModifiedBy", ignore = true)
-    @Mapping(target = "lastModifiedDate", ignore = true)
+    @Mapping(target = "lastmodifiedby", ignore = true)
+    @Mapping(target = "lastmodifieddate", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "activationKey", ignore = true)
     @Mapping(target = "resetKey", ignore = true)

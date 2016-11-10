@@ -29,7 +29,7 @@
 			<table class="table small m-t-sm">
 				<tbody>
 					<tr>
-						<td><strong>12</strong> Projects</td>
+						<td><strong>1</strong> Portfolios</td>
 						<td><strong>22</strong> Messages</td>
 
 					</tr>
@@ -76,107 +76,235 @@
 				id="programsbyportfolio" style="height: 250px; margin: 0 auto" />
 		</div>
 	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="wrapper wrapper-content">
+			<div class="row">
+				<div class="col-lg-8">
 
 
-	<!-- NEW SECTION -->
+					<div class="ibox float-e-margins">
 
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="wrapper wrapper-content">
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="ibox float-e-margins">
-							<div class="ibox-content">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="input-group">
-											<input placeholder="Search" class="input-sm form-control"
-												type="text"> <span class="input-group-btn">
-												<button type="button" class="btn btn-sm btn-primary">
-													Go!</button>
-											</span>
-										</div>
+						<div class="ibox-content">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="input-group">
+										<input placeholder="Search" class="input-sm form-control"
+											type="text"> <span class="input-group-btn">
+											<button type="button" class="btn btn-sm btn-primary">
+												Go!</button>
+										</span>
 									</div>
 								</div>
-								<div class="table-responsive">
-									<table class="jh-table table table-striped">
-										<thead>
-											<tr jh-sort="vm.predicate" ascending="vm.reverse"
-												callback="vm.transition()">
-												<th jh-sort-by="id"><span
-													data-translate="global.field.id">ID</span> <span
-													class="glyphicon glyphicon-sort"></span></th>
-												<th jh-sort-by="name"><span
-													data-translate="adapGatewayApp.portfolio.name">Name</span>
-													<span class="glyphicon glyphicon-sort"></span></th>
-												<th jh-sort-by="nameshort"><span
-													data-translate="adapGatewayApp.portfolio.nameshort">Nameshort</span>
-													<span class="glyphicon glyphicon-sort"></span></th>
-												<th jh-sort-by="description"><span
-													data-translate="adapGatewayApp.portfolio.description">Description</span>
-													<span class="glyphicon glyphicon-sort"></span></th>
-												<th jh-sort-by="status"><span
-													data-translate="adapGatewayApp.portfolio.status">Status</span>
-													<span class="glyphicon glyphicon-sort"></span></th>
-												<th jh-sort-by="lastmodifiedby"><span
-													data-translate="adapGatewayApp.portfolio.lastmodifiedby">Lastmodifiedby</span>
-													<span class="glyphicon glyphicon-sort"></span></th>
-												<th jh-sort-by="lastmodifieddatetime"><span
-													data-translate="adapGatewayApp.portfolio.lastmodifieddatetime">Lastmodifieddatetime</span>
-													<span class="glyphicon glyphicon-sort"></span></th>
-												<th jh-sort-by="domain"><span
-													data-translate="adapGatewayApp.portfolio.domain">Domain</span>
-													<span class="glyphicon glyphicon-sort"></span></th>
-												<th jh-sort-by="recordtype.name"><span
-													data-translate="adapGatewayApp.portfolio.recordtype">Recordtype</span>
-													<span class="glyphicon glyphicon-sort"></span></th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr
-												ng-repeat="portfolio in vm.portfolios track by portfolio.id">
-												<td><a ui-sref="portfolio-detail({id:portfolio.id})">{{portfolio.id}}</a></td>
-												<td>{{portfolio.name}}</td>
-												<td>{{portfolio.nameshort}}</td>
-												<td>{{portfolio.description}}</td>
-												<td>{{portfolio.status}}</td>
-												<td>{{portfolio.lastmodifiedby}}</td>
-												<td>{{portfolio.lastmodifieddatetime | date:'medium'}}</td>
-												<td>{{portfolio.domain}}</td>
-												<td><a
-													ui-sref="recordtype-detail({id:portfolio.recordtype.id})">{{portfolio.recordtype.name}}</a>
-												</td>
-												<td class="text-right">
-													<div class="btn-group flex-btn-group-container">
-														<button type="submit"
-															ui-sref="portfolio-detail({id:portfolio.id})"
-															class="btn btn-info btn-xs">
-															<span class="glyphicon glyphicon-eye-open"></span>
-														</button>
-														<button type="submit"
-															ui-sref="portfolio.edit({id:portfolio.id})"
-															class="btn btn-primary btn-xs">
-															<span class="glyphicon glyphicon-pencil"></span>
-														</button>
-														<button type="submit"
-															ui-sref="portfolio.delete({id:portfolio.id})"
-															class="btn btn-danger btn-xs">
-															<span class="glyphicon glyphicon-remove-circle"></span>
-														</button>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+							</div>
+
+							<div class="table-responsive">
+								<table class="jh-table table table-striped">
+									<thead>
+										<tr jh-sort="vm.predicate" ascending="vm.reverse"
+											callback="vm.transition()">
+											<th jh-sort-by="id"><span
+												data-translate="global.field.id">ID</span> <span
+												class="glyphicon glyphicon-sort"></span></th>
+											<th jh-sort-by="name"><span
+												data-translate="adapGatewayApp.portfolio.name">Name</span> <span
+												class="glyphicon glyphicon-sort"></span></th>
+											<th jh-sort-by="nameshort"><span
+												data-translate="adapGatewayApp.portfolio.nameshort">Nameshort</span>
+												<span class="glyphicon glyphicon-sort"></span></th>
+											<!--
+											<th jh-sort-by="description"><span
+												data-translate="adapGatewayApp.portfolio.description">Description</span>
+												<span class="glyphicon glyphicon-sort"></span></th>
+											<th jh-sort-by="status"><span
+												data-translate="adapGatewayApp.portfolio.status">Status</span>
+												<span class="glyphicon glyphicon-sort"></span></th>
+											<th jh-sort-by="lastmodifiedby"><span
+												data-translate="adapGatewayApp.portfolio.lastmodifiedby">Lastmodifiedby</span>
+												<span class="glyphicon glyphicon-sort"></span></th>
+											<th jh-sort-by="lastmodifieddatetime"><span
+												data-translate="adapGatewayApp.portfolio.lastmodifieddatetime">Lastmodifieddatetime</span>
+												<span class="glyphicon glyphicon-sort"></span></th>
+											<th jh-sort-by="domain"><span
+												data-translate="adapGatewayApp.portfolio.domain">Domain</span>
+												<span class="glyphicon glyphicon-sort"></span></th>
+												-->
+											<th jh-sort-by="recordtype.name"><span
+												data-translate="adapGatewayApp.portfolio.recordtype">Recordtype</span>
+												<span class="glyphicon glyphicon-sort"></span></th>
+
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr
+											ng-repeat="portfolio in vm.portfolios track by portfolio.id">
+											<td><a ui-sref="portfolio-detail({id:portfolio.id})">{{portfolio.id}}</a></td>
+											<td>{{portfolio.name}}</td>
+											<td>{{portfolio.nameshort}}</td>
+											<!-- <td>{{portfolio.description}}</td>
+											<td>{{portfolio.status}}</td>
+											<td>{{portfolio.lastmodifiedby}}</td>
+											<td>{{portfolio.lastmodifieddatetime | date:'medium'}}</td>
+											<td>{{portfolio.domain}}</td>
+											-->
+											<td>{{portfolio.recordtype.name}}</td>
+											<td class="text-right">
+												<div class="btn-group flex-btn-group-container">
+												   <button type="submit"
+														ui-sref="portfolio-edit({id:portfolio.id})"
+														class="btn btn-warning btn-xs">
+														<span class="fa-file-text-o"></span>
+													</button>
+													<button type="submit"
+														ui-sref="portfolio-detail({id:portfolio.id})"
+														class="btn btn-info btn-xs">
+														<span class="glyphicon glyphicon-eye-open"></span>
+													</button>
+													<button type="submit"
+														ui-sref="portfolio.edit({id:portfolio.id})"
+														class="btn btn-primary btn-xs">
+														<span class="glyphicon glyphicon-pencil"></span>
+													</button>
+													<button type="submit"
+														ui-sref="portfolio.delete({id:portfolio.id})"
+														class="btn btn-danger btn-xs">
+														<span class="glyphicon glyphicon-remove-circle"></span>
+													</button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
+				</div>
 
-					<div class="col-lg-4">
-						<div class="ibox float-e-margins">
-							<div class="ibox-title">Your Daily Feeds</div>
-							<div class="ibox-content"></div>
+				<div class="col-lg-4">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>Your daily feed</h5>
+
+
+							<div class="ibox-tools">
+								<span class="label label-warning-light">10 Messages</span>
+							</div>
+						</div>
+						<div class="ibox-content">
+
+							<div>
+								<div class="feed-activity-list">
+
+									<div class="feed-element">
+										<a ui-sref="profile" class="pull-left"> <img alt="image"
+											class="img-circle" src="content/images/profile.jpg">
+										</a>
+
+										<div class="media-body ">
+											<small class="pull-right">5m ago</small> <strong>Monica
+												Smith</strong> posted a new blog. <br> <small class="text-muted">Today
+												5:60 pm - 12.06.2014</small>
+
+										</div>
+									</div>
+
+									<div class="feed-element">
+										<a ui-sref="profile" class="pull-left"> <img alt="image"
+											class="img-circle" src="content/images/a2.jpg">
+										</a>
+
+										<div class="media-body ">
+											<small class="pull-right">2h ago</small> <strong>Mark
+												Johnson</strong> posted message on <strong>Monica Smith</strong>
+											site. <br> <small class="text-muted">Today 2:10
+												pm - 12.06.2014</small>
+										</div>
+									</div>
+									<div class="feed-element">
+										<a ui-sref="profile" class="pull-left"> <img alt="image"
+											class="img-circle" src="content/images/a3.jpg">
+										</a>
+
+										<div class="media-body ">
+											<small class="pull-right">2h ago</small> <strong>Janet
+												Rosowski</strong> add 1 photo on <strong>Monica Smith</strong>. <br>
+											<small class="text-muted">2 days ago at 8:30am</small>
+										</div>
+									</div>
+									<div class="feed-element">
+										<a ui-sref="profile" class="pull-left"> <img alt="image"
+											class="img-circle" src="content/images/a4.jpg">
+										</a>
+
+										<div class="media-body ">
+											<small class="pull-right text-navy">5h ago</small> <strong>Chris
+												Johnatan Overtunk</strong> started following <strong>Monica
+												Smith</strong>. <br> <small class="text-muted">Yesterday
+												1:21 pm - 11.06.2014</small>
+											<div class="actions">
+												<a class="btn btn-xs btn-white"><i
+													class="fa fa-thumbs-up"></i> Like </a> <a
+													class="btn btn-xs btn-white"><i class="fa fa-heart"></i>
+													Love</a>
+											</div>
+										</div>
+									</div>
+									<div class="feed-element">
+										<a ui-sref="profile" class="pull-left"> <img alt="image"
+											class="img-circle" src="content/images/a5.jpg">
+										</a>
+
+										<div class="media-body ">
+											<small class="pull-right">2h ago</small> <strong>Kim
+												Smith</strong> posted message on <strong>Monica Smith</strong> site.
+											<br> <small class="text-muted">Yesterday 5:20 pm
+												- 12.06.2014</small>
+											<div class="well">Lorem Ipsum is simply dummy text of
+												the printing and typesetting industry. Lorem Ipsum has been
+												the industry's standard dummy text ever since the 1500s.
+												Over the years, sometimes by accident, sometimes on purpose
+												(injected humour and the like).</div>
+											<div class="pull-right">
+												<a class="btn btn-xs btn-white"><i
+													class="fa fa-thumbs-up"></i> Like </a>
+											</div>
+										</div>
+									</div>
+									<div class="feed-element">
+										<a ui-sref="profile" class="pull-left"> <img alt="image"
+											class="img-circle" src="content/images/profile.jpg">
+										</a>
+
+										<div class="media-body ">
+											<small class="pull-right">23h ago</small> <strong>Monica
+												Smith</strong> love <strong>Kim Smith</strong>. <br> <small
+												class="text-muted">2 days ago at 2:30 am -
+												11.06.2014</small>
+										</div>
+									</div>
+									<div class="feed-element">
+										<a ui-sref="profile" class="pull-left"> <img alt="image"
+											class="img-circle" src="content/images/a7.jpg">
+										</a>
+
+										<div class="media-body ">
+											<small class="pull-right">46h ago</small> <strong>Mike
+												Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+											<small class="text-muted">3 days ago at 7:58 pm -
+												10.06.2014</small>
+										</div>
+									</div>
+								</div>
+								<button class="btn btn-primary btn-block m-t">
+									<i class="fa fa-arrow-down"></i> Show More
+								</button>
+							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
