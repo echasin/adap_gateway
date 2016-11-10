@@ -1,3 +1,17 @@
+<style>
+.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; }
+
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
+</style>
+
 <div class="row  border-bottom white-bg dashboard-header">
 	<div class="col-lg-10">
 		<!-- <h2>Assets</h2> -->
@@ -59,12 +73,13 @@
 								<ul class="nav nav-tabs">
 									<span class="pull-right small text-muted">1406 Elements</span>
 									<li ng-class="{'active' : tab == 1}"><a ng-click="tab = 1"
-										ng-init="tab = 1"><i class="fa fa-user"></i>Hosts</a></li>
+										><i class="fa fa-user"></i>Hosts</a></li>
 									<li ng-class="{'active' : tab == 2}"><a ng-click="tab = 2"><i
 											class="fa fa-briefcase"></i>Contacts</a></li>
 									<li ng-class="{'active' : tab == 3}"><a ng-click="tab = 3"><i
 											class="fa fa-briefcase"></i>Events</a></li>
-									<li ng-class="{'active' : tab == 4}"><a ng-click="tab = 4"><i
+									<li ng-class="{'active' : tab == 4}"><a ng-click="tab = 4"
+									         ng-init="tab = 4"><i
 											class="fa fa-briefcase"></i>Assessment</a></li>
 								</ul>
 								<div class="tab-content">
@@ -101,7 +116,7 @@
                                             </tr>
                                            </thead>
                                            <tbody>
-                                             <tr ng-repeat="response in vm.responses track by response.id">
+                                             <tr ng-repeat="response in vm.responses">
                                              <td><a ui-sref="response-detail({id:response.id})">{{response.id}}</a></td>
                                              <td>{{response.details}}</td>
                                              <td>{{response.status}}</td>
@@ -123,13 +138,13 @@
                                                  <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
                                               </button>
                                               <button type="submit"
-                                                    ui-sref="response.edit({id:response.id})"
+                                                    ui-sref="editresponse({asset:vm.asset.id,rid:response.id})"
                                                  class="btn btn-primary btn-sm">
                                                  <span class="glyphicon glyphicon-pencil"></span>
                                                  <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
                                                </button>
                                                <button type="submit"
-                                                  ui-sref="deleteresponsembr({id:response.id})"
+                                                  ui-sref="deleteresponsembr({asset:vm.asset.id,rid:response.id})"
                                                   class="btn btn-danger btn-sm">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                                 <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>

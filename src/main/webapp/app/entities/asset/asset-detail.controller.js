@@ -18,7 +18,6 @@
         });
         $scope.$on('$destroy', unsubscribe);
         vm.assetId=$stateParams.id;
-        
               
         vm.loadAll = loadAll;
         vm.loadPage = loadPage;
@@ -37,19 +36,25 @@
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: paginationConstants.itemsPerPage,
-                   // sort: sort()
+                    sort: sort()
                 }, onSuccess, onError);
             } else {
                 Response.responseByAsset({
                 	id:$stateParams.id,
                 	page: pagingParams.page - 1,
                     size: paginationConstants.itemsPerPage,
-                    // sort: sort()
+                    sort: sort()
                 }, onSuccess, onError);
             }
-            
+            function sort() {
+                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                if (vm.predicate !== 'id') {
+                    result.push('id');
+                }
+                return result;
+            }
             function onSuccess(data, headers) {
-               // vm.links = ParseLinks.parse(headers('link'));
+                vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.responses = data;
@@ -68,7 +73,7 @@
         function transition () {
             $state.transitionTo($state.$current, {
                 page: vm.page,
-            //    sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
+                sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
                 search: vm.currentSearch
             });
         }
@@ -93,6 +98,5 @@
             vm.currentSearch = null;
             vm.transition();
         }  
-        
     }
 })();

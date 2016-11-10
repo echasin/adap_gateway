@@ -5,19 +5,20 @@
         .module('adapGatewayApp')
         .controller('ResponseAssetDeleteController',ResponseDeleteController);
 
-    ResponseDeleteController.$inject = ['$uibModalInstance', 'entity', 'Response'];
+    ResponseDeleteController.$inject = ['$uibModalInstance', 'Response','$stateParams','$location'];
 
-    function ResponseDeleteController($uibModalInstance, entity, Response) {
+    function ResponseDeleteController($uibModalInstance, Response, $stateParams ,$location) {
         var vm = this;
-        vm.response = entity;
         vm.clear = function() {
             $uibModalInstance.dismiss('cancel');
         };
-        vm.confirmDelete = function (id) {
-            Response.delete({id: id},
+        vm.response= $stateParams.rid;
+        vm.confirmDelete = function () {
+            Response.delete({id: $stateParams.rid},
                 function () {
                     $uibModalInstance.close(true);
                 });
+			$location.path('/asset/'+$stateParams.asset+'/deleteresponse/'+$stateParams.rid);
         };
     }
 })();

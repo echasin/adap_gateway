@@ -29,8 +29,16 @@
         vm.saveResponseAndResponsembr = function () {
             vm.isSaving = true; 
             if (vm.response.id !== null) {
-                Response.updateResponseAndResponsembr({id:$stateParams.id},vm.response, onSaveSuccess, onSaveError);
-            } else {
+            	Account.get().$promise.then(function(currentUser){
+                 	console.log(currentUser.data)
+                 	console.log(currentUser.data.login)    
+                 	vm.response.domain=currentUser.data.domain
+                 	vm.response.lastmodifiedby=currentUser.data.lastmodifiedby;
+                 	vm.response.details="{}";
+                 	vm.response.status="Active";
+                    Response.updateResponseAndResponsembr({id:$stateParams.rid},vm.response, onSaveSuccess, onSaveError);
+            	    });
+            	} else {
             	 Account.get().$promise.then(function(currentUser){
                  	console.log(currentUser.data)
                  	console.log(currentUser.data.login)    

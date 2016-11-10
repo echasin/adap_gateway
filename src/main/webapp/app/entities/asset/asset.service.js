@@ -11,6 +11,8 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'responsembrsByResponse': {method: 'GET',isArray: true, url: 'adap_assessment/api/responsembrsByResponse/:id'},            
+            'deleteresponsembrsByResponse': {method: 'GET',isArray: true, url: 'adap_assessment/api/deleteresponsembrsByResponse/:id'},            
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
