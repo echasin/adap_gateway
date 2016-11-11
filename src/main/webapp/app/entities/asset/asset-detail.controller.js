@@ -28,8 +28,9 @@
         vm.search = search;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
-        vm.loadAll();
-
+        vm.loadAll();   
+        
+        
         function loadAll () {
             if (pagingParams.search) {
                 ResponseSearch.query({
@@ -39,12 +40,12 @@
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Response.responseByAsset({
-                	id:$stateParams.id,
-                	page: pagingParams.page - 1,
-                    size: paginationConstants.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
+            	 Response.responseByAsset({
+                 	id:$stateParams.id,
+                 	page: pagingParams.page - 1,
+                     size: paginationConstants.itemsPerPage,
+                     sort: sort()
+                 }, onSuccess, onError);
             }
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
@@ -97,7 +98,7 @@
             vm.reverse = true;
             vm.currentSearch = null;
             vm.transition();
-        }  
+        }
     }
     
 })();
