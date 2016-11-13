@@ -2,9 +2,9 @@
 
 describe('Controller Tests', function() {
 
-    describe('Request Management Detail Controller', function() {
+    describe('Requeststate Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockRequest, MockRequestprojectmbr, MockRecordtype, MockRequeststate, MockFiscalyear;
+        var MockEntity, MockPreviousState, MockRequeststate, MockRequest;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -12,11 +12,8 @@ describe('Controller Tests', function() {
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
-            MockRequest = jasmine.createSpy('MockRequest');
-            MockRequestprojectmbr = jasmine.createSpy('MockRequestprojectmbr');
-            MockRecordtype = jasmine.createSpy('MockRecordtype');
             MockRequeststate = jasmine.createSpy('MockRequeststate');
-            MockFiscalyear = jasmine.createSpy('MockFiscalyear');
+            MockRequest = jasmine.createSpy('MockRequest');
             
 
             var locals = {
@@ -24,21 +21,18 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'Request': MockRequest,
-                'Requestprojectmbr': MockRequestprojectmbr,
-                'Recordtype': MockRecordtype,
                 'Requeststate': MockRequeststate,
-                'Fiscalyear': MockFiscalyear
+                'Request': MockRequest
             };
             createController = function() {
-                $injector.get('$controller')("RequestDetailController", locals);
+                $injector.get('$controller')("RequeststateDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'adapGatewayApp:requestUpdate';
+                var eventType = 'adapGatewayApp:requeststateUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);

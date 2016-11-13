@@ -6,7 +6,9 @@
             "Organization": "Organization",
             "Person": "Person",
             "Location": "Location",
-            "Event": "Event"
+            "Event": "Event",
+            "Project": "Project",
+            "Portfolio": "Portfolio"
         }
     }
 }

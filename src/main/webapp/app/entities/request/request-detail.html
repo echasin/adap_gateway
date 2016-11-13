@@ -8,6 +8,42 @@
         <dd>
             <span>{{vm.request.name}}</span>
         </dd>
+        <dt><span data-translate="adapGatewayApp.request.description">Description</span></dt>
+        <dd>
+            <span>{{vm.request.description}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.request.status">Status</span></dt>
+        <dd>
+            <span>{{vm.request.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.request.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.request.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.request.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.request.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.request.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.request.domain}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.request.amountrequested">Amountrequested</span></dt>
+        <dd>
+            <span>{{vm.request.amountrequested}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.request.recordtype">Recordtype</span></dt>
+        <dd>
+            <a ui-sref="recordtype-detail({id:vm.request.recordtype.id})">{{vm.request.recordtype.name}}</a>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.request.requeststate">Requeststate</span></dt>
+        <dd>
+            <a ui-sref="requeststate-detail({id:vm.request.requeststate.id})">{{vm.request.requeststate.name}}</a>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.request.fiscalyear">Fiscalyear</span></dt>
+        <dd>
+            <a ui-sref="fiscalyear-detail({id:vm.request.fiscalyear.id})">{{vm.request.fiscalyear.value}}</a>
+        </dd>
     </dl>
 
     <button type="submit"

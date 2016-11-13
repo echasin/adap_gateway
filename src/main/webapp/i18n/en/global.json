@@ -43,6 +43,8 @@
                 "portfolioprojectmbr": "Portfolioprojectmbr",
                 "request": "Request",
                 "requestprojectmbr": "Requestprojectmbr",
+                "requeststate": "Requeststate",
+                "fiscalyear": "Fiscalyear",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

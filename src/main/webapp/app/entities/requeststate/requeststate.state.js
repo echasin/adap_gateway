@@ -9,53 +9,73 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('request', {
+        .state('requeststate', {
             parent: 'entity',
-            url: '/request',
+            url: '/requeststate?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.request.home.title'
+                pageTitle: 'adapGatewayApp.requeststate.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/request/requests.html',
-                    controller: 'RequestController',
+                    templateUrl: 'app/entities/requeststate/requeststates.html',
+                    controller: 'RequeststateController',
                     controllerAs: 'vm'
                 }
             },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'id,asc',
+                    squash: true
+                },
+                search: null
+            },
             resolve: {
+                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                    return {
+                        page: PaginationUtil.parsePage($stateParams.page),
+                        sort: $stateParams.sort,
+                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                        ascending: PaginationUtil.parseAscending($stateParams.sort),
+                        search: $stateParams.search
+                    };
+                }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('request');
+                    $translatePartialLoader.addPart('requeststate');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('request-detail', {
+        .state('requeststate-detail', {
             parent: 'entity',
-            url: '/request/{id}',
+            url: '/requeststate/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.request.detail.title'
+                pageTitle: 'adapGatewayApp.requeststate.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/request/request-detail.html',
-                    controller: 'RequestDetailController',
+                    templateUrl: 'app/entities/requeststate/requeststate-detail.html',
+                    controller: 'RequeststateDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('request');
+                    $translatePartialLoader.addPart('requeststate');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Request', function($stateParams, Request) {
-                    return Request.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Requeststate', function($stateParams, Requeststate) {
+                    return Requeststate.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'request',
+                        name: $state.current.name || 'requeststate',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -63,22 +83,22 @@
                 }]
             }
         })
-        .state('request-detail.edit', {
-            parent: 'request-detail',
+        .state('requeststate-detail.edit', {
+            parent: 'requeststate-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/request/request-dialog.html',
-                    controller: 'RequestDialogController',
+                    templateUrl: 'app/entities/requeststate/requeststate-dialog.html',
+                    controller: 'RequeststateDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Request', function(Request) {
-                            return Request.get({id : $stateParams.id}).$promise;
+                        entity: ['Requeststate', function(Requeststate) {
+                            return Requeststate.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -88,16 +108,16 @@
                 });
             }]
         })
-        .state('request.new', {
-            parent: 'request',
+        .state('requeststate.new', {
+            parent: 'requeststate',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/request/request-dialog.html',
-                    controller: 'RequestDialogController',
+                    templateUrl: 'app/entities/requeststate/requeststate-dialog.html',
+                    controller: 'RequeststateDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
@@ -110,62 +130,61 @@
                                 lastmodifiedby: null,
                                 lastmodifieddatetime: null,
                                 domain: null,
-                                amountrequested: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('request', null, { reload: 'request' });
+                    $state.go('requeststate', null, { reload: 'requeststate' });
                 }, function() {
-                    $state.go('request');
+                    $state.go('requeststate');
                 });
             }]
         })
-        .state('request.edit', {
-            parent: 'request',
+        .state('requeststate.edit', {
+            parent: 'requeststate',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/request/request-dialog.html',
-                    controller: 'RequestDialogController',
+                    templateUrl: 'app/entities/requeststate/requeststate-dialog.html',
+                    controller: 'RequeststateDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Request', function(Request) {
-                            return Request.get({id : $stateParams.id}).$promise;
+                        entity: ['Requeststate', function(Requeststate) {
+                            return Requeststate.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('request', null, { reload: 'request' });
+                    $state.go('requeststate', null, { reload: 'requeststate' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('request.delete', {
-            parent: 'request',
+        .state('requeststate.delete', {
+            parent: 'requeststate',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/request/request-delete-dialog.html',
-                    controller: 'RequestDeleteController',
+                    templateUrl: 'app/entities/requeststate/requeststate-delete-dialog.html',
+                    controller: 'RequeststateDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Request', function(Request) {
-                            return Request.get({id : $stateParams.id}).$promise;
+                        entity: ['Requeststate', function(Requeststate) {
+                            return Requeststate.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('request', null, { reload: 'request' });
+                    $state.go('requeststate', null, { reload: 'requeststate' });
                 }, function() {
                     $state.go('^');
                 });

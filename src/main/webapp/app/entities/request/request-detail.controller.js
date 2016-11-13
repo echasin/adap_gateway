@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('RequestDetailController', RequestDetailController);
 
-    RequestDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Request', 'Requestprojectmbr'];
+    RequestDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Request', 'Requestprojectmbr', 'Recordtype', 'Requeststate', 'Fiscalyear'];
 
-    function RequestDetailController($scope, $rootScope, $stateParams, previousState, entity, Request, Requestprojectmbr) {
+    function RequestDetailController($scope, $rootScope, $stateParams, previousState, entity, Request, Requestprojectmbr, Recordtype, Requeststate, Fiscalyear) {
         var vm = this;
 
         vm.request = entity;

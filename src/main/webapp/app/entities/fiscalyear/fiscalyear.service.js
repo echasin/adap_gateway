@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('adapGatewayApp')
-        .factory('Request', Request);
+        .factory('Fiscalyear', Fiscalyear);
 
-    Request.$inject = ['$resource', 'DateUtils'];
+    Fiscalyear.$inject = ['$resource', 'DateUtils'];
 
-    function Request ($resource, DateUtils) {
-        var resourceUrl =  'adap_core/' + 'api/requests/:id';
+    function Fiscalyear ($resource, DateUtils) {
+        var resourceUrl =  'adap_core/' + 'api/fiscalyears/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

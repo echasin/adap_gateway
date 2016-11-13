@@ -17,7 +17,16 @@
                 "title": "Request"
             },
             "name": "Name",
-            "requestprojectmbrlhs": "Requestprojectmbrlhs"
+            "description": "Description",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "amountrequested": "Amountrequested",
+            "requestprojectmbrlhs": "Requestprojectmbrlhs",
+            "recordtype": "Recordtype",
+            "requeststate": "Requeststate",
+            "fiscalyear": "Fiscalyear"
         }
     }
 }
