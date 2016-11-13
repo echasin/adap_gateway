@@ -23,7 +23,9 @@
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
             "requestprojectmbrlhs": "Requestprojectmbrlhs",
-            "recordtype": "Recordtype"
+            "recordtype": "Recordtype",
+            "requeststate": "Requeststate",
+            "fiscalyear": "Fiscalyear"
         }
     }
 }

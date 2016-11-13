@@ -3,22 +3,19 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('RequestDialogController', RequestDialogController);
+        .controller('RequeststateDialogController', RequeststateDialogController);
 
-    RequestDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Request', 'Requestprojectmbr', 'Recordtype', 'Requeststate', 'Fiscalyear'];
+    RequeststateDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Requeststate', 'Request'];
 
-    function RequestDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Request, Requestprojectmbr, Recordtype, Requeststate, Fiscalyear) {
+    function RequeststateDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Requeststate, Request) {
         var vm = this;
 
-        vm.request = entity;
+        vm.requeststate = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.requestprojectmbrs = Requestprojectmbr.query();
-        vm.recordtypes = Recordtype.query();
-        vm.requeststates = Requeststate.query();
-        vm.fiscalyears = Fiscalyear.query();
+        vm.requests = Request.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -30,15 +27,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.request.id !== null) {
-                Request.update(vm.request, onSaveSuccess, onSaveError);
+            if (vm.requeststate.id !== null) {
+                Requeststate.update(vm.requeststate, onSaveSuccess, onSaveError);
             } else {
-                Request.save(vm.request, onSaveSuccess, onSaveError);
+                Requeststate.save(vm.requeststate, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('adapGatewayApp:requestUpdate', result);
+            $scope.$emit('adapGatewayApp:requeststateUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

@@ -4,35 +4,35 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myRequestLabel" data-translate="adapGatewayApp.request.home.createOrEditLabel">Create or edit a Request</h4>
+        <h4 class="modal-title" id="myRequeststateLabel" data-translate="adapGatewayApp.requeststate.home.createOrEditLabel">Create or edit a Requeststate</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.request.id">
+        <div class="form-group" ng-show="vm.requeststate.id">
             <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.request.id" readonly />
+                    ng-model="vm.requeststate.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.request.name" for="field_name">Name</label>
+            <label class="control-label" data-translate="adapGatewayApp.requeststate.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="vm.request.name"
-                    required ng-maxlength="100" />
+                    ng-model="vm.requeststate.name"
+                    required ng-maxlength="50" />
             <div ng-show="editForm.name.$invalid">
                 <p class="help-block"
                     ng-show="editForm.name.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="100">
-                    This field cannot be longer than 100 characters.
+                    ng-show="editForm.name.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
                 </p>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.request.description" for="field_description">Description</label>
+            <label class="control-label" data-translate="adapGatewayApp.requeststate.description" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
-                    ng-model="vm.request.description"
+                    ng-model="vm.requeststate.description"
                     ng-maxlength="255" />
             <div ng-show="editForm.description.$invalid">
                 <p class="help-block"
@@ -42,9 +42,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.request.status" for="field_status">Status</label>
+            <label class="control-label" data-translate="adapGatewayApp.requeststate.status" for="field_status">Status</label>
             <input type="text" class="form-control" name="status" id="field_status"
-                    ng-model="vm.request.status"
+                    ng-model="vm.requeststate.status"
                     required ng-maxlength="25" />
             <div ng-show="editForm.status.$invalid">
                 <p class="help-block"
@@ -58,9 +58,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.request.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <label class="control-label" data-translate="adapGatewayApp.requeststate.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
             <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
-                    ng-model="vm.request.lastmodifiedby"
+                    ng-model="vm.requeststate.lastmodifiedby"
                     required ng-maxlength="50" />
             <div ng-show="editForm.lastmodifiedby.$invalid">
                 <p class="help-block"
@@ -74,9 +74,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.request.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+            <label class="control-label" data-translate="adapGatewayApp.requeststate.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
                 <div class="input-group">
-                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.request.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
+                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.requeststate.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
                     required  />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastmodifieddatetime')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -94,9 +94,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.request.domain" for="field_domain">Domain</label>
+            <label class="control-label" data-translate="adapGatewayApp.requeststate.domain" for="field_domain">Domain</label>
             <input type="text" class="form-control" name="domain" id="field_domain"
-                    ng-model="vm.request.domain"
+                    ng-model="vm.requeststate.domain"
                     required ng-maxlength="25" />
             <div ng-show="editForm.domain.$invalid">
                 <p class="help-block"
@@ -110,36 +110,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label data-translate="adapGatewayApp.request.recordtype" for="field_recordtype">Recordtype</label>
-            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.request.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id">
-                <option value=""></option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label data-translate="adapGatewayApp.request.requeststate" for="field_requeststate">Requeststate</label>
-            <select class="form-control" id="field_requeststate" name="requeststate" ng-model="vm.request.requeststate" ng-options="requeststate as requeststate.name for requeststate in vm.requeststates track by requeststate.id" required>
-                <option value=""></option>
-            </select>
-        </div>
-        <div ng-show="editForm.requeststate.$invalid">
-            <p class="help-block"
-                ng-show="editForm.requeststate.$error.required" data-translate="entity.validation.required">
-                This field is required.
-            </p>
-        </div>
-        <div class="form-group">
-            <label data-translate="adapGatewayApp.request.fiscalyear" for="field_fiscalyear">Fiscalyear</label>
-            <select class="form-control" id="field_fiscalyear" name="fiscalyear" ng-model="vm.request.fiscalyear" ng-options="fiscalyear as fiscalyear.value for fiscalyear in vm.fiscalyears track by fiscalyear.id" required>
-                <option value=""></option>
-            </select>
-        </div>
-        <div ng-show="editForm.fiscalyear.$invalid">
-            <p class="help-block"
-                ng-show="editForm.fiscalyear.$error.required" data-translate="entity.validation.required">
-                This field is required.
-            </p>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

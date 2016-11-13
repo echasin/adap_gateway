@@ -32,6 +32,14 @@
         <dd>
             <a ui-sref="recordtype-detail({id:vm.request.recordtype.id})">{{vm.request.recordtype.name}}</a>
         </dd>
+        <dt><span data-translate="adapGatewayApp.request.requeststate">Requeststate</span></dt>
+        <dd>
+            <a ui-sref="requeststate-detail({id:vm.request.requeststate.id})">{{vm.request.requeststate.name}}</a>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.request.fiscalyear">Fiscalyear</span></dt>
+        <dd>
+            <a ui-sref="fiscalyear-detail({id:vm.request.fiscalyear.id})">{{vm.request.fiscalyear.value}}</a>
+        </dd>
     </dl>
 
     <button type="submit"

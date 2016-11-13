@@ -1,36 +1,24 @@
 {
     "relationships": [
-        {
+		 {
             "relationshipName": "requestprojectmbrlhs",
             "otherEntityName": "requestprojectmbr",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "requestlhs"
         },
-        {
+		{
             "relationshipName": "recordtype",
             "otherEntityName": "recordtype",
             "relationshipType": "many-to-one",
             "otherEntityField": "name"
         },
-        {
+		{
             "relationshipName": "requeststate",
             "otherEntityName": "requeststate",
             "relationshipType": "many-to-one",
-            "relationshipValidateRules": [
-                "required"
-            ],
             "otherEntityField": "name"
-        },
-		  {
-            "relationshipName": "fiscalyear",
-            "otherEntityName": "fiscalyear",
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": [
-                "required"
-            ],
-            "otherEntityField": "value"
         }
-    ],
+	],
     "fields": [
         {
             "fieldName": "name",
@@ -41,7 +29,7 @@
             ],
             "fieldValidateRulesMaxlength": "100"
         },
-        {
+		{
             "fieldName": "description",
             "fieldType": "String",
             "fieldValidateRules": [
