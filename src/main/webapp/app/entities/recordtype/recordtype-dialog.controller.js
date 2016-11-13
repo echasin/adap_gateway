@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('RecordtypeDialogController', RecordtypeDialogController);
 
-    RecordtypeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Recordtype', 'Category', 'Asset', 'Organization', 'Project'];
+    RecordtypeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Recordtype', 'Category', 'Asset', 'Organization', 'Project', 'Portfolio', 'Request'];
 
-    function RecordtypeDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Recordtype, Category, Asset, Organization, Project) {
+    function RecordtypeDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Recordtype, Category, Asset, Organization, Project, Portfolio, Request) {
         var vm = this;
 
         vm.recordtype = entity;
@@ -19,6 +19,8 @@
         vm.assets = Asset.query();
         vm.organizations = Organization.query();
         vm.projects = Project.query();
+        vm.portfolios = Portfolio.query();
+        vm.requests = Request.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

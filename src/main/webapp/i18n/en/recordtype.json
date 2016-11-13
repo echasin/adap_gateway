@@ -26,7 +26,9 @@
             "category": "Category",
             "asset": "Asset",
             "organization": "Organization",
-            "project": "Project"
+            "project": "Project",
+            "portfolio": "Portfolio",
+            "request": "Request"
         }
     }
 }

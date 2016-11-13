@@ -5,15 +5,18 @@
         .module('adapGatewayApp')
         .controller('RequestDialogController', RequestDialogController);
 
-    RequestDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Request', 'Requestprojectmbr'];
+    RequestDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Request', 'Requestprojectmbr', 'Recordtype'];
 
-    function RequestDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Request, Requestprojectmbr) {
+    function RequestDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Request, Requestprojectmbr, Recordtype) {
         var vm = this;
 
         vm.request = entity;
         vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
         vm.save = save;
         vm.requestprojectmbrs = Requestprojectmbr.query();
+        vm.recordtypes = Recordtype.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -42,6 +45,10 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.lastmodifieddatetime = false;
 
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
     }
 })();
