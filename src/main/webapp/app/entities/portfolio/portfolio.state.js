@@ -95,7 +95,7 @@
             views: {
                 'content@': {
                     templateUrl: 'app/entities/portfolio/portfolio-edit.html',
-                    controller: 'PortfolioDetailController',
+                    controller: 'PortfolioEditController',
                     controllerAs: 'vm'
                 }
             },

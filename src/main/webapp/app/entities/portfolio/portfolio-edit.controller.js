@@ -5,13 +5,13 @@
         .module('adapGatewayApp')
         .controller('PortfolioEditController', PortfolioEditController);
 
-    PortfolioEditController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Portfolio', 'Portfolioprojectmbr', 'Category', 'Subcategory', 'Recordtype'];
+    PortfolioEditController.$inject = ['$timeout','$location', '$scope', '$stateParams', 'entity', 'Portfolio', 'Portfolioprojectmbr', 'Category', 'Subcategory', 'Recordtype','Account'];
 
-    function PortfolioEditController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Portfolio, Portfolioprojectmbr, Category, Subcategory, Recordtype) {
+    function PortfolioEditController ($timeout,$location, $scope, $stateParams, entity, Portfolio, Portfolioprojectmbr, Category, Subcategory, Recordtype,Account) {
         var vm = this;
 
         vm.portfolio = entity;
-        vm.clear = clear;
+        vm.cancel = cancel;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
@@ -24,22 +24,22 @@
             angular.element('.form-group:eq(1)>input').focus();
         });
 
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
+        function cancel () {
+            $location.path("portfolio-home");
         }
 
-        function save () {
-            vm.isSaving = true;
-            if (vm.portfolio.id !== null) {
+        
+        function save() {
+        	Account.get().$promise.then(function(currentUser){
+             	vm.portfolio.domain=currentUser.data.domain
+             	vm.portfolio.lastmodifiedby=currentUser.data.lastmodifiedby;
+             	vm.portfolio.status="Active";
                 Portfolio.update(vm.portfolio, onSaveSuccess, onSaveError);
-            } else {
-                Portfolio.save(vm.portfolio, onSaveSuccess, onSaveError);
-            }
+        	});
         }
 
         function onSaveSuccess (result) {
             $scope.$emit('adapGatewayApp:portfolioUpdate', result);
-            $uibModalInstance.close(result);
             vm.isSaving = false;
         }
 

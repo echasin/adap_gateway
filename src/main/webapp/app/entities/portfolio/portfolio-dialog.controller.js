@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('PortfolioDialogController', PortfolioDialogController);
 
-    PortfolioDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Portfolio', 'Portfolioprojectmbr', 'Category', 'Subcategory', 'Recordtype'];
+    PortfolioDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Portfolio', 'Portfolioprojectmbr', 'Category', 'Subcategory', 'Recordtype','Account'];
 
-    function PortfolioDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Portfolio, Portfolioprojectmbr, Category, Subcategory, Recordtype) {
+    function PortfolioDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Portfolio, Portfolioprojectmbr, Category, Subcategory, Recordtype,Account) {
         var vm = this;
 
         vm.portfolio = entity;
@@ -33,7 +33,12 @@
             if (vm.portfolio.id !== null) {
                 Portfolio.update(vm.portfolio, onSaveSuccess, onSaveError);
             } else {
-                Portfolio.save(vm.portfolio, onSaveSuccess, onSaveError);
+            	Account.get().$promise.then(function(currentUser){
+                 	vm.portfolio.domain=currentUser.data.domain
+                 	vm.portfolio.lastmodifiedby=currentUser.data.lastmodifiedby;
+                 	vm.portfolio.status="Active";
+                    Portfolio.save(vm.portfolio, onSaveSuccess, onSaveError);
+            	});
             }
         }
 

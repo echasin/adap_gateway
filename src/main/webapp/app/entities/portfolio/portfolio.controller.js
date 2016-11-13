@@ -19,6 +19,7 @@
         function loadAll() {
             Portfolio.query(function(result) {
                 vm.portfolios = result;
+                vm.count=result.length;
             });
         }
 

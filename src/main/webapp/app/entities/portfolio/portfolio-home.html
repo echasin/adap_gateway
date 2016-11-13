@@ -29,7 +29,7 @@
 			<table class="table small m-t-sm">
 				<tbody>
 					<tr>
-						<td><strong>1</strong> Portfolios</td>
+						<td><strong>{{vm.count}}</strong> Portfolios</td>
 						<td><strong>22</strong> Messages</td>
 
 					</tr>
@@ -46,7 +46,7 @@
 
 		</div>
 	</div>
-	<div class="col-sm-6">
+	<div class="col-sm-5">
 
 		<div class="tabs-container">
 			<ul class="nav nav-tabs">
@@ -69,11 +69,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3">
+	<div class="col-sm-4">
 		<div class="ibox-content">
 			<!-- <h4>Programs by Portfolio</h4> -->
 			<div ng-controller="DashboardControllerPortfolio"
-				id="programsbyportfolio" style="height: 250px; margin: 0 auto" />
+				id="programsbyportfolio" style="height: 250px; margin: 0 auto">
+		    </div>
 		</div>
 	</div>
 </div>
