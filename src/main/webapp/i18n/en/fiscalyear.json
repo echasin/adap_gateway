@@ -1,0 +1,28 @@
+{
+    "adapGatewayApp": {
+        "fiscalyear" : {
+            "home": {
+                "title": "Fiscalyears",
+                "createLabel": "Create a new Fiscalyear",
+                "createOrEditLabel": "Create or edit a Fiscalyear",
+                "search": "Search for Fiscalyear"
+            },
+            "created": "A new Fiscalyear is created with identifier {{ param }}",
+            "updated": "A Fiscalyear is updated with identifier {{ param }}",
+            "deleted": "A Fiscalyear is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Fiscalyear {{ id }}?"
+            },
+            "detail": {
+                "title": "Fiscalyear"
+            },
+            "value": "Value",
+            "description": "Description",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "request": "Request"
+        }
+    }
+}

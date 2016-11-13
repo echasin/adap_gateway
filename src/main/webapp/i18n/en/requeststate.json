@@ -1,0 +1,28 @@
+{
+    "adapGatewayApp": {
+        "requeststate" : {
+            "home": {
+                "title": "Requeststates",
+                "createLabel": "Create a new Requeststate",
+                "createOrEditLabel": "Create or edit a Requeststate",
+                "search": "Search for Requeststate"
+            },
+            "created": "A new Requeststate is created with identifier {{ param }}",
+            "updated": "A Requeststate is updated with identifier {{ param }}",
+            "deleted": "A Requeststate is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Requeststate {{ id }}?"
+            },
+            "detail": {
+                "title": "Requeststate"
+            },
+            "name": "Name",
+            "description": "Description",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "request": "Request"
+        }
+    }
+}

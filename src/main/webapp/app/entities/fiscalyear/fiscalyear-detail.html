@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.fiscalyear.detail.title">Fiscalyear</span> {{vm.fiscalyear.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.fiscalyear.value">Value</span></dt>
+        <dd>
+            <span>{{vm.fiscalyear.value}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.fiscalyear.description">Description</span></dt>
+        <dd>
+            <span>{{vm.fiscalyear.description}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.fiscalyear.status">Status</span></dt>
+        <dd>
+            <span>{{vm.fiscalyear.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.fiscalyear.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.fiscalyear.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.fiscalyear.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.fiscalyear.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.fiscalyear.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.fiscalyear.domain}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="fiscalyear-detail.edit({id:vm.fiscalyear.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

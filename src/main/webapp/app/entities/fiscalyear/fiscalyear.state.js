@@ -9,53 +9,73 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('request', {
+        .state('fiscalyear', {
             parent: 'entity',
-            url: '/request',
+            url: '/fiscalyear?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.request.home.title'
+                pageTitle: 'adapGatewayApp.fiscalyear.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/request/requests.html',
-                    controller: 'RequestController',
+                    templateUrl: 'app/entities/fiscalyear/fiscalyears.html',
+                    controller: 'FiscalyearController',
                     controllerAs: 'vm'
                 }
             },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'id,asc',
+                    squash: true
+                },
+                search: null
+            },
             resolve: {
+                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                    return {
+                        page: PaginationUtil.parsePage($stateParams.page),
+                        sort: $stateParams.sort,
+                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                        ascending: PaginationUtil.parseAscending($stateParams.sort),
+                        search: $stateParams.search
+                    };
+                }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('request');
+                    $translatePartialLoader.addPart('fiscalyear');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('request-detail', {
+        .state('fiscalyear-detail', {
             parent: 'entity',
-            url: '/request/{id}',
+            url: '/fiscalyear/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'adapGatewayApp.request.detail.title'
+                pageTitle: 'adapGatewayApp.fiscalyear.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/request/request-detail.html',
-                    controller: 'RequestDetailController',
+                    templateUrl: 'app/entities/fiscalyear/fiscalyear-detail.html',
+                    controller: 'FiscalyearDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('request');
+                    $translatePartialLoader.addPart('fiscalyear');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Request', function($stateParams, Request) {
-                    return Request.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Fiscalyear', function($stateParams, Fiscalyear) {
+                    return Fiscalyear.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'request',
+                        name: $state.current.name || 'fiscalyear',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -63,22 +83,22 @@
                 }]
             }
         })
-        .state('request-detail.edit', {
-            parent: 'request-detail',
+        .state('fiscalyear-detail.edit', {
+            parent: 'fiscalyear-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/request/request-dialog.html',
-                    controller: 'RequestDialogController',
+                    templateUrl: 'app/entities/fiscalyear/fiscalyear-dialog.html',
+                    controller: 'FiscalyearDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Request', function(Request) {
-                            return Request.get({id : $stateParams.id}).$promise;
+                        entity: ['Fiscalyear', function(Fiscalyear) {
+                            return Fiscalyear.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -88,84 +108,83 @@
                 });
             }]
         })
-        .state('request.new', {
-            parent: 'request',
+        .state('fiscalyear.new', {
+            parent: 'fiscalyear',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/request/request-dialog.html',
-                    controller: 'RequestDialogController',
+                    templateUrl: 'app/entities/fiscalyear/fiscalyear-dialog.html',
+                    controller: 'FiscalyearDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
-                                name: null,
+                                value: null,
                                 description: null,
                                 status: null,
                                 lastmodifiedby: null,
                                 lastmodifieddatetime: null,
                                 domain: null,
-                                amountrequested: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('request', null, { reload: 'request' });
+                    $state.go('fiscalyear', null, { reload: 'fiscalyear' });
                 }, function() {
-                    $state.go('request');
+                    $state.go('fiscalyear');
                 });
             }]
         })
-        .state('request.edit', {
-            parent: 'request',
+        .state('fiscalyear.edit', {
+            parent: 'fiscalyear',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/request/request-dialog.html',
-                    controller: 'RequestDialogController',
+                    templateUrl: 'app/entities/fiscalyear/fiscalyear-dialog.html',
+                    controller: 'FiscalyearDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Request', function(Request) {
-                            return Request.get({id : $stateParams.id}).$promise;
+                        entity: ['Fiscalyear', function(Fiscalyear) {
+                            return Fiscalyear.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('request', null, { reload: 'request' });
+                    $state.go('fiscalyear', null, { reload: 'fiscalyear' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('request.delete', {
-            parent: 'request',
+        .state('fiscalyear.delete', {
+            parent: 'fiscalyear',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/request/request-delete-dialog.html',
-                    controller: 'RequestDeleteController',
+                    templateUrl: 'app/entities/fiscalyear/fiscalyear-delete-dialog.html',
+                    controller: 'FiscalyearDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Request', function(Request) {
-                            return Request.get({id : $stateParams.id}).$promise;
+                        entity: ['Fiscalyear', function(Fiscalyear) {
+                            return Fiscalyear.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('request', null, { reload: 'request' });
+                    $state.go('fiscalyear', null, { reload: 'fiscalyear' });
                 }, function() {
                     $state.go('^');
                 });

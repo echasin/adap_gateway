@@ -22,6 +22,7 @@
             "lastmodifiedby": "Lastmodifiedby",
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
+            "amountrequested": "Amountrequested",
             "requestprojectmbrlhs": "Requestprojectmbrlhs",
             "recordtype": "Recordtype",
             "requeststate": "Requeststate",

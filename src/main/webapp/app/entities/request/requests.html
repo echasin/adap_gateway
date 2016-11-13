@@ -42,6 +42,7 @@
                     <th><span data-translate="adapGatewayApp.request.lastmodifiedby">Lastmodifiedby</span></th>
                     <th><span data-translate="adapGatewayApp.request.lastmodifieddatetime">Lastmodifieddatetime</span></th>
                     <th><span data-translate="adapGatewayApp.request.domain">Domain</span></th>
+                    <th><span data-translate="adapGatewayApp.request.amountrequested">Amountrequested</span></th>
                     <th><span data-translate="adapGatewayApp.request.recordtype">Recordtype</span></th>
                     <th><span data-translate="adapGatewayApp.request.requeststate">Requeststate</span></th>
                     <th><span data-translate="adapGatewayApp.request.fiscalyear">Fiscalyear</span></th>
@@ -57,6 +58,7 @@
                     <td>{{request.lastmodifiedby}}</td>
                     <td>{{request.lastmodifieddatetime | date:'medium'}}</td>
                     <td>{{request.domain}}</td>
+                    <td>{{request.amountrequested}}</td>
                     <td>
                         <a ui-sref="recordtype-detail({id:request.recordtype.id})">{{request.recordtype.name}}</a>
                     </td>
