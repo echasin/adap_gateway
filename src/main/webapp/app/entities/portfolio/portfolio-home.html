@@ -71,7 +71,6 @@
 	</div>
 	<div class="col-sm-4">
 		<div class="ibox-content">
-			<!-- <h4>Programs by Portfolio</h4> -->
 			<div ng-controller="DashboardControllerPortfolio"
 				id="programsbyportfolio" style="height: 250px; margin: 0 auto">
 		    </div>
@@ -179,6 +178,10 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="text-center">
+                              <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+                              <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                            </div>
 						</div>
 					</div>
 				</div>

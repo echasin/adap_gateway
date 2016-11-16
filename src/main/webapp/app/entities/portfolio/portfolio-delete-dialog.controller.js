@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('PortfolioDeleteController',PortfolioDeleteController);
 
-    PortfolioDeleteController.$inject = ['$uibModalInstance', 'entity', 'Portfolio'];
+    PortfolioDeleteController.$inject = ['$uibModalInstance', 'entity', 'Portfolio','$mdDialog'];
 
-    function PortfolioDeleteController($uibModalInstance, entity, Portfolio) {
+    function PortfolioDeleteController($uibModalInstance, entity, Portfolio , $mdDialog) {
         var vm = this;
 
         vm.portfolio = entity;
@@ -19,10 +19,27 @@
         }
 
         function confirmDelete (id) {
-            Portfolio.delete({id: id},
-                function () {
-                    $uibModalInstance.close(true);
-                });
+        	Portfolio.delete({'id': id},
+        	 function(data) {
+        		$uibModalInstance.close(true);
+        	 }, function(error) {
+        		 $uibModalInstance.close(true);
+             	 showAlert();
+        	});
         }
+        
+        
+        function showAlert() {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Alert')
+                .textContent("Can't delete Portfolio because other objects are linked to this Portfolio.")
+                .ariaLabel('Alert Dialog Demo')
+                .ok('OK')
+                .targetEvent()
+            );
+          };
     }
 })();
