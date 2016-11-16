@@ -45,11 +45,41 @@
                     controllerAs: 'vm'
                 }
             },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'id,asc',
+                    squash: true
+                },
+                search: null
+            },
             resolve: {
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+            	 pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                     return {
+                         page: PaginationUtil.parsePage($stateParams.page),
+                         sort: $stateParams.sort,
+                         predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                         ascending: PaginationUtil.parseAscending($stateParams.sort),
+                         search: $stateParams.search
+                     };
+                 }],
+            	translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('portfolio');
-                    $translatePartialLoader.addPart('global');
                     return $translate.refresh();
+                }],
+                //entity: ['$stateParams', 'Asset', function($stateParams, Asset) {
+              //      return Asset.get({id : $stateParams.id}).$promise;
+                //}],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'asset',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
                 }]
             }
         })
@@ -95,7 +125,7 @@
             views: {
                 'content@': {
                     templateUrl: 'app/entities/portfolio/portfolio-edit.html',
-                    controller: 'PortfolioDetailController',
+                    controller: 'PortfolioEditController',
                     controllerAs: 'vm'
                 }
             },
@@ -202,12 +232,12 @@
             }]
         })
         .state('portfolio.delete', {
-            parent: 'portfolio',
+            parent: 'portfolio-home',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+            onEnter: ['$stateParams', '$state', '$uibModal' , '$mdDialog', function($stateParams, $state, $uibModal ,$mdDialog) {
                 $uibModal.open({
                     templateUrl: 'app/entities/portfolio/portfolio-delete-dialog.html',
                     controller: 'PortfolioDeleteController',
@@ -219,9 +249,9 @@
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('portfolio', null, { reload: 'portfolio' });
+                   $state.go('portfolio-home', null, { reload: 'portfolio-home' });
                 }, function() {
-                    $state.go('^');
+                	$state.go('portfolio-home', null, { reload: 'portfolio-home' });
                 });
             }]
         });

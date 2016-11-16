@@ -42,10 +42,10 @@
                                         });
                                  	   
                                  	   Response.get({id:$stateParams.rId}).$promise.then(function(data){
-                                     		var response=JSON.parse(data.details);                                     		
-                                		    
+                                 		   var response=jQuery.parseJSON(data.details);
+                                  		   if(typeof response =='object'){                                     		
+                                  				 if (typeof response.questiongroups !== 'undefined') {
                                      		for(var i=0;i<response.questiongroups.length;i++){
-                                     			
                                      			 for(var j=0;j<response.questiongroups[i].questions.length;j++){                                     				 
                                      				if(response.questiongroups[i].questions[j].question==question[index].id){
                                      					for(var w=0;w<question[index].subquestion.length;w++){
@@ -56,8 +56,9 @@
                                      					question[index].response=response.questiongroups[i].questions[j].response;
                                      				}      
                                      			 }
+                                     		    }
                                      		   }
-                                     		
+                                  		   }
                                      	  });                               	  
                             	     }); 
                 			    });
@@ -82,9 +83,10 @@
         var logicRules=[];
         
         function getOldResponse(){
-        	 Response.get({id:$stateParams.rId}).$promise.then(function(response){
-         		var response=JSON.parse(response.details);
-         	    if(response!=null){
+        	 Response.get({id:$stateParams.rId}).$promise.then(function(data){
+       		   var response=jQuery.parseJSON(data.details);
+         		   if(typeof response =='object'){ 
+         			  if (typeof response.questiongroups !== 'undefined') {
          		for(var i=0;i<response.questiongroups.length;i++){
          			
         			 for(var j=0;j<response.questiongroups[i].questions.length;j++){
@@ -93,6 +95,7 @@
         			 }        				      
         		   } 
          	    }
+         	}
          	  });
         }
        
@@ -564,8 +567,9 @@
      
      function getRules(){
     	 Response.get({id:$stateParams.rId}).$promise.then(function(response){ 		 
-     		var response=JSON.parse(response.details);
-     	    if(response!=null){
+    		 var response=jQuery.parseJSON(response.details);
+     		   if(typeof response =='object'){ 
+     		   if (typeof response.questiongroups !== 'undefined') {
      		for(var i=0;i<response.questiongroups.length;i++){	
      			(function(responseItem) {
     			    setTimeout(function() {
@@ -630,7 +634,7 @@
     		   
      		}
      	    }
-     	   
+    	 }
      	  });
     }
      

@@ -288,7 +288,7 @@
         })
         .state('deleteresponsembr', {
             parent: 'asset',
-            url: '/{id}/delete',
+            url: '/{asset}/deleteresponsembr/{rid}',
             data: {
                 authorities: ['ROLE_USER']
             },
@@ -299,14 +299,63 @@
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Asset', function(Asset) {
-                            return Asset.get({id : $stateParams.id}).$promise;
+                        //entity: ['Asset', function(Asset) {
+                          //  return Asset.get({id : $stateParams.id}).$promise;
+                        //}]
+                    }
+                }).result.then(function() {
+               // 	$location.path('/asset/'+$stateParams.id);
+                }, function() {
+                //	$location.path('/asset/'+$stateParams.id);
+                });
+            }]
+        })
+        .state('deleteresponse', {
+            parent: 'asset',
+            url: '/{asset}/deleteresponse/{rid}',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','$location', function($stateParams, $state, $uibModal,$location) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/asset/response-delete-dialog.html',
+                    controller: 'ResponseAssetDeleteController',
+                    controllerAs: 'vm',
+                    size: 'md',
+                    resolve: {
+                        //entity: ['Asset', function(Asset) {
+                          //  return Asset.get({id : $stateParams.id}).$promise;
+                        //}]
+                    }
+                }).result.then(function() {
+                	$location.path('/asset/'+$stateParams.asset);
+                }, function() {
+                	$location.path('/asset/'+$stateParams.asset);
+                });
+            }]
+        })
+         .state('editresponse', {
+            parent: 'asset',
+            url: '/{asset}/editresponse/{rid}',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','$location', function($stateParams, $state, $uibModal,$location) {
+                $uibModal.open({
+                	templateUrl: 'app/entities/asset/response-dialog.html',
+                    controller: 'ResponseAssetDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['Response', function(Response) {
+                            return Response.get({id : $stateParams.rid}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                	$location.path('/asset/'+$stateParams.id);
+                	$location.path('/asset/'+$stateParams.asset);
                 }, function() {
-                	$location.path('/asset/'+$stateParams.id);
+                	$location.path('/asset/'+$stateParams.asset);
                 });
             }]
         });

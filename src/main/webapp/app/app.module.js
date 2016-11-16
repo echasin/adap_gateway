@@ -9,6 +9,7 @@
             'ngResource',
             'ngCookies',
             'ngAria',
+            'ngMaterial',
             'ngCacheBuster',
             'ngFileUpload',
             'ui.bootstrap',
@@ -20,7 +21,7 @@
             'angular-loading-bar',
             // Add INSPINIA modules here
             'oc.lazyLoad',
-            'ngIdle'  
+            'ngIdle'
         ])
         .run(run);
 
