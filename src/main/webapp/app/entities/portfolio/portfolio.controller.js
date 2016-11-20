@@ -8,32 +8,7 @@
     PortfolioController.$inject = ['$scope', '$state', 'Portfolio', 'PortfolioSearch', 'ParseLinks', 'AlertService','pagingParams' , 'paginationConstants'];
 
     function PortfolioController ($scope , $state, Portfolio, PortfolioSearch, ParseLinks, AlertService,pagingParams , paginationConstants) {
-        /**
-    	var vm = this;
-        vm.portfolios = [];
-        vm.search = search;
-        vm.loadAll = loadAll;
-        loadAll();
-        function loadAll() {
-            Portfolio.query(function(result) {
-                vm.portfolios = result;
-                vm.count=result.length;
-            });
-        }
-        function search () {
-            if (!vm.searchQuery) {
-                return vm.loadAll();
-            }
-            PortfolioSearch.query({query: vm.searchQuery}, function(result) {
-                vm.portfolios = result;
-            });
-        }
-        **/
-        
-        
-        
-        
-        
+           
         var vm = this;
         vm.loadAll = loadAll;
         vm.loadPage = loadPage;
@@ -45,6 +20,7 @@
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
         vm.loadAll();
+        vm.getFinancial=getFinancial();
 
         
         function loadAll () {
@@ -71,7 +47,6 @@
             }
             function onSuccess(data, headers) {
                vm.links = ParseLinks.parse(headers('link'));
-                console.log("*////////////********")
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.portfolios  = data;
@@ -118,13 +93,19 @@
         }
 
         
-    
-    
-    
-    
-    
-    
-    
-    
+        function getFinancial(){
+        	Portfolio.financial().$promise.then(function(financial){  
+                   
+            $("#output").pivotUI(financial, {
+                rows: ["requeststateName"],
+                cols: ["fiscalyearValue"],
+                aggregatorName: "Integer Sum",
+                vals: ["amountrequested"],
+                rendererName: "Heatmap"
+            });
+            
+        	});
+        }
+      
     }
 })();

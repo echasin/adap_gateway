@@ -8,15 +8,14 @@
 
 	function DashboardControllerPortfolio($scope, $state , Portfolio , Project) {
 
+	       
+		
 		var data=[];
-		Portfolio.query().$promise.then(function(portfolio){            
-            for(var x=0;x < portfolio.length;x++){
+		Portfolio.chartData().$promise.then(function(object){            
+            for(var x=0;x < object.length;x++){
             	(function(index) {
     			    setTimeout(function() {
-    			    	console.log(portfolio[index].recordtype.id);
-                Project.projectsByRecordtype({id:portfolio[index].recordtype.id}).$promise.then(function(project){                
-                    data.push({nameshort : portfolio[index].nameshort , y : project.length});
-                    console.log(data)
+                    data.push({nameshort : object[index].nameShort , y : object[index].countProject});
                     Highcharts
     				.chart(
     						'programsbyportfolio',
@@ -56,7 +55,7 @@
     							} ]
     						});
                 });
-    			    });
+    			    
   			  })(x);
             } 
         });
