@@ -95,8 +95,22 @@
         
         function getFinancial(){
         	Portfolio.financial().$promise.then(function(financial){  
-                   
-            $("#output").pivotUI(financial, {
+              
+        		$.pivotUtilities.tipsData=financial;
+        		var utils = $.pivotUtilities;
+        		var heatmap =  utils.renderers["Heatmap"];
+        		var sumOverSum =  utils.aggregators["Integer Sum"];
+
+        		$("#pivot").pivot(
+        		  utils.tipsData, {
+        			  rows: ["requeststateName"],
+                      cols: ["fiscalyearValue"],
+        		    aggregator: sumOverSum(["amountrequested"]),
+        		    renderer: heatmap
+        		  });
+        		
+        		    
+            $("#pivotui").pivotUI(financial, {
                 rows: ["requeststateName"],
                 cols: ["fiscalyearValue"],
                 aggregatorName: "Integer Sum",
