@@ -11,7 +11,6 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
-            'projectsByRecordtype': {method: 'GET', isArray: true, url: 'adap_core/api/projectsByRecordtype/:id'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
