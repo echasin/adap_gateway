@@ -105,7 +105,7 @@
     "dto": "no",
     "service": "no",
     "entityTableName": "project",
-    "pagination": "yes",
+    "pagination": "pagination",
     "microserviceName": "adap_core",
     "searchEngine": "elasticsearch"
 }
