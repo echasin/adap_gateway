@@ -28,7 +28,8 @@
             "organization": "Organization",
             "project": "Project",
             "portfolio": "Portfolio",
-            "request": "Request"
+            "request": "Request",
+            "activity": "Activity"
         }
     }
 }
