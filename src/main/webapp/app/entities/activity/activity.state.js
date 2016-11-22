@@ -18,7 +18,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/activity/activities.html',
+                    templateUrl: 'app/entities/activity/activities-inbox.html',
                     controller: 'ActivityController',
                     controllerAs: 'vm'
                 }
@@ -49,6 +49,21 @@
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
+            }
+        })
+        .state('activity-inbox', {
+            parent: 'entity',
+            url: '/activity-inbox',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'adapGatewayApp.activity.home.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/activity/activities-inbox.html',
+                    controller: 'ActivityInboxController',
+                    controllerAs: 'vm'
+                }
             }
         })
         .state('activity-detail', {

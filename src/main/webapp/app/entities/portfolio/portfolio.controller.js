@@ -8,7 +8,7 @@
     PortfolioController.$inject = ['$scope', '$state', 'Portfolio', 'PortfolioSearch', 'ParseLinks', 'AlertService','pagingParams' , 'paginationConstants'];
 
     function PortfolioController ($scope , $state, Portfolio, PortfolioSearch, ParseLinks, AlertService,pagingParams , paginationConstants) {
-        /**
+        
     	var vm = this;
         vm.portfolios = [];
         vm.search = search;
@@ -28,7 +28,7 @@
                 vm.portfolios = result;
             });
         }
-        **/
+     
         
         
         
