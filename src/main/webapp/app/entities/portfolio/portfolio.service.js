@@ -11,6 +11,8 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'financial': {method: 'GET',isArray: true, url: 'adap_core/api/financial'},
+            'chartData': {method: 'GET',isArray: true, url: 'adap_core/api/chartData'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

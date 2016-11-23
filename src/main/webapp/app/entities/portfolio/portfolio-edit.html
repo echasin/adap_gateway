@@ -209,12 +209,13 @@
 														-->
 														<th jh-sort-by="projectrhs.name"><span>Projectrhs</span>
 															<span class="glyphicon glyphicon-sort"></span></th>
+														<th>RecordType</th>
 														<th></th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr
-														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs track by portfolioprojectmbr.id">
+														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=400">
 														<td><a
 															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
 														<td>{{portfolioprojectmbr.comment}}</td>
@@ -230,7 +231,8 @@
 														<td><a
 															ui-sref="project-detail({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
 														</td>
-														<td class="text-right">
+															<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
+			  											<td class="text-right">
 															<div class="btn-group flex-btn-group-container">
 																<button type="submit"
 																	ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})"
@@ -297,12 +299,13 @@
 														-->
 														<th jh-sort-by="projectrhs.name"><span>Projectrhs</span>
 															<span class="glyphicon glyphicon-sort"></span></th>
+														<th>RecordType</th>
 														<th></th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr
-														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs track by portfolioprojectmbr.id">
+														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=402">
 														<td><a
 															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
 														<td>{{portfolioprojectmbr.comment}}</td>
@@ -318,6 +321,7 @@
 														<td><a
 															ui-sref="project-detail({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
 														</td>
+														<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
 														<td class="text-right">
 															<div class="btn-group flex-btn-group-container">
 																<button type="submit"

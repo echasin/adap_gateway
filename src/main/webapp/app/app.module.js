@@ -17,6 +17,7 @@
             'ui.router',
             'infinite-scroll',
             'ngSanitize',
+            'ui.filters',
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar',
             // Add INSPINIA modules here

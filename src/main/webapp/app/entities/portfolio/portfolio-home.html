@@ -1,5 +1,5 @@
 <div class="row  border-bottom white-bg dashboard-header">
-	<div class="col-sm-3">
+	<div class="col-sm-2">
 		<!-- <h3>Portfolio</h3>-->
 		<ol class="breadcrumb">
 			<li><a href="index.html">Home</a></li>
@@ -46,7 +46,7 @@
 
 		</div>
 	</div>
-	<div class="col-sm-5">
+	<div class="col-sm-6">
 
 		<div class="tabs-container">
 			<ul class="nav nav-tabs">
@@ -57,13 +57,14 @@
 						class="fa fa-briefcase"></i>Risk Summary</a></li>
 				<li ng-class="{'active' : tab == 3}"><a ng-click="tab = 3"><i
 						class="fa fa-briefcase"></i>Others</a></li>
-
 			</ul>
 			<div class="tab-content">
 				<div id="tab-1" class="tab-pane active" ng-show="tab == 1">
-					TAB1</div>
+						<div id="pivot"></div>
+					</div>
 				<div id="tab-2" class="tab-pane active" ng-show="tab == 2">
-					TAB2</div>
+                        <div id="pivotui"></div>
+                    </div>
 				<div id="tab-3" class="tab-pane active" ng-show="tab == 3">
 					TAB3</div>
 			</div>
