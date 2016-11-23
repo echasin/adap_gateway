@@ -1,5 +1,5 @@
 <div class="row  border-bottom white-bg dashboard-header">
-	<div class="col-sm-2">
+	<div class="col-md-3">
 		<!-- <h3>Portfolio</h3>-->
 		<ol class="breadcrumb">
 			<li><a href="index.html">Home</a></li>
@@ -46,35 +46,55 @@
 
 		</div>
 	</div>
-	<div class="col-sm-6">
+	<div class="col-md-6">
 
 		<div class="tabs-container">
 			<ul class="nav nav-tabs">
 				<!-- <span class="pull-right small text-muted">1406 Elements</span> -->
 				<li ng-class="{'active' : tab == 1}"><a ng-click="tab = 1"
-					ng-init="tab = 1"><i class="fa fa-user"></i>Program Summary</a></li>
+					ng-init="tab = 1"><i class="fa fa-user"></i>Programs</a></li>
 				<li ng-class="{'active' : tab == 2}"><a ng-click="tab = 2"><i
-						class="fa fa-briefcase"></i>Risk Summary</a></li>
+						class="fa fa-briefcase"></i>Risks</a></li>
 				<li ng-class="{'active' : tab == 3}"><a ng-click="tab = 3"><i
 						class="fa fa-briefcase"></i>Others</a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="tab-1" class="tab-pane active" ng-show="tab == 1">
-						<div id="pivot"></div>
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>Program Requests by Year</h5>
+							<div class="btn-group pull-right" uib-dropdown>
+								<button type="button" class="btn btn-primary btn-xs"
+									uib-dropdown-toggle>
+									Action <span class="caret"></span>
+								</button>
+								<ul role="menu" uib-dropdown-menu="">
+									<li><a ui-sref="portfolio-test"> ui-sref="portfolio-test"</a></li>
+									<li><a href="">Another action</a></li>
+									<li><a href="">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="">Separated link</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div id="pivot" align="center"></div>
+						</div>
 					</div>
+				</div>
 				<div id="tab-2" class="tab-pane active" ng-show="tab == 2">
-                        <div id="pivotui"></div>
-                    </div>
+					<div id="pivotui" class="ibox-content"></div>
+				</div>
 				<div id="tab-3" class="tab-pane active" ng-show="tab == 3">
 					TAB3</div>
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-4">
+	<div class="col-md-3">
 		<div class="ibox-content">
 			<div ng-controller="DashboardControllerPortfolio"
 				id="programsbyportfolio" style="height: 250px; margin: 0 auto">
-		    </div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -153,7 +173,7 @@
 											<td>{{portfolio.recordtype.name}}</td>
 											<td class="text-right">
 												<div class="btn-group flex-btn-group-container">
-												   <button type="submit"
+													<button type="submit"
 														ui-sref="portfolio-edit({id:portfolio.id})"
 														class="btn btn-warning btn-xs">
 														<span class="fa-file-text-o"></span>
@@ -180,9 +200,11 @@
 								</table>
 							</div>
 							<div class="text-center">
-                              <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
-                              <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
-                            </div>
+								<jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+								<uib-pagination class="pagination-sm"
+									total-items="vm.totalItems" ng-model="vm.page"
+									ng-change="vm.transition()"></uib-pagination>
+							</div>
 						</div>
 					</div>
 				</div>
