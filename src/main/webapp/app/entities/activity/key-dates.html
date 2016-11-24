@@ -1,0 +1,76 @@
+	<form method="get" action="index.html"
+					class="pull-right mail-search">
+					<div class="input-group">
+						<input type="text" class="form-control input-sm" name="search"
+							placeholder="Search Concurrences">
+
+						<div class="input-group-btn">
+							<button type="submit" class="btn btn-sm btn-primary">
+								Search</button>
+						</div>
+					</div>
+				</form>
+				<h2>{{vm.recordtype.name}}</h2>
+
+				<div class="mail-tools tooltip-demo m-t-md">
+					<div class="btn-group pull-right">
+						<button class="btn btn-white btn-sm">
+							<i class="fa fa-arrow-left"></i>
+						</button>
+						<button class="btn btn-white btn-sm">
+							<i class="fa fa-arrow-right"></i>
+						</button>
+
+					</div>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip"
+						data-placement="left" title="Refresh inbox">
+						<i class="fa fa-refresh"></i> Refresh
+					</button>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip"
+						data-placement="top" title="Mark as read">
+						<i class="fa fa-eye"></i>
+					</button>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip"
+						data-placement="top" title="Mark as important">
+						<i class="fa fa-exclamation"></i>
+					</button>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip"
+						data-placement="top" title="Move to trash">
+						<i class="fa fa-trash-o"></i>
+					</button>
+
+				</div>
+
+			<div class="mail-box">				
+			   <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th>Check</th>
+                    <th>Activity Name</th>
+                    <th>Activity Description</th>
+                    <th>Activity DateTime</th>
+                    <th>Project Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="activity in vm.activitiesBox">
+                    <td class="check-mail"><input icheck type="checkbox" ng-model="main.checkOne"></td>
+                    <td>{{activity.activity.name}}</td>
+                    <td>{{activity.activity.description}}</td>
+                    <td>{{activity.activity.activitydatetime}}</td>
+                    <td>{{activity.project.name}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                           <button type="button" class="btn btn-outline btn-primary btn-sm">Concur</button>
+
+						   <button type="button" class="btn  btn-outline btn-danger btn-sm">Don't
+								Concur</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+   </div>

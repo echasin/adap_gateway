@@ -206,6 +206,50 @@
                     $state.go('^');
                 });
             }]
+        })
+        .state('key-dates', {
+        	parent: "activity-inbox",
+        	url: '/key-dates/{id}',
+            views: {
+                'activity': {
+                    templateUrl: 'app/entities/activity/key-dates.html',
+                    controller: 'ActivityInboxController',
+                    controllerAs: 'vm'
+                }
+            }
+        })
+        .state('requests', {
+        	parent: "activity-inbox",
+        	url: '/requests/{id}',
+            views: {
+                'activity': {
+                    templateUrl: 'app/entities/activity/requests.html',
+                    controller: 'ActivityInboxController',
+                    controllerAs: 'vm'
+                }
+            }
+        })
+        .state('concurrences', {
+            parent: "activity-inbox",
+        	url: '/concurrences/{id}',
+            views: {
+                'activity': {
+                    templateUrl: 'app/entities/activity/concurrences.html',
+                    controller: 'ActivityInboxController',
+                    controllerAs: 'vm'
+                }
+            }
+        })
+        .state('tasks', {
+            parent: "activity-inbox",
+        	url: '/tasks/{id}',
+            views: {
+                'activity': {
+                    templateUrl: 'app/entities/activity/tasks.html',
+                    controller: 'ActivityInboxController',
+                    controllerAs: 'vm'
+                }
+            }
         });
     }
 
