@@ -1,0 +1,55 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.activity.detail.title">Activity</span> {{vm.activity.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.activity.name">Name</span></dt>
+        <dd>
+            <span>{{vm.activity.name}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activity.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{vm.activity.nameshort}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activity.description">Description</span></dt>
+        <dd>
+            <span>{{vm.activity.description}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activity.activitydatetime">Activitydatetime</span></dt>
+        <dd>
+            <span>{{vm.activity.activitydatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activity.status">Status</span></dt>
+        <dd>
+            <span>{{vm.activity.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activity.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.activity.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activity.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.activity.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activity.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.activity.domain}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activity.recordtype">Recordtype</span></dt>
+        <dd>
+            <a ui-sref="recordtype-detail({id:vm.activity.recordtype.id})">{{vm.activity.recordtype.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="activity-detail.edit({id:vm.activity.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

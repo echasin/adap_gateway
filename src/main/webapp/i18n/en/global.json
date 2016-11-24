@@ -45,6 +45,8 @@
                 "requestprojectmbr": "Requestprojectmbr",
                 "requeststate": "Requeststate",
                 "fiscalyear": "Fiscalyear",
+                "activity": "Activity",
+                "activitymbr": "Activitymbr",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

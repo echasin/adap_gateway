@@ -218,7 +218,8 @@
 														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=400">
 														<td><a
 															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
-														<td>{{portfolioprojectmbr.comment}}</td>
+														<!-- <td>{{portfolioprojectmbr.comment}}</td> -->
+														<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
 														<!-- <td>{{portfolioprojectmbr.status}}</td>
 														<td>{{portfolioprojectmbr.lastmodifiedby}}</td>
 														<td>{{portfolioprojectmbr.lastmodifieddatetime |

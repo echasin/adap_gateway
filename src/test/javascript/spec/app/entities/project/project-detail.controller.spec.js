@@ -2,9 +2,9 @@
 
 describe('Controller Tests', function() {
 
-    describe('Recordtype Management Detail Controller', function() {
+    describe('Project Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockRecordtype, MockCategory, MockAsset, MockOrganization, MockProject, MockPortfolio, MockRequest, MockActivity;
+        var MockEntity, MockPreviousState, MockProject, MockProjectprojectmbr, MockPortfolioprojectmbr, MockRequestprojectmbr, MockCategory, MockSubcategory, MockRecordtype;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -12,14 +12,13 @@ describe('Controller Tests', function() {
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
-            MockRecordtype = jasmine.createSpy('MockRecordtype');
-            MockCategory = jasmine.createSpy('MockCategory');
-            MockAsset = jasmine.createSpy('MockAsset');
-            MockOrganization = jasmine.createSpy('MockOrganization');
             MockProject = jasmine.createSpy('MockProject');
-            MockPortfolio = jasmine.createSpy('MockPortfolio');
-            MockRequest = jasmine.createSpy('MockRequest');
-            MockActivity = jasmine.createSpy('MockActivity');
+            MockProjectprojectmbr = jasmine.createSpy('MockProjectprojectmbr');
+            MockPortfolioprojectmbr = jasmine.createSpy('MockPortfolioprojectmbr');
+            MockRequestprojectmbr = jasmine.createSpy('MockRequestprojectmbr');
+            MockCategory = jasmine.createSpy('MockCategory');
+            MockSubcategory = jasmine.createSpy('MockSubcategory');
+            MockRecordtype = jasmine.createSpy('MockRecordtype');
             
 
             var locals = {
@@ -27,24 +26,23 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'Recordtype': MockRecordtype,
-                'Category': MockCategory,
-                'Asset': MockAsset,
-                'Organization': MockOrganization,
                 'Project': MockProject,
-                'Portfolio': MockPortfolio,
-                'Request': MockRequest,
-                'Activity': MockActivity
+                'Projectprojectmbr': MockProjectprojectmbr,
+                'Portfolioprojectmbr': MockPortfolioprojectmbr,
+                'Requestprojectmbr': MockRequestprojectmbr,
+                'Category': MockCategory,
+                'Subcategory': MockSubcategory,
+                'Recordtype': MockRecordtype
             };
             createController = function() {
-                $injector.get('$controller')("RecordtypeDetailController", locals);
+                $injector.get('$controller')("ProjectDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'adapGatewayApp:recordtypeUpdate';
+                var eventType = 'adapGatewayApp:projectUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);
