@@ -24,7 +24,7 @@
 			</li>
 			
 		
-		  
+		    <!-- 
 			<li ng-class="{active: $state.includes('dashboards')}">
 			<a
 				href="dashboards.html"><i class="fa fa-bar-chart"></i>  <span
@@ -33,7 +33,7 @@
 				<ul class="nav nav-second-level collapse"
 					ng-class="{in: $state.includes('dashboards')}">
 					<li ui-sref-active="active"><a
-						ui-sref="dashboard.dashboard-portfolio">{{ 'Portfolio Dashboard' | translate }}
+						ui-sref="inbox">{{ 'Inbox' | translate }}
 							</a></li>
 					<li ui-sref-active="active"><a
 						ui-sref="dashboard.dashboard-program">{{ 'Program Dashboard' | translate }}
@@ -51,7 +51,12 @@
 						ui-sref="dashboards.dashboard_5">{{ 'Concurrences' | translate }}
 							 </a></li>
 				</ul></li>
+				-->
+		    <li ui-sref-active="active"><a ui-sref="activity-inbox"><i
+					class="fa fa-envelope"></i> <span class="nav-label">{{
+						'My CARB' | translate }}</span> </a></li>	
 			
+		   
 		   <li ui-sref-active="active"><a ui-sref="portfolio-home"><i
 					class="fa fa-briefcase"></i> <span class="nav-label">{{
 						'Portfolios' | translate }}</span> </a></li>	

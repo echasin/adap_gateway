@@ -1,20 +1,20 @@
 <div>
-    <h2 data-translate="adapGatewayApp.project.home.title">Projects</h2>
+    <h2 data-translate="adapGatewayApp.activity.home.title">Activities</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="project.new" >
+                <button class="btn btn-primary" ui-sref="activity.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs"  data-translate="adapGatewayApp.project.home.createLabel">
-                        Create new Project
+                    <span class="hidden-xs"  data-translate="adapGatewayApp.activity.home.createLabel">
+                        Create new Activity
                     </span>
                 </button>
             </div>
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.project.home.search' | translate }}">
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.activity.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -36,46 +36,48 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="name"><span data-translate="adapGatewayApp.project.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="nameshort"><span data-translate="adapGatewayApp.project.nameshort">Nameshort</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="description"><span data-translate="adapGatewayApp.project.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.project.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.project.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.project.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.project.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="recordtype.name"><span data-translate="adapGatewayApp.project.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span data-translate="adapGatewayApp.activity.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nameshort"><span data-translate="adapGatewayApp.activity.nameshort">Nameshort</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span data-translate="adapGatewayApp.activity.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="activitydatetime"><span data-translate="adapGatewayApp.activity.activitydatetime">Activitydatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.activity.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.activity.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.activity.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.activity.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="recordtype.name"><span data-translate="adapGatewayApp.activity.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="project in vm.projects track by project.id">
-                    <td><a ui-sref="project-detail({id:project.id})">{{project.id}}</a></td>
-                    <td>{{project.name}}</td>
-                    <td>{{project.nameshort}}</td>
-                    <td>{{project.description}}</td>
-                    <td>{{project.status}}</td>
-                    <td>{{project.lastmodifiedby}}</td>
-                    <td>{{project.lastmodifieddatetime | date:'medium'}}</td>
-                    <td>{{project.domain}}</td>
+                <tr ng-repeat="activity in vm.activities track by activity.id">
+                    <td><a ui-sref="activity-detail({id:activity.id})">{{activity.id}}</a></td>
+                    <td>{{activity.name}}</td>
+                    <td>{{activity.nameshort}}</td>
+                    <td>{{activity.description}}</td>
+                    <td>{{activity.activitydatetime | date:'medium'}}</td>
+                    <td>{{activity.status}}</td>
+                    <td>{{activity.lastmodifiedby}}</td>
+                    <td>{{activity.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{activity.domain}}</td>
                     <td>
-                        <a ui-sref="recordtype-detail({id:project.recordtype.id})">{{project.recordtype.name}}</a>
+                        <a ui-sref="recordtype-detail({id:activity.recordtype.id})">{{activity.recordtype.name}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="project-detail({id:project.id})"
+                                    ui-sref="activity-detail({id:activity.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="project.edit({id:project.id})"
+                                    ui-sref="activity.edit({id:activity.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="project.delete({id:project.id})"
+                                    ui-sref="activity.delete({id:activity.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>

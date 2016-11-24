@@ -1,0 +1,181 @@
+<div class="row border-bottom white-bg page-heading">
+	<ol class="breadcrumb">
+		<h2>My Inbox</h2>
+		<li><a href="index.html">Home</a></li>
+		<li class="active"><strong>My CARB</strong></li>
+	</ol>
+</div>
+<div class="wrapper wrapper-content">
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="ibox float-e-margins">
+				<div class="ibox-content mailbox-content">
+					<div class="file-manager">
+						<!-- <a class="btn btn-block btn-primary compose-mail"
+							ui-sref="email_compose">Compose Mail</a>
+						-->
+						<div class="space-25"></div>
+						<h5>Folders</h5>
+						<ul class="folder-list m-b-md" style="padding: 0">
+							<li><a ui-sref="inbox.keydates"> <i class="fa fa-inbox "></i>
+									Key Dates <span class="label label-warning pull-right">16</span>
+							</a></li>
+							<li><a ui-sref="inbox.requests"> <i
+									class="fa fa-envelope-o"></i> Requests <span
+									class="label label-warning pull-right">2</span>
+							</a></li>
+							<li><a ui-sref="inbox.concurrences"> <i
+									class="fa fa-certificate"></i> Concurrences <span
+									class="label label-warning pull-right">2</span>
+							</a></li>
+
+							<li><a ui-sref="inbox.tasks"> <i
+									class="fa fa-file-text-o"></i> Tasks <span
+									class="label label-danger pull-right">2</span></a></li>
+							<!-- 
+							<li><a ui-sref="inbox"> <i class="fa fa-trash-o"></i>
+									Trash
+							</a></li>
+							-->
+						</ul>
+						<!-- <h5>Categories</h5>
+						<ul class="category-list" style="padding: 0">
+							<li><a href=""> <i class="fa fa-circle text-navy"></i>
+									Work
+							</a></li>
+							<li><a href=""> <i class="fa fa-circle text-danger"></i>
+									Documents
+							</a></li>
+							<li><a href=""> <i class="fa fa-circle text-primary"></i>
+									Social
+							</a></li>
+							<li><a href=""> <i class="fa fa-circle text-info"></i>
+									Advertising
+							</a></li>
+							<li><a href=""> <i class="fa fa-circle text-warning"></i>
+									Clients
+							</a></li>
+						</ul>
+
+						<h5 class="tag-title">Labels</h5>
+						<ul class="tag-list" style="padding: 0">
+							<li><a href=""><i class="fa fa-tag"></i> Family</a></li>
+							<li><a href=""><i class="fa fa-tag"></i> Work</a></li>
+							<li><a href=""><i class="fa fa-tag"></i> Home</a></li>
+							<li><a href=""><i class="fa fa-tag"></i> Children</a></li>
+							<li><a href=""><i class="fa fa-tag"></i> Holidays</a></li>
+							<li><a href=""><i class="fa fa-tag"></i> Music</a></li>
+							<li><a href=""><i class="fa fa-tag"></i> Photography</a></li>
+							<li><a href=""><i class="fa fa-tag"></i> Film</a></li>
+						</ul>
+						-->
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-9 animated fadeInRight">
+			<div class="mail-box-header">
+
+				<form method="get" action="index.html"
+					class="pull-right mail-search">
+					<div class="input-group">
+						<input type="text" class="form-control input-sm" name="search"
+							placeholder="Search Concurrences">
+
+						<div class="input-group-btn">
+							<button type="submit" class="btn btn-sm btn-primary">
+								Search</button>
+						</div>
+					</div>
+				</form>
+				<h2>Concurrences(2)</h2>
+
+				<div class="mail-tools tooltip-demo m-t-md">
+					<div class="btn-group pull-right">
+						<button class="btn btn-white btn-sm">
+							<i class="fa fa-arrow-left"></i>
+						</button>
+						<button class="btn btn-white btn-sm">
+							<i class="fa fa-arrow-right"></i>
+						</button>
+
+					</div>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip"
+						data-placement="left" title="Refresh inbox">
+						<i class="fa fa-refresh"></i> Refresh
+					</button>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip"
+						data-placement="top" title="Mark as read">
+						<i class="fa fa-eye"></i>
+					</button>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip"
+						data-placement="top" title="Mark as important">
+						<i class="fa fa-exclamation"></i>
+					</button>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip"
+						data-placement="top" title="Move to trash">
+						<i class="fa fa-trash-o"></i>
+					</button>
+
+				</div>
+			</div>
+			<div class="mail-box">
+
+				<!--  -->
+				<table class="table table-hover table-mail">
+					<tbody>
+						<tr class="unread">
+							<td class="check-mail"><input icheck type="checkbox"
+								ng-model="main.checkOne"></td>
+							<td class="mail-contact"><a ui-sref="email_view">activity.name
+							</a></td>
+							<td class="mail-subject"><a ui-sref="email_view">activity.description
+							</a></td>
+							<td class="text-right mail-date">actvity.datetime</td>
+							<td>
+                        	<a ui-sref="project-detail({id:activitymbr.project.id})">project.name</a>
+                    		</td>
+							<td class=""><i class="fa fa-paperclip"></i></td>
+							<td class="text-right">
+								<div class="btn-group flex-btn-group-container">
+
+									<button type="button" class="btn btn-outline btn-primary btn-sm">Concur</button>
+
+									<button type="button" class="btn  btn-outline btn-danger btn-sm">Don't
+										Concur</button>
+
+								</div>
+							</td>
+						</tr>
+						<tr class="unread">
+							<td class="check-mail"><input icheck type="checkbox"
+								ng-model="main.checkOne"></td>
+							<td class="mail-contact"><a ui-sref="email_view">activity.name
+							</a></td>
+							<td class="mail-subject"><a ui-sref="email_view">activity.description
+							</a></td>
+							<td class="text-right mail-date">actvity.datetime</td>
+							<td>
+                        	<a ui-sref="project-detail({id:activitymbr.project.id})">project.name</a>
+                    		</td>
+							<td class=""><i class="fa fa-paperclip"></i></td>
+								<td class="text-right">
+								<div class="btn-group flex-btn-group-container">
+
+									<button type="button" class="btn btn-outline btn-primary btn-sm">Concur</button>
+
+									<button type="button" class="btn  btn-outline btn-danger btn-sm">Don't
+										Concur</button>
+
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+</div>

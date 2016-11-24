@@ -2,9 +2,9 @@
 
 describe('Controller Tests', function() {
 
-    describe('Recordtype Management Detail Controller', function() {
+    describe('Activitymbr Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockRecordtype, MockCategory, MockAsset, MockOrganization, MockProject, MockPortfolio, MockRequest, MockActivity;
+        var MockEntity, MockPreviousState, MockActivitymbr, MockActivity, MockProject, MockAsset;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -12,14 +12,10 @@ describe('Controller Tests', function() {
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
-            MockRecordtype = jasmine.createSpy('MockRecordtype');
-            MockCategory = jasmine.createSpy('MockCategory');
-            MockAsset = jasmine.createSpy('MockAsset');
-            MockOrganization = jasmine.createSpy('MockOrganization');
-            MockProject = jasmine.createSpy('MockProject');
-            MockPortfolio = jasmine.createSpy('MockPortfolio');
-            MockRequest = jasmine.createSpy('MockRequest');
+            MockActivitymbr = jasmine.createSpy('MockActivitymbr');
             MockActivity = jasmine.createSpy('MockActivity');
+            MockProject = jasmine.createSpy('MockProject');
+            MockAsset = jasmine.createSpy('MockAsset');
             
 
             var locals = {
@@ -27,24 +23,20 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'Recordtype': MockRecordtype,
-                'Category': MockCategory,
-                'Asset': MockAsset,
-                'Organization': MockOrganization,
+                'Activitymbr': MockActivitymbr,
+                'Activity': MockActivity,
                 'Project': MockProject,
-                'Portfolio': MockPortfolio,
-                'Request': MockRequest,
-                'Activity': MockActivity
+                'Asset': MockAsset
             };
             createController = function() {
-                $injector.get('$controller')("RecordtypeDetailController", locals);
+                $injector.get('$controller')("ActivitymbrDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'adapGatewayApp:recordtypeUpdate';
+                var eventType = 'adapGatewayApp:activitymbrUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);

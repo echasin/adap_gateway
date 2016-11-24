@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ProjectDialogController', ProjectDialogController);
 
-    ProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Project', 'Projectprojectmbr', 'Portfolioprojectmbr', 'Category', 'Subcategory', 'Recordtype'];
+    ProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Project', 'Projectprojectmbr', 'Portfolioprojectmbr', 'Requestprojectmbr', 'Category', 'Subcategory', 'Recordtype'];
 
-    function ProjectDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Project, Projectprojectmbr, Portfolioprojectmbr, Category, Subcategory, Recordtype) {
+    function ProjectDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Project, Projectprojectmbr, Portfolioprojectmbr, Requestprojectmbr, Category, Subcategory, Recordtype) {
         var vm = this;
 
         vm.project = entity;
@@ -17,6 +17,7 @@
         vm.save = save;
         vm.projectprojectmbrs = Projectprojectmbr.query();
         vm.portfolioprojectmbrs = Portfolioprojectmbr.query();
+        vm.requestprojectmbrs = Requestprojectmbr.query();
         vm.categories = Category.query();
         vm.subcategories = Subcategory.query();
         vm.recordtypes = Recordtype.query();
