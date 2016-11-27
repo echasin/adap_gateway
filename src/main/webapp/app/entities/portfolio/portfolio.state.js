@@ -41,7 +41,7 @@
             views: {
                 'content@': {
                     templateUrl: 'app/entities/portfolio/portfolio-home.html',
-                    controller: 'PortfolioController',
+                    controller: 'PortfolioHomeController',
                     controllerAs: 'vm'
                 }
             },
@@ -117,7 +117,7 @@
         })
          .state('portfolio-edit', {
             parent: 'entity',
-            url: '/portfolio/edit/{id}',
+            url: '/portfolio-edit/{id}',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'adapGatewayApp.portfolio.detail.title'

@@ -3,8 +3,8 @@
 		<!-- <h3>Portfolio</h3>-->
 		<ol class="breadcrumb">
 			<li><a href="index.html">Home</a></li>
-			<li><a sref="portfolio-home">Portfolio</a></li>
-			<li class="active"><strong>{{vm.portfolio.nameshort}}</strong></li>
+			<li><a sref="portfolio-home">Program</a></li>
+			<li class="active"><strong>{{vm.project.nameshort}}</strong></li>
 		</ol>
 		<div class="ibox-content">
 			<form class="form-horizontal">
@@ -46,7 +46,8 @@
 								characters.</p>
 						</div>
 					</div>
-				</div>			
+				</div>	
+				<!--  CHANGE TO PROJECT		
                 <div class="form-group">
                     <label  class="col-lg-4 control-label" data-translate="adapGatewayApp.portfolio.category" for="field_category">Category</label>
                     <select  class="col-lg-8"  id="field_category" multiple name="category" ng-model="vm.portfolio.categories" ng-options="category as category.name for category in vm.categories track by category.id"></select>
@@ -71,8 +72,9 @@
                       ng-show="editForm.description.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
                       This field cannot be longer than 255 characters.
                     </p>
-                 </div>
+                 </div>       
                 </div> 
+                  -->
 			</form>
 
 		</div>
@@ -138,10 +140,10 @@
 									<div class="row">
 										<div class="col-xs-4 no-padding-left">
 											<button class="btn btn-primary"
-												ui-sref="portfolioprojectmbr.new">
+												ui-sref="projectprojectmbr.new">
 												<span class="glyphicon glyphicon-plus"></span> <span
 													class="hidden-xs">
-													Create new Portfolioprojectmbr </span>
+													Create new Projectprojectmbr </span>
 											</button>
 										</div>
 										<div class="col-xs-8 no-padding-right">
@@ -172,16 +174,15 @@
 								<ul class="nav nav-tabs">
 									<li ng-class="{'active' : tab2 == 11}"><a
 										ng-click="tab2 = 11" ng-init="tab2 = 11"><i
-											class="fa fa-user"></i>Programs </a></li>
+											class="fa fa-user"></i> Related Projects/Programs </a></li>
 									<li ng-class="{'active' : tab2 == 12}"><a
-										ng-click="tab2 = 12"><i class="fa fa-briefcase"></i>Projects</a></li>
+										ng-click="tab2 = 12"><i class="fa fa-briefcase"></i>Stakeholders</a></li>
 									<li ng-class="{'active' : tab2 == 13}"><a
-										ng-click="tab2 = 13"><i class="fa fa-briefcase"></i>Assets</a></li>
+										ng-click="tab2 = 13"><i class="fa fa-briefcase"></i>Activities</a></li>
 								</ul>
 								<div class="tab-content">
 									<div id="tab-11" class="tab-pane active" ng-show="tab2 == 11">
 										TAB 11
-										ANGULAR FILTER TABLE = WHERE RECORDTYPE=PROGRAM
 										<div class="table-responsive">
 											<table class="jh-table table table-striped">
 												<thead>
@@ -229,18 +230,9 @@
 															ui-sref="portfolio-detail({id:portfolioprojectmbr.portfoliolhs.id})">{{portfolioprojectmbr.portfoliolhs.name}}</a>
 														</td>
 														-->
-														
-														<!--  IF RECORDTYPE = PROGRAM THEN -->
 														<td><a
-															ui-sref="program-edit({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
+															ui-sref="project-detail({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
 														</td>
-														<!--  IF RECORDTYPE = PROJECT THEN 
-														<td><a
-															ui-sref="project-edit({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
-														</td> 
-														-->
-														
-														
 															<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
 			  											<td class="text-right">
 															<div class="btn-group flex-btn-group-container">
@@ -379,6 +371,107 @@
 					</div>
 				</div>
 
+						<div class="col-lg-4">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+							<h5>Activity Timeline</h5>
+
+							<div class="ibox-tools">
+								<span class="label label-warning-light">10 Activities</span>
+							</div>
+						</div>
+                <div class="ibox-content" id="ibox-content">
+
+                    <div id="vertical-timeline" class="vertical-container dark-timeline center-orientation">
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon navy-bg">
+                                <i class="fa fa-briefcase"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Meeting</h2>
+                                <p>Conference on the sales results for the previous year. Monica please examine sales trends in marketing and products. Below please find the current status of the sale.
+                                </p>
+                                <a href="#" class="btn btn-sm btn-primary"> More info</a>
+                                    <span class="vertical-date">
+                                        Today <br/>
+                                        <small>Dec 24</small>
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon blue-bg">
+                                <i class="fa fa-file-text"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Send documents to Mike</h2>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                <a href="#" class="btn btn-sm btn-success"> Download document </a>
+                                    <span class="vertical-date">
+                                        Today <br/>
+                                        <small>Dec 24</small>
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon lazur-bg">
+                                <i class="fa fa-coffee"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Coffee Break</h2>
+                                <p>Go to shop and find some products. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. </p>
+                                <a href="#" class="btn btn-sm btn-info">Read more</a>
+                                <span class="vertical-date"> Yesterday <br/><small>Dec 23</small></span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon yellow-bg">
+                                <i class="fa fa-phone"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Phone with Jeronimo</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+                                <span class="vertical-date">Yesterday <br/><small>Dec 23</small></span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon lazur-bg">
+                                <i class="fa fa-user-md"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Go to the doctor dr Smith</h2>
+                                <p>Find some issue and go to doctor. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. </p>
+                                <span class="vertical-date">Yesterday <br/><small>Dec 23</small></span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon navy-bg">
+                                <i class="fa fa-comments"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Chat with Monica and Sandra</h2>
+                                <p>Web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). </p>
+                                <span class="vertical-date">Yesterday <br/><small>Dec 23</small></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+				
+				    </div>
+				
+				<!-- 
 				<div class="col-lg-4">
 					<div class="ibox float-e-margins">
 						<div class="ibox-title">
@@ -499,7 +592,7 @@
 								</button>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

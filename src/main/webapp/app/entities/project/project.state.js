@@ -51,7 +51,8 @@
                 }]
             }
         })
-        .state('project-detail', {
+       
+        .state('project-edit', {
             parent: 'entity',
             url: '/project/{id}',
             data: {
@@ -62,6 +63,70 @@
                 'content@': {
                     templateUrl: 'app/entities/project/project-detail.html',
                     controller: 'ProjectDetailController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('project');
+                    return $translate.refresh();
+                }],
+                entity: ['$stateParams', 'Project', function($stateParams, Project) {
+                    return Project.get({id : $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'project',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
+        })
+        .state('program-edit', {
+            parent: 'entity',
+            url: '/program-edit/{id}',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'adapGatewayApp.program.detail.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/project/program-edit.html',
+                    controller: 'ProgramEditController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('project');
+                    return $translate.refresh();
+                }],
+                entity: ['$stateParams', 'Project', function($stateParams, Project) {
+                    return Project.get({id : $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'project',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
+        })
+        .state('project-detail', {
+            parent: 'entity',
+            url: '/project-edit/{id}',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'adapGatewayApp.project.detail.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/project/project-edit.html',
+                    controller: 'ProjectEditController',
                     controllerAs: 'vm'
                 }
             },
