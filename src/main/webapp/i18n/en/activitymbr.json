@@ -16,6 +16,11 @@
             "detail": {
                 "title": "Activitymbr"
             },
+            "comment": "Comment",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
             "activity": "Activity",
             "project": "Project",
             "asset": "Asset"

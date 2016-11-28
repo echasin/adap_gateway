@@ -192,7 +192,7 @@
                 });
             }]
         })
-        .state('portfolio.new', {
+        .state('portfolio-home.new', {
             parent: 'portfolio-home',
             url: '/new',
             data: {
@@ -200,8 +200,8 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/portfolio/portfolio-dialog.html',
-                    controller: 'PortfolioDialogController',
+                    templateUrl: 'app/entities/portfolio/portfolio-new.html',
+                    controller: 'PortfolioNewController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',

@@ -22,8 +22,7 @@
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
             "projectlhs": "Projectlhs",
-            "projectrhs": "Projectrhs",
-            "category": "Category"
+            "projectrhs": "Projectrhs"
         }
     }
 }

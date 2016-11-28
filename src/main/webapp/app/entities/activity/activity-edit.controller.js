@@ -3,21 +3,19 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('ActivitymbrDialogController', ActivitymbrDialogController);
+        .controller('ActivityDialogController', ActivityDialogController);
 
-    ActivitymbrDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Activitymbr', 'Activity', 'Project', 'Asset'];
+    ActivityDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Activity', 'Recordtype'];
 
-    function ActivitymbrDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Activitymbr, Activity, Project, Asset) {
+    function ActivityDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Activity, Recordtype) {
         var vm = this;
 
-        vm.activitymbr = entity;
+        vm.activity = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.activities = Activity.query();
-        vm.projects = Project.query();
-        vm.assets = Asset.query();
+        vm.recordtypes = Recordtype.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -29,15 +27,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.activitymbr.id !== null) {
-                Activitymbr.update(vm.activitymbr, onSaveSuccess, onSaveError);
+            if (vm.activity.id !== null) {
+                Activity.update(vm.activity, onSaveSuccess, onSaveError);
             } else {
-                Activitymbr.save(vm.activitymbr, onSaveSuccess, onSaveError);
+                Activity.save(vm.activity, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('adapGatewayApp:activitymbrUpdate', result);
+            $scope.$emit('adapGatewayApp:activityUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
@@ -46,6 +44,7 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.activitydatetime = false;
         vm.datePickerOpenStatus.lastmodifieddatetime = false;
 
         function openCalendar (date) {

@@ -104,6 +104,11 @@
                     resolve: {
                         entity: function () {
                             return {
+                                comment: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
                                 id: null
                             };
                         }

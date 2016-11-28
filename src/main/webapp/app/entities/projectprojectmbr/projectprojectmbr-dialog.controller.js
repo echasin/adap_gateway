@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ProjectprojectmbrDialogController', ProjectprojectmbrDialogController);
 
-    ProjectprojectmbrDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Projectprojectmbr', 'Project', 'Category'];
+    ProjectprojectmbrDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Projectprojectmbr', 'Project'];
 
-    function ProjectprojectmbrDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Projectprojectmbr, Project, Category) {
+    function ProjectprojectmbrDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Projectprojectmbr, Project) {
         var vm = this;
 
         vm.projectprojectmbr = entity;
@@ -16,7 +16,6 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.projects = Project.query();
-        vm.categories = Category.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
