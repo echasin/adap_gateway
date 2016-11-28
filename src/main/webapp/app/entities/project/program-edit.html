@@ -273,96 +273,10 @@
 
 									</div>
 									<div id="tab-12" class="tab-pane active" ng-show="tab2 == 12">
-										TAB 12 ANGULAR FILTER TABLE = WHERE RECORDTYPE=PROJECT
-										<div class="table-responsive">
-											<table class="jh-table table table-striped">
-												<thead>
-													<tr jh-sort="vm.predicate" ascending="vm.reverse"
-														callback="vm.transition()">
-														<th jh-sort-by="id"><span>ID</span> <span
-															class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="comment"><span>Comment</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<!-- <th jh-sort-by="status"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.status">Status</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="lastmodifiedby"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.lastmodifiedby">Lastmodifiedby</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="lastmodifieddatetime"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.lastmodifieddatetime">Lastmodifieddatetime</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="domain"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.domain">Domain</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="portfoliolhs.name"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.portfoliolhs">Portfoliolhs</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														-->
-														<th jh-sort-by="projectrhs.name"><span>Projectrhs</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th>RecordType</th>
-														<th></th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr
-														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=402">
-														<td><a
-															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
-														<td>{{portfolioprojectmbr.comment}}</td>
-														<!-- <td>{{portfolioprojectmbr.status}}</td>
-														<td>{{portfolioprojectmbr.lastmodifiedby}}</td>
-														<td>{{portfolioprojectmbr.lastmodifieddatetime |
-															date:'medium'}}</td>
-														<td>{{portfolioprojectmbr.domain}}</td>
-														<td><a
-															ui-sref="portfolio-detail({id:portfolioprojectmbr.portfoliolhs.id})">{{portfolioprojectmbr.portfoliolhs.name}}</a>
-														</td>
-														-->
-														<td><a
-															ui-sref="project-detail({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
-														</td>
-														<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
-														<td class="text-right">
-															<div class="btn-group flex-btn-group-container">
-																<button type="submit"
-																	ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})"
-																	class="btn btn-info btn-sm">
-																	<span class="glyphicon glyphicon-eye-open"></span> <span
-																		class="hidden-xs hidden-sm"
-																		data-translate="entity.action.view"></span>
-																</button>
-																<button type="submit"
-																	ui-sref="portfolioprojectmbr.edit({id:portfolioprojectmbr.id})"
-																	class="btn btn-primary btn-sm">
-																	<span class="glyphicon glyphicon-pencil"></span> <span
-																		class="hidden-xs hidden-sm"
-																		data-translate="entity.action.edit"></span>
-																</button>
-																<button type="submit"
-																	ui-sref="portfolioprojectmbr.delete({id:portfolioprojectmbr.id})"
-																	class="btn btn-danger btn-sm">
-																	<span class="glyphicon glyphicon-remove-circle"></span>
-																	<span class="hidden-xs hidden-sm"
-																		data-translate="entity.action.delete"></span>
-																</button>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<div class="text-center">
-											<jhi-item-count page="vm.page" total="vm.queryCount"
-												items-per-page="vm.itemsPerPage"></jhi-item-count>
-											<uib-pagination class="pagination-sm"
-												total-items="vm.totalItems" ng-model="vm.page"
-												ng-change="vm.transition()"></uib-pagination>
-										</div>
+										TAB 12 STAKEHOLDERS
 									</div>
 									<div id="tab-13" class="tab-pane active" ng-show="tab2 == 13">
-										TAB 13</div>
+										TAB 13 ACTIVITIES</div>
 								</div>
 							</div>
 
