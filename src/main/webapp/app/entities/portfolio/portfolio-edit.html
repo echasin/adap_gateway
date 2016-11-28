@@ -218,8 +218,7 @@
 														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=400">
 														<td><a
 															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
-														<!-- <td>{{portfolioprojectmbr.comment}}</td> -->
-														<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
+													    <td>{{portfolioprojectmbr.comment}}</td> 
 														<!-- <td>{{portfolioprojectmbr.status}}</td>
 														<td>{{portfolioprojectmbr.lastmodifiedby}}</td>
 														<td>{{portfolioprojectmbr.lastmodifieddatetime |
@@ -244,6 +243,11 @@
 															<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
 			  											<td class="text-right">
 															<div class="btn-group flex-btn-group-container">
+																<button type="submit"
+														           ui-sref="program-edit({id:portfolioprojectmbr.projectrhs.id})"
+														           class="btn btn-warning btn-xs">
+														           <span class="fa-file-text-o"></span>
+													            </button>
 																<button type="submit"
 																	ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})"
 																	class="btn btn-info btn-sm">
@@ -271,6 +275,7 @@
 												</tbody>
 											</table>
 										</div>
+										<!--
 										<div class="text-center">
 											<jhi-item-count page="vm.page" total="vm.queryCount"
 												items-per-page="vm.itemsPerPage"></jhi-item-count>
@@ -278,7 +283,7 @@
 												total-items="vm.totalItems" ng-model="vm.page"
 												ng-change="vm.transition()"></uib-pagination>
 										</div>
-
+										-->
 									</div>
 									<div id="tab-12" class="tab-pane active" ng-show="tab2 == 12">
 										TAB 12 ANGULAR FILTER TABLE = WHERE RECORDTYPE=PROJECT
@@ -315,7 +320,7 @@
 												</thead>
 												<tbody>
 													<tr
-														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=402">
+														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=402"">
 														<td><a
 															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
 														<td>{{portfolioprojectmbr.comment}}</td>
@@ -361,6 +366,7 @@
 												</tbody>
 											</table>
 										</div>
+										<!--
 										<div class="text-center">
 											<jhi-item-count page="vm.page" total="vm.queryCount"
 												items-per-page="vm.itemsPerPage"></jhi-item-count>
@@ -368,6 +374,7 @@
 												total-items="vm.totalItems" ng-model="vm.page"
 												ng-change="vm.transition()"></uib-pagination>
 										</div>
+										-->
 									</div>
 									<div id="tab-13" class="tab-pane active" ng-show="tab2 == 13">
 										TAB 13</div>

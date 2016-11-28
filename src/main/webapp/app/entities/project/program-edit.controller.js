@@ -5,11 +5,11 @@
         .module('adapGatewayApp')
         .controller('ProgramEditController', ProgramEditController);
 
-    ProgramEditController.$inject = ['$timeout', '$scope', '$stateParams', 'entity', 'Project', 'Projectprojectmbr', 'Portfolioprojectmbr', 'Requestprojectmbr', 'Category', 'Subcategory', 'Recordtype'];
+    ProgramEditController.$inject = ['$timeout', '$scope', '$stateParams', 'entity', 'Project', 'Projectprojectmbr', 'Portfolioprojectmbr', 'Requestprojectmbr', 'Category', 'Subcategory', 'Recordtype','Activity'];
 
-    function ProgramEditController ($timeout, $scope, $stateParams, entity, Project, Projectprojectmbr, Portfolioprojectmbr, Requestprojectmbr, Category, Subcategory, Recordtype) {
+    function ProgramEditController ($timeout, $scope, $stateParams, entity, Project, Projectprojectmbr, Portfolioprojectmbr, Requestprojectmbr, Category, Subcategory, Recordtype , Activity) {
         var vm = this;
-
+	
         vm.project = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
@@ -54,5 +54,30 @@
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
+        
+        
+        Activity.activitiesByProject({id:$stateParams.id}).$promise.then(function(activity){         	
+        	for(var x=0;x<activity.length;x++){
+        		(function(index) {
+    			    setTimeout(function() {
+        		if(activity[index].recordtype.id==30000){
+        			activity[index].color="yellow-bg";
+            		activity[index].icon="fa fa-key";
+        		}if(activity[index].recordtype.id==30001){
+        			activity[index].color="lazur-bg";
+            		activity[index].icon="fa fa-dollar";
+        		}if(activity[index].recordtype.id==30002){
+        			activity[index].color="yellow-bg";
+            		activity[index].icon="fa fa-comments";
+        		}if(activity[index].recordtype.id==30003){
+        			activity[index].color="blue-bg";
+            		activity[index].icon="fa fa-tasks";
+        		}
+    			    });
+  			  })(x); 
+        	}
+        	vm.activities=activity;
+        });
+        
     }
 })();

@@ -182,7 +182,7 @@
 								</ul>
 								<div class="tab-content">
 									<div id="tab-11" class="tab-pane active" ng-show="tab2 == 11">
-										TAB 11
+										TAB 111
 										<div class="table-responsive">
 											<table class="jh-table table table-striped">
 												<thead>
@@ -298,15 +298,16 @@
 
                     <!--  The Activity Timeline will grow with the number of Activities associated with the Program -->
                     <div id="vertical-timeline" class="vertical-container dark-timeline">
+                        
+                        <!--  
                         <div class="vertical-timeline-block">
                             <div class="vertical-timeline-icon blue-bg">
                                 <i class="fa fa-tasks"></i>
                             </div>
-
                             <div class="vertical-timeline-content">
                                 <h2>Activity Four - Task</h2>
                                 <p>Activity Four Description</p>
-                                <!-- Replace href with sref to open activity in Activity Inbox -->
+                                 Replace href with sref to open activity in Activity Inbox 
                                 <a href="#" class="btn btn-sm btn-primary"> More info</a>
                                     <span class="vertical-date">
                                         2016-11-23<br/>
@@ -319,11 +320,10 @@
                             <div class="vertical-timeline-icon yellow-bg">
                                 <i class="fa fa-comments"></i>
                             </div>
-
                             <div class="vertical-timeline-content">
                                 <h2>Activity Three - Concurrence</h2>
                                 <p>Activity Three Description.</p>
-                                <!-- Replace href with sref to open activity in Activity Inbox -->
+                                Replace href with sref to open activity in Activity Inbox 
                                 <a href="#" class="btn btn-sm btn-primary"> More info </a>
                                     <span class="vertical-date">
                                         2016-11-22<br/>
@@ -340,7 +340,7 @@
                             <div class="vertical-timeline-content">
                                 <h2>Activity Two - Request</h2>
                                 <p> Activity Two Description </p>
-                                <!-- Replace href with sref to open activity in Activity Inbox -->
+                                 Replace href with sref to open activity in Activity Inbox 
                                 <a href="#" class="btn btn-sm btn-primary">More Info</a>
                                 <span class="vertical-date">2016-11-21<br/><small>00:00:00</small></span>
                             </div>
@@ -358,7 +358,25 @@
                             </div>
                         </div>
 
-             
+                         -->
+                         
+                         <div class="vertical-timeline-block" ng-repeat="item in vm.activities | orderBy:'activitydatetime':true">
+                            <div class="vertical-timeline-icon {{item.color}}">
+                                <i class="{{item.icon}}"></i>
+                            </div>
+                            <div class="vertical-timeline-content">
+                                <h2>{{item.name}}</h2>
+                                <p>{{item.description}}</p>
+                                 <!--Replace href with sref to open activity in Activity Inbox --> 
+                                <a href="#" class="btn btn-sm btn-primary"> More info</a>
+                                    <span class="vertical-date">
+                                        <br/>
+                                        <small>{{item.activitydatetime | date:'medium'}}</small>
+                                    </span>
+                            </div>
+                        </div>
+                         
+                         
                     </div>
 
                 </div>
