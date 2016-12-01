@@ -215,7 +215,7 @@
 												</thead>
 												<tbody>
 													<tr
-														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=400">
+														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.portfoliolhs.recordtype.id=400">
 														<td><a
 															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
 													    <td>{{portfolioprojectmbr.comment}}</td> 
@@ -231,7 +231,7 @@
 														
 														<!--  IF RECORDTYPE = PROGRAM THEN -->
 														<td><a
-															ui-sref="program-edit({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
+															ui-sref="program-edit({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.portfoliolhs.name}}</a>
 														</td>
 														<!--  IF RECORDTYPE = PROJECT THEN 
 														<td><a
@@ -240,7 +240,7 @@
 														-->
 														
 														
-															<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
+															<td>{{portfolioprojectmbr.portfoliolhs.recordtype.name}}</td>
 			  											<td class="text-right">
 															<div class="btn-group flex-btn-group-container">
 																<button type="submit"
@@ -320,7 +320,7 @@
 												</thead>
 												<tbody>
 													<tr
-														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=402"">
+														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs | filter: portfolioprojectmbr.projectrhs.recordtype.id=402">
 														<td><a
 															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
 														<td>{{portfolioprojectmbr.comment}}</td>

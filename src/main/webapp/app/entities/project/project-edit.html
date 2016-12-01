@@ -9,11 +9,10 @@
 		<div class="ibox-content">
 			<form class="form-horizontal">
 				<div class="form-group">
-					<label class="col-lg-4 control-label"
-						data-translate="adapGatewayApp.portfolio.name" for="field_name">Name</label>
+					<label class="col-lg-4 control-label" for="field_name">Name</label>
 					<div class="col-lg-8">
 						<input type="text" class="form-control" name="name"
-							id="field_name" ng-model="vm.portfolio.name" required
+							id="field_name" ng-model="vm.project.name" required
 							ng-maxlength="100" />
 						<div ng-show="editForm.name.$invalid">
 							<p class="help-block" ng-show="editForm.name.$error.required"
@@ -28,12 +27,11 @@
 				</div>
 				<div class="form-group">
 					<label class="col-lg-4 control-label"
-						data-translate="adapGatewayApp.portfolio.nameshort"
 						for="field_nameshort">Short name</label>
 					<div class="col-lg-8">
 						<input type="text" class="form-control" placeholder=".col-md-2"
 							name="nameshort" id="field_nameshort"
-							ng-model="vm.portfolio.nameshort" required ng-maxlength="20" />
+							ng-model="vm.project.nameshort" required ng-maxlength="20" />
 						<div ng-show="editForm.nameshort.$invalid">
 							<p class="help-block"
 								ng-show="editForm.nameshort.$error.required"
@@ -115,7 +113,7 @@
 		</div>
 	</div>
 	<div class="col-sm-1">
-		<button type="button" class="btn btn-danger dim" ng-click="vm.cancel()">
+		<button type="button" class="btn btn-danger dim" ng-click="window.history.back()">
 			<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
 				data-translate="entity.action.cancel">Cancel</span>
 		</button>
@@ -362,7 +360,13 @@
 										</div>
 									</div>
 									<div id="tab-13" class="tab-pane active" ng-show="tab2 == 13">
-										TAB 13</div>
+									   <button class="btn btn-primary" ui-sref="newactivityproject({id:vm.project.id})">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        <span class="hidden-xs"">
+                                          Create new Activity
+                                        </span>
+                                      </button>
+									</div>
 								</div>
 							</div>
 

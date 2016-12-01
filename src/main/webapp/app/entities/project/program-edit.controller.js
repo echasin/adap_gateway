@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ProgramEditController', ProgramEditController);
 
-    ProgramEditController.$inject = ['$timeout', '$scope', '$stateParams', 'entity', 'Project', 'Projectprojectmbr', 'Portfolioprojectmbr', 'Requestprojectmbr', 'Category', 'Subcategory', 'Recordtype','Activity'];
+    ProgramEditController.$inject = ['$timeout', '$scope', '$stateParams', '$location', 'Account', 'entity', 'Project', 'Projectprojectmbr', 'Portfolioprojectmbr', 'Requestprojectmbr', 'Category', 'Subcategory', 'Recordtype','Activity'];
 
-    function ProgramEditController ($timeout, $scope, $stateParams, entity, Project, Projectprojectmbr, Portfolioprojectmbr, Requestprojectmbr, Category, Subcategory, Recordtype , Activity) {
+    function ProgramEditController ($timeout, $scope, $stateParams, $location, Account,entity, Project, Projectprojectmbr, Portfolioprojectmbr, Requestprojectmbr, Category, Subcategory, Recordtype , Activity) {
         var vm = this;
 	
         vm.project = entity;
@@ -30,18 +30,7 @@
             $uibModalInstance.dismiss('cancel');
         }
 
-        function save () {
-            vm.isSaving = true;
-            if (vm.project.id !== null) {
-                Project.update(vm.project, onSaveSuccess, onSaveError);
-            } else {
-                Project.save(vm.project, onSaveSuccess, onSaveError);
-            }
-        }
-
         function onSaveSuccess (result) {
-            $scope.$emit('adapGatewayApp:projectUpdate', result);
-            $uibModalInstance.close(result);
             vm.isSaving = false;
         }
 
@@ -78,6 +67,19 @@
         	}
         	vm.activities=activity;
         });
+        
+        function save() {
+        	Account.get().$promise.then(function(currentUser){
+             	vm.project.domain=currentUser.data.domain
+             	vm.project.lastmodifiedby=currentUser.data.lastmodifiedby;
+             	vm.project.status="Active";
+             	Project.update(vm.project, onSaveSuccess, onSaveError);
+        	});
+        }
+        
+        function cancel () {
+            $location.path("portfolio-edit"+$stateParams.id);
+        }
         
     }
 })();

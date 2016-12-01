@@ -3,11 +3,11 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('ActivityDialogController', ActivityDialogController);
+        .controller('ActivityEditController', ActivityDialogController);
 
-    ActivityDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Activity', 'Recordtype'];
+    ActivityDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'Account','entity', 'Activity', 'Activitymbr','Recordtype','Project'];
 
-    function ActivityDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Activity, Recordtype) {
+    function ActivityDialogController ($timeout, $scope, $stateParams, $uibModalInstance, Account,entity, Activity, Activitymbr, Recordtype,Project) {
         var vm = this;
 
         vm.activity = entity;
@@ -16,7 +16,7 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.recordtypes = Recordtype.query();
-
+        vm.activitymbr={};
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
@@ -28,9 +28,39 @@
         function save () {
             vm.isSaving = true;
             if (vm.activity.id !== null) {
-                Activity.update(vm.activity, onSaveSuccess, onSaveError);
+            	   Account.get().$promise.then(function(currentUser){
+               		vm.activitymbr.comment="";
+               		vm.activitymbr.domain=currentUser.data.domain;
+                    	vm.activitymbr.lastmodifiedby=currentUser.data.lastmodifiedby;
+                    	vm.activitymbr.status="Active";
+                    	var date= new Date();
+                    	vm.activitymbr.lastmodifieddatetime=date;
+                    	
+                    	Activity.update(vm.activity, onSaveSuccess, onSaveError).$promise.then(function(savedActivity){
+                    		Project.get({id:$stateParams.id}).$promise.then(function(proj){
+                           vm.activitymbr.project=proj;
+                    		vm.activitymbr.activity=savedActivity;
+                       	Activitymbr.update(vm.activitymbr);
+                    	});	
+                   });	
+                });
             } else {
-                Activity.save(vm.activity, onSaveSuccess, onSaveError);
+                Account.get().$promise.then(function(currentUser){
+            		vm.activitymbr.comment="";
+            		vm.activitymbr.domain=currentUser.data.domain;
+                 	vm.activitymbr.lastmodifiedby=currentUser.data.lastmodifiedby;
+                 	vm.activitymbr.status="Active";
+                 	var date= new Date();
+                 	vm.activitymbr.lastmodifieddatetime=date;
+                 	
+                 	Activity.save(vm.activity, onSaveSuccess, onSaveError).$promise.then(function(savedActivity){
+                 		Project.get({id:$stateParams.id}).$promise.then(function(proj){
+                        vm.activitymbr.project=proj;
+                 		vm.activitymbr.activity=savedActivity;
+                    	Activitymbr.save(vm.activitymbr);
+                 	});	
+                });	
+             });
             }
         }
 

@@ -94,6 +94,7 @@
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.portfolioprojectmbrs = data;
+                console.log(data)
                 vm.page = pagingParams.page;
             }
             function onError(error) {
