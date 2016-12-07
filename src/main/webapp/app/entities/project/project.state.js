@@ -54,20 +54,40 @@
        
         .state('project-edit', {
             parent: 'entity',
-            url: '/project/{id}',
+            url: '/project-edit/{id}',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'adapGatewayApp.project.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/project/project-detail.html',
-                    controller: 'ProjectDetailController',
+                    templateUrl: 'app/entities/project/project-edit.html',
+                    controller: 'ProjectEditController',
                     controllerAs: 'vm'
                 }
             },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'id,asc',
+                    squash: true
+                },
+                search: null
+            },
             resolve: {
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+            	 pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                     return {
+                         page: PaginationUtil.parsePage($stateParams.page),
+                         sort: $stateParams.sort,
+                         predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                         ascending: PaginationUtil.parseAscending($stateParams.sort),
+                         search: $stateParams.search
+                     };
+                 }],
+            	translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('project');
                     return $translate.refresh();
                 }],
@@ -98,8 +118,28 @@
                     controllerAs: 'vm'
                 }
             },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'id,asc',
+                    squash: true
+                },
+                search: null
+            },
             resolve: {
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+            	 pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                     return {
+                         page: PaginationUtil.parsePage($stateParams.page),
+                         sort: $stateParams.sort,
+                         predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                         ascending: PaginationUtil.parseAscending($stateParams.sort),
+                         search: $stateParams.search
+                     };
+                 }],
+            	translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('project');
                     return $translate.refresh();
                 }],
@@ -255,7 +295,39 @@
                     $state.go('^');
                 });
             }]
-        });
+        })
+        .state('newprojectprojectmbr', {
+            parent: 'program-edit',
+            url: '/newprojectprojectmbr',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','$location', function($stateParams, $state, $uibModal,$location) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/project/projectprojectmbr-dialog.html',
+                    controller: 'ProjectprojectDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                comment: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                	$location.path('program-edit/'+$stateParams.id);
+                }, function() {
+                    $location.path('program-edit/'+$stateParams.id);
+                });
+            }]
+        });;
     }
 
 })();

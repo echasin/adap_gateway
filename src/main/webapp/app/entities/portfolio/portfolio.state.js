@@ -274,6 +274,38 @@
                 	$state.go('portfolio-home', null, { reload: 'portfolio-home' });
                 });
             }]
+        })
+        .state('newportfolioprojectmbr', {
+            parent: 'portfolio-edit',
+            url: '/newportfolioprojectmbr',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','$location', function($stateParams, $state, $uibModal,$location) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/portfolio/portfolioprojectmbr-dialog.html',
+                    controller: 'PortfolioprojectDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                comment: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                	$location.path('portfolio-edit/'+$stateParams.id);
+                }, function() {
+                	$location.path('portfolio-edit/'+$stateParams.id);
+                });
+            }]
         });
     }
 

@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('PortfolioEditController', PortfolioEditController);
 
-    PortfolioEditController.$inject = ['$timeout','$location', '$scope', '$stateParams', 'entity', 'Portfolio', 'Portfolioprojectmbr', 'Category', 'Subcategory', 'Recordtype','$state','Account','ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    PortfolioEditController.$inject = ['$timeout','$location', '$scope', '$stateParams', 'entity','Portfolio', 'Portfolioprojectmbr', 'Category', 'Subcategory', 'Recordtype','$state','Account','ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function PortfolioEditController ($timeout,$location, $scope, $stateParams, entity, Portfolio, Portfolioprojectmbr, Category, Subcategory, Recordtype,$state,Account,ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function PortfolioEditController ($timeout,$location, $scope, $stateParams, entity,Portfolio, Portfolioprojectmbr, Category, Subcategory, Recordtype,$state,Account,ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
 
         vm.portfolio = entity;
@@ -15,7 +15,6 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        //vm.portfolioprojectmbrs = Portfolioprojectmbr.query();
         vm.categories = Category.query();
         vm.subcategories = Subcategory.query();
         vm.recordtypes = Recordtype.query();
@@ -61,13 +60,13 @@
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.clear = clear;
         vm.search = search;
-        vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
 
-        loadAll();
+        loadProject();
+        loadProgram();
 
-        function loadAll () {
+        function loadProject () {
             if (pagingParams.search) {
                 PortfolioprojectmbrSearch.query({
                     query: pagingParams.search,
@@ -76,7 +75,8 @@
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Portfolioprojectmbr.query({
+                Portfolio.portfolioprojectmbrs({id:$stateParams.id,
+                	name:"Project",
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
@@ -101,6 +101,43 @@
                 AlertService.error(error.data.message);
             }
         }
+        
+        
+        function loadProgram () {
+            if (pagingParams.search) {
+                PortfolioprojectmbrSearch.query({
+                    query: pagingParams.search,
+                    page: pagingParams.page - 1,
+                    size: vm.itemsPerPage,
+                    sort: sort()
+                }, onSuccess, onError);
+            } else {
+                Portfolio.portfolioprojectmbrs({id:$stateParams.id,
+                	name:"Program",
+                    page: pagingParams.page - 1,
+                    size: vm.itemsPerPage,
+                    sort: sort()
+                }, onSuccess, onError);
+            }
+            function sort() {
+                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                if (vm.predicate !== 'id') {
+                    result.push('id');
+                }
+                return result;
+            }
+            function onSuccess(data, headers) {
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                vm.queryCount = vm.totalItems;
+                vm.portfolioprogrammbrs = data;
+                console.log(data)
+                vm.page = pagingParams.page;
+            }
+            function onError(error) {
+                AlertService.error(error.data.message);
+            }
+        }
 
         function loadPage (page) {
             vm.page = page;
@@ -111,7 +148,8 @@
             $state.transitionTo($state.$current, {
                 page: vm.page,
                 sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
-                search: vm.currentSearch
+                search: vm.currentSearch,
+                id: $stateParams.id
             });
         }
 

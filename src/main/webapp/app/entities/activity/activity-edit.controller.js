@@ -29,11 +29,16 @@
             vm.isSaving = true;
             if (vm.activity.id !== null) {
             	   Account.get().$promise.then(function(currentUser){
-               		vm.activitymbr.comment="";
-               		vm.activitymbr.domain=currentUser.data.domain;
+            		     vm.activity.domain=currentUser.data.domain;
+                    	vm.activity.lastmodifiedby=currentUser.data.lastmodifiedby;
+                    	vm.activity.status="Active";
+                    	var date= new Date();
+                    	vm.activity.lastmodifieddatetime=date;
+                    	
+            		    vm.activitymbr.comment="";
+               		    vm.activitymbr.domain=currentUser.data.domain;
                     	vm.activitymbr.lastmodifiedby=currentUser.data.lastmodifiedby;
                     	vm.activitymbr.status="Active";
-                    	var date= new Date();
                     	vm.activitymbr.lastmodifieddatetime=date;
                     	
                     	Activity.update(vm.activity, onSaveSuccess, onSaveError).$promise.then(function(savedActivity){
@@ -46,12 +51,18 @@
                 });
             } else {
                 Account.get().$promise.then(function(currentUser){
-            		vm.activitymbr.comment="";
+                	vm.activity.domain=currentUser.data.domain;
+                 	vm.activity.lastmodifiedby=currentUser.data.lastmodifiedby;
+                 	vm.activity.status="Active";
+                 	var date= new Date();
+                 	vm.activity.lastmodifieddatetime=date;
+                 	
+                	vm.activitymbr.comment="";
             		vm.activitymbr.domain=currentUser.data.domain;
                  	vm.activitymbr.lastmodifiedby=currentUser.data.lastmodifiedby;
                  	vm.activitymbr.status="Active";
-                 	var date= new Date();
                  	vm.activitymbr.lastmodifieddatetime=date;
+                 	
                  	
                  	Activity.save(vm.activity, onSaveSuccess, onSaveError).$promise.then(function(savedActivity){
                  		Project.get({id:$stateParams.id}).$promise.then(function(proj){

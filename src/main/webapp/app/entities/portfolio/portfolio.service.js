@@ -13,6 +13,7 @@
             'query': { method: 'GET', isArray: true},
             'financial': {method: 'GET',isArray: true, url: 'adap_core/api/financial'},
             'chartData': {method: 'GET',isArray: true, url: 'adap_core/api/chartData'},
+            'portfolioprojectmbrs': {method: 'GET',isArray: true, url: 'adap_core/api/portfolioprojectmbrs/:id/:name'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

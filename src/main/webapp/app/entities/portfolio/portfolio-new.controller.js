@@ -37,6 +37,9 @@
                  	vm.portfolio.domain=currentUser.data.domain
                  	vm.portfolio.lastmodifiedby=currentUser.data.lastmodifiedby;
                  	vm.portfolio.status="Active";
+                 	var date= new Date();
+                	vm.portfolio.lastmodifieddatetime=date;
+                 	vm.portfolio.status="Active";
                     Portfolio.save(vm.portfolio, onSaveSuccess, onSaveError);
             	});
             }

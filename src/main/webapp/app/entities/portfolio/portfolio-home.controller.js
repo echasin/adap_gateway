@@ -21,7 +21,9 @@
         vm.currentSearch = pagingParams.search;
         vm.loadAll();
         vm.getFinancial=getFinancial();
-
+        Portfolio.query().$promise.then(function(item){
+        	vm.count=item.length;
+        });
         
         function loadAll () {
             if (pagingParams.search) {
@@ -51,7 +53,6 @@
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.portfolios  = data;
-                vm.count=data.length;
                 vm.page = pagingParams.page;
             }
             function onError(error) {
