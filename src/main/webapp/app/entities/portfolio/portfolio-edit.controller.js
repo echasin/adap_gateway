@@ -57,26 +57,45 @@
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
+        vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.clear = clear;
         vm.search = search;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
+        
+        
+        
+        vm.loadPageProject = loadPageProject;
+        vm.predicateProject  = pagingParams.predicate;
+        vm.reverseProject  = pagingParams.ascending;
+        vm.transitionProject  = transitionProject;
+        vm.transitionProject = transitionProject;
+        vm.itemsPerPageProject  = paginationConstants.itemsPerPage;
+        vm.clearProject  = clear;
+        vm.searchProject  = searchProject;
+        vm.searchQueryProject  = pagingParams.search;
+        vm.currentSearchProject  = pagingParams.search;
 
-        loadProject();
-        loadProgram();
+        load();        
 
-        function loadProject () {
+        function load() {
             if (pagingParams.search) {
                 PortfolioprojectmbrSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
+                    size: vm.itemsPerPageProject,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
                 Portfolio.portfolioprojectmbrs({id:$stateParams.id,
                 	name:"Project",
+                    page: 0,
+                    size: vm.itemsPerPageProject,
+                    sort: sortProject()
+                }, onSuccessProject, onError);
+                Portfolio.portfolioprojectmbrs({id:$stateParams.id,
+                	name:"Program",
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
@@ -93,15 +112,30 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.portfolioprojectmbrs = data;
+                vm.portfolioprogrammbrs = data;
                 console.log(data)
                 vm.page = pagingParams.page;
+            }
+            function sortProject() {
+                var result = [vm.predicateProject + ',' + (vm.reverseProject ? 'asc' : 'desc')];
+                if (vm.predicateProject !== 'id') {
+                    result.push('id');
+                }
+                return result;
+            }
+            function onSuccessProject(data, headers) {
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItemsProject  = headers('X-Total-Count');
+                vm.queryCountProject  = vm.totalItemsProject;
+                vm.portfolioprojectmbrs = data;
+                console.log(data)
+                vm.pageProject  = 0;
             }
             function onError(error) {
                 AlertService.error(error.data.message);
             }
         }
-        
+  /**      
         
         function loadProgram () {
             if (pagingParams.search) {
@@ -138,7 +172,7 @@
                 AlertService.error(error.data.message);
             }
         }
-
+**/
         function loadPage (page) {
             vm.page = page;
             vm.transition();
@@ -165,6 +199,32 @@
             vm.transition();
         }
 
+        function loadPageProject (page) {
+            vm.pageProject = page;
+            vm.transitionProject();
+        }
+
+        function transitionProject () {
+            $state.transitionTo($state.$current, {
+                page: vm.pageProject,
+                sort: vm.predicateProject + ',' + (vm.reverseProject ? 'asc' : 'desc'),
+                search: vm.currentSearchProject,
+                id: $stateParams.id
+            });
+        }
+
+        function searchProject (searchQuery) {
+            if (!searchQuery){
+                return vm.clear();
+            }
+            vm.links = null;
+            vm.pageProject = 1;
+            vm.predicateProject = '_score';
+            vm.reverseProject = false;
+            vm.currentSearchProject = searchQuery;
+            vm.transitionProject();
+        }
+        
         function clear () {
             vm.links = null;
             vm.page = 1;

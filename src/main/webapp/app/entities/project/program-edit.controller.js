@@ -107,8 +107,9 @@
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-            	 Projectprojectmbr.query({
-                    page: pagingParams.page - 1,
+            	 Projectprojectmbr.projectprojectmbrsByProject({
+                    id: $stateParams.id,
+            		page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
