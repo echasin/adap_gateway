@@ -12,6 +12,7 @@
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
             'activitiesBox': {method: 'GET', isArray: true, url: 'adap_core/api/activitiesBox/:id'},            
+            'activitiesByProject': {method: 'GET', isArray: true, url: 'adap_core/api/activitiesByProject/:id'},            
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

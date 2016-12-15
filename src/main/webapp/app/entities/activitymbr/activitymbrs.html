@@ -36,6 +36,11 @@
             <thead>
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="adapGatewayApp.activitymbr.comment">Comment</span></th>
+                    <th><span data-translate="adapGatewayApp.activitymbr.status">Status</span></th>
+                    <th><span data-translate="adapGatewayApp.activitymbr.lastmodifiedby">Lastmodifiedby</span></th>
+                    <th><span data-translate="adapGatewayApp.activitymbr.lastmodifieddatetime">Lastmodifieddatetime</span></th>
+                    <th><span data-translate="adapGatewayApp.activitymbr.domain">Domain</span></th>
                     <th><span data-translate="adapGatewayApp.activitymbr.activity">Activity</span></th>
                     <th><span data-translate="adapGatewayApp.activitymbr.project">Project</span></th>
                     <th><span data-translate="adapGatewayApp.activitymbr.asset">Asset</span></th>
@@ -45,6 +50,11 @@
             <tbody>
                 <tr ng-repeat="activitymbr in vm.activitymbrs track by activitymbr.id">
                     <td><a ui-sref="activitymbr-detail({id:activitymbr.id})">{{activitymbr.id}}</a></td>
+                    <td>{{activitymbr.comment}}</td>
+                    <td>{{activitymbr.status}}</td>
+                    <td>{{activitymbr.lastmodifiedby}}</td>
+                    <td>{{activitymbr.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{activitymbr.domain}}</td>
                     <td>
                         <a ui-sref="activity-detail({id:activitymbr.activity.id})">{{activitymbr.activity.name}}</a>
                     </td>

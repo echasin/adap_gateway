@@ -4,6 +4,26 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.activitymbr.comment">Comment</span></dt>
+        <dd>
+            <span>{{vm.activitymbr.comment}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activitymbr.status">Status</span></dt>
+        <dd>
+            <span>{{vm.activitymbr.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activitymbr.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.activitymbr.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activitymbr.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.activitymbr.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.activitymbr.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.activitymbr.domain}}</span>
+        </dd>
         <dt><span data-translate="adapGatewayApp.activitymbr.activity">Activity</span></dt>
         <dd>
             <a ui-sref="activity-detail({id:vm.activitymbr.activity.id})">{{vm.activitymbr.activity.name}}</a>

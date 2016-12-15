@@ -3,17 +3,16 @@
 		<!-- <h3>Portfolio</h3>-->
 		<ol class="breadcrumb">
 			<li><a href="index.html">Home</a></li>
-			<li><a sref="portfolio-home">Portfolio</a></li>
-			<li class="active"><strong>{{vm.portfolio.nameshort}}</strong></li>
+			<li><a sref="portfolio-home">Program</a></li>
+			<li class="active"><strong>{{vm.project.nameshort}}</strong></li>
 		</ol>
 		<div class="ibox-content">
 			<form class="form-horizontal">
 				<div class="form-group">
-					<label class="col-lg-4 control-label"
-						data-translate="adapGatewayApp.portfolio.name" for="field_name">Name</label>
+					<label class="col-lg-4 control-label" for="field_name">Name</label>
 					<div class="col-lg-8">
 						<input type="text" class="form-control" name="name"
-							id="field_name" ng-model="vm.portfolio.name" required
+							id="field_name" ng-model="vm.project.name" required
 							ng-maxlength="100" />
 						<div ng-show="editForm.name.$invalid">
 							<p class="help-block" ng-show="editForm.name.$error.required"
@@ -28,12 +27,11 @@
 				</div>
 				<div class="form-group">
 					<label class="col-lg-4 control-label"
-						data-translate="adapGatewayApp.portfolio.nameshort"
 						for="field_nameshort">Short name</label>
 					<div class="col-lg-8">
 						<input type="text" class="form-control" placeholder=".col-md-2"
 							name="nameshort" id="field_nameshort"
-							ng-model="vm.portfolio.nameshort" required ng-maxlength="20" />
+							ng-model="vm.project.nameshort" required ng-maxlength="20" />
 						<div ng-show="editForm.nameshort.$invalid">
 							<p class="help-block"
 								ng-show="editForm.nameshort.$error.required"
@@ -46,7 +44,8 @@
 								characters.</p>
 						</div>
 					</div>
-				</div>			
+				</div>	
+				<!--  CHANGE TO PROJECT		
                 <div class="form-group">
                     <label  class="col-lg-4 control-label" data-translate="adapGatewayApp.portfolio.category" for="field_category">Category</label>
                     <select  class="col-lg-8"  id="field_category" multiple name="category" ng-model="vm.portfolio.categories" ng-options="category as category.name for category in vm.categories track by category.id"></select>
@@ -71,8 +70,9 @@
                       ng-show="editForm.description.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
                       This field cannot be longer than 255 characters.
                     </p>
-                 </div>
+                 </div>       
                 </div> 
+                  -->
 			</form>
 
 		</div>
@@ -113,7 +113,7 @@
 		</div>
 	</div>
 	<div class="col-sm-1">
-		<button type="button" class="btn btn-danger dim" ng-click="vm.cancel()">
+		<button type="button" class="btn btn-danger dim" ng-click="window.history.back()">
 			<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
 				data-translate="entity.action.cancel">Cancel</span>
 		</button>
@@ -138,10 +138,10 @@
 									<div class="row">
 										<div class="col-xs-4 no-padding-left">
 											<button class="btn btn-primary"
-												ui-sref="newportfolioprojectmbr({id:vm.portfolio.id})">
+												ui-sref="newprojectprojectmbr({id:vm.project.id})">
 												<span class="glyphicon glyphicon-plus"></span> <span
 													class="hidden-xs">
-													Create new Portfolioprojectmbr </span>
+													Create new Projectprojectmbr </span>
 											</button>
 										</div>
 										<div class="col-xs-8 no-padding-right">
@@ -172,121 +172,14 @@
 								<ul class="nav nav-tabs">
 									<li ng-class="{'active' : tab2 == 11}"><a
 										ng-click="tab2 = 11" ng-init="tab2 = 11"><i
-											class="fa fa-user"></i>Programs </a></li>
+											class="fa fa-user"></i> Related Projects/Programs </a></li>
 									<li ng-class="{'active' : tab2 == 12}"><a
-										ng-click="tab2 = 12"><i class="fa fa-briefcase"></i>Projects</a></li>
+										ng-click="tab2 = 12"><i class="fa fa-briefcase"></i>Stakeholders</a></li>
 									<li ng-class="{'active' : tab2 == 13}"><a
-										ng-click="tab2 = 13"><i class="fa fa-briefcase"></i>Assets</a></li>
+										ng-click="tab2 = 13"><i class="fa fa-briefcase"></i>Activities</a></li>
 								</ul>
 								<div class="tab-content">
 									<div id="tab-11" class="tab-pane active" ng-show="tab2 == 11">
-										TAB 11
-										ANGULAR FILTER TABLE = WHERE RECORDTYPE=PROGRAM
-										<div class="table-responsive">
-											<table class="jh-table table table-striped">
-												<thead>
-													<tr jh-sort="vm.predicate" ascending="vm.reverse"
-														callback="vm.transition()">
-														<th jh-sort-by="id"><span>ID</span> <span
-															class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="comment"><span>Comment</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<!-- <th jh-sort-by="status"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.status">Status</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="lastmodifiedby"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.lastmodifiedby">Lastmodifiedby</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="lastmodifieddatetime"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.lastmodifieddatetime">Lastmodifieddatetime</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="domain"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.domain">Domain</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th jh-sort-by="portfoliolhs.name"><span
-															data-translate="adapGatewayApp.portfolioprojectmbr.portfoliolhs">Portfoliolhs</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														-->
-														<th jh-sort-by="projectrhs.name"><span>Projectrhs</span>
-															<span class="glyphicon glyphicon-sort"></span></th>
-														<th>RecordType</th>
-														<th></th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr
-														ng-repeat="portfolioprojectmbr in vm.portfolioprogrammbrs">
-														<td><a
-															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
-													    <td>{{portfolioprojectmbr.comment}}</td> 
-														<!-- <td>{{portfolioprojectmbr.status}}</td>
-														<td>{{portfolioprojectmbr.lastmodifiedby}}</td>
-														<td>{{portfolioprojectmbr.lastmodifieddatetime |
-															date:'medium'}}</td>
-														<td>{{portfolioprojectmbr.domain}}</td>
-														<td><a
-															ui-sref="portfolio-detail({id:portfolioprojectmbr.portfoliolhs.id})">{{portfolioprojectmbr.portfoliolhs.name}}</a>
-														</td>
-														-->
-														
-														<!--  IF RECORDTYPE = PROGRAM THEN -->
-														<td><a
-															ui-sref="program-edit({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
-														</td>
-														<!--  IF RECORDTYPE = PROJECT THEN 
-														<td><a
-															ui-sref="project-edit({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
-														</td> 
-														-->
-														
-														
-															<td>{{portfolioprojectmbr.portfoliolhs.recordtype.name}}</td>
-			  											<td class="text-right">
-															<div class="btn-group flex-btn-group-container">
-																<button type="submit"
-														           ui-sref="program-edit({id:portfolioprojectmbr.projectrhs.id})"
-														           class="btn btn-warning btn-sm">
-														           <span class="fa-file-text-o">program</span>
-													            </button>
-																<button type="submit"
-																	ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})"
-																	class="btn btn-info btn-sm">
-																	<span class="glyphicon glyphicon-eye-open"></span> <span
-																		class="hidden-xs hidden-sm"
-																		data-translate="entity.action.view"></span>
-																</button>
-																<button type="submit"
-																	ui-sref="portfolioprojectmbr.edit({id:portfolioprojectmbr.id})"
-																	class="btn btn-primary btn-sm">
-																	<span class="glyphicon glyphicon-pencil"></span> <span
-																		class="hidden-xs hidden-sm"
-																		data-translate="entity.action.edit"></span>
-																</button>
-																<button type="submit"
-																	ui-sref="portfolioprojectmbr.delete({id:portfolioprojectmbr.id})"
-																	class="btn btn-danger btn-sm">
-																	<span class="glyphicon glyphicon-remove-circle"></span>
-																	<span class="hidden-xs hidden-sm"
-																		data-translate="entity.action.delete"></span>
-																</button>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										
-										<div class="text-center">
-											<jhi-item-count page="vm.page" total="vm.queryCount"
-												items-per-page="vm.itemsPerPage"></jhi-item-count>
-											<uib-pagination class="pagination-sm"
-												total-items="vm.totalItems" ng-model="vm.page"
-												ng-change="vm.transition()"></uib-pagination>
-										</div>
-										
-									</div>
-									<div id="tab-12" class="tab-pane active" ng-show="tab2 == 12">
-										TAB 12 ANGULAR FILTER TABLE = WHERE RECORDTYPE=PROJECT
 										<div class="table-responsive">
 											<table class="jh-table table table-striped">
 												<thead>
@@ -323,7 +216,8 @@
 														ng-repeat="portfolioprojectmbr in vm.portfolioprojectmbrs">
 														<td><a
 															ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})">{{portfolioprojectmbr.id}}</a></td>
-														<td>{{portfolioprojectmbr.comment}}</td>
+														<!-- <td>{{portfolioprojectmbr.comment}}</td> -->
+														<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
 														<!-- <td>{{portfolioprojectmbr.status}}</td>
 														<td>{{portfolioprojectmbr.lastmodifiedby}}</td>
 														<td>{{portfolioprojectmbr.lastmodifieddatetime |
@@ -336,14 +230,9 @@
 														<td><a
 															ui-sref="project-detail({id:portfolioprojectmbr.projectrhs.id})">{{portfolioprojectmbr.projectrhs.name}}</a>
 														</td>
-														<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
-														<td class="text-right">
+															<td>{{portfolioprojectmbr.projectrhs.recordtype.name}}</td>
+			  											<td class="text-right">
 															<div class="btn-group flex-btn-group-container">
-																<button type="submit"
-														           ui-sref="project-edit({id:portfolioprojectmbr.projectrhs.id})"
-														           class="btn btn-warning btn-sm">
-														           <span class="fa-file-text-o">project</span>
-													            </button>
 																<button type="submit"
 																	ui-sref="portfolioprojectmbr-detail({id:portfolioprojectmbr.id})"
 																	class="btn btn-info btn-sm">
@@ -371,18 +260,27 @@
 												</tbody>
 											</table>
 										</div>
-										
 										<div class="text-center">
-											<jhi-item-count page="vm.pageProject " total="vm.queryCountProject "
-												items-per-page="vm.itemsPerPageProject "></jhi-item-count>
+											<jhi-item-count page="vm.page" total="vm.queryCount"
+												items-per-page="vm.itemsPerPage"></jhi-item-count>
 											<uib-pagination class="pagination-sm"
-												total-items="vm.totalItemsProject" ng-model="vm.pageProject "
-												ng-change="vm.transitionProject ()"></uib-pagination>
+												total-items="vm.totalItems" ng-model="vm.page"
+												ng-change="vm.transition()"></uib-pagination>
 										</div>
-										
+
+									</div>
+									<div id="tab-12" class="tab-pane active" ng-show="tab2 == 12">
+										TAB 12 STAKEHOLDERS
 									</div>
 									<div id="tab-13" class="tab-pane active" ng-show="tab2 == 13">
-										TAB 13</div>
+								      <button class="btn btn-primary" ui-sref="newactivityprogram({id:vm.project.id})">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        <span class="hidden-xs"">
+                                          Create new Activity
+                                        </span>
+                                      </button>
+								    
+								    </div>
 								</div>
 							</div>
 
@@ -391,6 +289,106 @@
 					</div>
 				</div>
 
+						<div class="col-lg-4">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+							<h5>Activity Timeline</h5>
+
+							<div class="ibox-tools">
+								<span class="label label-warning-light">4 Activities</span>
+							</div>
+						</div>
+                <div class="ibox-content" id="ibox-content">
+
+                    <!--  The Activity Timeline will grow with the number of Activities associated with the Program -->
+                    <div id="vertical-timeline" class="vertical-container dark-timeline">
+                        
+                        <!--  
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon blue-bg">
+                                <i class="fa fa-tasks"></i>
+                            </div>
+                            <div class="vertical-timeline-content">
+                                <h2>Activity Four - Task</h2>
+                                <p>Activity Four Description</p>
+                                 Replace href with sref to open activity in Activity Inbox 
+                                <a href="#" class="btn btn-sm btn-primary"> More info</a>
+                                    <span class="vertical-date">
+                                        2016-11-23<br/>
+                                        <small>00:00:00</small>
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon yellow-bg">
+                                <i class="fa fa-comments"></i>
+                            </div>
+                            <div class="vertical-timeline-content">
+                                <h2>Activity Three - Concurrence</h2>
+                                <p>Activity Three Description.</p>
+                                Replace href with sref to open activity in Activity Inbox 
+                                <a href="#" class="btn btn-sm btn-primary"> More info </a>
+                                    <span class="vertical-date">
+                                        2016-11-22<br/>
+                                        <small>00:00:00</small>
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon lazur-bg">
+                                <i class="fa fa-dollar"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Activity Two - Request</h2>
+                                <p> Activity Two Description </p>
+                                 Replace href with sref to open activity in Activity Inbox 
+                                <a href="#" class="btn btn-sm btn-primary">More Info</a>
+                                <span class="vertical-date">2016-11-21<br/><small>00:00:00</small></span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon yellow-bg">
+                                <i class="fa fa-key"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Activity One - Key Date</h2>
+                                <p>Activity One Description</p>
+                                <span class="vertical-date">2016-11-20 <br/><small>00:00:00</small></span>
+                            </div>
+                        </div>
+
+                         -->
+                         
+                         <div class="vertical-timeline-block" ng-repeat="item in vm.activities | orderBy:'activitydatetime':true">
+                            <div class="vertical-timeline-icon {{item.color}}">
+                                <i class="{{item.icon}}"></i>
+                            </div>
+                            <div class="vertical-timeline-content">
+                                <h2>{{item.name}}</h2>
+                                <p>{{item.description}}</p>
+                                 <!--Replace href with sref to open activity in Activity Inbox --> 
+                                <a href="#" class="btn btn-sm btn-primary"> More info</a>
+                                    <span class="vertical-date">
+                                        <br/>
+                                        <small>{{item.activitydatetime | date:'medium'}}</small>
+                                    </span>
+                            </div>
+                        </div>
+                         
+                         
+                    </div>
+
+                </div>
+            </div>
+				
+				    </div>
+				
+				<!-- 
 				<div class="col-lg-4">
 					<div class="ibox float-e-margins">
 						<div class="ibox-title">
@@ -511,7 +509,7 @@
 								</button>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

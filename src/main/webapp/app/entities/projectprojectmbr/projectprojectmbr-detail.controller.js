@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ProjectprojectmbrDetailController', ProjectprojectmbrDetailController);
 
-    ProjectprojectmbrDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Projectprojectmbr', 'Project', 'Category'];
+    ProjectprojectmbrDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Projectprojectmbr', 'Project'];
 
-    function ProjectprojectmbrDetailController($scope, $rootScope, $stateParams, previousState, entity, Projectprojectmbr, Project, Category) {
+    function ProjectprojectmbrDetailController($scope, $rootScope, $stateParams, previousState, entity, Projectprojectmbr, Project) {
         var vm = this;
 
         vm.projectprojectmbr = entity;

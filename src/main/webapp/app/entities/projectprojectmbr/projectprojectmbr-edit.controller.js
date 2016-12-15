@@ -3,21 +3,20 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('ActivitymbrDialogController', ActivitymbrDialogController);
+        .controller('ProjectprojectmbrEditController', ProjectprojectmbrEditController);
 
-    ActivitymbrDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Activitymbr', 'Activity', 'Project', 'Asset'];
+    ProjectprojectmbrEditController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Projectprojectmbr', 'Project', 'Category'];
 
-    function ActivitymbrDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Activitymbr, Activity, Project, Asset) {
+    function ProjectprojectmbrEditController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Projectprojectmbr, Project, Category) {
         var vm = this;
 
-        vm.activitymbr = entity;
+        vm.projectprojectmbr = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.activities = Activity.query();
         vm.projects = Project.query();
-        vm.assets = Asset.query();
+        vm.categories = Category.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -29,15 +28,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.activitymbr.id !== null) {
-                Activitymbr.update(vm.activitymbr, onSaveSuccess, onSaveError);
+            if (vm.projectprojectmbr.id !== null) {
+                Projectprojectmbr.update(vm.projectprojectmbr, onSaveSuccess, onSaveError);
             } else {
-                Activitymbr.save(vm.activitymbr, onSaveSuccess, onSaveError);
+                Projectprojectmbr.save(vm.projectprojectmbr, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('adapGatewayApp:activitymbrUpdate', result);
+            $scope.$emit('adapGatewayApp:projectprojectmbrUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

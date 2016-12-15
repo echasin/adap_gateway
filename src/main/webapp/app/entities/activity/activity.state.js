@@ -250,6 +250,76 @@
                     controllerAs: 'vm'
                 }
             }
+        })
+           .state('newactivityproject', {
+           // parent: 'program-edit',
+            url: '/newactivityproject/{id}',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','$location', function($stateParams, $state, $uibModal , $location) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/activity/activity-dialog.html',
+                    controller: 'ActivityEditController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                name: null,
+                                nameshort: null,
+                                description: null,
+                                activitydatetime: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $location.path('project-edit/'+$stateParams.id);
+                }, function() {
+                	$location.path('project-edit/'+$stateParams.id);
+                });
+            }]
+        })
+         .state('newactivityprogram', {
+           // parent: 'program-edit',
+            url: '/newactivityprogram/{id}',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','$location', function($stateParams, $state, $uibModal , $location) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/activity/activity-dialog.html',
+                    controller: 'ActivityEditController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                name: null,
+                                nameshort: null,
+                                description: null,
+                                activitydatetime: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $location.path('program-edit/'+$stateParams.id);
+                }, function() {
+                	$location.path('program-edit/'+$stateParams.id);
+                });
+            }]
         });
     }
 

@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'projectprojectmbrsByProject': {method: 'GET',isArray: true, url: 'adap_core/api/projectprojectmbrsByProject/:id'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

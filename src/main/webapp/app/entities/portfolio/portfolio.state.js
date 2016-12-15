@@ -41,7 +41,7 @@
             views: {
                 'content@': {
                     templateUrl: 'app/entities/portfolio/portfolio-home.html',
-                    controller: 'PortfolioController',
+                    controller: 'PortfolioHomeController',
                     controllerAs: 'vm'
                 }
             },
@@ -117,7 +117,7 @@
         })
          .state('portfolio-edit', {
             parent: 'entity',
-            url: '/portfolio/edit/{id}',
+            url: '/portfolio-edit/{id}',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'adapGatewayApp.portfolio.detail.title'
@@ -192,7 +192,7 @@
                 });
             }]
         })
-        .state('portfolio.new', {
+        .state('portfolio-home.new', {
             parent: 'portfolio-home',
             url: '/new',
             data: {
@@ -200,8 +200,8 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/portfolio/portfolio-dialog.html',
-                    controller: 'PortfolioDialogController',
+                    templateUrl: 'app/entities/portfolio/portfolio-new.html',
+                    controller: 'PortfolioNewController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
@@ -272,6 +272,38 @@
                    $state.go('portfolio-home', null, { reload: 'portfolio-home' });
                 }, function() {
                 	$state.go('portfolio-home', null, { reload: 'portfolio-home' });
+                });
+            }]
+        })
+        .state('newportfolioprojectmbr', {
+            parent: 'portfolio-edit',
+            url: '/newportfolioprojectmbr',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','$location', function($stateParams, $state, $uibModal,$location) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/portfolio/portfolioprojectmbr-dialog.html',
+                    controller: 'PortfolioprojectDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                comment: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                	$location.path('portfolio-edit/'+$stateParams.id);
+                }, function() {
+                	$location.path('portfolio-edit/'+$stateParams.id);
                 });
             }]
         });
