@@ -28,7 +28,8 @@
             "lastmodifiedby": "Lastmodifiedby",
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
-            "identifier": "Identifier"
+            "identifier": "Identifier",
+            "asset_id" : "Asset ID"
         }
     }
 }
