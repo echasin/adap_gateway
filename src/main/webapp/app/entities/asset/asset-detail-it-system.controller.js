@@ -3,41 +3,49 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('AssetController', AssetController);
+        .controller('AssetDetailItSystemController', AssetDetailItSystemController);
 
-    AssetController.$inject = ['$scope', '$state', 'Asset', 'AssetSearch', 'Category', 'Subcategory', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    AssetDetailitSystemController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Asset', 'Location', 'Score', 'Category', 'Subcategory', 'Recordtype', 'Assetassetmbr', 'Securitygroup', 'Identifier','Response','ResponseSearch','pagingParams','ParseLinks', 'AlertService','paginationConstants','$state','Account'];
 
-    function AssetController ($scope, $state, Asset, AssetSearch, Category, Subcategory, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function AssetDetailItSystemController($scope, $rootScope, $stateParams, previousState, entity, Asset, Location, Score, Category, Subcategory, Recordtype, Assetassetmbr, Securitygroup, Identifier,Response,ResponseSearch,pagingParams,ParseLinks, AlertService,paginationConstants,$state,Account) {
         var vm = this;
+
+        vm.asset = entity;
+        vm.previousState = previousState.name;
+
+        var unsubscribe = $rootScope.$on('adapGatewayApp:assetUpdate', function(event, result) {
+            vm.asset = result;
+        });
+        $scope.$on('$destroy', unsubscribe);
+        vm.assetId=$stateParams.id;
+              
+        vm.loadAll = loadAll;
         vm.loadPage = loadPage;
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
-        vm.itemsPerPage = paginationConstants.itemsPerPage;
-        vm.categories = Category.query();
-        vm.subcategories = Subcategory.query();
         vm.clear = clear;
         vm.search = search;
-        vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
-
-        loadAll();
-
+        vm.loadAll();   
+        
+        
         function loadAll () {
             if (pagingParams.search) {
-                AssetSearch.query({
+                ResponseSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
+                    size: paginationConstants.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Asset.query({
-                    page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
+            	 Response.responseByAsset({
+                 	id:$stateParams.id,
+                 	page: pagingParams.page - 1,
+                     size: paginationConstants.itemsPerPage,
+                     sort: sort()
+                 }, onSuccess, onError);
             }
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
@@ -50,7 +58,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.assets = data;
+                vm.responses = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {
@@ -91,11 +99,6 @@
             vm.currentSearch = null;
             vm.transition();
         }
-        
-        vm.showDetails=function(id){
-            Asset.get({id:id}).$promise.then(function(result){
-            	vm.asset=result;
-            });
-        }
     }
+    
 })();

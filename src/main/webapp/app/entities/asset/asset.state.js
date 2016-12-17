@@ -10,10 +10,9 @@
     function stateConfig($stateProvider) {
         $stateProvider
         
-        //CREATED ECHASIN
-        .state('assethome', {
+        .state('asset-home-it', {
             parent: 'entity',
-            url: '/asset?page&sort&search',
+            url: '/asset-home-it?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'adapGatewayApp.asset.home.title'
@@ -53,7 +52,60 @@
                 }]
             }
         })
-        //END
+ 
+        .state('asset-detail-it-system', {
+            parent: 'entity',
+            url: '/asset-it-system/{id}',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'adapGatewayApp.asset.detail.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/asset/asset-detail-it-system.html',
+                    controller: 'AssetDetailController',
+                    controllerAs: 'vm'
+                }
+            },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'id,asc',
+                    squash: true
+                },
+                search: null
+            },
+            resolve: {
+            	 pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                     return {
+                         page: PaginationUtil.parsePage($stateParams.page),
+                         sort: $stateParams.sort,
+                         predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                         ascending: PaginationUtil.parseAscending($stateParams.sort),
+                         search: $stateParams.search
+                     };
+                 }],
+            	translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('asset');
+                    return $translate.refresh();
+                }],
+                entity: ['$stateParams', 'Asset', function($stateParams, Asset) {
+                    return Asset.get({id : $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'asset',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
+        })
+        
         .state('asset', {
             parent: 'entity',
             url: '/asset?page&sort&search',
@@ -105,7 +157,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/asset/asset-detail-it-system.html',
+                    templateUrl: 'app/entities/asset/asset-detail.html',
                     controller: 'AssetDetailController',
                     controllerAs: 'vm'
                 }
