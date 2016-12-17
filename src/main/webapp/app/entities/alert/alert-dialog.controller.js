@@ -5,12 +5,14 @@
         .module('adapGatewayApp')
         .controller('AlertDialogController', AlertDialogController);
 
-    AlertDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Alert', 'Identifier'];
+    AlertDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Alert', 'Identifier', 'Asset'];
 
-    function AlertDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Alert, Identifier) {
+    function AlertDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Alert, Identifier, Asset) {
         var vm = this;
+        
         vm.alert = entity;
         vm.identifiers = Identifier.query();
+        vm.assets = Asset.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
