@@ -47,6 +47,7 @@
                 "fiscalyear": "Fiscalyear",
                 "activity": "Activity",
                 "activitymbr": "Activitymbr",
+                "countermeasure": "Countermeasure",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
