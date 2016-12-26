@@ -90,7 +90,21 @@
          		for(var i=0;i<response.questiongroups.length;i++){
          			
         			 for(var j=0;j<response.questiongroups[i].questions.length;j++){
-        				 userResponse.push({"questiongroup":response.questiongroups[i].questiongroup,"question":response.questiongroups[i].questions[j].question,"subquestion":response.questiongroups[i].questions[j].subquestion,"response":response.questiongroups[i].questions[j].response})      		  
+        				 var findQuestion = findByKey(userResponse, 'question', response.questiongroups[i].questions[j].question);
+        				 var findSubQuestion = findByKey(userResponse, 'subquestion', response.questiongroups[i].questions[j].subquestion);
+
+                          if(findQuestion !=null){
+            	
+                        	  if(findSubQuestion !=null){
+                        		  
+                        	  }else{
+                      				 userResponse.push({"questiongroup":response.questiongroups[i].questiongroup,"question":response.questiongroups[i].questions[j].question,"subquestion":response.questiongroups[i].questions[j].subquestion,"response":response.questiongroups[i].questions[j].response})      		  
+                        	  }
+                        	  
+                          }else{
+             				 userResponse.push({"questiongroup":response.questiongroups[i].questiongroup,"question":response.questiongroups[i].questions[j].question,"subquestion":response.questiongroups[i].questions[j].subquestion,"response":response.questiongroups[i].questions[j].response})      		  
+                          }
+                          
         				 loadQuestionById(response.questiongroups[i].questiongroup,response.questiongroups[i].questions[j].question)
         			 }        				      
         		   } 
@@ -100,26 +114,19 @@
         }
        
         loadQuestions();
-        
-       
- 	   
 
         vm.getChoiceAnswer = function(group,question,response){
         	function findquestion(item) { 
                 return item.question === question;
             }
-            if(userResponse.find(findquestion)!=null){
-    			$.each(userResponse, function() {
-    				if (this.question == question) {
-    			        this.response = response;
-    				 }
-    				});
+        	console.log(userResponse)
+			var findQuestion = findByKey(userResponse, 'question', question);
+
+            if(findQuestion !=null){
+            	findQuestion.response = response;	
     		}else{
     			userResponse.push({"questiongroup":group,"question":question,"response":response})
-    		}    
-            function findquestion(item) { 
-                return item.question === question;
-            }  
+    		}     
             
             Conditions.conditionByQuestion({id:question})
       	   .$promise.then(
