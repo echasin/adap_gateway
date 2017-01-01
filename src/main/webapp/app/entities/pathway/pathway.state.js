@@ -127,13 +127,12 @@
                                 name: null,
                                 nameshort: null,
                                 description: null,
+                                isrootnode: null,
                                 isabstract: null,
-                                condition: null,
                                 status: null,
                                 lastmodifiedby: null,
                                 lastmodifieddatetime: null,
                                 domain: null,
-                                isrootnode: null,
                                 id: null
                             };
                         }

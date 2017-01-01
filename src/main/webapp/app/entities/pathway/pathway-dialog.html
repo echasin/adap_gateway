@@ -58,22 +58,16 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.pathway.isrootnode" for="field_isrootnode">Isrootnode</label>
+            <input type="checkbox" class="form-control" name="isrootnode" id="field_isrootnode"
+                    ng-model="vm.pathway.isrootnode"
+                     />
+        </div>
+        <div class="form-group">
             <label class="control-label" translate="adapGatewayApp.pathway.isabstract" for="field_isabstract">Isabstract</label>
             <input type="checkbox" class="form-control" name="isabstract" id="field_isabstract"
                     ng-model="vm.pathway.isabstract"
                      />
-        </div>
-        <div class="form-group">
-            <label class="control-label" translate="adapGatewayApp.pathway.condition" for="field_condition">Condition</label>
-            <input type="text" class="form-control" name="condition" id="field_condition"
-                    ng-model="vm.pathway.condition"
-                    ng-maxlength="25" />
-            <div ng-show="editForm.condition.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.condition.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="25">
-                    This field cannot be longer than 25 characters.
-                </p>
-            </div>
         </div>
         <div class="form-group">
             <label class="control-label" translate="adapGatewayApp.pathway.status" for="field_status">Status</label>
@@ -142,12 +136,6 @@
                     This field cannot be longer than 25 characters.
                 </p>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" translate="adapGatewayApp.pathway.isrootnode" for="field_isrootnode">Isrootnode</label>
-            <input type="checkbox" class="form-control" name="isrootnode" id="field_isrootnode"
-                    ng-model="vm.pathway.isrootnode"
-                     />
         </div>
 
         <div class="form-group">

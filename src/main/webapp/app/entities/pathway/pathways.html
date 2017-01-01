@@ -39,13 +39,12 @@
                     <th jh-sort-by="name"><span translate="adapGatewayApp.pathway.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nameshort"><span translate="adapGatewayApp.pathway.nameshort">Nameshort</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="description"><span translate="adapGatewayApp.pathway.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isrootnode"><span translate="adapGatewayApp.pathway.isrootnode">Isrootnode</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="isabstract"><span translate="adapGatewayApp.pathway.isabstract">Isabstract</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="condition"><span translate="adapGatewayApp.pathway.condition">Condition</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="status"><span translate="adapGatewayApp.pathway.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifiedby"><span translate="adapGatewayApp.pathway.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="lastmodifieddatetime"><span translate="adapGatewayApp.pathway.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="domain"><span translate="adapGatewayApp.pathway.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="isrootnode"><span translate="adapGatewayApp.pathway.isrootnode">Isrootnode</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="recordtype.name"><span translate="adapGatewayApp.pathway.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -56,13 +55,12 @@
                     <td>{{pathway.name}}</td>
                     <td>{{pathway.nameshort}}</td>
                     <td>{{pathway.description}}</td>
+                    <td>{{pathway.isrootnode}}</td>
                     <td>{{pathway.isabstract}}</td>
-                    <td>{{pathway.condition}}</td>
                     <td>{{pathway.status}}</td>
                     <td>{{pathway.lastmodifiedby}}</td>
                     <td>{{pathway.lastmodifieddatetime | date:'medium'}}</td>
                     <td>{{pathway.domain}}</td>
-                    <td>{{pathway.isrootnode}}</td>
                     <td>
                         <a ui-sref="recordtype-detail({id:pathway.recordtype.id})">{{pathway.recordtype.name}}</a>
                     </td>
