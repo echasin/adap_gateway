@@ -1,0 +1,77 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.countermeasurefactor.detail.title">Countermeasurefactor</span> {{vm.countermeasurefactor.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.countermeasurefactor.name">Name</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.name}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.nameshort}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.description">Description</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.description}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.version">Version</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.version}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.value">Value</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.value}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.comment">Comment</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.comment}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.status">Status</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactor.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.countermeasure">Countermeasure</span></dt>
+        <dd>
+            <a ui-sref="countermeasure-detail({id:vm.countermeasurefactor.countermeasure.id})">{{vm.countermeasurefactor.countermeasure.name}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.pathway">Pathway</span></dt>
+        <dd>
+            <a ui-sref="pathway-detail({id:vm.countermeasurefactor.pathway.id})">{{vm.countermeasurefactor.pathway.name}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.countermeasurefactortype">Countermeasurefactortype</span></dt>
+        <dd>
+            <a ui-sref="countermeasurefactortype-detail({id:vm.countermeasurefactor.countermeasurefactortype.id})">{{vm.countermeasurefactor.countermeasurefactortype.name}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactor.weapon">Weapon</span></dt>
+        <dd>
+            <span ng-repeat="weapon in vm.countermeasurefactor.weapons">
+                <a ui-sref="weapon-detail({id: weapon.id})">{{weapon.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="countermeasurefactor-detail.edit({id:vm.countermeasurefactor.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

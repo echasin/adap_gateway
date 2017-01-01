@@ -125,6 +125,9 @@
                         entity: function () {
                             return {
                                 name: null,
+                                nameshort: null,
+                                description: null,
+                                isabstract: null,
                                 status: null,
                                 lastmodifiedby: null,
                                 lastmodifieddatetime: null,

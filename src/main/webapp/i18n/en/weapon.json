@@ -1,0 +1,34 @@
+{
+    "adapGatewayApp": {
+        "weapon" : {
+            "home": {
+                "title": "Weapons",
+                "createLabel": "Create a new Weapon",
+                "createOrEditLabel": "Create or edit a Weapon",
+                "search": "Search for Weapon"
+            },
+            "created": "A new Weapon is created with identifier {{ param }}",
+            "updated": "A Weapon is updated with identifier {{ param }}",
+            "deleted": "A Weapon is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Weapon {{ id }}?"
+            },
+            "detail": {
+                "title": "Weapon"
+            },
+            "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "isabstract": "Isabstract",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "recordtype": "Recordtype",
+            "category": "Category",
+            "subcategory": "Subcategory",
+            "pathway": "Pathway",
+            "countermeasurefactor": "Countermeasurefactor"
+        }
+    }
+}

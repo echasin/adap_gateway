@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('Countermeasure Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockCountermeasure, MockRecordtype, MockCategory, MockSubcategory;
+        var MockEntity, MockPreviousState, MockCountermeasure, MockRecordtype, MockCategory, MockSubcategory, MockPathwaycountermeasurembr;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -16,6 +16,7 @@ describe('Controller Tests', function() {
             MockRecordtype = jasmine.createSpy('MockRecordtype');
             MockCategory = jasmine.createSpy('MockCategory');
             MockSubcategory = jasmine.createSpy('MockSubcategory');
+            MockPathwaycountermeasurembr = jasmine.createSpy('MockPathwaycountermeasurembr');
             
 
             var locals = {
@@ -26,7 +27,8 @@ describe('Controller Tests', function() {
                 'Countermeasure': MockCountermeasure,
                 'Recordtype': MockRecordtype,
                 'Category': MockCategory,
-                'Subcategory': MockSubcategory
+                'Subcategory': MockSubcategory,
+                'Pathwaycountermeasurembr': MockPathwaycountermeasurembr
             };
             createController = function() {
                 $injector.get('$controller')("CountermeasureDetailController", locals);

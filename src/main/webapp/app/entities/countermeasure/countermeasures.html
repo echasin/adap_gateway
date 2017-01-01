@@ -1,12 +1,12 @@
 <div>
-    <h2 data-translate="adapGatewayApp.countermeasure.home.title">Countermeasures</h2>
+    <h2 translate="adapGatewayApp.countermeasure.home.title">Countermeasures</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="countermeasure.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs"  data-translate="adapGatewayApp.countermeasure.home.createLabel">
+                    <span class="hidden-xs"  translate="adapGatewayApp.countermeasure.home.createLabel">
                         Create new Countermeasure
                     </span>
                 </button>
@@ -35,13 +35,16 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="name"><span data-translate="adapGatewayApp.countermeasure.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.countermeasure.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.countermeasure.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.countermeasure.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.countermeasure.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="recordtype.name"><span data-translate="adapGatewayApp.countermeasure.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span translate="adapGatewayApp.countermeasure.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nameshort"><span translate="adapGatewayApp.countermeasure.nameshort">Nameshort</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span translate="adapGatewayApp.countermeasure.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isabstract"><span translate="adapGatewayApp.countermeasure.isabstract">Isabstract</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span translate="adapGatewayApp.countermeasure.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span translate="adapGatewayApp.countermeasure.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifieddatetime"><span translate="adapGatewayApp.countermeasure.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span translate="adapGatewayApp.countermeasure.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="recordtype.name"><span translate="adapGatewayApp.countermeasure.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -49,6 +52,9 @@
                 <tr ng-repeat="countermeasure in vm.countermeasures track by countermeasure.id">
                     <td><a ui-sref="countermeasure-detail({id:countermeasure.id})">{{countermeasure.id}}</a></td>
                     <td>{{countermeasure.name}}</td>
+                    <td>{{countermeasure.nameshort}}</td>
+                    <td>{{countermeasure.description}}</td>
+                    <td>{{countermeasure.isabstract}}</td>
                     <td>{{countermeasure.status}}</td>
                     <td>{{countermeasure.lastmodifiedby}}</td>
                     <td>{{countermeasure.lastmodifieddatetime | date:'medium'}}</td>
@@ -62,19 +68,19 @@
                                     ui-sref="countermeasure-detail({id:countermeasure.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="countermeasure.edit({id:countermeasure.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="countermeasure.delete({id:countermeasure.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                             </button>
                         </div>
                     </td>

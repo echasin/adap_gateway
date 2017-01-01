@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('CountermeasureDialogController', CountermeasureDialogController);
 
-    CountermeasureDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Countermeasure', 'Recordtype', 'Category', 'Subcategory'];
+    CountermeasureDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Countermeasure', 'Recordtype', 'Category', 'Subcategory', 'Pathwaycountermeasurembr'];
 
-    function CountermeasureDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Countermeasure, Recordtype, Category, Subcategory) {
+    function CountermeasureDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Countermeasure, Recordtype, Category, Subcategory, Pathwaycountermeasurembr) {
         var vm = this;
 
         vm.countermeasure = entity;
@@ -18,6 +18,7 @@
         vm.recordtypes = Recordtype.query();
         vm.categories = Category.query();
         vm.subcategories = Subcategory.query();
+        vm.pathwaycountermeasurembrs = Pathwaycountermeasurembr.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

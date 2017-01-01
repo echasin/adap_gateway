@@ -17,13 +17,17 @@
                 "title": "Countermeasure"
             },
             "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "isabstract": "Isabstract",
             "status": "Status",
             "lastmodifiedby": "Lastmodifiedby",
             "lastmodifieddatetime": "Lastmodifieddatetime",
             "domain": "Domain",
             "recordtype": "Recordtype",
             "category": "Category",
-            "subcategory": "Subcategory"
+            "subcategory": "Subcategory",
+            "pathwaycountermeasurembr": "Pathwaycountermeasurembr"
         }
     }
 }

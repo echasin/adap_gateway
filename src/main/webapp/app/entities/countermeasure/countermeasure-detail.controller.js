@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('CountermeasureDetailController', CountermeasureDetailController);
 
-    CountermeasureDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Countermeasure', 'Recordtype', 'Category', 'Subcategory'];
+    CountermeasureDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Countermeasure', 'Recordtype', 'Category', 'Subcategory', 'Pathwaycountermeasurembr'];
 
-    function CountermeasureDetailController($scope, $rootScope, $stateParams, previousState, entity, Countermeasure, Recordtype, Category, Subcategory) {
+    function CountermeasureDetailController($scope, $rootScope, $stateParams, previousState, entity, Countermeasure, Recordtype, Category, Subcategory, Pathwaycountermeasurembr) {
         var vm = this;
 
         vm.countermeasure = entity;

@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.countermeasurefactortype.detail.title">Countermeasurefactortype</span> {{vm.countermeasurefactortype.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.countermeasurefactortype.name">Name</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactortype.name}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactortype.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactortype.nameshort}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactortype.description">Description</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactortype.description}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactortype.status">Status</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactortype.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactortype.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactortype.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactortype.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactortype.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasurefactortype.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.countermeasurefactortype.domain}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="countermeasurefactortype-detail.edit({id:vm.countermeasurefactortype.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

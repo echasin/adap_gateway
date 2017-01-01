@@ -1,0 +1,9 @@
+{
+    "adapGatewayApp": {
+        "Condition" : {
+            "null": "",
+            "And": "And",
+            "Or": "Or"
+        }
+    }
+}
