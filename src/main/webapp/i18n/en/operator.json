@@ -1,0 +1,9 @@
+{
+    "adapGatewayApp": {
+        "Operator" : {
+            "null": "",
+            "And": "And",
+            "Or": "Or"
+        }
+    }
+}

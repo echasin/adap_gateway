@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.pathwaycountermeasurembr.detail.title">Pathwaycountermeasurembr</span> {{vm.pathwaycountermeasurembr.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.pathwaycountermeasurembr.comment">Comment</span></dt>
+        <dd>
+            <span>{{vm.pathwaycountermeasurembr.comment}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaycountermeasurembr.status">Status</span></dt>
+        <dd>
+            <span>{{vm.pathwaycountermeasurembr.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaycountermeasurembr.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.pathwaycountermeasurembr.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaycountermeasurembr.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.pathwaycountermeasurembr.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaycountermeasurembr.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.pathwaycountermeasurembr.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaycountermeasurembr.pathway">Pathway</span></dt>
+        <dd>
+            <a ui-sref="pathway-detail({id:vm.pathwaycountermeasurembr.pathway.id})">{{vm.pathwaycountermeasurembr.pathway.name}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaycountermeasurembr.countermeasure">Countermeasure</span></dt>
+        <dd>
+            <a ui-sref="countermeasure-detail({id:vm.pathwaycountermeasurembr.countermeasure.id})">{{vm.pathwaycountermeasurembr.countermeasure.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="pathwaycountermeasurembr-detail.edit({id:vm.pathwaycountermeasurembr.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

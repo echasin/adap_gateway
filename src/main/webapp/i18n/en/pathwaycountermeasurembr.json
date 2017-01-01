@@ -1,0 +1,28 @@
+{
+    "adapGatewayApp": {
+        "pathwaycountermeasurembr" : {
+            "home": {
+                "title": "Pathwaycountermeasurembrs",
+                "createLabel": "Create a new Pathwaycountermeasurembr",
+                "createOrEditLabel": "Create or edit a Pathwaycountermeasurembr",
+                "search": "Search for Pathwaycountermeasurembr"
+            },
+            "created": "A new Pathwaycountermeasurembr is created with identifier {{ param }}",
+            "updated": "A Pathwaycountermeasurembr is updated with identifier {{ param }}",
+            "deleted": "A Pathwaycountermeasurembr is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pathwaycountermeasurembr {{ id }}?"
+            },
+            "detail": {
+                "title": "Pathwaycountermeasurembr"
+            },
+            "comment": "Comment",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "pathway": "Pathway",
+            "countermeasure": "Countermeasure"
+        }
+    }
+}
