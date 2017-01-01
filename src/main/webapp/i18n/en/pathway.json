@@ -1,0 +1,38 @@
+{
+    "adapGatewayApp": {
+        "pathway" : {
+            "home": {
+                "title": "Pathways",
+                "createLabel": "Create a new Pathway",
+                "createOrEditLabel": "Create or edit a Pathway",
+                "search": "Search for Pathway"
+            },
+            "created": "A new Pathway is created with identifier {{ param }}",
+            "updated": "A Pathway is updated with identifier {{ param }}",
+            "deleted": "A Pathway is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pathway {{ id }}?"
+            },
+            "detail": {
+                "title": "Pathway"
+            },
+            "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "isrootnode": "Isrootnode",
+            "isabstract": "Isabstract",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "recordtype": "Recordtype",
+            "category": "Category",
+            "subcategory": "Subcategory",
+            "scenariopathwaymbr": "Scenariopathwaymbr",
+            "parentpathwaypathwaybr": "Parentpathwaypathwaybr",
+            "childpathwaypathwaymbr": "Childpathwaypathwaymbr",
+            "weapon": "Weapon",
+            "pathwaycountermeasurembr": "Pathwaycountermeasurembr"
+        }
+    }
+}

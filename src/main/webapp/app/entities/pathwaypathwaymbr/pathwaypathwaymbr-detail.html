@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.pathwaypathwaymbr.detail.title">Pathwaypathwaymbr</span> {{vm.pathwaypathwaymbr.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.pathwaypathwaymbr.comment">Comment</span></dt>
+        <dd>
+            <span>{{vm.pathwaypathwaymbr.comment}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaypathwaymbr.status">Status</span></dt>
+        <dd>
+            <span>{{vm.pathwaypathwaymbr.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaypathwaymbr.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.pathwaypathwaymbr.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaypathwaymbr.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.pathwaypathwaymbr.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaypathwaymbr.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.pathwaypathwaymbr.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaypathwaymbr.logicoperator">Logicoperator</span></dt>
+        <dd>
+            <span translate="{{'adapGatewayApp.Operator.' + vm.pathwaypathwaymbr.logicoperator}}">{{vm.pathwaypathwaymbr.logicoperator}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaypathwaymbr.parentpathway">Parentpathway</span></dt>
+        <dd>
+            <a ui-sref="pathway-detail({id:vm.pathwaypathwaymbr.parentpathway.id})">{{vm.pathwaypathwaymbr.parentpathway.name}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.pathwaypathwaymbr.childpathway">Childpathway</span></dt>
+        <dd>
+            <a ui-sref="pathway-detail({id:vm.pathwaypathwaymbr.childpathway.id})">{{vm.pathwaypathwaymbr.childpathway.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="pathwaypathwaymbr-detail.edit({id:vm.pathwaypathwaymbr.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

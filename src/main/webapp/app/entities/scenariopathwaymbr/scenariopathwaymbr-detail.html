@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.scenariopathwaymbr.detail.title">Scenariopathwaymbr</span> {{vm.scenariopathwaymbr.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.scenariopathwaymbr.comment">Comment</span></dt>
+        <dd>
+            <span>{{vm.scenariopathwaymbr.comment}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenariopathwaymbr.status">Status</span></dt>
+        <dd>
+            <span>{{vm.scenariopathwaymbr.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenariopathwaymbr.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.scenariopathwaymbr.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenariopathwaymbr.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.scenariopathwaymbr.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenariopathwaymbr.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.scenariopathwaymbr.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenariopathwaymbr.scenario">Scenario</span></dt>
+        <dd>
+            <a ui-sref="scenario-detail({id:vm.scenariopathwaymbr.scenario.id})">{{vm.scenariopathwaymbr.scenario.name}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenariopathwaymbr.pathway">Pathway</span></dt>
+        <dd>
+            <a ui-sref="pathway-detail({id:vm.scenariopathwaymbr.pathway.id})">{{vm.scenariopathwaymbr.pathway.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="scenariopathwaymbr-detail.edit({id:vm.scenariopathwaymbr.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

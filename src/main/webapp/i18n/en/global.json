@@ -47,6 +47,17 @@
                 "fiscalyear": "Fiscalyear",
                 "activity": "Activity",
                 "activitymbr": "Activitymbr",
+                "countermeasure": "Countermeasure",
+                "scenario": "Scenario",
+                "pathway": "Pathway",
+                "scenariopathwaymbr": "Scenariopathwaymbr",
+                "pathwaypathwaymbr": "Pathwaypathwaymbr",
+                "countermeasurepathwaymbr": "Countermeasurepathwaymbr",
+                "countermeasurefactor": "Countermeasurefactor",
+                "weapon": "Weapon",
+                "countermeasurefactortype": "Countermeasurefactortype",
+                "pathwaycountermeasure": "Pathwaycountermeasure",
+                "pathwaycountermeasurembr": "Pathwaycountermeasurembr",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

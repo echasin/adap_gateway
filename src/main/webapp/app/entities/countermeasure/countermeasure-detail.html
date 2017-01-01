@@ -1,0 +1,67 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.countermeasure.detail.title">Countermeasure</span> {{vm.countermeasure.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.countermeasure.name">Name</span></dt>
+        <dd>
+            <span>{{vm.countermeasure.name}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{vm.countermeasure.nameshort}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.description">Description</span></dt>
+        <dd>
+            <span>{{vm.countermeasure.description}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.isabstract">Isabstract</span></dt>
+        <dd>
+            <span>{{vm.countermeasure.isabstract}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.status">Status</span></dt>
+        <dd>
+            <span>{{vm.countermeasure.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.countermeasure.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.countermeasure.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.countermeasure.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.recordtype">Recordtype</span></dt>
+        <dd>
+            <a ui-sref="recordtype-detail({id:vm.countermeasure.recordtype.id})">{{vm.countermeasure.recordtype.name}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.category">Category</span></dt>
+        <dd>
+            <span ng-repeat="category in vm.countermeasure.categories">
+                <a ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span translate="adapGatewayApp.countermeasure.subcategory">Subcategory</span></dt>
+        <dd>
+            <span ng-repeat="subcategory in vm.countermeasure.subcategories">
+                <a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="countermeasure-detail.edit({id:vm.countermeasure.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

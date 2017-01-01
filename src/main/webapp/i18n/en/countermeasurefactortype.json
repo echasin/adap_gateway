@@ -1,0 +1,29 @@
+{
+    "adapGatewayApp": {
+        "countermeasurefactortype" : {
+            "home": {
+                "title": "Countermeasurefactortypes",
+                "createLabel": "Create a new Countermeasurefactortype",
+                "createOrEditLabel": "Create or edit a Countermeasurefactortype",
+                "search": "Search for Countermeasurefactortype"
+            },
+            "created": "A new Countermeasurefactortype is created with identifier {{ param }}",
+            "updated": "A Countermeasurefactortype is updated with identifier {{ param }}",
+            "deleted": "A Countermeasurefactortype is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Countermeasurefactortype {{ id }}?"
+            },
+            "detail": {
+                "title": "Countermeasurefactortype"
+            },
+            "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "countermeasurefactor": "Countermeasurefactor"
+        }
+    }
+}

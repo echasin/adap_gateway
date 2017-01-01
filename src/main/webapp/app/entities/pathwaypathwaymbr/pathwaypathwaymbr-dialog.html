@@ -1,0 +1,143 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPathwaypathwaymbrLabel" translate="adapGatewayApp.pathwaypathwaymbr.home.createOrEditLabel">Create or edit a Pathwaypathwaymbr</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pathwaypathwaymbr.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pathwaypathwaymbr.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.pathwaypathwaymbr.comment" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                    ng-model="vm.pathwaypathwaymbr.comment"
+                    ng-maxlength="100" />
+            <div ng-show="editForm.comment.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.comment.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.pathwaypathwaymbr.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                    ng-model="vm.pathwaypathwaymbr.status"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.status.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.status.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.status.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.pathwaypathwaymbr.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
+                    ng-model="vm.pathwaypathwaymbr.lastmodifiedby"
+                    required ng-maxlength="50" />
+            <div ng-show="editForm.lastmodifiedby.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifiedby.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.pathwaypathwaymbr.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+                <div class="input-group">
+                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.pathwaypathwaymbr.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastmodifieddatetime')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.lastmodifieddatetime.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastmodifieddatetime.$error.ZonedDateTimelocal" translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.pathwaypathwaymbr.domain" for="field_domain">Domain</label>
+            <input type="text" class="form-control" name="domain" id="field_domain"
+                    ng-model="vm.pathwaypathwaymbr.domain"
+                    required ng-maxlength="25" />
+            <div ng-show="editForm.domain.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.domain.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="25">
+                    This field cannot be longer than 25 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="adapGatewayApp.pathwaypathwaymbr.logicoperator" for="field_logicoperator">Logicoperator</label>
+            <select class="form-control" name="logicoperator" ng-model="vm.pathwaypathwaymbr.logicoperator" id="field_logicoperator" required>
+                <option value="And" translate="adapGatewayApp.Operator.And">And</option>
+                <option value="Or" translate="adapGatewayApp.Operator.Or">Or</option>
+            </select>
+            <div ng-show="editForm.logicoperator.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.logicoperator.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label translate="adapGatewayApp.pathwaypathwaymbr.parentpathway" for="field_parentpathway">Parentpathway</label>
+            <select class="form-control" id="field_parentpathway" name="parentpathway" ng-model="vm.pathwaypathwaymbr.parentpathway" ng-options="pathway as pathway.name for pathway in vm.pathways track by pathway.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.parentpathway.$invalid">
+            <p class="help-block"
+                ng-show="editForm.parentpathway.$error.required" translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label translate="adapGatewayApp.pathwaypathwaymbr.childpathway" for="field_childpathway">Childpathway</label>
+            <select class="form-control" id="field_childpathway" name="childpathway" ng-model="vm.pathwaypathwaymbr.childpathway" ng-options="pathway as pathway.name for pathway in vm.pathways track by pathway.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.childpathway.$invalid">
+            <p class="help-block"
+                ng-show="editForm.childpathway.$error.required" translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

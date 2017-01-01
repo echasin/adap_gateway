@@ -1,0 +1,29 @@
+{
+    "adapGatewayApp": {
+        "pathwaypathwaymbr" : {
+            "home": {
+                "title": "Pathwaypathwaymbrs",
+                "createLabel": "Create a new Pathwaypathwaymbr",
+                "createOrEditLabel": "Create or edit a Pathwaypathwaymbr",
+                "search": "Search for Pathwaypathwaymbr"
+            },
+            "created": "A new Pathwaypathwaymbr is created with identifier {{ param }}",
+            "updated": "A Pathwaypathwaymbr is updated with identifier {{ param }}",
+            "deleted": "A Pathwaypathwaymbr is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pathwaypathwaymbr {{ id }}?"
+            },
+            "detail": {
+                "title": "Pathwaypathwaymbr"
+            },
+            "comment": "Comment",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "logicoperator": "Logicoperator",
+            "parentpathway": "Parentpathway",
+            "childpathway": "Childpathway"
+        }
+    }
+}

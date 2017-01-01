@@ -1,0 +1,35 @@
+{
+    "adapGatewayApp": {
+        "countermeasurefactor" : {
+            "home": {
+                "title": "Countermeasurefactors",
+                "createLabel": "Create a new Countermeasurefactor",
+                "createOrEditLabel": "Create or edit a Countermeasurefactor",
+                "search": "Search for Countermeasurefactor"
+            },
+            "created": "A new Countermeasurefactor is created with identifier {{ param }}",
+            "updated": "A Countermeasurefactor is updated with identifier {{ param }}",
+            "deleted": "A Countermeasurefactor is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Countermeasurefactor {{ id }}?"
+            },
+            "detail": {
+                "title": "Countermeasurefactor"
+            },
+            "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "version": "Version",
+            "value": "Value",
+            "comment": "Comment",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "countermeasure": "Countermeasure",
+            "pathway": "Pathway",
+            "countermeasurefactortype": "Countermeasurefactortype",
+            "weapon": "Weapon"
+        }
+    }
+}
