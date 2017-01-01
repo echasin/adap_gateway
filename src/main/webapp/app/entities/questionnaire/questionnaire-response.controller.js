@@ -198,7 +198,11 @@
                        	    		var questionIndex = vm.questiongroup[groupIndex].question.findIndex(x => x.id==condition.displayedquestion.id)
                                		if(groupIndex != -1 && questionIndex != -1){
                        	    		vm.questiongroup[groupIndex].question.splice(questionIndex,1)
-                               		 }	   
+                   		            for(var i=0;i<userResponse.length;i++){
+                       	    		var index = userResponse.findIndex(x => x.question==condition.displayedquestion.id)
+                            		userResponse.splice(index,1)
+                   		            }
+                               	 }	   
                        	    	}
                   	    	  }
                   	      });
@@ -210,7 +214,8 @@
            	    	}else{
            	    		var groupIndex = vm.questiongroup.findIndex(x => x.id==group)
            	    		var questionIndex = vm.questiongroup[index].question.findIndex(x => x.id==condition.displayedquestion.id)
-                   		 vm.questiongroup[x].question.splice(questionIndex,1)   
+                   		 vm.questiongroup[x].question.splice(questionIndex,1) 
+                   		 
            	    	}
            	      }
            	      }, function(error) {
@@ -540,6 +545,8 @@
             		
         		   if(groupIndex != -1 && questionIndex != -1){
     	    		vm.questiongroup[groupIndex].question.splice(questionIndex,1)
+    	    		var index = userResponse.findIndex(x => x.question==condition.displayedquestion.id)
+    	    		userResponse.splice(index,1)
             		}
     		 });
 		   } 
@@ -563,6 +570,8 @@
             		
         		   if(groupIndex != -1 && questionIndex != -1){
     	    		vm.questiongroup[groupIndex].question.splice(questionIndex,1)
+    	    		var index = userResponse.findIndex(x => x.question==condition.displayedquestion.id)
+    	    		userResponse.splice(index,1)
             		}
     		 });
     		 
