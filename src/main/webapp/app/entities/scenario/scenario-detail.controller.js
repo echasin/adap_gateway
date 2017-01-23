@@ -37,8 +37,7 @@
     
     function excute(){
     	var rootNode=Scenario.getRoot({id:$stateParams.id}, function(){
-        var rootPathway=Scenario.getPathway({id:rootNode.id}, function(){
-
+        var rootPathway=Scenario.getPathway({id:rootNode.pathway.id}, function(){
         	var rect = new joint.shapes.basic.Rect({
 	            position: { x: x, y: y },
 	            size: { width: 150, height: 50 },
@@ -69,7 +68,6 @@
     			        graph.addCells([rect, rect2, link]);
     			        
     			        var child=Scenario.getPathway({id:rootPathway[index].pathwaypathwaymbr.childpathway.id}, function(){
-    			        	console.log(child)
     			        	for(var j=0;j<child.length;j++){
     			        		(function(item) {
     			    			    setTimeout(function() {
