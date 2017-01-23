@@ -16,13 +16,19 @@
         <div class="form-group">
             <label class="control-label" data-translate="adapGatewayApp.recordtype.objecttype" for="field_objecttype">Objecttype</label>
             <select class="form-control" name="objecttype" ng-model="vm.recordtype.objecttype" id="field_objecttype" required>
-                <option value="Asset" data-translate="adapGatewayApp.Objecttype.Asset">Asset</option>
+                <!-- <option value="Asset" data-translate="adapGatewayApp.Objecttype.Asset">Asset</option>
                 <option value="Organization" data-translate="adapGatewayApp.Objecttype.Organization">Organization</option>
                 <option value="Person" data-translate="adapGatewayApp.Objecttype.Person">Person</option>
                 <option value="Location" data-translate="adapGatewayApp.Objecttype.Location">Location</option>
                 <option value="Event" data-translate="adapGatewayApp.Objecttype.Event">Event</option>
                 <option value="Project" data-translate="adapGatewayApp.Objecttype.Project">Project</option>
                 <option value="Portfolio" data-translate="adapGatewayApp.Objecttype.Portfolio">Portfolio</option>
+                -->
+                <option value="Scenario" data-translate="adapGatewayApp.Objecttype.Scenario">Scenario</option>
+                <option value="Pathway" data-translate="adapGatewayApp.Objecttype.Pathway">Pathway</option>
+                <option value="Countermeasure" data-translate="adapGatewayApp.Objecttype.Countermeasure">Countermeasure</option>
+                <option value="Weapon" data-translate="adapGatewayApp.Objecttype.Weapon">Weapon</option>
+        
             </select>
             <div ng-show="editForm.objecttype.$invalid">
                 <p class="help-block"

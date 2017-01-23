@@ -8,7 +8,7 @@
 						src="content/images/profile_small.jpg" /> <a uib-dropdown-toggle
 						href> <span class="clear"> <span class="block m-t-xs">
 								<strong class="font-bold">David Williams</strong>
-						</span> <span class="text-muted text-xs block">Art Director <b
+						</span> <span class="text-muted text-xs block">Risk Analyst <b
 								class="caret"></b></span>
 					</span>
 					</a>
@@ -23,6 +23,7 @@
 				<div class="logo-element">IN+</div>
 			</li>
 
+			<!-- REMOVED FOR MRK DEPLOYMENT
 			<li ui-sref-active="active"><a ui-sref="activity-inbox"><i
 					class="fa fa-envelope"></i> <span class="nav-label">{{ 'My
 						CARB' | translate }}</span> </a></li>
@@ -42,7 +43,7 @@
 			<li ui-sref-active="active"><a ui-sref="asset-home-it"><i
 					class="fa fa-diamond"></i> <span class="nav-label">{{
 						'Assets' | translate }}</span> </a></li>
-
+            --->
 			<!-- 
 			<li ng-class="{active: $state.includes('countermeasure')}"><a
 				href=""><i class="fa fa-bar-chart-o"></i> <span
@@ -65,23 +66,36 @@
 				<ul class="nav nav-second-level collapse"
 					ng-class="{in: $state.includes('risk')}">
 					<li ui-sref-active="active"><a ui-sref="scenario">
-							Scenario</a></li>
+							Attack Scenario (scenario)</a></li>
 					<li ui-sref-active="active"><a ui-sref="pathway">
-							Pathway</a></li>
+							Attack Vector (pathway)</a></li>
 					<li ui-sref-active="active"><a ui-sref="countermeasure">
-							Counter Measure</a></li>		
+							Counter Measure (countermeasure)</a></li>		
 					<li ui-sref-active="active"><a ui-sref="scenariopathwaymbr">
-							Scenario Pathway Mbr</a></li>
+							Attack Scenario - Vector Membership (scenariopathwaymbr)</a></li>
 					<li ui-sref-active="active"><a ui-sref="pathwaypathwaymbr">
-							Pathway Pathway Mbr</a></li>
+							Attack Vector Membership (pathwaypathwaymbr)</a></li>
 					<li ui-sref-active="active"><a ui-sref="pathwaycountermeasurembr"> 
-							Pathway Countermeasure Mbr</a></li>
+							Attack Vector Countermeasure Membership (pathwaycountermeasurembr)</a></li>
 					<li ui-sref-active="active"><a ui-sref="countermeasurefactor"> 
-							Countermeasure Factor</a></li>
+							Countermeasure Factor (countermeasurefactor)</a></li>
 					<li ui-sref-active="active"><a ui-sref="countermeasurefactortype"> 
-							Countermeasure Factor Type</a></li>
+							Countermeasure Factor Type (countermeasurefactortype)</a></li>
 					<li ui-sref-active="active"><a ui-sref="weapon"> 
-							Weapon</a></l		
+							Weapon (weapn)</a></li>		
+				</ul>
+			</li>
+				<li ng-class="{active: $state.includes('risk')}"><a href=""><i
+					class="fa fa-bar-chart-o"></i> <span class="nav-label">{{
+						'Taxonomy Management' | translate }}</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse"
+					ng-class="{in: $state.includes('risk')}">
+					<li ui-sref-active="active"><a ui-sref="recordtype">
+							Recordtype</a></li>
+					<li ui-sref-active="active"><a ui-sref="category">
+							Category</a></li>
+					<li ui-sref-active="active"><a ui-sref="subcategory">
+							Sub Category</a></li>		
 				</ul>
 			</li>
 		</ul>
