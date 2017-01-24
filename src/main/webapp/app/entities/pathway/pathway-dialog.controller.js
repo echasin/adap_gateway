@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('PathwayDialogController', PathwayDialogController);
 
-    PathwayDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Pathway', 'Recordtype', 'Category', 'Subcategory', 'Scenariopathwaymbr', 'Pathwaypathwaymbr', 'Weapon', 'Pathwaycountermeasurembr'];
+    PathwayDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Pathway', 'Recordtype', 'Category', 'Subcategory', 'Scenariopathwaymbr', 'Pathwaypathwaymbr', 'Weapon', 'Pathwaycountermeasurembr', 'Target'];
 
-    function PathwayDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Pathway, Recordtype, Category, Subcategory, Scenariopathwaymbr, Pathwaypathwaymbr, Weapon, Pathwaycountermeasurembr) {
+    function PathwayDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Pathway, Recordtype, Category, Subcategory, Scenariopathwaymbr, Pathwaypathwaymbr, Weapon, Pathwaycountermeasurembr, Target) {
         var vm = this;
 
         vm.pathway = entity;
@@ -22,6 +22,7 @@
         vm.pathwaypathwaymbrs = Pathwaypathwaymbr.query();
         vm.weapons = Weapon.query();
         vm.pathwaycountermeasurembrs = Pathwaycountermeasurembr.query();
+        vm.targets = Target.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

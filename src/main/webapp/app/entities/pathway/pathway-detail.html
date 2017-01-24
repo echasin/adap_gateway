@@ -1,65 +1,71 @@
 
 <div>
-    <h2><span translate="adapGatewayApp.pathway.detail.title">Pathway</span> {{vm.pathway.id}}</h2>
+    <h2><span data-translate="adapGatewayApp.pathway.detail.title">Pathway</span> {{vm.pathway.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span translate="adapGatewayApp.pathway.name">Name</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.name">Name</span></dt>
         <dd>
             <span>{{vm.pathway.name}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.nameshort">Nameshort</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.nameshort">Nameshort</span></dt>
         <dd>
             <span>{{vm.pathway.nameshort}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.description">Description</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.description">Description</span></dt>
         <dd>
             <span>{{vm.pathway.description}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.isrootnode">Isrootnode</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.isrootnode">Isrootnode</span></dt>
         <dd>
             <span>{{vm.pathway.isrootnode}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.isabstract">Isabstract</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.isabstract">Isabstract</span></dt>
         <dd>
             <span>{{vm.pathway.isabstract}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.status">Status</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.status">Status</span></dt>
         <dd>
             <span>{{vm.pathway.status}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.lastmodifiedby">Lastmodifiedby</span></dt>
         <dd>
             <span>{{vm.pathway.lastmodifiedby}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
         <dd>
             <span>{{vm.pathway.lastmodifieddatetime | date:'medium'}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.domain">Domain</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.domain">Domain</span></dt>
         <dd>
             <span>{{vm.pathway.domain}}</span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.recordtype">Recordtype</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.recordtype">Recordtype</span></dt>
         <dd>
             <a ui-sref="recordtype-detail({id:vm.pathway.recordtype.id})">{{vm.pathway.recordtype.name}}</a>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.category">Category</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.category">Category</span></dt>
         <dd>
             <span ng-repeat="category in vm.pathway.categories">
                 <a ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.subcategory">Subcategory</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.subcategory">Subcategory</span></dt>
         <dd>
             <span ng-repeat="subcategory in vm.pathway.subcategories">
                 <a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
-        <dt><span translate="adapGatewayApp.pathway.weapon">Weapon</span></dt>
+        <dt><span data-translate="adapGatewayApp.pathway.weapon">Weapon</span></dt>
         <dd>
             <span ng-repeat="weapon in vm.pathway.weapons">
                 <a ui-sref="weapon-detail({id: weapon.id})">{{weapon.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.pathway.target">Target</span></dt>
+        <dd>
+            <span ng-repeat="target in vm.pathway.targets">
+                <a ui-sref="target-detail({id: target.id})">{{target.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>
@@ -67,11 +73,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
     </button>
 
     <button type="button" ui-sref="pathway-detail.edit({id:vm.pathway.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
     </button>
 </div>

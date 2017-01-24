@@ -3,14 +3,14 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('PathwayDeleteController',PathwayDeleteController);
+        .controller('TargetDeleteController',TargetDeleteController);
 
-    PathwayDeleteController.$inject = ['$uibModalInstance', 'entity', 'Pathway'];
+    TargetDeleteController.$inject = ['$uibModalInstance', 'entity', 'Target'];
 
-    function PathwayDeleteController($uibModalInstance, entity, Pathway) {
+    function TargetDeleteController($uibModalInstance, entity, Target) {
         var vm = this;
 
-        vm.pathway = entity;
+        vm.target = entity;
         vm.clear = clear;
         vm.confirmDelete = confirmDelete;
 
@@ -19,7 +19,7 @@
         }
 
         function confirmDelete (id) {
-            Pathway.delete({id: id},
+            Target.delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

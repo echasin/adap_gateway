@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Pathway e2e test', function () {
+describe('Target e2e test', function () {
 
     var username = element(by.id('username'));
     var password = element(by.id('password'));
@@ -20,19 +20,19 @@ describe('Pathway e2e test', function () {
         element(by.css('button[type=submit]')).click();
     });
 
-    it('should load Pathways', function () {
+    it('should load Targets', function () {
         entityMenu.click();
-        element.all(by.css('[ui-sref="pathway"]')).first().click().then(function() {
+        element.all(by.css('[ui-sref="target"]')).first().click().then(function() {
             element.all(by.css('h2')).first().getAttribute('data-translate').then(function (value) {
-                expect(value).toMatch(/adapGatewayApp.pathway.home.title/);
+                expect(value).toMatch(/adapGatewayApp.target.home.title/);
             });
         });
     });
 
-    it('should load create Pathway dialog', function () {
-        element(by.css('[ui-sref="pathway.new"]')).click().then(function() {
+    it('should load create Target dialog', function () {
+        element(by.css('[ui-sref="target.new"]')).click().then(function() {
             element(by.css('h4.modal-title')).getAttribute('data-translate').then(function (value) {
-                expect(value).toMatch(/adapGatewayApp.pathway.home.createOrEditLabel/);
+                expect(value).toMatch(/adapGatewayApp.target.home.createOrEditLabel/);
             });
             element(by.css('button.close')).click();
         });

@@ -1,20 +1,20 @@
 <div>
-    <h2 data-translate="adapGatewayApp.pathway.home.title">Pathways</h2>
+    <h2 data-translate="adapGatewayApp.target.home.title">Targets</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="pathway.new" >
+                <button class="btn btn-primary" ui-sref="target.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs"  data-translate="adapGatewayApp.pathway.home.createLabel">
-                        Create new Pathway
+                    <span class="hidden-xs"  data-translate="adapGatewayApp.target.home.createLabel">
+                        Create new Target
                     </span>
                 </button>
             </div>
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.pathway.home.search' | translate }}">
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'adapGatewayApp.target.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -36,50 +36,48 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="name"><span data-translate="adapGatewayApp.pathway.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="nameshort"><span data-translate="adapGatewayApp.pathway.nameshort">Nameshort</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="description"><span data-translate="adapGatewayApp.pathway.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="isrootnode"><span data-translate="adapGatewayApp.pathway.isrootnode">Isrootnode</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="isabstract"><span data-translate="adapGatewayApp.pathway.isabstract">Isabstract</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.pathway.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.pathway.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.pathway.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.pathway.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="recordtype.name"><span data-translate="adapGatewayApp.pathway.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span data-translate="adapGatewayApp.target.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nameshort"><span data-translate="adapGatewayApp.target.nameshort">Nameshort</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span data-translate="adapGatewayApp.target.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isabstract"><span data-translate="adapGatewayApp.target.isabstract">Isabstract</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span data-translate="adapGatewayApp.target.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifiedby"><span data-translate="adapGatewayApp.target.lastmodifiedby">Lastmodifiedby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastmodifieddatetime"><span data-translate="adapGatewayApp.target.lastmodifieddatetime">Lastmodifieddatetime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="domain"><span data-translate="adapGatewayApp.target.domain">Domain</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="recordtype.name"><span data-translate="adapGatewayApp.target.recordtype">Recordtype</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="pathway in vm.pathways track by pathway.id">
-                    <td><a ui-sref="pathway-detail({id:pathway.id})">{{pathway.id}}</a></td>
-                    <td>{{pathway.name}}</td>
-                    <td>{{pathway.nameshort}}</td>
-                    <td>{{pathway.description}}</td>
-                    <td>{{pathway.isrootnode}}</td>
-                    <td>{{pathway.isabstract}}</td>
-                    <td>{{pathway.status}}</td>
-                    <td>{{pathway.lastmodifiedby}}</td>
-                    <td>{{pathway.lastmodifieddatetime | date:'medium'}}</td>
-                    <td>{{pathway.domain}}</td>
+                <tr ng-repeat="target in vm.targets track by target.id">
+                    <td><a ui-sref="target-detail({id:target.id})">{{target.id}}</a></td>
+                    <td>{{target.name}}</td>
+                    <td>{{target.nameshort}}</td>
+                    <td>{{target.description}}</td>
+                    <td>{{target.isabstract}}</td>
+                    <td>{{target.status}}</td>
+                    <td>{{target.lastmodifiedby}}</td>
+                    <td>{{target.lastmodifieddatetime | date:'medium'}}</td>
+                    <td>{{target.domain}}</td>
                     <td>
-                        <a ui-sref="recordtype-detail({id:pathway.recordtype.id})">{{pathway.recordtype.name}}</a>
+                        <a ui-sref="recordtype-detail({id:target.recordtype.id})">{{target.recordtype.name}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="pathway-detail({id:pathway.id})"
+                                    ui-sref="target-detail({id:target.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="pathway.edit({id:pathway.id})"
+                                    ui-sref="target.edit({id:target.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="pathway.delete({id:pathway.id})"
+                                    ui-sref="target.delete({id:target.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
