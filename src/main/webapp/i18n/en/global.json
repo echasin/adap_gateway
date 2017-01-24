@@ -58,6 +58,7 @@
                 "countermeasurefactortype": "Countermeasurefactortype",
                 "pathwaycountermeasure": "Pathwaycountermeasure",
                 "pathwaycountermeasurembr": "Pathwaycountermeasurembr",
+                "target": "Target",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

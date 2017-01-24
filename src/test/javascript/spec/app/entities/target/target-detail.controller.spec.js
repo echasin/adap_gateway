@@ -2,9 +2,9 @@
 
 describe('Controller Tests', function() {
 
-    describe('Pathway Management Detail Controller', function() {
+    describe('Target Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockPathway, MockRecordtype, MockCategory, MockSubcategory, MockScenariopathwaymbr, MockPathwaypathwaymbr, MockWeapon, MockPathwaycountermeasurembr, MockTarget;
+        var MockEntity, MockPreviousState, MockTarget, MockRecordtype, MockCategory, MockSubcategory, MockPathway;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -12,15 +12,11 @@ describe('Controller Tests', function() {
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
-            MockPathway = jasmine.createSpy('MockPathway');
+            MockTarget = jasmine.createSpy('MockTarget');
             MockRecordtype = jasmine.createSpy('MockRecordtype');
             MockCategory = jasmine.createSpy('MockCategory');
             MockSubcategory = jasmine.createSpy('MockSubcategory');
-            MockScenariopathwaymbr = jasmine.createSpy('MockScenariopathwaymbr');
-            MockPathwaypathwaymbr = jasmine.createSpy('MockPathwaypathwaymbr');
-            MockWeapon = jasmine.createSpy('MockWeapon');
-            MockPathwaycountermeasurembr = jasmine.createSpy('MockPathwaycountermeasurembr');
-            MockTarget = jasmine.createSpy('MockTarget');
+            MockPathway = jasmine.createSpy('MockPathway');
             
 
             var locals = {
@@ -28,25 +24,21 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'Pathway': MockPathway,
+                'Target': MockTarget,
                 'Recordtype': MockRecordtype,
                 'Category': MockCategory,
                 'Subcategory': MockSubcategory,
-                'Scenariopathwaymbr': MockScenariopathwaymbr,
-                'Pathwaypathwaymbr': MockPathwaypathwaymbr,
-                'Weapon': MockWeapon,
-                'Pathwaycountermeasurembr': MockPathwaycountermeasurembr,
-                'Target': MockTarget
+                'Pathway': MockPathway
             };
             createController = function() {
-                $injector.get('$controller')("PathwayDetailController", locals);
+                $injector.get('$controller')("TargetDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'adapGatewayApp:pathwayUpdate';
+                var eventType = 'adapGatewayApp:targetUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);

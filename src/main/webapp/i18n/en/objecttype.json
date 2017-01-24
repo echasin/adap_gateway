@@ -13,6 +13,7 @@
             "Scenario": "Scenario",
             "Pathway": "Pathway",
             "Countermeasure": "Counter Measure",
+            "Target": "Target",
             "Weapon": "Weapon"
         }
     }
