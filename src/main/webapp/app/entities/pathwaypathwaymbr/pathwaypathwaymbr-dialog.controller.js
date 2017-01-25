@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('PathwaypathwaymbrDialogController', PathwaypathwaymbrDialogController);
 
-    PathwaypathwaymbrDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Pathwaypathwaymbr', 'Pathway'];
+    PathwaypathwaymbrDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Pathwaypathwaymbr', 'Pathway', 'Scenario'];
 
-    function PathwaypathwaymbrDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Pathwaypathwaymbr, Pathway) {
+    function PathwaypathwaymbrDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Pathwaypathwaymbr, Pathway, Scenario) {
         var vm = this;
 
         vm.pathwaypathwaymbr = entity;
@@ -16,6 +16,7 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.pathways = Pathway.query();
+        vm.scenarios = Scenario.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
