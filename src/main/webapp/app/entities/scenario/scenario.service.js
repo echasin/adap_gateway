@@ -22,6 +22,7 @@
             
             	url: 'adap_risk/api/getRoot/:id'},
             'getData': {method: 'GET',isArray: true, url: 'adap_risk/api/getData/:id'},
+            'getColor': {method: 'GET', url: 'adap_risk/api/getColor'},
             'getPathway': {method: 'GET',isArray: true, url: 'adap_risk/api/getPathway/:id'},
             'getCounterMeasure': {method: 'GET', url: 'adap_risk/api/getCounterMeasure/:id'},
             'get': {
