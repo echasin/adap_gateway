@@ -31,10 +31,10 @@ spring:
         livereload:
             enabled: false
     datasource:
-        url: jdbc:postgresql://localhost:5432/adap_gateway
-        name:
-        username: adap_gateway
-        password:
+        url: jdbc:postgresql://localhost:5432/adap
+        
+        username: postgres
+        password: postgres
     jpa:
         database-platform: com.innvo.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL

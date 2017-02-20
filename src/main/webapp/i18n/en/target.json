@@ -1,0 +1,37 @@
+{
+    "adapGatewayApp": {
+        "target" : {
+            "home": {
+                "title": "Targets",
+                "createLabel": "Create a new Target",
+                "createOrEditLabel": "Create or edit a Target",
+                "search": "Search for Target"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Target {{ id }}?"
+            },
+            "detail": {
+                "title": "Target"
+            },
+            "name": "Name",
+            "nameshort": "Nameshort",
+            "description": "Description",
+            "isabstract": "Isabstract",
+            "status": "Status",
+            "lastmodifiedby": "Lastmodifiedby",
+            "lastmodifieddatetime": "Lastmodifieddatetime",
+            "domain": "Domain",
+            "recordtype": "Recordtype",
+            "category": "Category",
+            "subcategory": "Subcategory",
+            "pathway": "Pathway"
+        }
+    },
+    "adapRiskApp": {
+        "target" : {
+            "created": "A new Target is created with identifier {{ param }}",
+            "updated": "A Target is updated with identifier {{ param }}",
+            "deleted": "A Target is deleted with identifier {{ param }}"
+        }
+    }
+}

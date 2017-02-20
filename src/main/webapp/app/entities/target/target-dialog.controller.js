@@ -3,24 +3,22 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('CategoryDialogController', CategoryDialogController);
+        .controller('TargetDialogController', TargetDialogController);
 
-    CategoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Category', 'Recordtype', 'Subcategory', 'Asset', 'Organization', 'Organizationorganizationmbr', 'Project'];
+    TargetDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Target', 'Recordtype', 'Category', 'Subcategory', 'Pathway'];
 
-    function CategoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Category, Recordtype, Subcategory, Asset, Organization, Organizationorganizationmbr, Project) {
+    function TargetDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Target, Recordtype, Category, Subcategory, Pathway) {
         var vm = this;
 
-        vm.category = entity;
+        vm.target = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.recordtypes = Recordtype.query();
+        vm.categories = Category.query();
         vm.subcategories = Subcategory.query();
-        vm.assets = Asset.query();
-        vm.organizations = Organization.query();
-        vm.organizationorganizationmbrs = Organizationorganizationmbr.query();
-        vm.projects = Project.query();
+        vm.pathways = Pathway.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -32,15 +30,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.category.id !== null) {
-                Category.update(vm.category, onSaveSuccess, onSaveError);
+            if (vm.target.id !== null) {
+                Target.update(vm.target, onSaveSuccess, onSaveError);
             } else {
-                Category.save(vm.category, onSaveSuccess, onSaveError);
+                Target.save(vm.target, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('adapGatewayApp:categoryUpdate', result);
+            $scope.$emit('adapGatewayApp:targetUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

@@ -3,11 +3,11 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('PathwayController', PathwayController);
+        .controller('TargetController', TargetController);
 
-    PathwayController.$inject = ['$scope', '$state', 'Pathway', 'PathwaySearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    TargetController.$inject = ['$scope', '$state', 'Target', 'TargetSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function PathwayController ($scope, $state, Pathway, PathwaySearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function TargetController ($scope, $state, Target, TargetSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
         var vm = this;
 
         vm.loadPage = loadPage;
@@ -25,14 +25,14 @@
 
         function loadAll () {
             if (pagingParams.search) {
-                PathwaySearch.query({
+                TargetSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
-                Pathway.query({
+                Target.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
                     sort: sort()
@@ -49,7 +49,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.pathways = data;
+                vm.targets = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {

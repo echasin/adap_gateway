@@ -9,7 +9,12 @@
             "Event": "Event",
             "Project": "Project",
             "Portfolio": "Portfolio",
-            "Activity": "Activity"
+            "Activity": "Activity",
+            "Scenario": "Scenario",
+            "Pathway": "Pathway",
+            "Countermeasure": "Counter Measure",
+            "Target": "Target",
+            "Weapon": "Weapon"
         }
     }
 }

@@ -1,0 +1,67 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.target.detail.title">Target</span> {{vm.target.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.target.name">Name</span></dt>
+        <dd>
+            <span>{{vm.target.name}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{vm.target.nameshort}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.description">Description</span></dt>
+        <dd>
+            <span>{{vm.target.description}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.isabstract">Isabstract</span></dt>
+        <dd>
+            <span>{{vm.target.isabstract}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.status">Status</span></dt>
+        <dd>
+            <span>{{vm.target.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.target.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.target.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.target.domain}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.recordtype">Recordtype</span></dt>
+        <dd>
+            <a ui-sref="recordtype-detail({id:vm.target.recordtype.id})">{{vm.target.recordtype.name}}</a>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.category">Category</span></dt>
+        <dd>
+            <span ng-repeat="category in vm.target.categories">
+                <a ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.target.subcategory">Subcategory</span></dt>
+        <dd>
+            <span ng-repeat="subcategory in vm.target.subcategories">
+                <a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="target-detail.edit({id:vm.target.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

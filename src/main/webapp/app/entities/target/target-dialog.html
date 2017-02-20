@@ -4,44 +4,19 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myRecordtypeLabel" data-translate="adapGatewayApp.recordtype.home.createOrEditLabel">Create or edit a Recordtype</h4>
+        <h4 class="modal-title" id="myTargetLabel" data-translate="adapGatewayApp.target.home.createOrEditLabel">Create or edit a Target</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.recordtype.id">
+        <div class="form-group" ng-show="vm.target.id">
             <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.recordtype.id" readonly />
+                    ng-model="vm.target.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.recordtype.objecttype" for="field_objecttype">Objecttype</label>
-            <select class="form-control" name="objecttype" ng-model="vm.recordtype.objecttype" id="field_objecttype" required>
-                <!-- <option value="Asset" data-translate="adapGatewayApp.Objecttype.Asset">Asset</option>
-                <option value="Organization" data-translate="adapGatewayApp.Objecttype.Organization">Organization</option>
-                <option value="Person" data-translate="adapGatewayApp.Objecttype.Person">Person</option>
-                <option value="Location" data-translate="adapGatewayApp.Objecttype.Location">Location</option>
-                <option value="Event" data-translate="adapGatewayApp.Objecttype.Event">Event</option>
-                <option value="Project" data-translate="adapGatewayApp.Objecttype.Project">Project</option>
-                <option value="Portfolio" data-translate="adapGatewayApp.Objecttype.Portfolio">Portfolio</option>
-                -->
-                <option value="Scenario" data-translate="adapGatewayApp.Objecttype.Scenario">Scenario</option>
-                <option value="Pathway" data-translate="adapGatewayApp.Objecttype.Pathway">Pathway</option>
-                <option value="Countermeasure" data-translate="adapGatewayApp.Objecttype.Countermeasure">Countermeasure</option>
-                <option value="Target" data-translate="adapGatewayApp.Objecttype.Target">Weapon</option>
-                <option value="Weapon" data-translate="adapGatewayApp.Objecttype.Weapon">Weapon</option>
-        
-            </select>
-            <div ng-show="editForm.objecttype.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.objecttype.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.recordtype.name" for="field_name">Name</label>
+            <label class="control-label" data-translate="adapGatewayApp.target.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="vm.recordtype.name"
+                    ng-model="vm.target.name"
                     required ng-maxlength="50" />
             <div ng-show="editForm.name.$invalid">
                 <p class="help-block"
@@ -55,9 +30,25 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.recordtype.description" for="field_description">Description</label>
+            <label class="control-label" data-translate="adapGatewayApp.target.nameshort" for="field_nameshort">Nameshort</label>
+            <input type="text" class="form-control" name="nameshort" id="field_nameshort"
+                    ng-model="vm.target.nameshort"
+                    required ng-maxlength="20" />
+            <div ng-show="editForm.nameshort.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nameshort.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.nameshort.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="20">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.target.description" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
-                    ng-model="vm.recordtype.description"
+                    ng-model="vm.target.description"
                     ng-maxlength="255" />
             <div ng-show="editForm.description.$invalid">
                 <p class="help-block"
@@ -67,9 +58,15 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.recordtype.status" for="field_status">Status</label>
+            <label class="control-label" data-translate="adapGatewayApp.target.isabstract" for="field_isabstract">Isabstract</label>
+            <input type="checkbox" class="form-control" name="isabstract" id="field_isabstract"
+                    ng-model="vm.target.isabstract"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="adapGatewayApp.target.status" for="field_status">Status</label>
             <input type="text" class="form-control" name="status" id="field_status"
-                    ng-model="vm.recordtype.status"
+                    ng-model="vm.target.status"
                     required ng-maxlength="25" />
             <div ng-show="editForm.status.$invalid">
                 <p class="help-block"
@@ -83,9 +80,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.recordtype.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
+            <label class="control-label" data-translate="adapGatewayApp.target.lastmodifiedby" for="field_lastmodifiedby">Lastmodifiedby</label>
             <input type="text" class="form-control" name="lastmodifiedby" id="field_lastmodifiedby"
-                    ng-model="vm.recordtype.lastmodifiedby"
+                    ng-model="vm.target.lastmodifiedby"
                     required ng-maxlength="50" />
             <div ng-show="editForm.lastmodifiedby.$invalid">
                 <p class="help-block"
@@ -99,9 +96,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.recordtype.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
+            <label class="control-label" data-translate="adapGatewayApp.target.lastmodifieddatetime" for="field_lastmodifieddatetime">Lastmodifieddatetime</label>
                 <div class="input-group">
-                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.recordtype.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
+                    <input id="field_lastmodifieddatetime" type="text" class="form-control" name="lastmodifieddatetime" datetime-picker="{{dateformat}}" ng-model="vm.target.lastmodifieddatetime" is-open="vm.datePickerOpenStatus.lastmodifieddatetime"
                     required  />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastmodifieddatetime')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -119,9 +116,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="adapGatewayApp.recordtype.domain" for="field_domain">Domain</label>
+            <label class="control-label" data-translate="adapGatewayApp.target.domain" for="field_domain">Domain</label>
             <input type="text" class="form-control" name="domain" id="field_domain"
-                    ng-model="vm.recordtype.domain"
+                    ng-model="vm.target.domain"
                     required ng-maxlength="25" />
             <div ng-show="editForm.domain.$invalid">
                 <p class="help-block"
@@ -135,6 +132,20 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label data-translate="adapGatewayApp.target.recordtype" for="field_recordtype">Recordtype</label>
+            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.target.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="adapGatewayApp.target.category" for="field_category">Category</label>
+            <select class="form-control" id="field_category" multiple name="category" ng-model="vm.target.categories" ng-options="category as category.name for category in vm.categories track by category.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="adapGatewayApp.target.subcategory" for="field_subcategory">Subcategory</label>
+            <select class="form-control" id="field_subcategory" multiple name="subcategory" ng-model="vm.target.subcategories" ng-options="subcategory as subcategory.name for subcategory in vm.subcategories track by subcategory.id"></select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
