@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span data-translate="adapGatewayApp.playbook.detail.title">Playbook</span> {{vm.playbook.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="adapGatewayApp.playbook.name">Name</span></dt>
+        <dd>
+            <span>{{vm.playbook.name}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.playbook.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{vm.playbook.nameshort}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.playbook.description">Description</span></dt>
+        <dd>
+            <span>{{vm.playbook.description}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.playbook.parameters">Parameters</span></dt>
+        <dd>
+            <span>{{vm.playbook.parameters}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.playbook.jobfilename">Jobfilename</span></dt>
+        <dd>
+            <span>{{vm.playbook.jobfilename}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.playbook.commandlinescript">Commandlinescript</span></dt>
+        <dd>
+            <span>{{vm.playbook.commandlinescript}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.playbook.status">Status</span></dt>
+        <dd>
+            <span>{{vm.playbook.status}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.playbook.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.playbook.lastmodifiedby}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.playbook.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.playbook.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="adapGatewayApp.playbook.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.playbook.domain}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="playbook-detail.edit({id:vm.playbook.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

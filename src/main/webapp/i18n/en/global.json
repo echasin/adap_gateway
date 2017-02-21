@@ -59,6 +59,7 @@
                 "pathwaycountermeasure": "Pathwaycountermeasure",
                 "pathwaycountermeasurembr": "Pathwaycountermeasurembr",
                 "target": "Target",
+                "playbook": "Playbook",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

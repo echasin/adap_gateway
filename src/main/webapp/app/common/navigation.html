@@ -88,6 +88,15 @@
 							Weapon (weapon)</a></li>		
 				</ul>
 			</li>
+				<li ng-class="{active: $state.includes('playbook')}"><a href=""><i
+					class="fa fa-bar-chart-o"></i> <span class="nav-label">{{
+						'Big Data Analysis' | translate }}</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse"
+					ng-class="{in: $state.includes('playbook')}">
+					<li ui-sref-active="active"><a ui-sref="playbook">
+							Playbooks</a></li>	
+				</ul>
+			</li>
 				<li ng-class="{active: $state.includes('risk')}"><a href=""><i
 					class="fa fa-bar-chart-o"></i> <span class="nav-label">{{
 						'Taxonomy Management' | translate }}</span><span class="fa arrow"></span></a>
