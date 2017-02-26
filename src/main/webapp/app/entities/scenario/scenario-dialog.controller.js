@@ -30,6 +30,9 @@
 
         function save () {
             vm.isSaving = true;
+            console.log("////////////////////")
+            console.log(vm.scenario);
+            console.log("///////////////55")
             if (vm.scenario.id !== null) {
                 Scenario.update(vm.scenario, onSaveSuccess, onSaveError);
             } else {

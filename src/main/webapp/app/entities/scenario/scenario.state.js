@@ -191,6 +191,63 @@
                     $state.go('^');
                 });
             }]
+        })
+        .state('drawtree', {
+            parent: 'entity',
+            url: '/drawtree',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'drawtree'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/scenario/drawtree.html',
+                    controller: 'DrawtreeController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('scenario');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
+        })
+        .state('newscenario', {
+            parent: 'drawtree',
+            url: '/newscenario',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/scenario/scenario-dialog.html',
+                    controller: 'ScenarioDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                name: null,
+                                nameshort: null,
+                                description: null,
+                                isabstract: null,
+                                status: null,
+                                lastmodifiedby: null,
+                                lastmodifieddatetime: null,
+                                domain: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $state.go('drawtree', null, { reload: 'scenario' });
+                }, function() {
+                    $state.go('drawtree');
+                });
+            }]
         });
     }
 

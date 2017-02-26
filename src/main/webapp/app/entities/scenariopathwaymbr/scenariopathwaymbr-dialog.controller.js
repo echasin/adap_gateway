@@ -27,6 +27,7 @@
         }
 
         function save () {
+        	console.log(vm.scenariopathwaymbr)
             vm.isSaving = true;
             if (vm.scenariopathwaymbr.id !== null) {
                 Scenariopathwaymbr.update(vm.scenariopathwaymbr, onSaveSuccess, onSaveError);
