@@ -1,0 +1,166 @@
+<style>
+ul{
+list-style-type:none;
+}
+</style>
+<div>
+    <h2>Draw Scenarios</h2>
+    <div class="wrapper wrapper-content">
+	<div class="row">
+		<div class="col-lg-2">
+		  <button class="btn btn-primary" ng-click="vm.line()">Drag Line</button><br><br>
+          <div class="col-xs-8">
+          <input type="text" class="form-control" id="query" ng-model="query" onfocus="pxtrack.emit('counter', '1')" placeholder="Search"/>
+          </div>
+          <select class="btn btn-success" ng-model="orderList" onchange="pxtrack.emit('counter', '1')">
+               <option value="nameshort">Asc</option>
+               <option value="id">Id</option>
+           </select>
+  
+          <h2 style="color: red;">Pathways</h2>
+          <div style="width: 250px; height: 250px; overflow: auto">
+            <ul id="notebook_ul" ng-repeat="pathway in vm.pathways | filter:query | orderBy: orderList">
+                <li ng-click="vm.addPathway(pathway.id,pathway.nameshort,pathway.recordtype.name)">
+                  <h3>{{pathway.nameshort}}</h3>
+                </li>
+            </ul>
+           </div>
+           <h2 style="color: red;">Countermeasures</h2>
+           <div style="width: 250px; height: 250px; overflow: auto">
+            <ul id="notebook_ul" ng-repeat="countermeasure in vm.countermeasures | filter:query | orderBy: orderList">
+                <li ng-click="vm.addCountermeasure(countermeasure.id,countermeasure.nameshort,countermeasure.recordtype.name)">
+                  <h3>{{countermeasure.nameshort}}</h3>
+                </li>
+            </ul>
+           </div>
+           
+		</div>
+		<div class="col-lg-6">
+		<h2 style="color: red;">{{vm.message}}</h2>
+         <div id="paper">    
+         </div>
+		</div>
+		<div class="col-lg-2">
+		   <div class="form-group">
+             <label for="field_scenario">Choose Scenario</label>
+             <select class="form-control" id="field_scenario" name="scenario" ng-model="vm.scenario" ng-options="scenario as scenario.name for scenario in vm.scenarios track by scenario.id">
+                 <option value=""></option>
+             </select>
+           </div>
+		   <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="newscenario" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs">
+                         new Scenario
+                    </span>
+                </button>
+           <br><br>
+                <button class="btn btn-primary" ng-click="vm.saveTree()">
+                        Save Attack Tree
+                </button>
+           <br><br>
+                <button class="btn btn-primary" ng-click="vm.toPDF()" >
+                        Export PDF
+                </button>
+            </div>
+		</div>
+      </div>
+     </div>
+</div>
+
+<div class="modal fade" id="pathwaymodal" tabindex="-1" role="dialog" aria-labelledby="myResultLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="create()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myResultLabel">Edit Pathway</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Id</label>
+                            <input type="text" class="form-control" name="id" readonly="readonly"
+                                   ng-model="vm.pathwayData.id">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="name"
+                                   ng-model="vm.pathwayData.name">
+
+                        </div>
+                        <div class="form-group">
+                            <label>NameShort</label>
+                            <input type="text" class="form-control" name="nameshort"
+                                   ng-model="vm.pathwayData.nameshort">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Field</label>
+                            <input type="text" class="form-control" name="field"
+                                   ng-model="vm.pathwayData.id">
+
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.closepathwaymodal()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary" ng-click="vm.savepathway()">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div> 
+<div class="modal fade" id="linemodal" tabindex="-1" role="dialog" aria-labelledby="myResultLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="create()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myResultLabel">Edit PathwayPathway</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Id</label>
+                            <input type="text" class="form-control" name="id" readonly="readonly"
+                                   ng-model="vm.lineData.id">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="name"
+                                   ng-model="vm.lineData.comment">
+
+                        </div>
+                        <div class="form-group">
+                            <label>NameShort</label>
+                            <input type="text" class="form-control" name="nameshort"
+                                   ng-model="vm.lineData.logicoperator">
+
+                        </div>
+
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.closelinemodal">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary" ng-click="vm.saveline()">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+ </div>
+ 

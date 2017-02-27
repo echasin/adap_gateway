@@ -23,7 +23,8 @@
             "domain": "Domain",
             "logicoperator": "Logicoperator",
             "parentpathway": "Parentpathway",
-            "childpathway": "Childpathway"
+            "childpathway": "Childpathway",
+            "scenario": "Scenario"
         }
     }
 }
