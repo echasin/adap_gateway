@@ -38,7 +38,7 @@
     function excute(){
     	var rootNode=Scenario.getRoot({id:$stateParams.id}, function(){
     		console.log(rootNode)
-        var rootPathway=Scenario.getPathway({id:rootNode.pathway.id}, function(){
+        var rootPathway=Scenario.getPathway({pathwayId:rootNode.pathway.id,scenarioId:$stateParams.id}, function(){
         	console.log(rootPathway);
         	var rect = new joint.shapes.basic.Rect({
 	            position: { x: x, y: y },
@@ -89,7 +89,7 @@
     					        graph.addCells([cmrect3,cmlink3]);    	
     					    }
     			        item++
-    			        var child=Scenario.getPathway({id:rootPathway[index].pathwaypathwaymbr.childpathway.id}, function(){
+    			        var child=Scenario.getPathway({pathwayId:rootPathway[index].pathwaypathwaymbr.childpathway.id,scenarioId:$stateParams.id}, function(){
     			        	buildLevels(child,rect2)
         			        step+=0.5;
     			        	item=1;
