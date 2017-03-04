@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ScenarioDetailController', ScenarioDetailController);
 
-    ScenarioDetailController.$inject = ['$scope', '$q','$rootScope', '$stateParams', 'previousState', 'entity', 'Scenario', 'Recordtype', 'Category', 'Subcategory', 'Scenariopathwaymbr'];
+    ScenarioDetailController.$inject = ['$scope', '$q','$rootScope', '$stateParams', 'previousState', 'entity', 'Scenario', 'Pathway','Recordtype', 'Category', 'Subcategory', 'Scenariopathwaymbr','Pathwaypathwaymbr','Account'];
 
-    function ScenarioDetailController($scope, $q, $rootScope, $stateParams, previousState, entity, Scenario, Recordtype, Category, Subcategory, Scenariopathwaymbr) {
+    function ScenarioDetailController($scope, $q, $rootScope, $stateParams, previousState, entity, Scenario, Pathway, Recordtype, Category, Subcategory, Scenariopathwaymbr,Pathwaypathwaymbr,Account) {
         var vm = this;
 
         vm.scenario = entity;
@@ -19,6 +19,23 @@
         $scope.$on('$destroy', unsubscribe);
 
 
+        var x=220;
+        var y=50;
+        var step=1;
+        var item=0;
+        var scenariopathway=[];
+        var pathwaypathway=[];
+        var countermeasure=[];
+        vm.newscenario={};
+        vm.scenariopathwaymbr={};
+        vm.pathwaypathwaymbr={};
+        vm.pathwaycountermeasurembr={};
+        vm.recordtypes = Recordtype.query();
+        vm.getCategories=function(id){
+        	vm.categories = Category.categoriesByRecordtype({id:id});
+        }
+        
+        
         var graph = new joint.dia.Graph();
 
         var paper = new joint.dia.Paper({
@@ -31,107 +48,198 @@
             restrictTranslate: true
         });
         
-    var x=220;
-    var y=50;
-    var step=1;
-    
-    function excute(){
-    	var rootNode=Scenario.getRoot({id:$stateParams.id}, function(){
-    		console.log(rootNode)
-        var rootPathway=Scenario.getPathway({pathwayId:rootNode.pathway.id,scenarioId:$stateParams.id}, function(){
-        	console.log(rootPathway);
-        	var rect = new joint.shapes.basic.Rect({
-	            position: { x: x, y: y },
-	            size: { width: 150, height: 50 },
-	            attrs: { rect: { fill: "green" }, text: { text: rootPathway[0].pathwaypathwaymbr.parentpathway.nameshort, fill: 'white' } }
-	        });
-        	graph.addCells([rect]);
-        	buildLevels(rootPathway,rect)
-         });
-        });
-    }
-    
-   Scenario.getColor();
-    var item=0;
+        function excute(){
+        	var rootNode=Scenario.getRoot({id:$stateParams.id}, function(){
+        		console.log(rootNode.pathway.id)
+        		console.log($stateParams.id)
+            var rootPathway=Scenario.getPathway({pathwayId :rootNode.pathway.id,scenarioId:$stateParams.id}, function(){
+            	console.log(rootPathway);
+            	var rect = new joint.shapes.basic.Rect({
+    	            position: { x: x, y: y },
+    	            size: { width: 150, height: 50 },
+    	            attrs: { rect: { fill: "green" }, text: { text: rootPathway[0].pathwaypathwaymbr.parentpathway.nameshort, fill: 'white' } }
+    	        });
+            	rect.attr('id', rootPathway[0].pathwaypathwaymbr.parentpathway.id)
+            	graph.addCells([rect]);
+            	scenariopathway.push({"pathwayId":rootNode.pathway.id})
+            	buildLevels(rootPathway,rect)
+             });
+            });
+        }    
+            
+        function buildLevels(rootPathway,rect){
+        		for(var i=0;i<rootPathway.length;i++){
+            		(function(index) {
+        			    setTimeout(function() {
+        			    	var rect2 = new joint.shapes.basic.Rect({
+        			            position: { x: x*item, y: y*3*step },
+        			            size: { width: 150, height: 50 },
+        			            attrs: { rect: { fill: rootPathway[index].color }, text: { text: rootPathway[index].pathwaypathwaymbr.childpathway.nameshort, fill: 'white' } }
+        			        });        			    	
+        			        var link = new joint.shapes.org.Arrow({
+        			            source: { id: rect.id },
+        			            target: { id: rect2.id },
+        			            attrs: {
+        			                },
+        			                labels: [
+        			                    { position: 0.5, attrs: { text: { text:  rootPathway[index].pathwaypathwaymbr.logicoperator, fill: 'black', 'font-family': 'sans-serif' }, rect: { stroke: '#AF104D', 'stroke-width': 20, rx: 5, ry: 5 } }}
+        			                ]
+        			        });
+        			        rect2.attr('id', rootPathway[index].pathwaypathwaymbr.childpathway.id)
+        			        graph.addCells([rect2, link]);
+        			        pathwaypathway.push({"sourceId": rect.attributes.attrs.id,"targetId": rect2.attributes.attrs.id});
+        			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
+       			        	 var cmrect3= new joint.shapes.basic.Rect({
+        		     	            position: { x: x*item, y: y*3*step+80 },
+        		     	            size: { width: 150, height: 50 },
+        		     	            attrs: { rect: { fill: 'yellow' }, text: { text: rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.name, fill: 'black' } }
+        		     	        });
+        		            	 var cmlink3 = new joint.shapes.org.Arrow({
+        					            source: { id: rect2.id },
+        					            target: { id: cmrect3.id }
+        		            	 });
+        		            	    cmrect3.attr('id', rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.id)
+        					        graph.addCells([cmrect3,cmlink3]);
+        					        countermeasure.push({"sourceId": rect2.attributes.attrs.id,"targetId": cmrect3.attributes.attrs.id});
+        					    }
+        			        item++
+        			        var child=Scenario.getPathway({pathwayId:rootPathway[index].pathwaypathwaymbr.childpathway.id,scenarioId:$stateParams.id}, function(){
+        			        	buildLevels(child,rect2)
+            			        step+=0.5;
+        			        	item=1;
+        			        });
+        			        console.log(pathwaypathway);
+          			    });
+      			  })(i);
+            	}
+        }
         
-    function buildLevels(rootPathway,rect){
-    		for(var i=0;i<rootPathway.length;i++){
-        		(function(index) {
-    			    setTimeout(function() {
-    			    	var rect2 = new joint.shapes.basic.Rect({
-    			            position: { x: x*item, y: y*3*step },
-    			            size: { width: 150, height: 50 },
-    			            attrs: { rect: { fill: rootPathway[index].color }, text: { text: rootPathway[index].pathwaypathwaymbr.childpathway.nameshort, fill: 'white' } }
-    			        });
-    			    	console.log(index+"-------"+item)
-    			    	console.log(rootPathway[index].pathwaypathwaymbr.childpathway.nameshort)
-    			    	
-    			        var link = new joint.shapes.org.Arrow({
-    			            source: { id: rect.id },
-    			            target: { id: rect2.id },
-    			            attrs: {
-    			                },
-    			                labels: [
-    			                    { position: 0.5, attrs: { text: { text:  rootPathway[index].pathwaypathwaymbr.logicoperator, fill: 'black', 'font-family': 'sans-serif' }, rect: { stroke: '#AF104D', 'stroke-width': 20, rx: 5, ry: 5 } }}
-    			                ]
-    			        });
-    			        graph.addCells([rect2, link]);
-    			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
-   			        	 var cmrect3= new joint.shapes.basic.Rect({
-    		     	            position: { x: x*item, y: y*3*step+80 },
-    		     	            size: { width: 150, height: 50 },
-    		     	            attrs: { rect: { fill: 'yellow' }, text: { text: rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.name, fill: 'black' } }
-    		     	        });
-    		            	 var cmlink3 = new joint.shapes.org.Arrow({
-    					            source: { id: rect2.id },
-    					            target: { id: cmrect3.id }
-    		            	 });
-    					        graph.addCells([cmrect3,cmlink3]);    	
-    					    }
-    			        item++
-    			        var child=Scenario.getPathway({pathwayId:rootPathway[index].pathwaypathwaymbr.childpathway.id,scenarioId:$stateParams.id}, function(){
-    			        	buildLevels(child,rect2)
-        			        step+=0.5;
-    			        	item=1;
-    			        });
-      			    });
-  			  })(i);
-        	}
-    }
-    
-    excute();
+        excute();
+        
+        
+        vm.openScenarioModal=function(){
+        	 $('#scenariomodal').modal('show');
+        }
+        
+        vm.closescenariomodal=function(){
+        	$('#scenariomodal').modal('hide');
+        }
+        
+        function cleanResponse(resp) {
+            return JSON.parse(angular.toJson(resp));
+        }
+        
+        vm.saveNewScenario=function(){
+          	 Account.get().$promise.then(function(currentUser){
+             	var lastmodifieddatetime = new Date();
+             	vm.newscenario.domain=currentUser.data.domain
+             	vm.newscenario.lastmodifiedby=currentUser.data.lastmodifiedby;
+             	vm.newscenario.status="Active";
+             	vm.newscenario.lastmodifieddatetime=lastmodifieddatetime;
 
+             	console.log(vm.newscenario)
+        	var scenario=Scenario.save(vm.newscenario);
+        		
+        	vm.scenariopathwaymbr.comment="comment";
+        	vm.scenariopathwaymbr.status="Active";
+        	vm.scenariopathwaymbr.lastmodifiedby="Ali"
+        	vm.scenariopathwaymbr.lastmodifieddatetime=lastmodifieddatetime
+        	vm.scenariopathwaymbr.domain="DEMO";
+
+        	console.log(scenariopathway);
+        	var pathway=Pathway.get({id:scenariopathway[0].pathwayId},function(){	
+        	});
+        	        	
+        	$q.all([
+        		scenario.$promise,
+        		pathway.$promise
+        	]).then(function() {
+        		vm.thescenario = cleanResponse(scenario)
+        		vm.scenariopathwaymbr.scenario=vm.thescenario;
+        		
+        		vm.pathway = cleanResponse(pathway)
+        		vm.scenariopathwaymbr.pathway=vm.pathway; 
+        		Scenariopathwaymbr.save(vm.scenariopathwaymbr)
+        	 });
+        	
+        	
+        	for(var i=0;i<pathwaypathway.length;i++){
+        	 	(function(item) {
+    			    setTimeout(function() {
+    	    vm.pathwaypathwaymbr.comment="comment";
+        	vm.pathwaypathwaymbr.logicoperator="And";
+        	vm.pathwaypathwaymbr.status="Active";
+        	vm.pathwaypathwaymbr.lastmodifiedby="Ali";
+        	vm.pathwaypathwaymbr.lastmodifieddatetime=lastmodifieddatetime;
+        	vm.pathwaypathwaymbr.domain="DEMO";
+        	
+        	var childPathway=Pathway.get({id:pathwaypathway[item].targetId},function(){
+        	}); 
+        	
+        	var parentPathway=Pathway.get({id:pathwaypathway[item].sourceId},function(){
+        	});        	
+        	
+        	$q.all([
+        		scenario.$promise,
+        		parentPathway.$promise,
+        		childPathway.$promise
+        	]).then(function() { 
+        		
+        		console.log(childPathway);
+            	console.log(parentPathway);
+            	console.log(vm.pathwaypathwaymbr)
+            	
+        		vm.scenario = cleanResponse(scenario)
+        		vm.pathwaypathwaymbr.scenario=vm.scenario;
+        		
+        		vm.childPathway = cleanResponse(childPathway)
+        		vm.pathwaypathwaymbr.childpathway=vm.childPathway; 
+        		
+        		vm.parentPathway = cleanResponse(parentPathway)
+        		vm.pathwaypathwaymbr.parentpathway=vm.parentPathway; 
+        		
+        		Pathwaypathwaymbr.save(vm.pathwaypathwaymbr)
+        	  });
+    		 });
+        	})(i);        	
+          }
+        	
+        	
+        	for(var j=0;j<countermeasure.length;j++){
+        	 	(function(jitem) {
+    			    setTimeout(function() {
+    	    vm.pathwaycountermeasurembr.comment="comment";
+        	vm.pathwaycountermeasurembr.status="Active";
+        	vm.pathwaycountermeasurembr.lastmodifiedby="Ali";
+        	vm.pathwaycountermeasurembr.lastmodifieddatetime=lastmodifieddatetime;
+        	vm.pathwaycountermeasurembr.domain="DEMO";
+        	
+        	console.log(jitem)
+        	var pathwayNode=Pathway.get({id:countermeasure[jitem].sourceId},function(){
+        	}); 
+        	
+        	var countermeasureNode=Countermeasure.get({id:countermeasure[jitem].targetId},function(){
+        	});        	
+        	
+        	$q.all([
+        		pathwayNode.$promise,
+        		countermeasureNode.$promise
+        	]).then(function() { 
+        		
+        		vm.pathwayNode = cleanResponse(pathwayNode)
+        		vm.pathwaycountermeasurembr.pathway=vm.pathwayNode; 
+        		
+        		vm.countermeasureNode = cleanResponse(countermeasureNode)
+        		vm.pathwaycountermeasurembr.countermeasure=vm.countermeasureNode; 
+        		
+        		Pathwaycountermeasurembr.save(vm.pathwaycountermeasurembr)
+        	  });
+    		 });
+        	})(j);        	
+          
+             }
+        	$('#scenariomodal').modal('hide');
+         });
+       }
     }
 })();
-
-/**
-var cm=[];
-for(var c=0; c < child[item].pathwaycountermeasurembrs.length;c++){
-	 cm.push(child[item].pathwaycountermeasurembrs[c].countermeasure.name);
-	 console.log(cm)
-}
-var cmrect3= new joint.shapes.basic.Rect({
-      position: { x: x*(step)*1.5, y: y*7.5 },
-      size: { width: 150, height: 50 },
-      attrs: { rect: { fill: 'yellow' }, text: { text: cm.join("\n"), fill: 'black' } }
-  });
-	 var cmlink3 = new joint.shapes.org.Arrow({
-         source: { id: rect3.id },
-         target: { id: cmrect3.id }
-	 });
-     graph.addCells([cmrect3,cmlink3]);
-     **/
-/**
-for(var c=0; c < child[j].pathwaycountermeasurembrs.length;c++){
-    	    			        	 var cmrect3= new joint.shapes.basic.Rect({
-     	    		     	            position: { x: x*(step)*1.5, y: y*7.5+60*c },
-     	    		     	            size: { width: 150, height: 50 },
-     	    		     	            attrs: { rect: { fill: 'yellow' }, text: { text: child[j].pathwaycountermeasurembrs[c].countermeasure.name, fill: 'black' } }
-     	    		     	        });
-     	    		            	 var cmlink3 = new joint.shapes.org.Arrow({
-     	    					            source: { id: rect3.id },
-     	    					            target: { id: cmrect3.id }
-     	    		            	 });
-     	    					        graph.addCells([cmrect3,cmlink3]);    	
-     	    					    }
-**/

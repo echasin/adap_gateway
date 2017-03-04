@@ -6,63 +6,87 @@ list-style-type:none;
 <div>
     <h2>Draw Scenarios</h2>
     <div class="wrapper wrapper-content">
+    <div class="row">
+		<div class="col-lg-9">
+		</div>
+		<div class="col-lg-2">
+		  <button class="btn btn-primary" ng-click="vm.saveTree()">Save</button>
+		  <button class="btn btn-danger" ng-click="">Cancel</button>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-lg-2">
-		  <button class="btn btn-primary" ng-click="vm.line()">Drag Line</button><br><br>
-          <div class="col-xs-8">
-          <input type="text" class="form-control" id="query" ng-model="query" onfocus="pxtrack.emit('counter', '1')" placeholder="Search"/>
-          </div>
-          <select class="btn btn-success" ng-model="orderList" onchange="pxtrack.emit('counter', '1')">
-               <option value="nameshort">Asc</option>
-               <option value="id">Id</option>
-           </select>
-  
-          <h2 style="color: red;">Pathways</h2>
-          <div style="width: 250px; height: 250px; overflow: auto">
-            <ul id="notebook_ul" ng-repeat="pathway in vm.pathways | filter:query | orderBy: orderList">
-                <li ng-click="vm.addPathway(pathway.id,pathway.nameshort,pathway.recordtype.name)">
-                  <h3>{{pathway.nameshort}}</h3>
-                </li>
-            </ul>
-           </div>
-           <h2 style="color: red;">Countermeasures</h2>
-           <div style="width: 250px; height: 250px; overflow: auto">
-            <ul id="notebook_ul" ng-repeat="countermeasure in vm.countermeasures | filter:query | orderBy: orderList">
-                <li ng-click="vm.addCountermeasure(countermeasure.id,countermeasure.nameshort,countermeasure.recordtype.name)">
-                  <h3>{{countermeasure.nameshort}}</h3>
-                </li>
-            </ul>
-           </div>
+		  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#goals" aria-controls="goals" role="tab" data-toggle="tab" target="_self">Goals</a></li>
+    <li role="presentation"><a href="#vectors" aria-controls="vectors" role="tab" data-toggle="tab" target="_self">Vectors</a></li>
+    <li role="presentation"><a href="#methods" aria-controls="methods" role="tab" data-toggle="tab" target="_self">Methods</a></li>
+    <li role="presentation"><a href="#countermeasures" aria-controls="countermeasures" role="tab" data-toggle="tab" target="_self">Countermeasures</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="goals">
+    
+
+   
+   <table datatable="" dt-options="vm.goalOptions" dt-columns="vm.goalColumns" class="row-border hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Name</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+    </table>
+    
+    </div>
+    <div role="tabpanel" class="tab-pane" id="vectors">
+    <table datatable="" dt-options="vm.vectorOptions" dt-columns="vm.vectorColumns" class="row-border hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Name</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+    </table>	.
+    </div>
+    <div role="tabpanel" class="tab-pane" id="methods">
+    <table datatable="" dt-options="vm.methodOptions" dt-columns="vm.methodColumns" class="row-border hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Name</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+    </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="countermeasures">
+        <table datatable="" dt-options="vm.countermeasureOptions" dt-columns="vm.countermeasureColumns" class="row-border hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Name</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+    </table>
+    </div>
+  </div>
+
+</div>
            
 		</div>
-		<div class="col-lg-6">
-		<h2 style="color: red;">{{vm.message}}</h2>
+		<div class="col-lg-9">
+		 <h2 style="color: red;">{{vm.message}}</h2>
+		 <button class="btn btn-primary" ng-click="vm.line()">Drag Line</button>
+		 <button class="btn btn-primary" ng-click="vm.toPDF()" >Export PDF</button>
          <div id="paper">    
          </div>
-		</div>
-		<div class="col-lg-2">
-		   <div class="form-group">
-             <label for="field_scenario">Choose Scenario</label>
-             <select class="form-control" id="field_scenario" name="scenario" ng-model="vm.scenario" ng-options="scenario as scenario.name for scenario in vm.scenarios track by scenario.id">
-                 <option value=""></option>
-             </select>
-           </div>
-		   <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="newscenario" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs">
-                         new Scenario
-                    </span>
-                </button>
-           <br><br>
-                <button class="btn btn-primary" ng-click="vm.saveTree()">
-                        Save Attack Tree
-                </button>
-           <br><br>
-                <button class="btn btn-primary" ng-click="vm.toPDF()" >
-                        Export PDF
-                </button>
-            </div>
 		</div>
       </div>
      </div>
@@ -164,3 +188,59 @@ list-style-type:none;
         </div>
  </div>
  
+ <!-- 
+ 	<div class="col-lg-2">
+		   <div class="form-group">
+             <label for="field_scenario">Choose Scenario</label>
+             <select class="form-control" id="field_scenario" name="scenario" ng-model="vm.scenario" ng-options="scenario as scenario.name for scenario in vm.scenarios track by scenario.id">
+                 <option value=""></option>
+             </select>
+           </div>
+		   <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="newscenario" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs">
+                         new Scenario
+                    </span>
+                </button>
+           <br><br>
+                <button class="btn btn-primary" ng-click="vm.saveTree()">
+                        Save Attack Tree
+                </button>
+           <br><br>
+                <button class="btn btn-primary" ng-click="vm.toPDF()" >
+                        Export PDF
+                </button>
+            </div>
+		</div>
+  -->
+  
+  <!-- 
+   <button class="btn btn-primary" ng-click="vm.line()">Drag Line</button><br><br>
+          <div class="col-xs-8">
+          <input type="text" class="form-control" id="query" ng-model="query" onfocus="pxtrack.emit('counter', '1')" placeholder="Search"/>
+          </div>
+          <select class="btn btn-success" ng-model="orderList" onchange="pxtrack.emit('counter', '1')">
+               <option value="nameshort">Asc</option>
+               <option value="id">Id</option>
+           </select>
+  
+          <h2 style="color: red;">Pathways</h2>
+          <div style="width: 250px; height: 250px; overflow: auto">
+            <ul id="notebook_ul" ng-repeat="pathway in vm.pathways | filter:query | orderBy: orderList">
+                <li ng-click="vm.addPathway(pathway.id,pathway.nameshort,pathway.recordtype.name)">
+                  <h3>{{pathway.nameshort}}</h3>
+                </li>
+            </ul>
+           </div>
+           <h2 style="color: red;">Countermeasures</h2>
+           <div style="width: 250px; height: 250px; overflow: auto">
+            <ul id="notebook_ul" ng-repeat="countermeasure in vm.countermeasures | filter:query | orderBy: orderList">
+                <li ng-click="vm.addCountermeasure(countermeasure.id,countermeasure.nameshort,countermeasure.recordtype.name)">
+                  <h3>{{countermeasure.nameshort}}</h3>
+                </li>
+            </ul>
+           </div>
+   -->
+   
+   

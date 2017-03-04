@@ -34,7 +34,7 @@
 	
 <link rel="stylesheet" href="bower_components/jointjs/joint.css"></link>
 <link rel="stylesheet" href="bower_components/jointjs/joint.format.print.min.css">
-	
+<link rel="stylesheet" href="bower_components/angular-datatables.css">	
 <!-- endinject -->
 <!-- endbuild -->
 
@@ -96,6 +96,7 @@
     <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/sockjs-client/dist/sockjs.js"></script>
     <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
+      <script src="bower_components/jquery.dataTables.min.js"></script> 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-bootstrap/bootstrap.js"></script>
@@ -128,14 +129,15 @@
     <script src="bower_components/jointjs/lodash.js"></script>
     <script src="bower_components/jointjs/backbone.js"></script>
     <script src="bower_components/jointjs/joint.js"></script>
-    <script src="bower_components/pxtrack/pxtrack.js"></script>
     <script src="bower_components/jointjs/joint.format.print.min.js"></script>
     <script src="bower_components/jointjs/joint.format.svg.js"></script>
     <script src="bower_components/jointjs/joint.format.raster.min.js"></script>
     <script src="bower_components/jointjs/rgbcolor.js"></script>
     <script src="bower_components/jointjs/StackBlur.js"></script>
     <script src="bower_components/jointjs/canvg.js"></script>
-       
+  
+    <script src="bower_components/angular-datatables.min.js"></script> 
+      
     <!-- endinject -->
     <!-- endbuild -->
 
@@ -481,7 +483,7 @@
     <script src="app/entities/scenario/scenario.service.js"></script>
     <script src="app/entities/scenario/scenario.search.service.js"></script>
     <script src="app/entities/scenario/scenario.controller.js"></script>
-    <script src="app/entities/scenario/drawtree.controller.js"></script>
+    <script src="app/entities/scenario/edit-attacktree.controller.js"></script>
 	
 	<script src="app/entities/scenariopathwaymbr/scenariopathwaymbr-dialog.controller.js"></script>
     <script src="app/entities/scenariopathwaymbr/scenariopathwaymbr-detail.controller.js"></script>

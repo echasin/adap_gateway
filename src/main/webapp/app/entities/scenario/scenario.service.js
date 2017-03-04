@@ -28,6 +28,7 @@
             'getPathways': {method: 'GET',isArray: true, url: 'adap_risk/api/getPathways'},
             'getCounterMeasure': {method: 'GET', url: 'adap_risk/api/getCounterMeasure/:id'},
             'getLineData': {method: 'GET', url: 'adap_risk/api/getLineData/:scenarioId/:parentId/:childId'},
+            'getPathwayByRecordtype': {method: 'GET',isArray: true, url: 'adap_risk/api/pathwayByRecordtype/:name'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

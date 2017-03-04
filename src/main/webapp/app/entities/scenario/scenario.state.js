@@ -192,17 +192,17 @@
                 });
             }]
         })
-        .state('drawtree', {
+        .state('edit-attacktree', {
             parent: 'entity',
-            url: '/drawtree',
+            url: '/edit-attacktree/{id}',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'drawtree'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/scenario/drawtree.html',
-                    controller: 'DrawtreeController',
+                    templateUrl: 'app/entities/scenario/edit-attacktree.html',
+                    controller: 'EditAttackTreeController',
                     controllerAs: 'vm'
                 }
             },
