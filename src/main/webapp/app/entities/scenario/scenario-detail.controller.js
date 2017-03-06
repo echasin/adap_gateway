@@ -56,10 +56,10 @@
             	console.log(rootPathway);
             	var rect = new joint.shapes.basic.Rect({
     	            position: { x: x, y: y },
-    	            size: { width: 150, height: 50 },
-    	            attrs: { rect: { fill: "green" }, text: { text: rootPathway[0].pathwaypathwaymbr.parentpathway.nameshort, fill: 'white' } }
+    	            size: { width: 100, height: 40 },
+    	            attrs: { rect: { fill: "green" }, text: { text: rootNode.pathway.nameshort, fill: 'white' } }
     	        });
-            	rect.attr('id', rootPathway[0].pathwaypathwaymbr.parentpathway.id)
+            	rect.attr('id', rootNode.pathway.id)
             	graph.addCells([rect]);
             	scenariopathway.push({"pathwayId":rootNode.pathway.id})
             	buildLevels(rootPathway,rect)
@@ -73,7 +73,7 @@
         			    setTimeout(function() {
         			    	var rect2 = new joint.shapes.basic.Rect({
         			            position: { x: x*item, y: y*3*step },
-        			            size: { width: 150, height: 50 },
+        			            size: { width: 100, height: 40 },
         			            attrs: { rect: { fill: rootPathway[index].color }, text: { text: rootPathway[index].pathwaypathwaymbr.childpathway.nameshort, fill: 'white' } }
         			        });        			    	
         			        var link = new joint.shapes.org.Arrow({
@@ -91,7 +91,7 @@
         			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
        			        	 var cmrect3= new joint.shapes.basic.Rect({
         		     	            position: { x: x*item, y: y*3*step+80 },
-        		     	            size: { width: 150, height: 50 },
+        		     	            size: { width: 100, height: 40 },
         		     	            attrs: { rect: { fill: 'yellow' }, text: { text: rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.name, fill: 'black' } }
         		     	        });
         		            	 var cmlink3 = new joint.shapes.org.Arrow({
@@ -142,9 +142,9 @@
         		
         	vm.scenariopathwaymbr.comment="comment";
         	vm.scenariopathwaymbr.status="Active";
-        	vm.scenariopathwaymbr.lastmodifiedby="Ali"
+        	vm.scenariopathwaymbr.lastmodifiedby=currentUser.data.lastmodifiedby;
         	vm.scenariopathwaymbr.lastmodifieddatetime=lastmodifieddatetime
-        	vm.scenariopathwaymbr.domain="DEMO";
+        	vm.scenariopathwaymbr.domain=currentUser.data.domain;
 
         	console.log(scenariopathway);
         	var pathway=Pathway.get({id:scenariopathway[0].pathwayId},function(){	

@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('EditAttackTreeController', ScenarioController);
 
-    ScenarioController.$inject = ['$scope', '$q', '$state', '$stateParams', 'AlertService', 'Scenario', 'Pathway', 'Scenariopathwaymbr', 'Pathwaypathwaymbr', 'Countermeasure', 'Pathwaycountermeasurembr','DTOptionsBuilder', 'DTColumnBuilder'];
+    ScenarioController.$inject = ['$scope', '$q', '$state', '$stateParams', '$location', 'AlertService', 'Scenario', 'Pathway', 'Scenariopathwaymbr', 'Pathwaypathwaymbr', 'Countermeasure', 'Pathwaycountermeasurembr','DTOptionsBuilder', 'DTColumnBuilder','Account'];
 
-    function ScenarioController ($scope, $q, $state, $stateParams, AlertService, Scenario, Pathway, Scenariopathwaymbr, Pathwaypathwaymbr, Countermeasure, Pathwaycountermeasurembr, DTOptionsBuilder, DTColumnBuilder) {
+    function ScenarioController ($scope, $q, $state, $stateParams, $location, AlertService, Scenario, Pathway, Scenariopathwaymbr, Pathwaypathwaymbr, Countermeasure, Pathwaycountermeasurembr, DTOptionsBuilder, DTColumnBuilder, Account) {
         var vm = this;
         
         var line=false;
@@ -24,6 +24,7 @@
         vm.pathways=Scenario.getPathways({});
        // vm.countermeasures=Countermeasure.query({});
         vm.scenario="";
+        vm.scenarioId=$stateParams.id;
 
         var graph = new joint.dia.Graph;
         var paper = new joint.dia.Paper({ el: $('#paper'), width: 1300, height: 900, gridSize: 10, model: graph,drawGrid:true,snapLinks:true,
@@ -54,9 +55,9 @@
             	    var rect = new joint.shapes.basic.Rect({
     	             position: { x: x, y: y },
     	             size: { width: 100, height: 40 },
-    	             attrs: { rect: { fill: "green" }, text: { text: rootPathway[0].pathwaypathwaymbr.parentpathway.nameshort, fill: 'white' } }
+    	             attrs: { rect: { fill: "green" }, text: { text: rootNode.pathway.nameshort, fill: 'white' } }
     	              });
-            	     rect.attr('id', rootPathway[0].pathwaypathwaymbr.parentpathway.id)
+            	     rect.attr('id', rootNode.pathway.id)
             	     graph.addCells([rect]);
                  	 buildLevels(rootPathway,rect)
                   });
@@ -266,7 +267,7 @@
         
         
         vm.saveTree=function(){
-        	
+        	Account.get().$promise.then(function(currentUser){
         	var lastmodifieddatetime = new Date();
         	var scenario=Scenario.get({id: $stateParams.id},function(){
         	});
@@ -274,9 +275,9 @@
         	if(edit==false){
         	vm.scenariopathwaymbr.comment="comment";
         	vm.scenariopathwaymbr.status="Active";
-        	vm.scenariopathwaymbr.lastmodifiedby="Ali"
+        	vm.scenariopathwaymbr.lastmodifiedby=currentUser.data.lastmodifiedby;
         	vm.scenariopathwaymbr.lastmodifieddatetime=lastmodifieddatetime
-        	vm.scenariopathwaymbr.domain="DEMO";
+        	vm.scenariopathwaymbr.domain=currentUser.data.domain;
 
         	
         	var pathway=Pathway.get({id:scenariopathway[0].pathwayId},function(){	
@@ -301,9 +302,9 @@
     	    vm.pathwaypathwaymbr.comment="comment";
         	vm.pathwaypathwaymbr.logicoperator="And";
         	vm.pathwaypathwaymbr.status="Active";
-        	vm.pathwaypathwaymbr.lastmodifiedby="Ali";
+        	vm.pathwaypathwaymbr.lastmodifiedby=currentUser.data.lastmodifiedby;
         	vm.pathwaypathwaymbr.lastmodifieddatetime=lastmodifieddatetime;
-        	vm.pathwaypathwaymbr.domain="DEMO";
+        	vm.pathwaypathwaymbr.domain=currentUser.data.domain;
         	
         	var childPathway=Pathway.get({id:pathwaypathway[item].targetId},function(){
         	}); 
@@ -365,7 +366,7 @@
         	})(j);        	
           }
         	
-        	
+         });
         }
        
       $scope.orderList = "id";
@@ -471,9 +472,7 @@
          ];
      }); 
       
-      
-
-      
+            
       function rowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
           $('td', nRow).unbind('click');
           $('td', nRow).bind('click', function() {
@@ -482,6 +481,10 @@
               });
           });
           return nRow;
+      }
+      
+      vm.cancelupdate=function(){
+    	  $location.path("/scenario/"+$stateParams.id);
       }
       
     }

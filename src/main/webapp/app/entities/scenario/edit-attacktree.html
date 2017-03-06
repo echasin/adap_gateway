@@ -4,15 +4,14 @@ list-style-type:none;
 }
 </style>
 <div>
-    <h2>Draw Scenarios  XXX</h2>
-    <h2><span translate="adapGatewayApp.scenario.detail.title">Scenario xxx</span> {{vm.scenario.id}}</h2>
+    <h2>Draw Scenarios  {{vm.scenarioId}}</h2>
     <div class="wrapper wrapper-content">
     <div class="row">
 		<div class="col-lg-9">
 		</div>
 		<div class="col-lg-2">
 		  <button class="btn btn-primary" ng-click="vm.saveTree()">Save</button>
-		  <button class="btn btn-danger" ng-click="">Cancel</button>
+		  <button class="btn btn-danger" ng-click="vm.cancelupdate()">Cancel</button>
 		</div>
 	</div>
 	<div class="row">
