@@ -487,5 +487,23 @@
     	  $location.path("/scenario/"+$stateParams.id);
       }
       
+      
+        paper.on('link:disconnect', function(evt, x, y) { 
+    	    console.log("link:disconnect")
+    	})
+    	
+       graph.on('remove', function(cell, collection, opt) {
+    	  var source = graph.getCell(cell.attributes.source.id);
+       	  var target = graph.getCell(cell.attributes.target.id);
+       	  console.log(source.attributes.attrs.id);
+       	  console.log(target.attributes.attrs.id);
+       	  Scenario.removeLine({scenarioId: $stateParams.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id})
+         })
+         
+       
+         paper.on('cell:pointerclick', function(cellView, evt, x, y) {
+        	 //   cellView.remove();
+        	});      
+      
     }
 })();

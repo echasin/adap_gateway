@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ScenarioDetailController', ScenarioDetailController);
 
-    ScenarioDetailController.$inject = ['$scope', '$q','$rootScope', '$stateParams', 'previousState', 'entity', 'Scenario', 'Pathway','Recordtype', 'Category', 'Subcategory', 'Scenariopathwaymbr','Pathwaypathwaymbr','Account'];
+    ScenarioDetailController.$inject = ['$scope', '$q','$location','$rootScope', '$stateParams', 'previousState', 'entity', 'Scenario', 'Pathway','Recordtype', 'Category', 'Subcategory', 'Scenariopathwaymbr','Pathwaypathwaymbr','Account'];
 
-    function ScenarioDetailController($scope, $q, $rootScope, $stateParams, previousState, entity, Scenario, Pathway, Recordtype, Category, Subcategory, Scenariopathwaymbr,Pathwaypathwaymbr,Account) {
+    function ScenarioDetailController($scope, $q, $location,$rootScope, $stateParams, previousState, entity, Scenario, Pathway, Recordtype, Category, Subcategory, Scenariopathwaymbr,Pathwaypathwaymbr,Account) {
         var vm = this;
 
         vm.scenario = entity;
@@ -241,5 +241,9 @@
         	$('#scenariomodal').modal('hide');
          });
        }
+        
+        vm.cancel=function(){
+      	  $location.path("/scenario");
+        }
     }
 })();
