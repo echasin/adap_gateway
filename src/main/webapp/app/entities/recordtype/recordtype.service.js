@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'recordtypeByName': {method: 'GET', url: 'adap_risk/api/recordtypeByName/:name'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

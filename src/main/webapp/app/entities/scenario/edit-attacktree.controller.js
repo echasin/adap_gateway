@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('EditAttackTreeController', ScenarioController);
 
-    ScenarioController.$inject = ['$scope', '$q', '$state', '$stateParams', '$location', 'AlertService', 'Scenario', 'Pathway', 'Scenariopathwaymbr', 'Pathwaypathwaymbr', 'Countermeasure', 'Pathwaycountermeasurembr','DTOptionsBuilder', 'DTColumnBuilder','Account'];
+    ScenarioController.$inject = ['$scope', '$q', '$state', '$stateParams', '$location', 'AlertService', 'Scenario', 'Pathway', 'Scenariopathwaymbr', 'Pathwaypathwaymbr', 'Countermeasure', 'Pathwaycountermeasurembr', 'Recordtype','DTOptionsBuilder', 'DTColumnBuilder','Account'];
 
-    function ScenarioController ($scope, $q, $state, $stateParams, $location, AlertService, Scenario, Pathway, Scenariopathwaymbr, Pathwaypathwaymbr, Countermeasure, Pathwaycountermeasurembr, DTOptionsBuilder, DTColumnBuilder, Account) {
+    function ScenarioController ($scope, $q, $state, $stateParams, $location, AlertService, Scenario, Pathway, Scenariopathwaymbr, Pathwaypathwaymbr, Countermeasure, Pathwaycountermeasurembr, Recordtype, DTOptionsBuilder, DTColumnBuilder, Account) {
         var vm = this;
         
         var line=false;
@@ -392,9 +392,10 @@
       vm.closelinemodal=function(){
     	  $('#linemodal').modal('hide');
       }
-              		
+              
+      function loadPathways(){
       
-      var goalPathways=Scenario.getPathwayByRecordtype({name:"Attack Goal"},function(){
+       var goalPathways=Scenario.getPathwayByRecordtype({name:"Attack Goal"},function(){
     	 vm.goalPathways=[];
   	     for(var i=0;i<goalPathways.length;i++){
   	    	vm.goalPathways.push({"id":goalPathways[i].id,"nameshort":goalPathways[i].nameshort,"recordtype":goalPathways[i].recordtype.name});
@@ -411,7 +412,12 @@
         	  DTColumnBuilder.newColumn('nameshort').withTitle('Name'),
         	  DTColumnBuilder.newColumn('recordtype').withTitle('recordtype').notVisible(),
           ];
+          vm.createGoal=function(){       
+           createPathway(goalPathways[0].recordtype.id)
+          }
       });  
+      
+      
       
       var vectorPathways=Scenario.getPathwayByRecordtype({name:"Attack Vector"},function(){
    	     
@@ -431,6 +437,9 @@
          	  DTColumnBuilder.newColumn('nameshort').withTitle('Name'),
          	  DTColumnBuilder.newColumn('recordtype').withTitle('recordtype').notVisible(),
            ];
+           vm.createGoal=function(){       
+               createPathway(goalPathways[0].recordtype.id)
+              }
        }); 
       
       var methodPathways=Scenario.getPathwayByRecordtype({name:"Attack Method"},function(){
@@ -450,6 +459,9 @@
           	  DTColumnBuilder.newColumn('nameshort').withTitle('Name'),
           	  DTColumnBuilder.newColumn('recordtype').withTitle('recordtype').notVisible(),
             ];
+            vm.createGoal=function(){       
+                createPathway(goalPathways[0].recordtype.id)
+               }
         }); 
       
       
@@ -472,7 +484,10 @@
          ];
      }); 
       
-            
+    }
+    
+      loadPathways();
+      
       function rowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
           $('td', nRow).unbind('click');
           $('td', nRow).bind('click', function() {
@@ -482,6 +497,51 @@
           });
           return nRow;
       }
+      
+      vm.openPathwayModal=function(recordtype){
+    	   vm.recordtypeName=recordtype;
+    	   vm.newPathway=null;
+    	  $('#createPathwayModal').modal('show');
+      }
+      
+      vm.createPathway=function(){
+    	  Account.get().$promise.then(function(currentUser){
+    		var lastmodifieddatetime = new Date();
+           	vm.newPathway.domain=currentUser.data.domain
+           	vm.newPathway.lastmodifiedby=currentUser.data.lastmodifiedby;
+           	vm.newPathway.status="Active";
+           	vm.newPathway.lastmodifieddatetime=lastmodifieddatetime;
+    		var lastmodifieddatetime = new Date();
+           	vm.newPathway.domain=currentUser.data.domain
+           	vm.newPathway.lastmodifiedby=currentUser.data.lastmodifiedby;
+           	vm.newPathway.status="Active";
+           	vm.newPathway.lastmodifieddatetime=lastmodifieddatetime;
+           	
+             var recordtype=Recordtype.recordtypeByName({name:vm.recordtypeName},function(){
+           		
+           	 });
+    	 
+           	$q.all([
+      		  recordtype.$promise   
+             	 ]).then(function() {
+             		vm.newPathway.recordtype=recordtype;
+             		var save=Pathway.save(vm.newPathway);
+             		$q.all([
+                		  save.$promise   
+                       	 ]).then(function() {
+                       		loadPathways();
+                  	     });
+             		
+             		
+             		
+        	     }); 
+           	
+            $('#createPathwayModal').modal('hide');
+             
+    	  });
+      }
+      
+      
       
       vm.cancelupdate=function(){
     	  $location.path("/scenario/"+$stateParams.id);
