@@ -511,7 +511,6 @@
            	vm.newPathway.lastmodifiedby=currentUser.data.lastmodifiedby;
            	vm.newPathway.status="Active";
            	vm.newPathway.lastmodifieddatetime=lastmodifieddatetime;
-    		var lastmodifieddatetime = new Date();
            	vm.newPathway.domain=currentUser.data.domain
            	vm.newPathway.lastmodifiedby=currentUser.data.lastmodifiedby;
            	vm.newPathway.status="Active";
@@ -519,8 +518,7 @@
            	
              var recordtype=Recordtype.recordtypeByName({name:vm.recordtypeName},function(){
            		
-           	 });
-    	 
+           	 });   	 
            	$q.all([
       		  recordtype.$promise   
              	 ]).then(function() {
@@ -531,9 +529,6 @@
                        	 ]).then(function() {
                        		loadPathways();
                   	     });
-             		
-             		
-             		
         	     }); 
            	
             $('#createPathwayModal').modal('hide');
@@ -541,6 +536,52 @@
     	  });
       }
       
+      vm.closecreatepathwaymodal=function(){
+    	  $('#createPathwayModal').modal('hide');  
+      }
+      
+      vm.openCountermeasureModal=function(recordtype){
+    	  console.log(recordtype)
+   	   vm.recordtypeName=recordtype;
+   	   vm.newCountermeasure=null;
+   	  $('#createCountermeasueModal').modal('show');
+     }
+     
+     vm.createCountermeasure=function(){
+   	  Account.get().$promise.then(function(currentUser){
+   		var lastmodifieddatetime = new Date();
+          	vm.newCountermeasure.domain=currentUser.data.domain
+          	vm.newCountermeasure.lastmodifiedby=currentUser.data.lastmodifiedby;
+          	vm.newCountermeasure.status="Active";
+          	vm.newCountermeasure.lastmodifieddatetime=lastmodifieddatetime;
+          	vm.newCountermeasure.domain=currentUser.data.domain
+          	vm.newCountermeasure.lastmodifiedby=currentUser.data.lastmodifiedby;
+          	vm.newCountermeasure.status="Active";
+          	vm.newCountermeasure.lastmodifieddatetime=lastmodifieddatetime;
+          	
+            var recordtype=Recordtype.recordtypeByName({name:vm.recordtypeName},function(){
+          		
+          	 });   	 
+          	$q.all([
+     		  recordtype.$promise   
+            	 ]).then(function() {
+            		vm.newCountermeasure.recordtype=recordtype;
+            		var save=Countermeasure.save(vm.newCountermeasure);
+            		$q.all([
+               		  save.$promise   
+                      	 ]).then(function() {
+                      		loadPathways();
+                 	     });
+       	     }); 
+          	
+           $('#createCountermeasueModal').modal('hide');
+            
+   	  });
+     }
+     
+     vm.closecreatecountermeasuremodal=function(){
+   	  $('#createCountermeasueModal').modal('hide');  
+     }
       
       
       vm.cancelupdate=function(){
