@@ -245,5 +245,6 @@
         vm.cancel=function(){
       	  $location.path("/scenario");
         }
+        
     }
 })();
