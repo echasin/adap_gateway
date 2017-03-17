@@ -29,6 +29,7 @@
             'getCounterMeasure': {method: 'GET', url: 'adap_risk/api/getCounterMeasure/:id'},
             'getLineData': {method: 'GET', url: 'adap_risk/api/getLineData/:scenarioId/:parentId/:childId'},
             'removeLine': {method: 'GET', url: 'adap_risk/api/removeLine/:scenarioId/:parentId/:childId'},
+            'removeRoot': {method: 'GET', url: 'adap_risk/api/removeRoot/:scenarioId/:pathwayId'},
             'getPathwayByRecordtype': {method: 'GET',isArray: true, url: 'adap_risk/api/pathwayByRecordtype/:name'},
             'get': {
                 method: 'GET',

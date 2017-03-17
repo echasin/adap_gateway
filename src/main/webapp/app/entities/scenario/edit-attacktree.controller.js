@@ -22,7 +22,6 @@
         vm.pathwaycountermeasurembr={}
         vm.scenarios=Scenario.query({});
         vm.pathways=Scenario.getPathways({});
-       // vm.countermeasures=Countermeasure.query({});
         vm.scenario="";
         vm.scenarioId=$stateParams.id;
 
@@ -52,7 +51,7 @@
         			root=true;
         			edit=true;
                     var rootPathway=Scenario.getPathway({pathwayId :rootNode.pathway.id,scenarioId:$stateParams.id}, function(){
-            	    var rect = new joint.shapes.basic.Rect({
+            	    var rect = new joint.shapes.tm.Actor({
     	             position: { x: x, y: y },
     	             size: { width: 100, height: 40 },
     	             attrs: { rect: { fill: "green" }, text: { text: rootNode.pathway.nameshort, fill: 'white' } }
@@ -72,7 +71,7 @@
         		for(var i=0;i<rootPathway.length;i++){
             		(function(index) {
         			    setTimeout(function() {
-        			    	var rect2 = new joint.shapes.basic.Rect({
+        			    	var rect2 = new joint.shapes.tm.Actor({
         			            position: { x: x*item, y: y*3*step },
         			            size: { width: 100, height: 40 },
         			            attrs: { rect: { fill: rootPathway[index].color }, text: { text: rootPathway[index].pathwaypathwaymbr.childpathway.nameshort,'font-size': 14, fill: 'white' } }			    	
@@ -89,7 +88,7 @@
         			        rect2.attr('id', rootPathway[index].pathwaypathwaymbr.childpathway.id)
         			        graph.addCells([rect2, link]);
         			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
-       			        	 var cmrect3= new joint.shapes.basic.Rect({
+       			        	 var cmrect3= new joint.shapes.tm.Actor({
         		     	            position: { x: x*item, y: y*3*step+80 },
         		     	            size: { width: 150, height: 50 },
         		     	            attrs: { rect: { fill: 'yellow' }, text: { text: rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.name, fill: 'black' } }
@@ -163,7 +162,7 @@
         function addPathway(id,name,recordtype){
         	if(root==true){
         	var color=Scenario.getColor({recordtype:recordtype}, function(){
-            var rect = new joint.shapes.basic.Rect({
+            var rect = new joint.shapes.tm.Actor({
               position: { x: 50, y: 50 }, size: { width: 100, height: 40 },
               attrs: {
               	rect: { fill: color.content },
@@ -178,7 +177,7 @@
         	 var pathway=Pathway.get({id : id}, function(){
            	 if(pathway.isrootnode==true){
         	 var color=Scenario.getColor({recordtype:recordtype}, function(){
-                 var rect = new joint.shapes.basic.Rect({
+                 var rect = new joint.shapes.tm.Actor({
                    position: { x: 50, y: 50 }, size: { width: 100, height: 40 },
                    attrs: {
                    	rect: { fill: color.content },
@@ -201,7 +200,7 @@
         	vm.message="";
         	if(root==true){
         	var color=Scenario.getColor({recordtype:recordtype}, function(){
-            var rect = new joint.shapes.basic.Rect({
+            var rect = new joint.shapes.tm.Actor({
               position: { x: 50, y: 50 }, size: { width: 100, height: 40 },
               attrs: {
               	rect: { fill: color.content },
@@ -593,18 +592,20 @@
     	    console.log("link:disconnect")
     	})
     	
-       graph.on('remove', function(cell, collection, opt) {
-    	  var source = graph.getCell(cell.attributes.source.id);
-       	  var target = graph.getCell(cell.attributes.target.id);
-       	  console.log(source.attributes.attrs.id);
-       	  console.log(target.attributes.attrs.id);
-       	  Scenario.removeLine({scenarioId: $stateParams.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id})
-         })
-         
+       graph.on('remove', function(cell, collection, opt) { 
        
-         paper.on('cell:pointerclick', function(cellView, evt, x, y) {
-        	 //   cellView.remove();
-        	});      
-      
+    	  if(cell.attributes.type === 'tm.Actor'){
+           	  Scenario.removeRoot({scenarioId: $stateParams.id,pathwayId:cell.attributes.attrs.id})
+    	  } 
+    	   
+    	  else if (cell.attributes.type === 'org.Arrow'){         		
+    	    var source = graph.getCell(cell.attributes.source.id);
+       	    var target = graph.getCell(cell.attributes.target.id);
+       	    console.log(source.attributes.attrs.id);
+       	    console.log(target.attributes.attrs.id); 
+            Scenario.removeLine({scenarioId: $stateParams.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id})
+          }
+         })
+
     }
 })();
