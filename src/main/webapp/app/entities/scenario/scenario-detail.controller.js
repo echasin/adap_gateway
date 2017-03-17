@@ -28,7 +28,7 @@
         var countermeasure=[];
         vm.newscenario={};
         vm.scenariopathwaymbr={};
-        vm.pathwaypathwaymbr={};
+       
         vm.pathwaycountermeasurembr={};
         vm.recordtypes = Recordtype.query();
         vm.getCategories=function(id){
@@ -137,7 +137,6 @@
              	vm.newscenario.status="Active";
              	vm.newscenario.lastmodifieddatetime=lastmodifieddatetime;
 
-             	console.log(vm.newscenario)
         	var scenario=Scenario.save(vm.newscenario);
         		
         	vm.scenariopathwaymbr.comment="comment";
@@ -146,7 +145,6 @@
         	vm.scenariopathwaymbr.lastmodifieddatetime=lastmodifieddatetime
         	vm.scenariopathwaymbr.domain=currentUser.data.domain;
 
-        	console.log(scenariopathway);
         	var pathway=Pathway.get({id:scenariopathway[0].pathwayId},function(){	
         	});
         	        	
@@ -162,44 +160,45 @@
         		Scenariopathwaymbr.save(vm.scenariopathwaymbr)
         	 });
         	
-        	
+        	console.log(pathwaypathway);
         	for(var i=0;i<pathwaypathway.length;i++){
+        		 
         	 	(function(item) {
     			    setTimeout(function() {
-    	    vm.pathwaypathwaymbr.comment="comment";
-        	vm.pathwaypathwaymbr.logicoperator="And";
-        	vm.pathwaypathwaymbr.status="Active";
-        	vm.pathwaypathwaymbr.lastmodifiedby="Ali";
-        	vm.pathwaypathwaymbr.lastmodifieddatetime=lastmodifieddatetime;
-        	vm.pathwaypathwaymbr.domain="DEMO";
+    	   
+        	Pathway.get({id:pathwaypathway[item].sourceId},function(parentPathway){
         	
-        	var childPathway=Pathway.get({id:pathwaypathway[item].targetId},function(){
-        	}); 
         	
-        	var parentPathway=Pathway.get({id:pathwaypathway[item].sourceId},function(){
-        	});        	
-        	
+        	Pathway.get({id:pathwaypathway[item].targetId},function(childPathway){
+        	         	
         	$q.all([
         		scenario.$promise,
         		parentPathway.$promise,
         		childPathway.$promise
         	]).then(function() { 
         		
-        		console.log(childPathway);
-            	console.log(parentPathway);
-            	console.log(vm.pathwaypathwaymbr)
-            	
+        		vm.pathwaypathwaymbr={};
+        		
+        		vm.pathwaypathwaymbr.comment="comment";
+             	vm.pathwaypathwaymbr.logicoperator="And";
+             	vm.pathwaypathwaymbr.status="Active";
+             	vm.pathwaypathwaymbr.lastmodifiedby="Ali";
+             	vm.pathwaypathwaymbr.lastmodifieddatetime=lastmodifieddatetime;
+             	vm.pathwaypathwaymbr.domain="DEMO";
+             	
         		vm.scenario = cleanResponse(scenario)
         		vm.pathwaypathwaymbr.scenario=vm.scenario;
+        		
+        		vm.parentPathway = cleanResponse(parentPathway)
+        		vm.pathwaypathwaymbr.parentpathway=vm.parentPathway;
         		
         		vm.childPathway = cleanResponse(childPathway)
         		vm.pathwaypathwaymbr.childpathway=vm.childPathway; 
         		
-        		vm.parentPathway = cleanResponse(parentPathway)
-        		vm.pathwaypathwaymbr.parentpathway=vm.parentPathway; 
-        		
         		Pathwaypathwaymbr.save(vm.pathwaypathwaymbr)
         	  });
+        	});
+        	});
     		 });
         	})(i);        	
           }
