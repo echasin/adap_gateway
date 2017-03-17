@@ -90,7 +90,7 @@
         			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
        			        	 var cmrect3= new joint.shapes.tm.Actor({
         		     	            position: { x: x*item, y: y*3*step+80 },
-        		     	            size: { width: 150, height: 50 },
+        		     	            size: { width: 100, height: 40 },
         		     	            attrs: { rect: { fill: 'yellow' }, text: { text: rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.name, fill: 'black' } }
         		     	        });
         		            	 var cmlink3 = new joint.shapes.org.Arrow({
@@ -112,45 +112,6 @@
         }
         
         excute();
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         //drawing attack tree
@@ -195,9 +156,7 @@
         
         }
          
-        vm.addCountermeasure=function(id,name,recordtype){
-        	if(vm.scenario.id != null){
-        	vm.message="";
+        function addCountermeasure(id,name,recordtype){
         	if(root==true){
         	var color=Scenario.getColor({recordtype:recordtype}, function(){
             var rect = new joint.shapes.tm.Actor({
@@ -210,11 +169,10 @@
                rect.attr('id', id)
                rect.attr('type', "countermeasure")
       	       graph.addCells([ rect ]);
+               console.log(rect)
         	});
          }
-         }else{
-        	 vm.message="You must select Scenario before building tree"
-         }
+         
         }
         
         
@@ -252,6 +210,8 @@
             if (link.get('source').id && link.get('target').id) {
             	var source = graph.getCell(link.get('source'));
             	var target = graph.getCell(link.get('target'));
+            	console.log(source.attributes.attrs)
+            	console.log(target.attributes.attrs)
             	if(source.attributes.attrs.type == "countermeasure" || target.attributes.attrs.type == "countermeasure"){
             		countermeasure.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id});
             	}else{
@@ -294,7 +254,7 @@
         		Scenariopathwaymbr.save(vm.scenariopathwaymbr)
         	 });
         	}
-        	console.log(pathwaypathway);
+        	console.log(pathwaypathway)
         	for(var i=0;i<pathwaypathway.length;i++){
         	 	(function(item) {
     			    setTimeout(function() {
@@ -332,7 +292,7 @@
         	})(i);        	
           }
         	
-        	
+        	console.log(countermeasure)
         	for(var j=0;j<countermeasure.length;j++){
         	 	(function(jitem) {
     			    setTimeout(function() {
@@ -352,6 +312,9 @@
         		pathwayNode.$promise,
         		countermeasureNode.$promise
         	]).then(function() { 
+        		
+        		vm.scenario = cleanResponse(scenario)
+        		vm.pathwaycountermeasurembr.scenario=vm.scenario;
         		
         		vm.pathwayNode = cleanResponse(pathwayNode)
         		vm.pathwaycountermeasurembr.pathway=vm.pathwayNode; 
@@ -491,7 +454,12 @@
           $('td', nRow).unbind('click');
           $('td', nRow).bind('click', function() {
               $scope.$apply(function() {
-            	  addPathway(aData.id,aData.nameshort,aData.recordtype)
+            	  console.log(aData.recordtype)
+            	  if(aData.recordtype==='Counter Measure Policy'){
+            		  addCountermeasure(aData.id,aData.nameshort,aData.recordtype)  
+            	  }else{
+            	    addPathway(aData.id,aData.nameshort,aData.recordtype)
+            	  }
               });
           });
           return nRow;
@@ -547,6 +515,7 @@
      }
      
      vm.createCountermeasure=function(){
+    	 console.log("77777777777777777777")
    	  Account.get().$promise.then(function(currentUser){
    		var lastmodifieddatetime = new Date();
           	vm.newCountermeasure.domain=currentUser.data.domain
@@ -591,6 +560,8 @@
         paper.on('link:disconnect', function(evt, x, y) { 
     	    console.log("link:disconnect")
     	})
+    	
+    	
     	
        graph.on('remove', function(cell, collection, opt) { 
        
