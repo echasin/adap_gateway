@@ -188,19 +188,22 @@
         
         paper.on('cell:contextmenu', function(cellView, evt, x, y) { 
         	var nodeId=cellView.model.attributes.attrs;
-        	if (typeof nodeId != 'undefined'){
+        	if(cellView.model.attributes.type === 'tm.Actor'){
+        		console.log("11111111111111111111111111111111111111111")
         		var pathwayData=Pathway.get({id:nodeId.id},function(){
             		vm.pathwayData=pathwayData; 
             		$('#pathwaymodal').modal('show');
             	});
-        	}else{
+        	}else if (cellView.model.attributes.type === 'org.Arrow'){ 
+        		console.log("222222222222222222222222222222222")
         		var source = graph.getCell(cellView.model.attributes.source.id);
             	var target = graph.getCell(cellView.model.attributes.target.id);
-            	//var data=Scenario.getLineData({scenarioId: vm.scenario.id.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id},function(){
-            	//	vm.lineData=data;
-            	//	console.log(data)
+            	var data=Scenario.getLineData({scenarioId: $stateParams.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id},function(){
+            		vm.lineData=data;
+            		vm.lineData.linkId=cellView.model.id;
+            		console.log(cellView.model.id)
             	 $('#linemodal').modal('show');
-            //	});
+            	});
           	}
         	
         	
@@ -343,7 +346,15 @@
       }
       
       vm.saveline=function(){
-    	  Pathwaypathwaymbr.save(vm.lineData);
+    	  Pathwaypathwaymbr.update(vm.lineData);
+    	  var link=graph.getCell(vm.lineData.linkId)
+    	      link.label(0, {
+                  position: .5,
+                  attrs: {
+                     rect: { fill: 'white' },
+                     text: { fill: 'blue', text: vm.lineData.logicoperator }
+           }
+         });
     	  $('#linemodal').modal('hide');
       }  
       

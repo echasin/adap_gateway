@@ -156,16 +156,11 @@
 
                         </div>
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="name"
-                                   ng-model="vm.lineData.comment">
-
-                        </div>
-                        <div class="form-group">
-                            <label>NameShort</label>
-                            <input type="text" class="form-control" name="nameshort"
-                                   ng-model="vm.lineData.logicoperator">
-
+                            <label>Logic Operator</label>
+                            <select class="form-control" id="logicoperator" name="logicoperator" ng-model="vm.lineData.logicoperator">
+                                 <option value="And">And</option>
+                                 <option value="Or">Or</option>
+                            </select>       
                         </div>
 
                         
