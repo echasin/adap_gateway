@@ -86,6 +86,7 @@
         			                ]
         			        });
         			        rect2.attr('id', rootPathway[index].pathwaypathwaymbr.childpathway.id)
+        			        rect2.attr('type', "pathway")
         			        graph.addCells([rect2, link]);
         			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
        			        	 var cmrect3= new joint.shapes.tm.Actor({
@@ -98,7 +99,8 @@
         					            target: { id: cmrect3.id }
         		            	 });
         		            	    cmrect3.attr('id', rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.id)
-        					        graph.addCells([cmrect3,cmlink3]);
+        					        cmrect3.attr('type', "countermeasure")
+        		            	    graph.addCells([cmrect3,cmlink3]);
         					    }
         			        item++
         			        var child=Scenario.getPathway({pathwayId:rootPathway[index].pathwaypathwaymbr.childpathway.id,scenarioId:$stateParams.id}, function(){
@@ -573,7 +575,6 @@
     	})
     	
     	
-    	
        graph.on('remove', function(cell, collection, opt) { 
        
     	  if(cell.attributes.type === 'tm.Actor'){
@@ -583,9 +584,17 @@
     	  else if (cell.attributes.type === 'org.Arrow'){         		
     	    var source = graph.getCell(cell.attributes.source.id);
        	    var target = graph.getCell(cell.attributes.target.id);
-       	    console.log(source.attributes.attrs.id);
-       	    console.log(target.attributes.attrs.id); 
+       	  //  console.log(source.attributes);
+       	   // console.log(target.attributes); 
+       	 if(source.attributes.attrs.type == "countermeasure" || target.attributes.attrs.type == "countermeasure"){
+       		 console.log(source.attributes.attrs.id)
+       		 console.log(target.attributes.attrs.id)
+             Scenario.removePathwayCountermeasure({scenarioId: $stateParams.id,pathwayId:source.attributes.attrs.id,countermeasureId:target.attributes.attrs.id})
+       		 console.log("111111111111111111111111111111111111111")
+     	}else{
+     		console.log("22222222222222222222222222222222222222222")
             Scenario.removeLine({scenarioId: $stateParams.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id})
+     	}
           }
          })
 
