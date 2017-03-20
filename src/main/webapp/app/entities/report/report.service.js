@@ -11,6 +11,8 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'parameterList': {method: 'GET',isArray: true, url: 'adap_report/api/parameterList/:reportId'},
+            'GenerateReport': {method: 'GET', url: 'adap_report/api/generateReport/:reportId/:parameters'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
