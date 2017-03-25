@@ -55,7 +55,7 @@
             var rootPathway=Scenario.getPathway({pathwayId :rootNode.pathway.id,scenarioId:$stateParams.id}, function(){
             	console.log(rootPathway);
             	var rect = new joint.shapes.basic.Rect({
-    	            position: { x: x, y: y },
+    	            position: { x: rootNode.xcoordinate, y: rootNode.ycoordinate },
     	            size: { width: 100, height: 40 },
     	            attrs: { rect: { fill: "green" }, text: { text: rootNode.pathway.nameshort, fill: 'white' } }
     	        });
@@ -72,7 +72,7 @@
             		(function(index) {
         			    setTimeout(function() {
         			    	var rect2 = new joint.shapes.basic.Rect({
-        			            position: { x: x*item, y: y*3*step },
+        			            position: { x: rootPathway[index].pathwaypathwaymbr.xcoordinate, y: rootPathway[index].pathwaypathwaymbr.ycoordinate },
         			            size: { width: 100, height: 40 },
         			            attrs: { rect: { fill: rootPathway[index].color }, text: { text: rootPathway[index].pathwaypathwaymbr.childpathway.nameshort, fill: 'white' } }
         			        });        			    	
@@ -90,7 +90,7 @@
         			        pathwaypathway.push({"sourceId": rect.attributes.attrs.id,"targetId": rect2.attributes.attrs.id});
         			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
        			        	 var cmrect3= new joint.shapes.basic.Rect({
-        		     	            position: { x: x*item, y: y*3*step+80 },
+        		     	            position: { x: rootPathway[index].pathwaycountermeasurembrs[c].xcoordinate, y: rootPathway[index].pathwaycountermeasurembrs[c].ycoordinate },
         		     	            size: { width: 100, height: 40 },
         		     	            attrs: { rect: { fill: 'yellow' }, text: { text: rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.name, fill: 'black' } }
         		     	        });

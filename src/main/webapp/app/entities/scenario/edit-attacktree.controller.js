@@ -52,11 +52,12 @@
         			edit=true;
                     var rootPathway=Scenario.getPathway({pathwayId :rootNode.pathway.id,scenarioId:$stateParams.id}, function(){
             	    var rect = new joint.shapes.tm.Actor({
-    	             position: { x: x, y: y },
+    	             position: { x: rootNode.xcoordinate, y: rootNode.ycoordinate },
     	             size: { width: 100, height: 40 },
     	             attrs: { rect: { fill: "green" }, text: { text: rootNode.pathway.nameshort, fill: 'white' } }
     	              });
             	     rect.attr('id', rootNode.pathway.id)
+            	     rect.attr('isroot', true)
             	     graph.addCells([rect]);
                  	 buildLevels(rootPathway,rect)
                   });
@@ -72,7 +73,7 @@
             		(function(index) {
         			    setTimeout(function() {
         			    	var rect2 = new joint.shapes.tm.Actor({
-        			            position: { x: x*item, y: y*3*step },
+        			            position: { x: rootPathway[index].pathwaypathwaymbr.xcoordinate, y: rootPathway[index].pathwaypathwaymbr.ycoordinate},
         			            size: { width: 100, height: 40 },
         			            attrs: { rect: { fill: rootPathway[index].color }, text: { text: rootPathway[index].pathwaypathwaymbr.childpathway.nameshort,'font-size': 14, fill: 'white' } }			    	
         			    	});        			    	
@@ -90,9 +91,9 @@
         			        graph.addCells([rect2, link]);
         			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
        			        	 var cmrect3= new joint.shapes.tm.Actor({
-        		     	            position: { x: x*item, y: y*3*step+80 },
+        		     	            position: { x: rootPathway[index].pathwaycountermeasurembrs[c].xcoordinate, y: rootPathway[index].pathwaycountermeasurembrs[c].ycoordinate },
         		     	            size: { width: 100, height: 40 },
-        		     	            attrs: { rect: { fill: 'yellow' }, text: { text: rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.name, fill: 'black' } }
+        		     	            attrs: { rect: { fill: 'yellow' }, text: { text: rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.nameshort, fill: 'black' } }
         		     	        });
         		            	 var cmlink3 = new joint.shapes.org.Arrow({
         					            source: { id: rect2.id },
@@ -148,9 +149,13 @@
                    }
                });
                    rect.attr('id', id)
+                   rect.attr('isroot', true)
            	       graph.addCells([ rect ]);
+                   scenariopathway.push({"scenarioId": $stateParams.id,"pathwayId": id,"xcoordinate":rect.attributes.position.x,"ycoordinate":rect.attributes.position.y});
+          	       console.log(rect)
+                   console.log(scenariopathway)
              	});
-        	     scenariopathway.push({"scenarioId": vm.scenario.id,"pathwayId": id});
+        	     
         	     root=true;
         	  }
         	 });
@@ -177,8 +182,41 @@
          
         }
         
-        
+        function findByKey(array, key, value) {
+       	    for (var i = 0; i < array.length; i++) {
+       	        if (array[i][key] === value) {
+       	            return array[i];
+       	        }
+       	    }
+       	    return null;
+       	}
+         
+
         paper.on('cell:pointerup', function(cellView, evt, x, y) {
+        	if (cellView.model.attributes.type === 'tm.Actor'){
+        	if(cellView.model.attributes.attrs.isroot==true){
+        		$.each(scenariopathway, function() {
+    					this.xcoordinate = cellView._dx;
+    					this.ycoordinate = cellView._dy;
+    					console.log(this.xcoordinate)
+    			  });
+        	}else{
+        	  $.each(pathwaypathway, function() {
+				if (this.targetId == cellView.model.attributes.attrs.id) {
+					this.xcoordinate = cellView._dx;
+					this.ycoordinate = cellView._dy;
+				 }
+			  });
+        	  $.each(countermeasure, function() {
+  				if (this.targetId == cellView.model.attributes.attrs.id) {
+  					this.xcoordinate = cellView._dx;
+  					this.ycoordinate = cellView._dy;
+  				 }
+  			  });
+        	 }
+        	}
+        	
+        	
         	if(line==true){
         	   graph.addCell(new joint.dia.Link({
                	   source: { id:cellView.model.id},
@@ -191,13 +229,11 @@
         paper.on('cell:contextmenu', function(cellView, evt, x, y) { 
         	var nodeId=cellView.model.attributes.attrs;
         	if(cellView.model.attributes.type === 'tm.Actor'){
-        		console.log("11111111111111111111111111111111111111111")
         		var pathwayData=Pathway.get({id:nodeId.id},function(){
             		vm.pathwayData=pathwayData; 
             		$('#pathwaymodal').modal('show');
             	});
         	}else if (cellView.model.attributes.type === 'org.Arrow'){ 
-        		console.log("222222222222222222222222222222222")
         		var source = graph.getCell(cellView.model.attributes.source.id);
             	var target = graph.getCell(cellView.model.attributes.target.id);
             	var data=Scenario.getLineData({scenarioId: $stateParams.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id},function(){
@@ -215,12 +251,10 @@
             if (link.get('source').id && link.get('target').id) {
             	var source = graph.getCell(link.get('source'));
             	var target = graph.getCell(link.get('target'));
-            	console.log(source.attributes.attrs)
-            	console.log(target.attributes.attrs)
             	if(source.attributes.attrs.type == "countermeasure" || target.attributes.attrs.type == "countermeasure"){
-            		countermeasure.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id});
+            		countermeasure.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y});
             	}else{
-            		pathwaypathway.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id});	
+            		pathwaypathway.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y});	
             	}
             }
         });
@@ -238,6 +272,8 @@
         	
         	if(edit==false){
         	vm.scenariopathwaymbr.comment="comment";
+        	vm.scenariopathwaymbr.xcoordinate=scenariopathway[0].xcoordinate;
+        	vm.scenariopathwaymbr.ycoordinate=scenariopathway[0].ycoordinate;
         	vm.scenariopathwaymbr.status="Active";
         	vm.scenariopathwaymbr.lastmodifiedby=currentUser.data.lastmodifiedby;
         	vm.scenariopathwaymbr.lastmodifieddatetime=lastmodifieddatetime
@@ -265,6 +301,7 @@
     			    setTimeout(function() {
     	    vm.pathwaypathwaymbr.comment="comment";
         	vm.pathwaypathwaymbr.logicoperator="And";
+        	
         	vm.pathwaypathwaymbr.status="Active";
         	vm.pathwaypathwaymbr.lastmodifiedby=currentUser.data.lastmodifiedby;
         	vm.pathwaypathwaymbr.lastmodifieddatetime=lastmodifieddatetime;
@@ -281,7 +318,10 @@
         		parentPathway.$promise,
         		childPathway.$promise
         	]).then(function() { 
-        		
+
+        		vm.pathwaypathwaymbr.xcoordinate=pathwaypathway[item].xcoordinate;
+            	vm.pathwaypathwaymbr.ycoordinate=pathwaypathway[item].ycoordinate;
+            	
         		vm.scenario = cleanResponse(scenario)
         		vm.pathwaypathwaymbr.scenario=vm.scenario;
         		
@@ -318,6 +358,9 @@
         		countermeasureNode.$promise
         	]).then(function() { 
         		
+        		vm.pathwaycountermeasurembr.xcoordinate=countermeasure[jitem].xcoordinate;
+            	vm.pathwaycountermeasurembr.ycoordinate=countermeasure[jitem].ycoordinate;
+            	
         		vm.scenario = cleanResponse(scenario)
         		vm.pathwaycountermeasurembr.scenario=vm.scenario;
         		
@@ -584,15 +627,11 @@
     	  else if (cell.attributes.type === 'org.Arrow'){         		
     	    var source = graph.getCell(cell.attributes.source.id);
        	    var target = graph.getCell(cell.attributes.target.id);
-       	  //  console.log(source.attributes);
-       	   // console.log(target.attributes); 
        	 if(source.attributes.attrs.type == "countermeasure" || target.attributes.attrs.type == "countermeasure"){
        		 console.log(source.attributes.attrs.id)
        		 console.log(target.attributes.attrs.id)
              Scenario.removePathwayCountermeasure({scenarioId: $stateParams.id,pathwayId:source.attributes.attrs.id,countermeasureId:target.attributes.attrs.id})
-       		 console.log("111111111111111111111111111111111111111")
      	}else{
-     		console.log("22222222222222222222222222222222222222222")
             Scenario.removeLine({scenarioId: $stateParams.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id})
      	}
           }
