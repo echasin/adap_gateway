@@ -16,14 +16,33 @@
         });
         $scope.$on('$destroy', unsubscribe);
 
-        vm.GenerateReport=function(){
+    
+        vm.generateReport=function(){
         	Report.parameterList({reportId:$stateParams.id}).$promise.then(function(parameters){
-        		console.log(parameters) 
-        		var myJsonString = JSON.stringify(parameters);
-        		console.log(myJsonString)
-           	Report.GenerateReport({reportId:$stateParams.id,parameters:myJsonString});
-        		console.log("444444444444444444")
-        	});
+        		if ( parameters.length  <= 0 ){
+        			console.log(parameters) 
+            		var jsonString = JSON.stringify(parameters);
+            		console.log(jsonString)
+                 	Report.generateReport({reportId:$stateParams.id,parameters:jsonString});
+        		}else{
+            		vm.parameters=parameters;
+        			$('#parametersmodal').modal('show');
+        		}
+        });
         }
+        
+        
+        vm.generateReportWithParam=function(){
+            		var jsonString = JSON.stringify(vm.parameters);
+            		console.log(vm.parameters)
+                 	Report.generateReport({reportId:$stateParams.id,parameters:jsonString});
+            		$('#parametersmodal').modal('hide');
+
+
+        }
+        
+        
+        
+        
     }
 })();
