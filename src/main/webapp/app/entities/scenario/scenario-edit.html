@@ -1,0 +1,79 @@
+
+<div>
+    <h2><span translate="adapGatewayApp.scenario.detail.title">Scenario</span> {{vm.scenario.id}}</h2>
+     <h2>Notes for Ali</h2>
+     
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="adapGatewayApp.scenario.name">Name</span></dt>
+        <dd>
+            <span>{{vm.scenario.name}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.nameshort">Nameshort</span></dt>
+        <dd>
+            <span>{{vm.scenario.nameshort}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.description">Description</span></dt>
+        <dd>
+            <span>{{vm.scenario.description}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.isabstract">Isabstract</span></dt>
+        <dd>
+            <span>{{vm.scenario.isabstract}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.status">Status</span></dt>
+        <dd>
+            <span>{{vm.scenario.status}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.lastmodifiedby">Lastmodifiedby</span></dt>
+        <dd>
+            <span>{{vm.scenario.lastmodifiedby}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.lastmodifieddatetime">Lastmodifieddatetime</span></dt>
+        <dd>
+            <span>{{vm.scenario.lastmodifieddatetime | date:'medium'}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.scenario.domain}}</span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.recordtype">Recordtype</span></dt>
+        <dd>
+            <a ui-sref="recordtype-detail({id:vm.scenario.recordtype.id})">{{vm.scenario.recordtype.name}}</a>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.category">Category</span></dt>
+        <dd>
+            <span ng-repeat="category in vm.scenario.categories">
+                <a ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span translate="adapGatewayApp.scenario.subcategory">Subcategory</span></dt>
+        <dd>
+            <span ng-repeat="subcategory in vm.scenario.subcategories">
+                <a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="scenario-detail.edit({id:vm.scenario.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit xxx</span>
+    </button>
+    
+    <button type="button" ui-sref="scenario-drawtree" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.drawtree"> Drawtree</span>
+    </button>
+    
+</div>
+
+
+
+<div id="paper"></div>

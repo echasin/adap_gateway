@@ -18,6 +18,7 @@
             'infinite-scroll',
             'ngSanitize',
             'ui.filters',
+            'datatables',
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar',
             // Add INSPINIA modules here

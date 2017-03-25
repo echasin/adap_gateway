@@ -1,9 +1,40 @@
-
+<style>
+.link-tools .tool-remove { display: none }
+</style>
 <div>
-    <h2><span translate="adapGatewayApp.scenario.detail.title">Scenario</span> {{vm.scenario.id}}</h2>
+  <h2>Notes for Ali - scenario-detail.html</h2>   
     <hr>
-    <jhi-alert-error></jhi-alert-error>
-    <dl class="dl-horizontal jh-entity-details">
+    <jhi-alert-error></jhi-alert-error>    
+    <p>1. Cancel - does not work </p>
+    <div class="wrapper wrapper-content">
+	<div class="row">
+		<div class="col-lg-7">
+		  <h2><span translate="adapGatewayApp.scenario.detail.title">Scenario</span> {{vm.scenario.id}}</h2>
+	    </div>
+	    <div class="col-lg-2">
+	      <a ui-sref="edit-attacktree({id:vm.scenario.id})">
+	      <button class="btn btn-success">Edit Attack Tree</button>
+	      </a>
+	    </div>
+	    <div class="col-lg-1">
+	     <button class="btn btn-primary" ng-click="vm.openScenarioModal()">Save AS</button>
+	     </div>
+	     <div class="col-lg-2">
+	     <button class="btn btn-danger" ng-click="vm.cancel()">Cancel</button>
+	    </div>
+	 </div>
+	 <div class="row">
+		<div class="col-lg-9">
+		   <div id="paper"></div>
+	    </div>
+	    <div class="col-lg-2">
+	    <div class="row">	    
+	    <a ui-sref="scenario-detail.edit({id:vm.scenario.id})">
+	      <button class="btn pull-right btn-primary">Edit Scenario</button>
+	    </a>
+	    </div>
+	    <div class="row">
+	      <dl class="dl-horizontal jh-entity-details">
         <dt><span translate="adapGatewayApp.scenario.name">Name</span></dt>
         <dd>
             <span>{{vm.scenario.name}}</span>
@@ -53,7 +84,70 @@
             </span>
         </dd>
     </dl>
+    </div>
+	    </div>
+	 </div>
+	</div>
+    
+    
+    <div class="modal fade" id="scenariomodal" tabindex="-1" role="dialog" aria-labelledby="myResultLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="create()">
 
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myResultLabel">Save As</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Id</label>
+                            <input type="text" class="form-control" name="id" readonly="readonly"
+                                   ng-model="vm.newscenario.id">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="name"
+                                   ng-model="vm.newscenario.name">
+
+                        </div>
+                        <div class="form-group">
+                            <label>NameShort</label>
+                            <input type="text" class="form-control" name="nameshort"
+                                   ng-model="vm.newscenario.nameshort">
+
+                        </div>
+                           <div class="form-group">
+                             <label translate="adapGatewayApp.scenario.recordtype" for="field_recordtype">Recordtype</label>
+                             <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.newscenario.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id" ng-change="vm.getCategories(vm.scenario.recordtype.id)">
+                               <option value=""></option>
+                             </select>
+                        </div>
+                        <div class="form-group">
+                           <label translate="adapGatewayApp.scenario.category" for="field_category">Category</label>
+                           <select class="form-control" id="field_category" multiple name="category" ng-model="vm.newscenario.categories" ng-options="category as category.name for category in vm.categories track by category.id"></select>
+                        </div>
+                        <div class="form-group">
+                           <label translate="adapGatewayApp.scenario.subcategory" for="field_subcategory">Subcategory</label>
+                           <select class="form-control" id="field_subcategory" multiple name="subcategory" ng-model="vm.newscenario.subcategories" ng-options="subcategory as subcategory.name for subcategory in vm.subcategories track by subcategory.id"></select>
+                        </div>
+                       </div>
+                       <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.closescenariomodal()">
+                             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                          </button>
+                          <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary" ng-click="vm.saveNewScenario()">
+                             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                          </button>
+                        </div>
+                 </form>
+            </div>
+        </div>
+</div> 
+<!-- 
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
@@ -64,5 +158,5 @@
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
     </button>
+    -->
 </div>
-<div id="paper"></div>
