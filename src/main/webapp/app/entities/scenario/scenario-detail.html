@@ -3,128 +3,129 @@
 	display: none
 }
 </style>
-<div class="row border-bottom">
-	<div class="row wrapper border-bottom white-bg page-heading">
-		<div class="col-lg-10">
-			<h2>{{vm.scenario.name}}</h2>
-			<ol class="breadcrumb">
-				<li><a href="index.html">Home</a></li>
-				<li><a>Scenarios</a></li>
-				<li class="active"><strong>Scenario Detail</strong></li>
-			</ol>
-		</div>
-		<div class="col-lg-2"></div>
-	</div>
 
-	<div class="wrapper wrapper-content">
-		<div class="row animated fadeInRight">
-			<div class="col-md-8">
-				<div class="ibox float-e-margins">
-					<div class="ibox-title">
-						<a class="btn btn-white btn-xs pull-right"
-							ui-sref="edit-attacktree({id:vm.scenario.id})">Edit Attack
-							Tree</a>
-						<h5>Attack Tree Detail</h5>
-					</div>
-					<div>
-						<div class="ibox-content no-padding border-left-right">
-							<div id="paper"></div>
-						</div>
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-lg-10">
+		<h2>{{vm.scenario.name}}</h2>
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a>Scenarios</a></li>
+			<li class="active"><strong>Scenario Detail</strong></li>
+		</ol>
+	</div>
+	<div class="col-lg-2"></div>
+</div>
+
+<div class="wrapper wrapper-content">
+	<div class="row animated fadeInRight">
+		<div class="col-md-8">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<a class="btn btn-white btn-xs pull-right"
+						ui-sref="edit-attacktree({id:vm.scenario.id})">Edit Attack
+						Tree</a>
+					<h5>Attack Tree Detail</h5>
+				</div>
+				<div>
+					<div class="ibox-content no-padding border-left-right">
+						<div id="paper"></div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="ibox">
-					<div class="ibox-content">
-						<div class="row">
-							<div class="m-b-md">
-								<a class="btn btn-white btn-xs pull-right"
-									ui-sref="scenario-detail.edit({id:vm.scenario.id})">Edit
-									Scenario</a>
-								<h2>{{vm.scenario.name}}</h2>
-							</div>
-							<dl class="dl-horizontal">
-								<dt>
-									<span translate="adapGatewayApp.scenario.name">Name</span>
-								</dt>
-								<dd>
-									<span>{{vm.scenario.name}}</span>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.nameshort">Nameshort</span>
-								</dt>
-								<dd>
-									<span>{{vm.scenario.nameshort}}</span>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.description">Description</span>
-								</dt>
-								<dd>
-									<span>{{vm.scenario.description}}</span>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.isabstract">Isabstract</span>
-								</dt>
-								<dd>
-									<span>{{vm.scenario.isabstract}}</span>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.status">Status</span>
-								</dt>
-								<dd>
-									<span>{{vm.scenario.status}}</span>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.lastmodifiedby">Lastmodifiedby</span>
-								</dt>
-								<dd>
-									<span>{{vm.scenario.lastmodifiedby}}</span>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.lastmodifieddatetime">Lastmodifieddatetime</span>
-								</dt>
-								<dd>
-									<span>{{vm.scenario.lastmodifieddatetime |
-										date:'medium'}}</span>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.domain">Domain</span>
-								</dt>
-								<dd>
-									<span>{{vm.scenario.domain}}</span>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.recordtype">Recordtype</span>
-								</dt>
-								<dd>
-									<a ui-sref="recordtype-detail({id:vm.scenario.recordtype.id})">{{vm.scenario.recordtype.name}}</a>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.category">Category</span>
-								</dt>
-								<dd>
-									<span ng-repeat="category in vm.scenario.categories"> <a
-										ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last
-										? '' : ', '}}
-									</span>
-								</dd>
-								<dt>
-									<span translate="adapGatewayApp.scenario.subcategory">Subcategory</span>
-								</dt>
-								<dd>
-									<span ng-repeat="subcategory in vm.scenario.subcategories">
-										<a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last
-										? '' : ', '}}
-									</span>
-								</dd>
-							</dl>
+		</div>
+		<div class="col-md-4">
+			<div class="ibox">
+				<div class="ibox-content">
+					<div class="row">
+						<div class="m-b-md">
+							<a class="btn btn-white btn-xs pull-right"
+								ui-sref="scenario-detail.edit({id:vm.scenario.id})">Edit
+								Scenario</a>
+							<h2>{{vm.scenario.name}}</h2>
 						</div>
+						<dl class="dl-horizontal">
+							<dt>
+								<span translate="adapGatewayApp.scenario.name">Name</span>
+							</dt>
+							<dd>
+								<span>{{vm.scenario.name}}</span>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.nameshort">Nameshort</span>
+							</dt>
+							<dd>
+								<span>{{vm.scenario.nameshort}}</span>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.description">Description</span>
+							</dt>
+							<dd>
+								<span>{{vm.scenario.description}}</span>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.isabstract">Isabstract</span>
+							</dt>
+							<dd>
+								<span>{{vm.scenario.isabstract}}</span>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.status">Status</span>
+							</dt>
+							<dd>
+								<span>{{vm.scenario.status}}</span>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.lastmodifiedby">Lastmodifiedby</span>
+							</dt>
+							<dd>
+								<span>{{vm.scenario.lastmodifiedby}}</span>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.lastmodifieddatetime">Lastmodifieddatetime</span>
+							</dt>
+							<dd>
+								<span>{{vm.scenario.lastmodifieddatetime |
+									date:'medium'}}</span>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.domain">Domain</span>
+							</dt>
+							<dd>
+								<span>{{vm.scenario.domain}}</span>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.recordtype">Recordtype</span>
+							</dt>
+							<dd>
+								<a ui-sref="recordtype-detail({id:vm.scenario.recordtype.id})">{{vm.scenario.recordtype.name}}</a>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.category">Category</span>
+							</dt>
+							<dd>
+								<span ng-repeat="category in vm.scenario.categories"> <a
+									ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last
+									? '' : ', '}}
+								</span>
+							</dd>
+							<dt>
+								<span translate="adapGatewayApp.scenario.subcategory">Subcategory</span>
+							</dt>
+							<dd>
+								<span ng-repeat="subcategory in vm.scenario.subcategories">
+									<a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last
+									? '' : ', '}}
+								</span>
+							</dd>
+						</dl>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 
+</div>
+</div>
+<!-- 
 	<div class="row">
 		<div class="col-lg-7">
 			<h2>
@@ -316,6 +317,6 @@
         <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
     </button>
     -->
-	<!-- 
+<!-- 
 </div>
 -->

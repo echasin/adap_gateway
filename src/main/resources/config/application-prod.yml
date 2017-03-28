@@ -31,7 +31,7 @@ spring:
         livereload:
             enabled: false
     datasource:
-        url: jdbc:postgresql://localhost:5432/adap
+        url: jdbc:postgresql://localhost:5432/adap_mrk
         
         username: postgres
         password: postgres
