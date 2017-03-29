@@ -16,6 +16,9 @@
         var scenariopathway=[];
         var pathwaypathway=[];
         var countermeasure=[];
+        var scenariopathwayCoordinates=[];
+        var pathwaypathwayCoordinates=[];
+        var countermeasureCoordinates=[];
         
         vm.scenariopathwaymbr={};
         vm.pathwaypathwaymbr={};
@@ -59,6 +62,7 @@
             	     rect.attr('id', rootNode.pathway.id)
             	     rect.attr('isroot', true)
             	     graph.addCells([rect]);
+                     scenariopathwayCoordinates.push({"scenarioId": $stateParams.id,"pathwayId": rootNode.pathway.id,"xcoordinate":rootNode.xcoordinate,"ycoordinate":rootNode.ycoordinate});
                  	 buildLevels(rootPathway,rect)
                   });
         		}else{
@@ -69,7 +73,7 @@
         }    
             
         function buildLevels(rootPathway,rect){
-        		for(var i=0;i<rootPathway.length;i++){
+            	for(var i=0;i<rootPathway.length;i++){
             		(function(index) {
         			    setTimeout(function() {
         			    	var rect2 = new joint.shapes.tm.Actor({
@@ -89,6 +93,7 @@
         			        rect2.attr('id', rootPathway[index].pathwaypathwaymbr.childpathway.id)
         			        rect2.attr('type', "pathway")
         			        graph.addCells([rect2, link]);
+                    		pathwaypathwayCoordinates.push({"sourceId": rect.attributes.attrs.id,"targetId": rect2.attributes.attrs.id,"xcoordinate":rect2.attributes.position.x,"ycoordinate":rect2.attributes.position.y});	
         			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
        			        	 var cmrect3= new joint.shapes.tm.Actor({
         		     	            position: { x: rootPathway[index].pathwaycountermeasurembrs[c].xcoordinate, y: rootPathway[index].pathwaycountermeasurembrs[c].ycoordinate },
@@ -102,6 +107,7 @@
         		            	    cmrect3.attr('id', rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.id)
         					        cmrect3.attr('type', "countermeasure")
         		            	    graph.addCells([cmrect3,cmlink3]);
+        		            	    countermeasureCoordinates.push({"sourceId": rect2.attributes.attrs.id,"targetId": cmrect3.attributes.attrs.id,"xcoordinate":cmrect3.attributes.position.x,"ycoordinate":cmrect3.attributes.position.y});	
         					    }
         			        item++
         			        var child=Scenario.getPathway({pathwayId:rootPathway[index].pathwaypathwaymbr.childpathway.id,scenarioId:$stateParams.id}, function(){
@@ -198,8 +204,11 @@
         		$.each(scenariopathway, function() {
     					this.xcoordinate = cellView._dx;
     					this.ycoordinate = cellView._dy;
-    					console.log(this.xcoordinate)
     			  });
+        		$.each(scenariopathwayCoordinates, function() {
+					this.xcoordinate = cellView._dx;
+					this.ycoordinate = cellView._dy;
+			      });
         	}else{
         	  $.each(pathwaypathway, function() {
 				if (this.targetId == cellView.model.attributes.attrs.id) {
@@ -213,10 +222,20 @@
   					this.ycoordinate = cellView._dy;
   				 }
   			  });
+  			   $.each(countermeasureCoordinates, function() {
+  				if (this.targetId == cellView.model.attributes.attrs.id) {
+  					this.xcoordinate = cellView._dx;
+  					this.ycoordinate = cellView._dy;
+  				 }
+  			  });
+  			  $.each(pathwaypathwayCoordinates, function() {
+  				if (this.targetId == cellView.model.attributes.attrs.id) {
+  					this.xcoordinate = cellView._dx;
+  					this.ycoordinate = cellView._dy;
+  				 }
+  			  });
         	 }
         	}
-        	
-        	
         	if(line==true){
         	   graph.addCell(new joint.dia.Link({
                	   source: { id:cellView.model.id},
@@ -265,6 +284,48 @@
         
         
         vm.saveTree=function(){
+        	
+        	
+        	//update scenario pathway Coordinates
+        	for(var spc=0;spc< scenariopathwayCoordinates.length;spc++){
+        		(function(spcitem) {
+    			    setTimeout(function() {
+        	        var object=Scenario.getRoot({id: $stateParams.id},function(){
+        	          object.xcoordinate=scenariopathwayCoordinates[spcitem].xcoordinate;
+        	          object.ycoordinate=scenariopathwayCoordinates[spcitem].ycoordinate;
+        	          Scenariopathwaymbr.update(object);
+                   });
+    	      });
+             })(spc);
+        	}
+        	
+        	//update pathway pathway Coordinates
+        	for(var ppc=0;ppc< pathwaypathwayCoordinates.length;ppc++){
+        		(function(ppcitem) {
+    			    setTimeout(function() {
+        	        var object=Scenario.getLineData({scenarioId: $stateParams.id,parentId:pathwaypathwayCoordinates[ppcitem].sourceId,childId:pathwaypathwayCoordinates[ppcitem].targetId},function(){
+        	          object.xcoordinate=pathwaypathwayCoordinates[ppcitem].xcoordinate;
+        	          object.ycoordinate=pathwaypathwayCoordinates[ppcitem].ycoordinate;
+        	          Pathwaypathwaymbr.update(object);
+                   });
+    	      });
+             })(ppc);
+        	}
+        	
+        	//update countermeasure Coordinates
+        	for(var cc=0;cc< countermeasureCoordinates.length;cc++){
+        		(function(ccitem) {
+    			    setTimeout(function() {
+        	        var object=Scenario.getCounterMeasureLine({scenarioId: $stateParams.id,pathwayId:countermeasureCoordinates[ccitem].sourceId,countermeasureId:countermeasureCoordinates[ccitem].targetId},function(){
+        	          object.xcoordinate=countermeasureCoordinates[ccitem].xcoordinate;
+        	          object.ycoordinate=countermeasureCoordinates[ccitem].ycoordinate;
+        	          Pathwaycountermeasurembr.update(object);
+                   });
+    	      });
+             })(cc);
+        	}
+        	
+        	
         	Account.get().$promise.then(function(currentUser){
         	var lastmodifieddatetime = new Date();
         	var scenario=Scenario.get({id: $stateParams.id},function(){
@@ -295,7 +356,6 @@
         		Scenariopathwaymbr.save(vm.scenariopathwaymbr)
         	 });
         	}
-        	console.log(pathwaypathway)
         	for(var i=0;i<pathwaypathway.length;i++){
         	 	(function(item) {
     			    setTimeout(function() {
@@ -337,7 +397,6 @@
         	})(i);        	
           }
         	
-        	console.log(countermeasure)
         	for(var j=0;j<countermeasure.length;j++){
         	 	(function(jitem) {
     			    setTimeout(function() {
@@ -571,7 +630,6 @@
      }
      
      vm.createCountermeasure=function(){
-    	 console.log("77777777777777777777")
    	  Account.get().$promise.then(function(currentUser){
    		var lastmodifieddatetime = new Date();
           	vm.newCountermeasure.domain=currentUser.data.domain
