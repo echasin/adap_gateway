@@ -283,9 +283,7 @@
         }
         
         
-        vm.saveTree=function(){
-        	
-        	
+        vm.saveTree=function(){        	
         	//update scenario pathway Coordinates
         	for(var spc=0;spc< scenariopathwayCoordinates.length;spc++){
         		(function(spcitem) {
@@ -353,7 +351,12 @@
         		
         		vm.pathway = cleanResponse(pathway)
         		vm.scenariopathwaymbr.pathway=vm.pathway; 
-        		Scenariopathwaymbr.save(vm.scenariopathwaymbr)
+        		var saveNewScenario=Scenariopathwaymbr.save(vm.scenariopathwaymbr) 
+        		$q.all([
+        			saveNewScenario.$promise
+            	]).then(function() { 
+            		scenariopathway=[];
+            	});
         	 });
         	}
         	for(var i=0;i<pathwaypathway.length;i++){
@@ -391,12 +394,18 @@
         		vm.parentPathway = cleanResponse(parentPathway)
         		vm.pathwaypathwaymbr.parentpathway=vm.parentPathway; 
         		
-        		Pathwaypathwaymbr.save(vm.pathwaypathwaymbr)
+        		var saveNewPathway=Pathwaypathwaymbr.save(vm.pathwaypathwaymbr);
+        		$q.all([
+        			saveNewPathway.$promise
+            	]).then(function() { 
+            		 console.log(pathwaypathway)
+                     pathwaypathway=[];
+            	});
         	  });
+        	      
     		 });
         	})(i);        	
           }
-        	
         	for(var j=0;j<countermeasure.length;j++){
         	 	(function(jitem) {
     			    setTimeout(function() {
@@ -429,12 +438,16 @@
         		vm.countermeasureNode = cleanResponse(countermeasureNode)
         		vm.pathwaycountermeasurembr.countermeasure=vm.countermeasureNode; 
         		
-        		Pathwaycountermeasurembr.save(vm.pathwaycountermeasurembr)
+        		var saveNewPathwaycounter=Pathwaycountermeasurembr.save(vm.pathwaycountermeasurembr);
+        		$q.all([
+        			saveNewPathwaycounter.$promise
+            	]).then(function() { 
+            		countermeasure=[];
+            	});
         	  });
     		 });
         	})(j);        	
-          }
-        	
+          } 	
          });
         }
        
@@ -472,7 +485,7 @@
               
       function loadPathways(){
       
-       var goalPathways=Scenario.getPathwayByRecordtype({name:"Attack Goal"},function(){
+       var goalPathways=Scenario.getPathwayByRecordtype({name:"Attack Goal",isrootnode:true},function(){
     	 vm.goalPathways=[];
   	     for(var i=0;i<goalPathways.length;i++){
   	    	vm.goalPathways.push({"id":goalPathways[i].id,"nameshort":goalPathways[i].nameshort,"recordtype":goalPathways[i].recordtype.name});
@@ -493,10 +506,33 @@
            createPathway(goalPathways[0].recordtype.id)
           }
       });  
+       
+       
+       var intermediateGoalPathways=Scenario.getPathwayByRecordtype({name:"Attack Goal",isrootnode:false},function(){
+      	 vm.intermediateGoalPathways=[];
+    	     for(var i=0;i<intermediateGoalPathways.length;i++){
+    	    	vm.intermediateGoalPathways.push({"id":intermediateGoalPathways[i].id,"nameshort":intermediateGoalPathways[i].nameshort,"recordtype":intermediateGoalPathways[i].recordtype.name});
+    	     }
+    	     
+            vm.intermediateGoalOptions = DTOptionsBuilder.newOptions()        
+              .withOption('data', vm.intermediateGoalPathways)
+              .withOption('paging', false)
+              .withOption('rowCallback', rowCallback)
+              .withOption('bInfo', false);
+            
+            vm.intermediateGoalColumns = [
+          	  DTColumnBuilder.newColumn('id').withTitle('id').notVisible(),
+          	  DTColumnBuilder.newColumn('nameshort').withTitle('Name'),
+          	  DTColumnBuilder.newColumn('recordtype').withTitle('recordtype').notVisible(),
+            ];
+            vm.createintermediateGoal=function(){       
+             createPathway(intermediateGoalPathways[0].recordtype.id)
+            }
+        });  
       
       
       
-      var vectorPathways=Scenario.getPathwayByRecordtype({name:"Attack Vector"},function(){
+      var vectorPathways=Scenario.getPathwayByRecordtype({name:"Attack Vector",isrootnode:false},function(){
    	     
     	 vm.vectorPathways=[];
    	     for(var i=0;i<vectorPathways.length;i++){
@@ -519,7 +555,7 @@
               }
        }); 
       
-      var methodPathways=Scenario.getPathwayByRecordtype({name:"Attack Method"},function(){
+      var methodPathways=Scenario.getPathwayByRecordtype({name:"Attack Method",isrootnode:false},function(){
     	     vm.methodPathways=[];
     	     for(var i=0;i<methodPathways.length;i++){
    	  	    	vm.methodPathways.push({"id":methodPathways[i].id,"nameshort":methodPathways[i].nameshort,"recordtype":methodPathways[i].recordtype.name});
@@ -580,9 +616,11 @@
           return nRow;
       }
       
-      vm.openPathwayModal=function(recordtype){
+      vm.openPathwayModal=function(recordtype,isrootnode){
     	   vm.recordtypeName=recordtype;
-    	   vm.newPathway=null;
+    	   vm.newPathway={};
+    	   console.log(isrootnode);
+    	   vm.newPathway.isrootnode=isrootnode; 
     	  $('#createPathwayModal').modal('show');
       }
       
@@ -593,14 +631,11 @@
            	vm.newPathway.lastmodifiedby=currentUser.data.lastmodifiedby;
            	vm.newPathway.status="Active";
            	vm.newPathway.lastmodifieddatetime=lastmodifieddatetime;
-           	vm.newPathway.domain=currentUser.data.domain
-           	vm.newPathway.lastmodifiedby=currentUser.data.lastmodifiedby;
-           	vm.newPathway.status="Active";
-           	vm.newPathway.lastmodifieddatetime=lastmodifieddatetime;
-           	
+           	         
              var recordtype=Recordtype.recordtypeByName({name:vm.recordtypeName},function(){
            		
-           	 });   	 
+           	 }); 
+             console.log(recordtype)
            	$q.all([
       		  recordtype.$promise   
              	 ]).then(function() {
@@ -612,6 +647,7 @@
                        		loadPathways();
                   	     });
         	     }); 
+             
            	
             $('#createPathwayModal').modal('hide');
              
