@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('ReportDetailController', ReportDetailController);
 
-    ReportDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Report', 'Reportparameter','$http'];
+    ReportDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Report', 'Reportparameter','$http','FileSaver'];
 
-    function ReportDetailController($scope, $rootScope, $stateParams, entity, Report, Reportparameter,$http) {
+    function ReportDetailController($scope, $rootScope, $stateParams, entity, Report, Reportparameter,$http,FileSaver) {
         var vm = this;
         vm.report = entity;
         
@@ -15,33 +15,61 @@
             vm.report = result;
         });
         $scope.$on('$destroy', unsubscribe);
-
-    
-        vm.generateReport=function(){
-        	Report.parameterList({reportId:$stateParams.id}).$promise.then(function(parameters){
-        		if ( parameters.length  <= 0 ){
-        			console.log(parameters) 
-            		var jsonString = JSON.stringify(parameters);
-            		console.log(jsonString)
-                 	Report.generateReport({reportId:$stateParams.id,parameters:jsonString});
-        		}else{
-            		vm.parameters=parameters;
-        			$('#parametersmodal').modal('show');
-        		}
-        });
-        }
         
         
         vm.generateReportWithParam=function(){
-            		var jsonString = JSON.stringify(vm.parameters);
-            		console.log(vm.parameters)
-                 	Report.generateReport({reportId:$stateParams.id,parameters:jsonString});
+            		var jsonString = JSON.stringify(vm.parameters);            		        		
+            		$http({
+                          url: 'adap_report/api/generateReport/'+$stateParams.id+"/"+jsonString,
+                          method: "GET",
+                          headers: {
+                               'Content-type': 'application/json'
+                             },
+                          responseType: 'arraybuffer'
+                       }).success(function (data, status, headers, config) {
+        	                 console.log(data)
+                             var blob = new Blob([data], {type: 'application/pdf'});
+        	                 FileSaver.saveAs(blob, vm.report.reporttemplatename+"."+vm.report.reportoutputtypecode);
+
+                         }).error(function (data, status, headers, config) {
+                       });
+                 	
             		$('#parametersmodal').modal('hide');
 
 
         }
         
+        vm.generateReport=function(){
+        	Report.parameterList({reportId:$stateParams.id}).$promise.then(function(parameters){
+        		if ( parameters.length  <= 0 ){
+            		var jsonString = JSON.stringify(parameters);        	
+                    $http({
+                          url: 'adap_report/api/generateReport/'+$stateParams.id+"/"+jsonString,
+                          method: "GET",
+                          headers: {
+                               'Content-type': 'application/json'
+                             },
+                          responseType: 'arraybuffer'
+                       }).success(function (data, status, headers, config) {
+        	                 console.log(data)
+                             var blob = new Blob([data], {type: 'application/pdf'});
+        	                 FileSaver.saveAs(blob, vm.report.reporttemplatename+"."+vm.report.reportoutputtypecode);
+
+                         }).error(function (data, status, headers, config) {
+                       });
+                    $('#modal').modal('hide');
+                }else{
+            		vm.parameters=parameters;
+            		$('#modal').modal('hide');
+        			$('#parametersmodal').modal('show');
+        		}
+        	});
+        }
         
+        
+        vm.openModal=function(){
+        	$('#modal').modal('show');
+        }
         
         
     }
