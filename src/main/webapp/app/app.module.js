@@ -3,7 +3,8 @@
 
     angular
         .module('adapGatewayApp', [
-            'ngStorage', 
+            'ngFileSaver',
+        	'ngStorage', 
             'tmh.dynamicLocale',
             'pascalprecht.translate', 
             'ngResource',
@@ -19,11 +20,13 @@
             'ngSanitize',
             'ui.filters',
             'datatables',
+          
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar',
             // Add INSPINIA modules here
             'oc.lazyLoad',
             'ngIdle',
+            //'ngFileSaver',
         ])
         .run(run);
 
