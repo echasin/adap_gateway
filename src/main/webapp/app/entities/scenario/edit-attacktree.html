@@ -1,3 +1,20 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-lg-10">
+		<h2>{{vm.scenario.name}}</h2>
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a>Scenarios</a></li>
+			<li>Scenario Detail</li>
+			<li class="active"><strong>Edit Attack Tree</strong></li>
+		</ol>
+	</div>
+	<div class="col-lg-2"></div>
+</div>
+
+<!-- Original Code -->
+
+
 <div>
     <h2>Draw Scenarios  {{vm.scenarioId}}</h2>
     <div class="wrapper wrapper-content">
@@ -24,7 +41,7 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="primarygoals">
-       <button class="btn btn-primary" ng-click="vm.openPathwayModal(vm.goalOptions.data[0].recordtype,true)">Create New Goal</button>
+       <button class="btn btn-primary" ng-click="vm.openPathwayModal(vm.goalOptions.data[0].recordtype)">Create New Goal</button>
        <table datatable="" dt-options="vm.goalOptions" dt-columns="vm.goalColumns" class="row-border hover">
         <thead>
         <tr>
@@ -37,7 +54,7 @@
     </div>
     
     <div role="tabpanel" class="tab-pane" id="intermediategoals">
-       <button class="btn btn-primary" ng-click="vm.openPathwayModal(vm.intermediateGoalOptions.data[0].recordtype,false)">Create New Intermediate Goal</button>
+       <button class="btn btn-primary" ng-click="vm.openPathwayModal(vm.intermediateGoalOptions.data[0].recordtype)">Create New Intermediate Goal</button>
        <table datatable="" dt-options="vm.intermediateGoalOptions" dt-columns="vm.intermediateGoalColumns" class="row-border hover">
         <thead>
         <tr>
@@ -50,7 +67,7 @@
     </div>
     
     <div role="tabpanel" class="tab-pane" id="vectors">
-    <button class="btn btn-primary" ng-click="vm.openPathwayModal(vm.vectorOptions.data[0].recordtype,false)">Create New Vector</button>
+    <button class="btn btn-primary" ng-click="vm.openPathwayModal(vm.vectorOptions.data[0].recordtype)">Create New Vector</button>
     <table datatable="" dt-options="vm.vectorOptions" dt-columns="vm.vectorColumns" class="row-border hover">
         <thead>
         <tr>
@@ -62,7 +79,7 @@
     </table>	.
     </div>
     <div role="tabpanel" class="tab-pane" id="methods">
-    <button class="btn btn-primary" ng-click="vm.openPathwayModal(vm.methodOptions.data[0].recordtype,false)">Create New Method</button>
+    <button class="btn btn-primary" ng-click="vm.openPathwayModal(vm.methodOptions.data[0].recordtype)">Create New Method</button>
     <table datatable="" dt-options="vm.methodOptions" dt-columns="vm.methodColumns" class="row-border hover">
         <thead>
         <tr>
