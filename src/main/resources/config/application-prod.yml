@@ -66,10 +66,10 @@ spring:
         cache: true
 
 liquibase:
-    contexts: prod
+    contexts: dev
 
 server:
-    port: 8080
+    port: 8077
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
