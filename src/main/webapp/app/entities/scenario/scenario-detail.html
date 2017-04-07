@@ -62,12 +62,14 @@
 							<dd>
 								<span>{{vm.scenario.description}}</span>
 							</dd>
+							<!-- 
 							<dt>
 								<span translate="adapGatewayApp.scenario.isabstract">Isabstract</span>
 							</dt>
 							<dd>
 								<span>{{vm.scenario.isabstract}}</span>
 							</dd>
+							-->
 							<dt>
 								<span translate="adapGatewayApp.scenario.status">Status</span>
 							</dt>
@@ -102,21 +104,25 @@
 							<dt>
 								<span translate="adapGatewayApp.scenario.category">Category</span>
 							</dt>
+							
 							<dd>
 								<span ng-repeat="category in vm.scenario.categories"> <a
 									ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last
 									? '' : ', '}}
 								</span>
 							</dd>
+						    <!-- 
 							<dt>
 								<span translate="adapGatewayApp.scenario.subcategory">Subcategory</span>
 							</dt>
+						
 							<dd>
 								<span ng-repeat="subcategory in vm.scenario.subcategories">
 									<a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last
 									? '' : ', '}}
 								</span>
 							</dd>
+							-->
 						</dl>
 					</div>
 				</div>

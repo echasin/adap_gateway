@@ -63,12 +63,13 @@
                     ng-model="vm.pathway.isrootnode"
                      />
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label class="control-label" data-translate="adapGatewayApp.pathway.isabstract" for="field_isabstract">Isabstract</label>
             <input type="checkbox" class="form-control" name="isabstract" id="field_isabstract"
                     ng-model="vm.pathway.isabstract"
                      />
         </div>
+        -->
         <div class="form-group">
             <label class="control-label" data-translate="adapGatewayApp.pathway.status" for="field_status">Status</label>
             <input type="text" class="form-control" name="status" id="field_status"
@@ -140,7 +141,7 @@
 
         <div class="form-group">
             <label data-translate="adapGatewayApp.pathway.recordtype" for="field_recordtype">Recordtype</label>
-            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.pathway.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id">
+            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.pathway.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes | filter:{objecttype:'Pathway'} | orderBy: 'name' track by recordtype.id">
                 <option value=""></option>
             </select>
         </div>

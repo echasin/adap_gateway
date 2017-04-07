@@ -74,7 +74,7 @@
 					for="field_recordtype">Recordtype</label> <select
 					class="form-control" id="field_recordtype" name="recordtype"
 					ng-model="vm.scenario.recordtype"
-					ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id"
+					ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes | filter:{objecttype:'Scenario'} | orderBy: 'name' track by recordtype.id"
 					ng-change="vm.getCategories(vm.scenario.recordtype.id)">
 					<option value=""></option>
 				</select>
@@ -82,7 +82,7 @@
 			<div class="form-group">
 				<label translate="adapGatewayApp.scenario.category"
 					for="field_category">Category</label> <select class="form-control"
-					id="field_category" multiple name="category"
+					id="field_category" multiple name="category"				
 					ng-model="vm.scenario.categories"
 					ng-options="category as category.name for category in vm.categories track by category.id"></select>
 			</div>
