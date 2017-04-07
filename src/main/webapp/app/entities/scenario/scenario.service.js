@@ -26,12 +26,12 @@
                 return {content: data};}},
             'getPathway': {method: 'GET',isArray: true, url: 'adap_risk/api/getPathway/:pathwayId/:scenarioId'},
             'getPathways': {method: 'GET',isArray: true, url: 'adap_risk/api/getPathways'},
-            'getCounterMeasure': {method: 'GET', url: 'adap_risk/api/getCounterMeasure/:id'},
+            'getCounterMeasureLine': {method: 'GET', url: 'adap_risk/api/getCounterMeasureLine/:scenarioId/:pathwayId/:countermeasureId'},
             'getLineData': {method: 'GET', url: 'adap_risk/api/getLineData/:scenarioId/:parentId/:childId'},
             'removeLine': {method: 'GET', url: 'adap_risk/api/removeLine/:scenarioId/:parentId/:childId'},
             'removePathwayCountermeasure': {method: 'GET', url: 'adap_risk/api/removePathwayCountermeasure/:scenarioId/:pathwayId/:countermeasureId'},
             'removeRoot': {method: 'GET', url: 'adap_risk/api/removeRoot/:scenarioId/:pathwayId'},
-            'getPathwayByRecordtype': {method: 'GET',isArray: true, url: 'adap_risk/api/pathwayByRecordtype/:name'},
+            'getPathwayByRecordtype': {method: 'GET',isArray: true, url: 'adap_risk/api/pathwayByRecordtype/:name/:isrootnode'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

@@ -2,16 +2,16 @@
     "adapGatewayApp": {
         "pathway" : {
             "home": {
-                "title": "Pathways",
-                "createLabel": "Create a new Pathway",
-                "createOrEditLabel": "Create or edit a Pathway",
-                "search": "Search for Pathway"
+                "title": "Goals,Vectors,Methods",
+                "createLabel": "Create a new Goal,Vector,Method",
+                "createOrEditLabel": "Create or edit a new Goal,Vector,Method",
+                "search": "Search for Goal,Vector,Method"
             },
             "delete": {
-                "question": "Are you sure you want to delete Pathway {{ id }}?"
+                "question": "Are you sure you want to delete Goal,Vector,Method {{ id }}?"
             },
             "detail": {
-                "title": "Pathway"
+                "title": "Goal,Vector,Method"
             },
             "name": "Name",
             "nameshort": "Nameshort",
