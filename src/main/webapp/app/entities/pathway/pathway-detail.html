@@ -20,10 +20,12 @@
         <dd>
             <span>{{vm.pathway.isrootnode}}</span>
         </dd>
+        <!-- 
         <dt><span data-translate="adapGatewayApp.pathway.isabstract">Isabstract</span></dt>
         <dd>
             <span>{{vm.pathway.isabstract}}</span>
         </dd>
+        -->
         <dt><span data-translate="adapGatewayApp.pathway.status">Status</span></dt>
         <dd>
             <span>{{vm.pathway.status}}</span>
@@ -50,24 +52,29 @@
                 <a ui-sref="category-detail({id: category.id})">{{category.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
+        <!-- 
         <dt><span data-translate="adapGatewayApp.pathway.subcategory">Subcategory</span></dt>
         <dd>
             <span ng-repeat="subcategory in vm.pathway.subcategories">
                 <a ui-sref="subcategory-detail({id: subcategory.id})">{{subcategory.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
+        -->
+        <!--
         <dt><span data-translate="adapGatewayApp.pathway.weapon">Weapon</span></dt>
         <dd>
             <span ng-repeat="weapon in vm.pathway.weapons">
                 <a ui-sref="weapon-detail({id: weapon.id})">{{weapon.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
+        
         <dt><span data-translate="adapGatewayApp.pathway.target">Target</span></dt>
         <dd>
             <span ng-repeat="target in vm.pathway.targets">
                 <a ui-sref="target-detail({id: target.id})">{{target.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
+        -->
     </dl>
 
     <button type="submit"

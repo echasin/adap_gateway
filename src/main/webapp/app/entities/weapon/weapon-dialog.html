@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myWeaponLabel" translate="adapGatewayApp.weapon.home.createOrEditLabel">Create or edit a Weapon</h4>
     </div>
     <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
+        <!-- <jhi-alert-error></jhi-alert-error> -->
         <div class="form-group" ng-show="vm.weapon.id">
             <label for="id" translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
@@ -57,15 +57,21 @@
                 </p>
             </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label class="control-label" translate="adapGatewayApp.weapon.isabstract" for="field_isabstract">Isabstract</label>
             <input type="checkbox" class="form-control" name="isabstract" id="field_isabstract"
                     ng-model="vm.weapon.isabstract"
                      />
         </div>
+        -->
         <div class="form-group">
             <label translate="adapGatewayApp.weapon.recordtype" for="field_recordtype">Recordtype</label>
+
             <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.weapon.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id" ng-change="vm.getCategories(vm.weapon.recordtype.id)">
+
+          <!--develop-mrk-merge
+            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.weapon.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes | filter:{objecttype:'Weapon'} | orderBy: 'name' track by recordtype.id">
+          -->
                 <option value=""></option>
             </select>
         </div>
@@ -73,11 +79,13 @@
             <label translate="adapGatewayApp.weapon.category" for="field_category">Category</label>
             <select class="form-control" id="field_category" multiple name="category" ng-model="vm.weapon.categories" ng-options="category as category.name for category in vm.categories track by category.id" ng-change="vm.getSubCategories(vm.weapon.recordtype.id)"></select>
         </div>
+    <!--     
         <div class="form-group">
             <label translate="adapGatewayApp.weapon.subcategory" for="field_subcategory">Subcategory</label>
             <select class="form-control" id="field_subcategory" multiple name="subcategory" ng-model="vm.weapon.subcategories" ng-options="subcategory as subcategory.name for subcategory in vm.subcategories track by subcategory.id"></select>
         </div>
     </div>
+     -->
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
