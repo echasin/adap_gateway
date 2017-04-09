@@ -73,5 +73,6 @@
         	vm.subcategories=Subcategory.subCategoriesByCategory({id:vm.weapon.categories[0].id});
         	console.log(vm.subcategories);
         }
+        
     }
 })();
