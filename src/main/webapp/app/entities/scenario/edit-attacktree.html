@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <div>
     <h2>Draw Scenarios  {{vm.scenarioId}}</h2>
     <div class="wrapper wrapper-content">
@@ -94,7 +96,7 @@
 		 <h2 style="color: red;">{{vm.message}}</h2>
 		 <button class="btn btn-primary" ng-click="vm.line()">Drag Line</button>
 		 <button class="btn btn-primary" ng-click="vm.toPDF()" >Export PDF</button>
-         <div id="paper">    
+         <div id="paper" style="height: 900px;width:100%">   
          </div>
 		</div>
       </div>
