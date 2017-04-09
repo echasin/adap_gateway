@@ -28,8 +28,10 @@
         vm.scenario="";
         vm.scenarioId=$stateParams.id;
 
+        console.log( $('#paper').width())
+        console.log( $('#paper').height())
         var graph = new joint.dia.Graph;
-        var paper = new joint.dia.Paper({ el: $('#paper'), width: 1300, height: 900, gridSize: 10, model: graph,drawGrid:true,snapLinks:true,
+        var paper = new joint.dia.Paper({ el: $('#paper'), width: $('#paper').width(), height: $('#paper').height(), gridSize: 10, model: graph,drawGrid:true,snapLinks:true,
         	interactive: function(cellView) {
                 if (cellView.model instanceof joint.dia.Link) {
                     return { vertexAdd: false };
@@ -39,6 +41,10 @@
         });        
         
                 
+        $(window).resize(function() {
+            var canvas = $('#paper');
+            paper.setDimensions(canvas.width(), canvas.height());
+        });
         
           
         var x=220;
@@ -92,9 +98,10 @@
         			        });
         			        rect2.attr('id', rootPathway[index].pathwaypathwaymbr.childpathway.id)
         			        rect2.attr('type', "pathway")
+        			        rect2.attr('pathwaypathwaymbr',rootPathway[index].pathwaypathwaymbr.id)
         			        graph.addCells([rect2, link]);
-                    		pathwaypathwayCoordinates.push({"sourceId": rect.attributes.attrs.id,"targetId": rect2.attributes.attrs.id,"xcoordinate":rect2.attributes.position.x,"ycoordinate":rect2.attributes.position.y});	
-        			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
+                    		pathwaypathwayCoordinates.push({"id": rootPathway[index].pathwaypathwaymbr.id,"sourceId": rect.attributes.attrs.id,"targetId": rect2.attributes.attrs.id,"xcoordinate":rect2.attributes.position.x,"ycoordinate":rect2.attributes.position.y});	
+                    		for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
        			        	 var cmrect3= new joint.shapes.tm.Actor({
         		     	            position: { x: rootPathway[index].pathwaycountermeasurembrs[c].xcoordinate, y: rootPathway[index].pathwaycountermeasurembrs[c].ycoordinate },
         		     	            size: { width: 100, height: 40 },
@@ -106,9 +113,11 @@
         		            	 });
         		            	    cmrect3.attr('id', rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.id)
         					        cmrect3.attr('type', "countermeasure")
+        					        cmrect3.attr('pathwaycountermeasurembr', rootPathway[index].pathwaycountermeasurembrs[c].id)
         		            	    graph.addCells([cmrect3,cmlink3]);
-        		            	    countermeasureCoordinates.push({"sourceId": rect2.attributes.attrs.id,"targetId": cmrect3.attributes.attrs.id,"xcoordinate":cmrect3.attributes.position.x,"ycoordinate":cmrect3.attributes.position.y});	
-        					    }
+        		            	    countermeasureCoordinates.push({id:rootPathway[index].pathwaycountermeasurembrs[c].id,"sourceId": rect2.attributes.attrs.id,"targetId": cmrect3.attributes.attrs.id,"xcoordinate":cmrect3.attributes.position.x,"ycoordinate":cmrect3.attributes.position.y});	
+        					console.log(countermeasureCoordinates);    
+                    		}
         			        item++
         			        var child=Scenario.getPathway({pathwayId:rootPathway[index].pathwaypathwaymbr.childpathway.id,scenarioId:$stateParams.id}, function(){
         			        	buildLevels(child,rect2)
@@ -199,6 +208,7 @@
          
 
         paper.on('cell:pointerup', function(cellView, evt, x, y) {
+        	console.log(cellView);
         	if (cellView.model.attributes.type === 'tm.Actor'){
         	if(cellView.model.attributes.attrs.isroot==true){
         		$.each(scenariopathway, function() {
@@ -223,13 +233,13 @@
   				 }
   			  });
   			   $.each(countermeasureCoordinates, function() {
-  				if (this.targetId == cellView.model.attributes.attrs.id) {
+  				if (this.id == cellView.model.attributes.attrs.pathwaycountermeasurembr) {
   					this.xcoordinate = cellView._dx;
   					this.ycoordinate = cellView._dy;
   				 }
   			  });
   			  $.each(pathwaypathwayCoordinates, function() {
-  				if (this.targetId == cellView.model.attributes.attrs.id) {
+  				if (this.id == cellView.model.attributes.attrs.pathwaypathwaymbr) {
   					this.xcoordinate = cellView._dx;
   					this.ycoordinate = cellView._dy;
   				 }
@@ -285,6 +295,7 @@
         
         vm.saveTree=function(){        	
         	//update scenario pathway Coordinates
+        	
         	for(var spc=0;spc< scenariopathwayCoordinates.length;spc++){
         		(function(spcitem) {
     			    setTimeout(function() {
@@ -301,7 +312,7 @@
         	for(var ppc=0;ppc< pathwaypathwayCoordinates.length;ppc++){
         		(function(ppcitem) {
     			    setTimeout(function() {
-        	        var object=Scenario.getLineData({scenarioId: $stateParams.id,parentId:pathwaypathwayCoordinates[ppcitem].sourceId,childId:pathwaypathwayCoordinates[ppcitem].targetId},function(){
+        	        var object=Pathwaypathwaymbr.get({id:pathwaypathwayCoordinates[ppcitem].id},function(){
         	          object.xcoordinate=pathwaypathwayCoordinates[ppcitem].xcoordinate;
         	          object.ycoordinate=pathwaypathwayCoordinates[ppcitem].ycoordinate;
         	          Pathwaypathwaymbr.update(object);
@@ -314,7 +325,7 @@
         	for(var cc=0;cc< countermeasureCoordinates.length;cc++){
         		(function(ccitem) {
     			    setTimeout(function() {
-        	        var object=Scenario.getCounterMeasureLine({scenarioId: $stateParams.id,pathwayId:countermeasureCoordinates[ccitem].sourceId,countermeasureId:countermeasureCoordinates[ccitem].targetId},function(){
+        	        var object=Pathwaycountermeasurembr.get({id:countermeasureCoordinates[ccitem].id},function(){
         	          object.xcoordinate=countermeasureCoordinates[ccitem].xcoordinate;
         	          object.ycoordinate=countermeasureCoordinates[ccitem].ycoordinate;
         	          Pathwaycountermeasurembr.update(object);

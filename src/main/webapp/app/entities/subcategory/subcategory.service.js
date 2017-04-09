@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'subCategoriesByCategory': {method: 'GET',isArray: true, url: 'adap_risk/api/subCategoriesByCategory/:id'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
