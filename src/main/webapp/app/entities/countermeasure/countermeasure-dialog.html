@@ -68,9 +68,13 @@
         <div class="form-group">
             <label translate="adapGatewayApp.countermeasure.recordtype" for="field_recordtype">Recordtype</label>
 
-            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.countermeasure.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id" ng-change="vm.getCategories(vm.countermeasure.recordtype.id)">
+            <select class="form-control" id="field_recordtype" 
+            name="recordtype" 
+            ng-model="vm.countermeasure.recordtype"
+			ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes | filter:{objecttype:'Countermeasure'} | orderBy: 'name' track by recordtype.id" 
+			ng-change="vm.getCategories(vm.countermeasure.recordtype.id)">
 
-          <!--Merge conflicty code from develop-krk  
+          <!--Merge conflict code from develop-mrk  
           <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.countermeasure.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes | filter:{objecttype:'Countermeasure'} | orderBy: 'name' track by recordtype.id">
           -->
                 <option value=""></option>

@@ -68,7 +68,11 @@
         <div class="form-group">
             <label data-translate="adapGatewayApp.target.recordtype" for="field_recordtype">Recordtype</label>
 
-            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.target.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id" ng-change="vm.getCategories(vm.target.recordtype.id)">
+            <select class="form-control" id="field_recordtype" 
+            name="recordtype"
+            ng-model="vm.target.recordtype"
+			ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes | filter:{objecttype:'Target'} | orderBy: 'name' track by recordtype.id" 
+			ng-change="vm.getCategories(vm.target.recordtype.id)">
 
           <!-- Code from develop-mrk
           <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.target.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes | filter:{objecttype:'Target'} | orderBy: 'name' track by recordtype.id">
