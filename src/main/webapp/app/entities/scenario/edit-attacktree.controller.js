@@ -26,6 +26,7 @@
         vm.scenarios=Scenario.query({});
         vm.pathways=Scenario.getPathways({});
         vm.scenario="";
+        vm.message="";
         vm.scenarioId=$stateParams.id;
 
         console.log( $('#paper').width())
@@ -99,6 +100,7 @@
         			        rect2.attr('id', rootPathway[index].pathwaypathwaymbr.childpathway.id)
         			        rect2.attr('type', "pathway")
         			        rect2.attr('pathwaypathwaymbr',rootPathway[index].pathwaypathwaymbr.id)
+        			        rect2.attr('recordtype', rootPathway[index].pathwaypathwaymbr.childpathway.recordtype.name)
         			        graph.addCells([rect2, link]);
                     		pathwaypathwayCoordinates.push({"id": rootPathway[index].pathwaypathwaymbr.id,"sourceId": rect.attributes.attrs.id,"targetId": rect2.attributes.attrs.id,"xcoordinate":rect2.attributes.position.x,"ycoordinate":rect2.attributes.position.y});	
                     		for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
@@ -150,6 +152,7 @@
           });
                rect.attr('id', id)
                rect.attr('type', "pathway")
+               rect.attr('recordtype', recordtype)
       	       graph.addCells([ rect ]);
         	});
          }else{
@@ -165,6 +168,7 @@
                });
                    rect.attr('id', id)
                    rect.attr('isroot', true)
+                   rect.attr('recordtype', recordtype)
            	       graph.addCells([ rect ]);
                    scenariopathway.push({"scenarioId": $stateParams.id,"pathwayId": id,"xcoordinate":rect.attributes.position.x,"ycoordinate":rect.attributes.position.y});
           	       console.log(rect)
@@ -208,7 +212,6 @@
          
 
         paper.on('cell:pointerup', function(cellView, evt, x, y) {
-        	console.log(cellView);
         	if (cellView.model.attributes.type === 'tm.Actor'){
         	if(cellView.model.attributes.attrs.isroot==true){
         		$.each(scenariopathway, function() {
@@ -280,8 +283,15 @@
             if (link.get('source').id && link.get('target').id) {
             	var source = graph.getCell(link.get('source'));
             	var target = graph.getCell(link.get('target'));
+            	console.log(source)
+            	console.log(target)
             	if(source.attributes.attrs.type == "countermeasure" || target.attributes.attrs.type == "countermeasure"){
-            		countermeasure.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y});
+            	    console.log(source.attributes.attrs.recordtype);
+            		if(source.attributes.attrs.recordtype ==  "Attack Method"){
+                		countermeasure.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y});            	    	
+            		}else{
+            	    	vm.message="Must Add Countermeasure To Attach Method";
+            	    }
             	}else{
             		pathwaypathway.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y});	
             	}
