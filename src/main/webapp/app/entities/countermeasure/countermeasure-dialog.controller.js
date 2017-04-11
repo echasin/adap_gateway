@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('CountermeasureDialogController', CountermeasureDialogController);
 
-    CountermeasureDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Countermeasure', 'Recordtype', 'Category', 'Subcategory', 'Pathwaycountermeasurembr'];
+    CountermeasureDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Countermeasure', 'Recordtype', 'Category', 'Subcategory', 'Pathwaycountermeasurembr','Account'];
 
-    function CountermeasureDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Countermeasure, Recordtype, Category, Subcategory, Pathwaycountermeasurembr) {
+    function CountermeasureDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Countermeasure, Recordtype, Category, Subcategory, Pathwaycountermeasurembr,Account) {
         var vm = this;
 
         vm.countermeasure = entity;
@@ -16,8 +16,6 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.recordtypes = Recordtype.query();
-        vm.categories = Category.query();
-        vm.subcategories = Subcategory.query();
         vm.pathwaycountermeasurembrs = Pathwaycountermeasurembr.query();
 
         $timeout(function (){
@@ -30,10 +28,23 @@
 
         function save () {
             vm.isSaving = true;
+            var lastmodifieddatetime = new Date();
             if (vm.countermeasure.id !== null) {
+            	Account.get().$promise.then(function(currentUser){
+                 	vm.countermeasure.domain=currentUser.data.domain
+                 	vm.countermeasure.lastmodifiedby=currentUser.data.lastmodifiedby;
+                 	vm.countermeasure.status="Active";
+                 	vm.countermeasure.lastmodifieddatetime=lastmodifieddatetime;
                 Countermeasure.update(vm.countermeasure, onSaveSuccess, onSaveError);
+              });
             } else {
+            	Account.get().$promise.then(function(currentUser){
+                 	vm.countermeasure.domain=currentUser.data.domain
+                 	vm.countermeasure.lastmodifiedby=currentUser.data.lastmodifiedby;
+                 	vm.countermeasure.status="Active";
+                 	vm.countermeasure.lastmodifieddatetime=lastmodifieddatetime;
                 Countermeasure.save(vm.countermeasure, onSaveSuccess, onSaveError);
+             });
             }
         }
 
@@ -52,5 +63,16 @@
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
+        
+        vm.getCategories=function(id){
+        	vm.categories = Category.categoriesByRecordtype({id:id});
+        }
+        
+        vm.getSubCategories=function(id){
+        	vm.subcategories=Subcategory.subCategoriesByCategory({id:vm.countermeasure.categories[0].id});
+        	console.log(vm.subcategories);
+        }
+        
+        
     }
 })();
