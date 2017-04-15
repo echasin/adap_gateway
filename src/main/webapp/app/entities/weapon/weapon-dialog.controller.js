@@ -18,6 +18,8 @@
         vm.recordtypes = Recordtype.query();
         vm.pathways = Pathway.query();
         vm.countermeasurefactors = Countermeasurefactor.query();
+        vm.categories=entity.categories;
+        vm.subcategories=entity.subcategories;
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -67,6 +69,7 @@
         
         vm.getCategories=function(id){
         	vm.categories = Category.categoriesByRecordtype({id:id});
+            vm.subcategories=null;
         }
         
         vm.getSubCategories=function(id){

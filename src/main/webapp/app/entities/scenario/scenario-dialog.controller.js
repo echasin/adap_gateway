@@ -16,6 +16,8 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.recordtypes = Recordtype.query();
+        vm.categories=entity.categories;
+        vm.subcategories=entity.subcategories;
         
         vm.scenariopathwaymbrs = Scenariopathwaymbr.query();
 
@@ -69,8 +71,10 @@
         
         vm.getCategories=function(id){
         	vm.categories = Category.categoriesByRecordtype({id:id});
+        	vm.subcategories=null;
         }
         
+         
         vm.getSubCategories=function(id){
         	vm.subcategories=Subcategory.subCategoriesByCategory({id:vm.scenario.categories[0].id});
         	console.log(vm.subcategories);
