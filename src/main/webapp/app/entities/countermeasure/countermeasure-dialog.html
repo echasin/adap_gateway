@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myCountermeasureLabel" translate="adapGatewayApp.countermeasure.home.createOrEditLabel">Create or edit a Countermeasure</h4>
     </div>
     <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
+        <!-- <jhi-alert-error></jhi-alert-error> -->
         <div class="form-group" ng-show="vm.countermeasure.id">
             <label for="id" translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
@@ -57,15 +57,26 @@
                 </p>
             </div>
         </div>
+        <!-- 
         <div class="form-group">
             <label class="control-label" translate="adapGatewayApp.countermeasure.isabstract" for="field_isabstract">Isabstract</label>
             <input type="checkbox" class="form-control" name="isabstract" id="field_isabstract"
                     ng-model="vm.countermeasure.isabstract"
                      />
         </div>
+       -->
         <div class="form-group">
             <label translate="adapGatewayApp.countermeasure.recordtype" for="field_recordtype">Recordtype</label>
-            <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.countermeasure.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes track by recordtype.id" ng-change="vm.getCategories(vm.countermeasure.recordtype.id)">
+
+            <select class="form-control" id="field_recordtype" 
+            name="recordtype" 
+            ng-model="vm.countermeasure.recordtype"
+			ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes | filter:{objecttype:'Countermeasure'} | orderBy: 'name' track by recordtype.id" 
+			ng-change="vm.getCategories(vm.countermeasure.recordtype.id)">
+
+          <!--Merge conflict code from develop-mrk  
+          <select class="form-control" id="field_recordtype" name="recordtype" ng-model="vm.countermeasure.recordtype" ng-options="recordtype as recordtype.name for recordtype in vm.recordtypes | filter:{objecttype:'Countermeasure'} | orderBy: 'name' track by recordtype.id">
+          -->
                 <option value=""></option>
             </select>
         </div>
@@ -73,10 +84,12 @@
             <label translate="adapGatewayApp.countermeasure.category" for="field_category">Category</label>
             <select class="form-control" id="field_category" multiple name="category" ng-model="vm.countermeasure.categories" ng-options="category as category.name for category in vm.categories track by category.id" ng-change="vm.getSubCategories(vm.countermeasure.category.id)"></select>
         </div>
+        <!-- 
         <div class="form-group">
             <label translate="adapGatewayApp.countermeasure.subcategory" for="field_subcategory">Subcategory</label>
             <select class="form-control" id="field_subcategory" multiple name="subcategory" ng-model="vm.countermeasure.subcategories" ng-options="subcategory as subcategory.name for subcategory in vm.subcategories track by subcategory.id"></select>
         </div>
+        -->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
