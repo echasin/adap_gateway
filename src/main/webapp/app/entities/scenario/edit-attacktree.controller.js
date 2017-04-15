@@ -195,7 +195,7 @@
               position: { x: 50, y: 50 }, size: { width: 100, height: 40 },
               attrs: {
               	rect: { fill: color.content },
-              	text: { text: name ,'font-size': 14, fill: "white" }
+              	text: { text: name ,'font-size': 14, fill: "black" }
               }
            });
                rect.attr('id', id)
