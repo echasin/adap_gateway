@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('PathwayDialogController', PathwayDialogController);
 
-    PathwayDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Pathway', 'Recordtype', 'Category', 'Subcategory', 'Scenariopathwaymbr', 'Pathwaypathwaymbr', 'Weapon', 'Pathwaycountermeasurembr', 'Target'];
+    PathwayDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Pathway', 'Recordtype', 'Category', 'Subcategory', 'Scenariopathwaymbr', 'Pathwaypathwaymbr', 'Weapon', 'Pathwaycountermeasurembr', 'Target','Account'];
 
-    function PathwayDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Pathway, Recordtype, Category, Subcategory, Scenariopathwaymbr, Pathwaypathwaymbr, Weapon, Pathwaycountermeasurembr, Target) {
+    function PathwayDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Pathway, Recordtype, Category, Subcategory, Scenariopathwaymbr, Pathwaypathwaymbr, Weapon, Pathwaycountermeasurembr, Target,Account) {
         var vm = this;
 
         vm.pathway = entity;
@@ -16,13 +16,13 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.recordtypes = Recordtype.query();
-        vm.categories = Category.query();
-        vm.subcategories = Subcategory.query();
         vm.scenariopathwaymbrs = Scenariopathwaymbr.query();
         vm.pathwaypathwaymbrs = Pathwaypathwaymbr.query();
         vm.weapons = Weapon.query();
         vm.pathwaycountermeasurembrs = Pathwaycountermeasurembr.query();
         vm.targets = Target.query();
+        vm.categories=entity.categories;
+        vm.subcategories=entity.subcategories;
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -34,10 +34,23 @@
 
         function save () {
             vm.isSaving = true;
+            var lastmodifieddatetime = new Date();
             if (vm.pathway.id !== null) {
+            	Account.get().$promise.then(function(currentUser){
+                 	vm.pathway.domain=currentUser.data.domain
+                 	vm.pathway.lastmodifiedby=currentUser.data.lastmodifiedby;
+                 	vm.pathway.status="Active";
+                 	vm.pathway.lastmodifieddatetime=lastmodifieddatetime;
                 Pathway.update(vm.pathway, onSaveSuccess, onSaveError);
+            	});
             } else {
-                Pathway.save(vm.pathway, onSaveSuccess, onSaveError);
+            	Account.get().$promise.then(function(currentUser){
+                 	vm.pathway.domain=currentUser.data.domain
+                 	vm.pathway.lastmodifiedby=currentUser.data.lastmodifiedby;
+                 	vm.pathway.status="Active";
+                 	vm.pathway.lastmodifieddatetime=lastmodifieddatetime;
+            	Pathway.save(vm.pathway, onSaveSuccess, onSaveError);
+            	});
             }
         }
 
@@ -56,5 +69,16 @@
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
+        
+        vm.getCategories=function(id){
+        	vm.categories = Category.categoriesByRecordtype({id:id});
+            vm.subcategories=null;
+        }
+        
+        vm.getSubCategories=function(id){
+        	vm.subcategories=Subcategory.subCategoriesByCategory({id:vm.pathway.categories[0].id});
+        	console.log(vm.subcategories);
+        }
+        
     }
 })();

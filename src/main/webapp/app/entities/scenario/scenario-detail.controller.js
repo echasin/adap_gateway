@@ -17,8 +17,7 @@
             vm.scenario = result;
         });
         $scope.$on('$destroy', unsubscribe);
-
-
+        
         var x=220;
         var y=50;
         var step=1;
@@ -34,6 +33,7 @@
         vm.getCategories=function(id){
         	vm.categories = Category.categoriesByRecordtype({id:id});
         }
+        
         
         
         var graph = new joint.dia.Graph();
@@ -260,6 +260,7 @@
         vm.cancel=function(){
       	  $location.path("/scenario");
         }
+        
         
     }
 })();
