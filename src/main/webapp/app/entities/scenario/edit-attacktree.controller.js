@@ -55,6 +55,7 @@
         var snaplines = new joint.ui.Snaplines({ paper: paper })
         snaplines.startListening()
         
+        
         function excute(){
         	var rootNode=Scenario.getRoot({id:$stateParams.id}, function(){
         		if (typeof rootNode.id != 'undefined'){
