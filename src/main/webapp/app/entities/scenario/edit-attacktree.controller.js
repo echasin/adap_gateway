@@ -55,6 +55,8 @@
         var snaplines = new joint.ui.Snaplines({ paper: paper })
         snaplines.startListening()
         
+        
+        
         function excute(){
         	var rootNode=Scenario.getRoot({id:$stateParams.id}, function(){
         		if (typeof rootNode.id != 'undefined'){
@@ -68,7 +70,14 @@
     	              });
             	     rect.attr('id', rootNode.pathway.id)
             	     rect.attr('isroot', true)
-            	     rect.attr('instance', rootPathway[0].pathwaypathwaymbr.childInstance)
+            	     console.log(rootPathway)
+            	     console.log(rootPathway.length)
+            	     
+            	     if(rootPathway.length > 0){
+              	     rect.attr('instance', rootPathway[0].pathwaypathwaymbr.childInstance)
+            	     }else{
+                  	     rect.attr('instance', rect.id)
+            	     }
             	     graph.addCells([rect]);
                      scenariopathwayCoordinates.push({"scenarioId": $stateParams.id,"pathwayId": rootNode.pathway.id,"xcoordinate":rootNode.xcoordinate,"ycoordinate":rootNode.ycoordinate});
                  	 buildLevels(rootPathway,rect)
@@ -276,6 +285,8 @@
             if (link.get('source').id && link.get('target').id) {
             	var source = graph.getCell(link.get('source'));
             	var target = graph.getCell(link.get('target'));
+            	console.log(source)
+            	console.log(target)
             	if(source.attributes.attrs.type == "countermeasure" || target.attributes.attrs.type == "countermeasure"){
             		if(source.attributes.attrs.recordtype ==  "Attack Method"){
                 		countermeasure.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y,"parentInstance":source.attributes.attrs.instance,childInstance:target.attributes.attrs.instance});            	    	
