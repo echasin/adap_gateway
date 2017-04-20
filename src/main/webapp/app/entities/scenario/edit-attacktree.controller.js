@@ -26,10 +26,11 @@
         vm.scenarios=Scenario.query({});
         vm.pathways=Scenario.getPathways({});
         vm.scenario="";
+        vm.message="";
         vm.scenarioId=$stateParams.id;
 
         var graph = new joint.dia.Graph;
-        var paper = new joint.dia.Paper({ el: $('#paper'), width: 1300, height: 900, gridSize: 10, model: graph,drawGrid:true,snapLinks:true,
+        var paper = new joint.dia.Paper({ width: 1300, height: 1000, gridSize: 10, model: graph,drawGrid:true,
         	interactive: function(cellView) {
                 if (cellView.model instanceof joint.dia.Link) {
                     return { vertexAdd: false };
@@ -38,8 +39,6 @@
             }
         });        
         
-                
-        
           
         var x=220;
         var y=50;
@@ -47,6 +46,16 @@
         var item=0;
         
 
+        var paperScroller = new joint.ui.PaperScroller({
+            paper: paper
+        });
+
+        $('#paper').append(paperScroller.render().el);
+        
+        var snaplines = new joint.ui.Snaplines({ paper: paper })
+        snaplines.startListening()
+        
+        
         
         function excute(){
         	var rootNode=Scenario.getRoot({id:$stateParams.id}, function(){
@@ -61,6 +70,14 @@
     	              });
             	     rect.attr('id', rootNode.pathway.id)
             	     rect.attr('isroot', true)
+            	     console.log(rootPathway)
+            	     console.log(rootPathway.length)
+            	     
+            	     if(rootPathway.length > 0){
+              	     rect.attr('instance', rootPathway[0].pathwaypathwaymbr.childInstance)
+            	     }else{
+                  	     rect.attr('instance', rect.id)
+            	     }
             	     graph.addCells([rect]);
                      scenariopathwayCoordinates.push({"scenarioId": $stateParams.id,"pathwayId": rootNode.pathway.id,"xcoordinate":rootNode.xcoordinate,"ycoordinate":rootNode.ycoordinate});
                  	 buildLevels(rootPathway,rect)
@@ -92,9 +109,12 @@
         			        });
         			        rect2.attr('id', rootPathway[index].pathwaypathwaymbr.childpathway.id)
         			        rect2.attr('type', "pathway")
+        			        rect2.attr('pathwaypathwaymbr',rootPathway[index].pathwaypathwaymbr.id)
+        			        rect2.attr('recordtype', rootPathway[index].pathwaypathwaymbr.childpathway.recordtype.name)
+        			        rect2.attr('instance', rootPathway[index].pathwaypathwaymbr.childInstance)
         			        graph.addCells([rect2, link]);
-                    		pathwaypathwayCoordinates.push({"sourceId": rect.attributes.attrs.id,"targetId": rect2.attributes.attrs.id,"xcoordinate":rect2.attributes.position.x,"ycoordinate":rect2.attributes.position.y});	
-        			        for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
+                    		pathwaypathwayCoordinates.push({"id": rootPathway[index].pathwaypathwaymbr.id,"sourceId": rect.attributes.attrs.id,"targetId": rect2.attributes.attrs.id,"xcoordinate":rect2.attributes.position.x,"ycoordinate":rect2.attributes.position.y});	
+                    		for(var c=0; c < rootPathway[index].pathwaycountermeasurembrs.length;c++){
        			        	 var cmrect3= new joint.shapes.tm.Actor({
         		     	            position: { x: rootPathway[index].pathwaycountermeasurembrs[c].xcoordinate, y: rootPathway[index].pathwaycountermeasurembrs[c].ycoordinate },
         		     	            size: { width: 100, height: 40 },
@@ -106,11 +126,13 @@
         		            	 });
         		            	    cmrect3.attr('id', rootPathway[index].pathwaycountermeasurembrs[c].countermeasure.id)
         					        cmrect3.attr('type', "countermeasure")
-        		            	    graph.addCells([cmrect3,cmlink3]);
-        		            	    countermeasureCoordinates.push({"sourceId": rect2.attributes.attrs.id,"targetId": cmrect3.attributes.attrs.id,"xcoordinate":cmrect3.attributes.position.x,"ycoordinate":cmrect3.attributes.position.y});	
-        					    }
+        					        cmrect3.attr('pathwaycountermeasurembr', rootPathway[index].pathwaycountermeasurembrs[c].id)
+        		            	    cmrect3.attr('instance', rootPathway[index].pathwaycountermeasurembrs[c].childInstance)
+        					        graph.addCells([cmrect3,cmlink3]);
+        		            	    countermeasureCoordinates.push({id:rootPathway[index].pathwaycountermeasurembrs[c].id,"sourceId": rect2.attributes.attrs.id,"targetId": cmrect3.attributes.attrs.id,"xcoordinate":cmrect3.attributes.position.x,"ycoordinate":cmrect3.attributes.position.y});	
+                    		}
         			        item++
-        			        var child=Scenario.getPathway({pathwayId:rootPathway[index].pathwaypathwaymbr.childpathway.id,scenarioId:$stateParams.id}, function(){
+        			        var child=Scenario.getPathwayInstnace({pathwayId:rootPathway[index].pathwaypathwaymbr.childpathway.id,scenarioId:$stateParams.id,parentInstance:rootPathway[index].pathwaypathwaymbr.childInstance}, function(){
         			        	buildLevels(child,rect2)
             			        step+=0.5;
         			        	item=1;
@@ -130,7 +152,7 @@
         }
         
         function addPathway(id,name,recordtype){
-        	if(root==true){
+        	if(root==true){            
         	var color=Scenario.getColor({recordtype:recordtype}, function(){
             var rect = new joint.shapes.tm.Actor({
               position: { x: 50, y: 50 }, size: { width: 100, height: 40 },
@@ -139,9 +161,12 @@
               	text: { text: name ,'font-size': 14, fill: "white" }
               }
           });
+         	
                rect.attr('id', id)
                rect.attr('type', "pathway")
+               rect.attr('recordtype', recordtype)
       	       graph.addCells([ rect ]);
+               rect.attr('instance', rect.id)
         	});
          }else{
         	 var pathway=Pathway.get({id : id}, function(){
@@ -154,12 +179,15 @@
                    	text: { text: name, id: id,'font-size': 14, fill: "white" }
                    }
                });
+                 var dateInInteger=Date.parse(new Date());	
+             	var instance=dateInInteger/(rect.attributes.position.x*rect.attributes.position.y);
+             		
                    rect.attr('id', id)
                    rect.attr('isroot', true)
+                   rect.attr('recordtype', recordtype)
            	       graph.addCells([ rect ]);
+                   rect.attr('instance', rect.id)
                    scenariopathway.push({"scenarioId": $stateParams.id,"pathwayId": id,"xcoordinate":rect.attributes.position.x,"ycoordinate":rect.attributes.position.y});
-          	       console.log(rect)
-                   console.log(scenariopathway)
              	});
         	     
         	     root=true;
@@ -176,28 +204,18 @@
               position: { x: 50, y: 50 }, size: { width: 100, height: 40 },
               attrs: {
               	rect: { fill: color.content },
-              	text: { text: name ,'font-size': 14, fill: "white" }
+              	text: { text: name ,'font-size': 14, fill: "black" }
               }
            });
                rect.attr('id', id)
                rect.attr('type', "countermeasure")
       	       graph.addCells([ rect ]);
-               console.log(rect)
+               rect.attr('instance', rect.id)
         	});
          }
          
         }
         
-        function findByKey(array, key, value) {
-       	    for (var i = 0; i < array.length; i++) {
-       	        if (array[i][key] === value) {
-       	            return array[i];
-       	        }
-       	    }
-       	    return null;
-       	}
-         
-
         paper.on('cell:pointerup', function(cellView, evt, x, y) {
         	if (cellView.model.attributes.type === 'tm.Actor'){
         	if(cellView.model.attributes.attrs.isroot==true){
@@ -211,25 +229,25 @@
 			      });
         	}else{
         	  $.each(pathwaypathway, function() {
-				if (this.targetId == cellView.model.attributes.attrs.id) {
+				if (this.childInstance == cellView.model.id) {
 					this.xcoordinate = cellView._dx;
 					this.ycoordinate = cellView._dy;
 				 }
 			  });
         	  $.each(countermeasure, function() {
-  				if (this.targetId == cellView.model.attributes.attrs.id) {
+  				if (this.childInstance == cellView.model.id) {
   					this.xcoordinate = cellView._dx;
   					this.ycoordinate = cellView._dy;
   				 }
   			  });
   			   $.each(countermeasureCoordinates, function() {
-  				if (this.targetId == cellView.model.attributes.attrs.id) {
+  				if (this.id == cellView.model.attributes.attrs.pathwaycountermeasurembr) {
   					this.xcoordinate = cellView._dx;
   					this.ycoordinate = cellView._dy;
   				 }
   			  });
   			  $.each(pathwaypathwayCoordinates, function() {
-  				if (this.targetId == cellView.model.attributes.attrs.id) {
+  				if (this.id == cellView.model.attributes.attrs.pathwaypathwaymbr) {
   					this.xcoordinate = cellView._dx;
   					this.ycoordinate = cellView._dy;
   				 }
@@ -258,26 +276,29 @@
             	var data=Scenario.getLineData({scenarioId: $stateParams.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id},function(){
             		vm.lineData=data;
             		vm.lineData.linkId=cellView.model.id;
-            		console.log(cellView.model.id)
             	 $('#linemodal').modal('show');
             	});
           	}
-        	
-        	
         });
         
         graph.on('change:source change:target', function(link) {
             if (link.get('source').id && link.get('target').id) {
             	var source = graph.getCell(link.get('source'));
             	var target = graph.getCell(link.get('target'));
+            	console.log(source)
+            	console.log(target)
             	if(source.attributes.attrs.type == "countermeasure" || target.attributes.attrs.type == "countermeasure"){
-            		countermeasure.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y});
+            		if(source.attributes.attrs.recordtype ==  "Attack Method"){
+                		countermeasure.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y,"parentInstance":source.attributes.attrs.instance,childInstance:target.attributes.attrs.instance});            	    	
+            		}else{
+            	    	vm.message="Must Add Countermeasure To Attach Method";
+            	    }
             	}else{
-            		pathwaypathway.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y});	
+            		pathwaypathway.push({"sourceId": source.attributes.attrs.id,"targetId": target.attributes.attrs.id,"xcoordinate":target.attributes.position.x,"ycoordinate":target.attributes.position.y,"parentInstance":source.attributes.attrs.instance,childInstance:target.attributes.attrs.instance});	
             	}
             }
         });
-        		
+        
         function cleanResponse(resp) {
             return JSON.parse(angular.toJson(resp));
         }
@@ -301,7 +322,7 @@
         	for(var ppc=0;ppc< pathwaypathwayCoordinates.length;ppc++){
         		(function(ppcitem) {
     			    setTimeout(function() {
-        	        var object=Scenario.getLineData({scenarioId: $stateParams.id,parentId:pathwaypathwayCoordinates[ppcitem].sourceId,childId:pathwaypathwayCoordinates[ppcitem].targetId},function(){
+        	        var object=Pathwaypathwaymbr.get({id:pathwaypathwayCoordinates[ppcitem].id},function(){
         	          object.xcoordinate=pathwaypathwayCoordinates[ppcitem].xcoordinate;
         	          object.ycoordinate=pathwaypathwayCoordinates[ppcitem].ycoordinate;
         	          Pathwaypathwaymbr.update(object);
@@ -314,7 +335,7 @@
         	for(var cc=0;cc< countermeasureCoordinates.length;cc++){
         		(function(ccitem) {
     			    setTimeout(function() {
-        	        var object=Scenario.getCounterMeasureLine({scenarioId: $stateParams.id,pathwayId:countermeasureCoordinates[ccitem].sourceId,countermeasureId:countermeasureCoordinates[ccitem].targetId},function(){
+        	        var object=Pathwaycountermeasurembr.get({id:countermeasureCoordinates[ccitem].id},function(){
         	          object.xcoordinate=countermeasureCoordinates[ccitem].xcoordinate;
         	          object.ycoordinate=countermeasureCoordinates[ccitem].ycoordinate;
         	          Pathwaycountermeasurembr.update(object);
@@ -359,9 +380,11 @@
             	});
         	 });
         	}
+        	
         	for(var i=0;i<pathwaypathway.length;i++){
         	 	(function(item) {
     			    setTimeout(function() {
+    			    	
     	    vm.pathwaypathwaymbr.comment="comment";
         	vm.pathwaypathwaymbr.logicoperator="And";
         	
@@ -381,10 +404,11 @@
         		parentPathway.$promise,
         		childPathway.$promise
         	]).then(function() { 
-
+        		
         		vm.pathwaypathwaymbr.xcoordinate=pathwaypathway[item].xcoordinate;
             	vm.pathwaypathwaymbr.ycoordinate=pathwaypathway[item].ycoordinate;
-            	
+            	vm.pathwaypathwaymbr.parentInstance=pathwaypathway[item].parentInstance;
+            	vm.pathwaypathwaymbr.childInstance=pathwaypathway[item].childInstance;
         		vm.scenario = cleanResponse(scenario)
         		vm.pathwaypathwaymbr.scenario=vm.scenario;
         		
@@ -398,7 +422,6 @@
         		$q.all([
         			saveNewPathway.$promise
             	]).then(function() { 
-            		 console.log(pathwaypathway)
                      pathwaypathway=[];
             	});
         	  });
@@ -426,6 +449,9 @@
         		countermeasureNode.$promise
         	]).then(function() { 
         		
+        		vm.pathwaycountermeasurembr.parentInstance=countermeasure[jitem].parentInstance;
+            	vm.pathwaycountermeasurembr.childInstance=countermeasure[jitem].childInstance;
+     
         		vm.pathwaycountermeasurembr.xcoordinate=countermeasure[jitem].xcoordinate;
             	vm.pathwaycountermeasurembr.ycoordinate=countermeasure[jitem].ycoordinate;
             	
@@ -605,7 +631,6 @@
           $('td', nRow).unbind('click');
           $('td', nRow).bind('click', function() {
               $scope.$apply(function() {
-            	  console.log(aData.recordtype)
             	  if(aData.recordtype==='Counter Measure Policy'){
             		  addCountermeasure(aData.id,aData.nameshort,aData.recordtype)  
             	  }else{
@@ -619,7 +644,6 @@
       vm.openPathwayModal=function(recordtype,isrootnode){
     	   vm.recordtypeName=recordtype;
     	   vm.newPathway={};
-    	   console.log(isrootnode);
     	   vm.newPathway.isrootnode=isrootnode; 
     	  $('#createPathwayModal').modal('show');
       }
@@ -635,7 +659,6 @@
              var recordtype=Recordtype.recordtypeByName({name:vm.recordtypeName},function(){
            		
            	 }); 
-             console.log(recordtype)
            	$q.all([
       		  recordtype.$promise   
              	 ]).then(function() {
@@ -659,7 +682,6 @@
       }
       
       vm.openCountermeasureModal=function(recordtype){
-    	  console.log(recordtype)
    	   vm.recordtypeName=recordtype;
    	   vm.newCountermeasure=null;
    	  $('#createCountermeasueModal').modal('show');
@@ -722,8 +744,6 @@
     	    var source = graph.getCell(cell.attributes.source.id);
        	    var target = graph.getCell(cell.attributes.target.id);
        	 if(source.attributes.attrs.type == "countermeasure" || target.attributes.attrs.type == "countermeasure"){
-       		 console.log(source.attributes.attrs.id)
-       		 console.log(target.attributes.attrs.id)
              Scenario.removePathwayCountermeasure({scenarioId: $stateParams.id,pathwayId:source.attributes.attrs.id,countermeasureId:target.attributes.attrs.id})
      	}else{
             Scenario.removeLine({scenarioId: $stateParams.id,parentId:source.attributes.attrs.id,childId:target.attributes.attrs.id})

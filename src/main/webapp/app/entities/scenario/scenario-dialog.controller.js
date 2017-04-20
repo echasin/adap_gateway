@@ -16,8 +16,9 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.recordtypes = Recordtype.query();
+        vm.categories=entity.categories;
+        vm.subcategories=entity.subcategories;
         
-        vm.subcategories = Subcategory.query();
         vm.scenariopathwaymbrs = Scenariopathwaymbr.query();
 
         $timeout(function (){
@@ -34,8 +35,6 @@
             var lastmodifieddatetime = new Date();
             if (vm.scenario.id !== null) {
             	Account.get().$promise.then(function(currentUser){
-                 	console.log(currentUser.data)
-                 	console.log(currentUser.data.login)    
                  	vm.scenario.domain=currentUser.data.domain
                  	vm.scenario.lastmodifiedby=currentUser.data.lastmodifiedby;
                  	vm.scenario.status="Active";
@@ -44,8 +43,6 @@
             	});
             } else {
             	Account.get().$promise.then(function(currentUser){
-                 	console.log(currentUser.data)
-                 	console.log(currentUser.data.login)    
                  	vm.scenario.domain=currentUser.data.domain
                  	vm.scenario.lastmodifiedby=currentUser.data.lastmodifiedby;
                  	vm.scenario.status="Active";
@@ -74,6 +71,14 @@
         
         vm.getCategories=function(id){
         	vm.categories = Category.categoriesByRecordtype({id:id});
+        	vm.subcategories=null;
         }
+        
+         
+        vm.getSubCategories=function(id){
+        	vm.subcategories=Subcategory.subCategoriesByCategory({id:vm.scenario.categories[0].id});
+        	console.log(vm.subcategories);
+        }
+        
     }
 })();

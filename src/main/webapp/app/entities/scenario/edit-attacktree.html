@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-lg-10">
@@ -13,14 +15,8 @@
 </div>
 
 <!-- Original Code -->
-
-
 <div>
-TEST
-</div>
-
-<div>
-    <h2>Draw Scenarios  {{vm.scenarioId}}</h2>
+    <h2>Draw Scenarios  {{vm.scenarioId}} {{vm.message}}</h2>
     <div class="wrapper wrapper-content">
     <div class="row">
 		<div class="col-lg-9">
@@ -115,7 +111,7 @@ TEST
 		 <h2 style="color: red;">{{vm.message}}</h2>
 		 <button class="btn btn-primary" ng-click="vm.line()">Drag Line</button>
 		 <button class="btn btn-primary" ng-click="vm.toPDF()" >Export PDF</button>
-         <div id="paper">    
+         <div id="paper">   
          </div>
 		</div>
       </div>
