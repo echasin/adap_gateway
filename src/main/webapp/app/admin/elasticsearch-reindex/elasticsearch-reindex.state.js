@@ -29,15 +29,45 @@
                     return $translate.refresh();
                 }]
             }
-        }).state('elasticsearch-reindex.dialog', {
+        }).state('reindexrisk', {
             parent: 'elasticsearch-reindex',
             data: {
                 authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/admin/elasticsearch-reindex/elasticsearch-reindex-dialog.html',
-                    controller: 'ElasticsearchReindexDialogController',
+                    templateUrl: 'app/admin/elasticsearch-reindex/elasticsearch-reindex-risk-dialog.html',
+                    controller: 'ElasticsearchReindexRiskDialogController',
+                    controllerAs: 'vm',
+                    size: 'sm'
+                }).result.finally(function () {
+                    $state.go('^');
+                });
+            }]
+        }).state('reindexcore', {
+            parent: 'elasticsearch-reindex',
+            data: {
+                authorities: ['ROLE_ADMIN']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/admin/elasticsearch-reindex/elasticsearch-reindex-core-dialog.html',
+                    controller: 'ElasticsearchReindexCoreDialogController',
+                    controllerAs: 'vm',
+                    size: 'sm'
+                }).result.finally(function () {
+                    $state.go('^');
+                });
+            }]
+        }).state('reindexreport', {
+            parent: 'elasticsearch-reindex',
+            data: {
+                authorities: ['ROLE_ADMIN']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/admin/elasticsearch-reindex/elasticsearch-reindex-report-dialog.html',
+                    controller: 'ElasticsearchReindexReportDialogController',
                     controllerAs: 'vm',
                     size: 'sm'
                 }).result.finally(function () {

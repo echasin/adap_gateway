@@ -3,7 +3,7 @@
 
     angular
         .module('adapGatewayApp')
-        .controller('ElasticsearchReindexDialogController', ElasticsearchReindexDialogController);
+        .controller('ElasticsearchReindexRiskDialogController', ElasticsearchReindexDialogController);
 
     ElasticsearchReindexDialogController.$inject = ['$uibModalInstance', 'ElasticsearchReindex'];
 
@@ -18,7 +18,7 @@
         }
 
         function confirmReindex() {
-            ElasticsearchReindex.reindexAll(function () {
+            ElasticsearchReindex.reindexRisk(function () {
                 $uibModalInstance.close(true);
             });
         }
