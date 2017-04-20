@@ -5,9 +5,9 @@
         .module('adapGatewayApp')
         .controller('WeaponDialogController', WeaponDialogController);
 
-    WeaponDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Weapon', 'Recordtype', 'Category', 'Subcategory', 'Pathway', 'Countermeasurefactor'];
+    WeaponDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Weapon', 'Recordtype', 'Category', 'Subcategory', 'Pathway', 'Countermeasurefactor','Account'];
 
-    function WeaponDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Weapon, Recordtype, Category, Subcategory, Pathway, Countermeasurefactor) {
+    function WeaponDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Weapon, Recordtype, Category, Subcategory, Pathway, Countermeasurefactor,Account) {
         var vm = this;
 
         vm.weapon = entity;
@@ -16,10 +16,10 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.recordtypes = Recordtype.query();
-        vm.categories = Category.query();
-        vm.subcategories = Subcategory.query();
         vm.pathways = Pathway.query();
         vm.countermeasurefactors = Countermeasurefactor.query();
+        vm.categories=entity.categories;
+        vm.subcategories=entity.subcategories;
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -31,10 +31,23 @@
 
         function save () {
             vm.isSaving = true;
+            var lastmodifieddatetime = new Date();
             if (vm.weapon.id !== null) {
+            	Account.get().$promise.then(function(currentUser){
+            	vm.weapon.domain=currentUser.data.domain
+             	vm.weapon.lastmodifiedby=currentUser.data.lastmodifiedby;
+             	vm.weapon.status="Active";
+             	vm.weapon.lastmodifieddatetime=lastmodifieddatetime;
                 Weapon.update(vm.weapon, onSaveSuccess, onSaveError);
+            });
             } else {
+            	Account.get().$promise.then(function(currentUser){
+            	vm.weapon.domain=currentUser.data.domain
+             	vm.weapon.lastmodifiedby=currentUser.data.lastmodifiedby;
+             	vm.weapon.status="Active";
+             	vm.weapon.lastmodifieddatetime=lastmodifieddatetime;
                 Weapon.save(vm.weapon, onSaveSuccess, onSaveError);
+             });
             }
         }
 
@@ -53,5 +66,16 @@
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
+        
+        vm.getCategories=function(id){
+        	vm.categories = Category.categoriesByRecordtype({id:id});
+            vm.subcategories=null;
+        }
+        
+        vm.getSubCategories=function(id){
+        	vm.subcategories=Subcategory.subCategoriesByCategory({id:vm.weapon.categories[0].id});
+        	console.log(vm.subcategories);
+        }
+        
     }
 })();

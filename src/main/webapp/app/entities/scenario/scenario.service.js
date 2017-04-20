@@ -25,6 +25,7 @@
             'getColor': {method: 'GET', url: 'adap_risk/api/getColor/:recordtype',transformResponse: function(data, headersGetter, status) {
                 return {content: data};}},
             'getPathway': {method: 'GET',isArray: true, url: 'adap_risk/api/getPathway/:pathwayId/:scenarioId'},
+            'getPathwayInstnace': {method: 'GET',isArray: true, url: 'adap_risk/api/getPathwayInstnace/:pathwayId/:scenarioId/:parentInstance'},
             'getPathways': {method: 'GET',isArray: true, url: 'adap_risk/api/getPathways'},
             'getCounterMeasureLine': {method: 'GET', url: 'adap_risk/api/getCounterMeasureLine/:scenarioId/:pathwayId/:countermeasureId'},
             'getLineData': {method: 'GET', url: 'adap_risk/api/getLineData/:scenarioId/:parentId/:childId'},
