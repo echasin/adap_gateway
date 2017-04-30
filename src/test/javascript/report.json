@@ -1,0 +1,88 @@
+[
+  {
+    "description": "Protractor and Cucumber Test",
+    "assertions": [
+      {
+        "passed": true
+      },
+      {
+        "passed": true
+      },
+      {
+        "passed": true
+      },
+      {
+        "passed": true
+      },
+      {
+        "passed": true
+      },
+      {
+        "passed": true
+      }
+    ],
+    "events": [
+      {
+        "emitterEvent": "testPass",
+        "name": "Given I go to \"http://localhost:8099/#/\"",
+        "category": "Running Cucumber with Protractor: Protractor and Cucumber Test",
+        "durationMillis": 8100,
+        "sourceLocation": {
+          "line": 4,
+          "column": 1
+        }
+      },
+      {
+        "emitterEvent": "testPass",
+        "name": "When I add login credential",
+        "category": "Running Cucumber with Protractor: Protractor and Cucumber Test",
+        "durationMillis": 7,
+        "sourceLocation": {
+          "line": 5,
+          "column": 1
+        }
+      },
+      {
+        "emitterEvent": "testPass",
+        "name": "Then I go to scenario home page",
+        "category": "Running Cucumber with Protractor: Protractor and Cucumber Test",
+        "durationMillis": 2,
+        "sourceLocation": {
+          "line": 6,
+          "column": 1
+        }
+      },
+      {
+        "emitterEvent": "testPass",
+        "name": "Then I go to scenario details page",
+        "category": "Running Cucumber with Protractor: Protractor and Cucumber Test",
+        "durationMillis": 4,
+        "sourceLocation": {
+          "line": 7,
+          "column": 1
+        }
+      },
+      {
+        "emitterEvent": "testPass",
+        "name": "Then I go to edit attack tree page",
+        "category": "Running Cucumber with Protractor: Protractor and Cucumber Test",
+        "durationMillis": 1,
+        "sourceLocation": {
+          "line": 8,
+          "column": 1
+        }
+      },
+      {
+        "emitterEvent": "testPass",
+        "name": "Then build attack tree",
+        "category": "Running Cucumber with Protractor: Protractor and Cucumber Test",
+        "durationMillis": 6,
+        "sourceLocation": {
+          "line": 9,
+          "column": 1
+        }
+      }
+    ],
+    "duration": 8120
+  }
+]

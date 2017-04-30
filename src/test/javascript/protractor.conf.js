@@ -1,73 +1,32 @@
-var HtmlScreenshotReporter = require("protractor-jasmine2-screenshot-reporter");
-var JasmineReporters = require('jasmine-reporters');
-
-var prefix = 'src/test/javascript/'.replace(/[^/]+/g,'..');
-
 exports.config = {
-    seleniumServerJar: prefix + 'node_modules/protractor/selenium/selenium-server-standalone-2.52.0.jar',
-    chromeDriver: prefix + 'node_modules/protractor/selenium/chromedriver',
-    allScriptsTimeout: 20000,
+		  getPageTimeout: 600000,
+		  allScriptsTimeout: 700000,
+		  framework: 'custom',
+		  // path relative to the current config file
+		  frameworkPath: require.resolve('protractor-cucumber-framework'),
+		 // frameworkPath: require.resolve('serenity-js'), 
+		 
+		  /**
+		  serenity: {
+		        dialect: 'cucumber'     // or 'mocha'
+		    },
+		  **/
+		  capabilities: {
+		    'browserName': 'chrome'
+		  },
 
-    suites: {
-        account: './e2e/account/*.js',
-        admin: './e2e/admin/*.js',
-        entity: './e2e/entities/*.js'
-    },
+		  // Spec patterns are relative to this directory.
+		  specs: [
+		    '/home/ali/git/adap_gateway/src/test/features/*.feature'
+		  ],
 
-    capabilities: {
-        'browserName': 'firefox',
-        'phantomjs.binary.path': require('phantomjs-prebuilt').path,
-        'phantomjs.ghostdriver.cli.args': ['--loglevel=DEBUG']
-    },
+		  baseURL: 'http://localhost:8099/',
 
-    directConnect: true,
-
-    baseUrl: 'http://localhost:8080/',
-
-    framework: 'jasmine2',
-
-    jasmineNodeOpts: {
-        showColors: true,
-        defaultTimeoutInterval: 30000
-    },
-
-    onPrepare: function() {
-        // Disable animations so e2e tests run more quickly
-        var disableNgAnimate = function() {
-            angular
-                .module('disableNgAnimate', [])
-                .run(['$animate', function($animate) {
-                    $animate.enabled(false);
-                }]);
-        };
-
-        var disableCssAnimate = function() {
-            angular
-                .module('disableCssAnimate', [])
-                .run(function() {
-                    var style = document.createElement('style');
-                    style.type = 'text/css';
-                    style.innerHTML = 'body * {' +
-                        '-webkit-transition: none !important;' +
-                        '-moz-transition: none !important;' +
-                        '-o-transition: none !important;' +
-                        '-ms-transition: none !important;' +
-                        'transition: none !important;' +
-                        '}';
-                    document.getElementsByTagName('head')[0].appendChild(style);
-                });
-        };
-
-        browser.addMockModule('disableNgAnimate', disableNgAnimate);
-        browser.addMockModule('disableCssAnimate', disableCssAnimate);
-
-        browser.driver.manage().window().setSize(1280, 1024);
-        jasmine.getEnv().addReporter(new JasmineReporters.JUnitXmlReporter({
-            savePath: 'target/reports/e2e',
-            consolidateAll: false
-        }));
-        jasmine.getEnv().addReporter(new HtmlScreenshotReporter({
-            dest: "target/reports/e2e/screenshots"
-        }));
-    }
-};
+		  cucumberOpts: {
+		    require: '/home/ali/git/adap_gateway/src/test/javascript/stepDef/stepDefinitions.js'
+		  },
+		  
+		  resultJsonOutputFile: 'report.json',
+		  ignoreUncaughtExceptions: true
+		  			  
+		};
