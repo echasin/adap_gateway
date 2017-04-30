@@ -42,6 +42,7 @@ module.exports = function() {
 	  element(by.id('editattacktree')).click();
       callback();
     });
+   
 
    this.Then(/^build attack tree$/, function (callback) {
 	   element(by.id('primarygoal')).click();
