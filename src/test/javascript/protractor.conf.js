@@ -3,30 +3,35 @@ exports.config = {
 		  allScriptsTimeout: 700000,
 		  framework: 'custom',
 		  // path relative to the current config file
-		  frameworkPath: require.resolve('protractor-cucumber-framework'),
-		 // frameworkPath: require.resolve('serenity-js'), 
+		  
+		  
+		  
+		  frameworkPath: require.resolve('protractor-cucumber-framework'),   //without serenity report
+		//  frameworkPath: require.resolve('serenity-js'),    //with serenity report not work on ubuntu with me
 		 
-		  /**
+		  
 		  serenity: {
 		        dialect: 'cucumber'     // or 'mocha'
 		    },
-		  **/
+		  
 		  capabilities: {
 		    'browserName': 'chrome'
 		  },
 
 		  // Spec patterns are relative to this directory.
 		  specs: [
-		    '/home/ali/git/adap_gateway/src/test/features/*.feature'
+		    './features/*.feature'
 		  ],
 
 		  baseURL: 'http://localhost:8099/',
 
 		  cucumberOpts: {
-		    require: '/home/ali/git/adap_gateway/src/test/javascript/stepDef/stepDefinitions.js'
+		    require: './stepDef/stepDefinitions.js',
+		    format:     'pretty'
 		  },
 		  
 		  resultJsonOutputFile: 'report.json',
 		  ignoreUncaughtExceptions: true
-		  			  
+		  			
+		  
 		};
